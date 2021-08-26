@@ -31,10 +31,4 @@ def hamburg(sheets):
     return True
 
 schedule.append(Task(11, 55, 12, 30, 120, hamburg, 2000))
-
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    hamburg(sheets)
-
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': hamburg(googlesheets())

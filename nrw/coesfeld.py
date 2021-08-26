@@ -22,10 +22,4 @@ def coesfeld(sheets):
     return True
 
 schedule.append(Task(11, 30, 13, 30, 180, coesfeld, 5558))
-
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    coesfeld(sheets)
-
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': coresfeld(googlesheets())

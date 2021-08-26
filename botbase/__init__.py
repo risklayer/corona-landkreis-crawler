@@ -3,7 +3,7 @@
 import time, sys
 
 # Google sheets oauth authorization
-from .oauth import authorize, build
+from .oauth import googlesheets
 
 # Scheduler may need to update this
 todaystr = time.strftime("%d.%m.%Y")

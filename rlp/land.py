@@ -7,7 +7,6 @@ def rlp(sheets):
     blacklist=[7317,7340,7320] # Pirmasens, Südwestpfalz, Zweibrücken
     from urllib.request import urlopen
     from bs4 import BeautifulSoup
-    from lxml import etree
     url = "https://lua.rlp.de/de/presse/detail/news/News/detail/coronavirus-sars-cov-2-aktuelle-fallzahlen-fuer-rheinland-pfalz/"
     client = urlopen(url)
     data = client.read()
@@ -17,7 +16,7 @@ def rlp(sheets):
         encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
     soup = BeautifulSoup(data, "lxml", from_encoding=encoding)
     stand = soup.find(id="content").find("h5").text
-    if not today in stand: raise Exception("RLP noch alt? " + stand)
+    if not todaystr in stand: raise Exception("RLP noch alt? " + stand)
     for row in soup.find(id="content").findAll("tr")[3:-1]:
         row = [x.text.strip() for x in row.findAll("td")]
         #print(row)
@@ -28,14 +27,9 @@ def rlp(sheets):
             continue
         c, d, g = int(row[1]), int(row[4]), int(row[5])
         cc = int(row[2])
-        #print("AGS", ags, c, cc, g, d)
-        update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Land", comment="Bot", dry_run=dry_run, date=today, check=_rlpat)
+        update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Land", comment="Bot", check=_rlpat)
         time.sleep(50) # avoid rate limit problems
     return True
 
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    rlp(sheets)
-
-if __name__ == '__main__':
-    main()
+schedule.append(Task(14, 00, 15, 00, 120, rlp, 7134))
+if __name__ == '__main__': rlp(googlesheets())

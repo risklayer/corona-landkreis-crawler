@@ -24,10 +24,4 @@ def wuppertal(sheets):
     return True
 
 schedule.append(Task(10, 5, 20, 30, 3600, wuppertal, 5124))
-
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    wuppertal(sheets)
-
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': wuppertal(googlesheets())

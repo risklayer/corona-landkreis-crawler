@@ -22,10 +22,4 @@ def hamelnpyrmont(sheets):
     return True
 
 schedule.append(Task(11, 55, 12, 30, 180, hamelnpyrmont, 3252))
-
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    hamelnpyrmont(sheets)
-
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': hamelnpyrmont(googlesheets())

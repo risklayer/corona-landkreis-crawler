@@ -34,10 +34,4 @@ def berlin(sheets):
     return True
 
 schedule.append(Task(9, 0, 10, 0, 300, berlin, 11000))
-
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    berlin(sheets)
-
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': berlin(googlesheets())

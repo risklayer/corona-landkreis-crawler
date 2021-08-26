@@ -4,3 +4,4 @@ __pycache__
 .*.swp
 credentials.json
 token.json
+venv

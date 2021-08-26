@@ -32,10 +32,4 @@ def bremen(sheets):
     return True
 
 schedule.append(Task(16, 15, 18, 30, 300, bremen, 4011))
-
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    bremen(sheets)
-
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': bremen(googlesheets())

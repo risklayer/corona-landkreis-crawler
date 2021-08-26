@@ -1,8 +1,5 @@
-# export "build"!
-from googleapiclient.discovery import build
-
 _creds = None
-def authorize():
+def _authorize():
     from google_auth_oauthlib.flow import InstalledAppFlow
     from google.auth.transport.requests import Request
     from google.oauth2.credentials import Credentials
@@ -25,3 +22,6 @@ def authorize():
         with open('token.json', 'w') as token: token.write(_creds.to_json())
     return _creds
 
+def googlesheets():
+    from googleapiclient.discovery import build
+    return build('sheets', 'v4', credentials=_authorize()).spreadsheets()

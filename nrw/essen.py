@@ -23,10 +23,4 @@ def essen(sheets):
     return True
 
 schedule.append(Task(8, 10, 10, 10, 1800, essen, 5113))
-
-def main():
-    sheets = build('sheets', 'v4', credentials=authorize()).spreadsheets()
-    essen(sheets)
-
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': essen(googlesheets())
