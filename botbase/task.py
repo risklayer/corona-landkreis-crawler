@@ -1,9 +1,3 @@
-# Parsing utility, ignores whitespace and dots
-def force_int(x, fallback=None):
-    try:
-        return int(x.replace(".","").replace(" ",""))
-    except ValueError: return fallback
-
 ### Big TODO: use inheritance to override some of this for particular targets
 class Task:
     def __init__(self, sh, sm, eh, em, interval, fun, ags):

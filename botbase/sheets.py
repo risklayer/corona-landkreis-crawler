@@ -5,12 +5,35 @@ spreadsheet_id = '1wg-s4_Lz2Stil6spQEYFdZaBEp8nWW26gVyfHqvcl8s'
 # Global command line "dry run" parameter
 dry_run="--dry-run" in sys.argv
 
+# Parsing utility, ignores whitespace and dots
+def force_int(x, fallback=None):
+    if isinstance(x, int): return x
+    try:
+        return int(x.replace(".","").replace(" ",""))
+    except ValueError: return fallback
+
+def get_json(url):
+    from urllib.request import urlopen
+    import json
+    with urlopen(url) as client:
+        return json.loads(client.read())
+
+def get_soup(url):
+    from urllib.request import urlopen
+    from bs4 import BeautifulSoup
+    with urlopen(url) as client:
+        data = client.read()
+        encoding = "UTF-8" # default
+        if 'charset=' in client.headers.get('content-type', '').lower():
+            encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
+        return BeautifulSoup(data, "lxml", from_encoding=encoding)
+
 _namemap=None
 def ags_from_name(nam):
     global _namemap
     if not _namemap:
         _namemap = dict()
-        for line in open("_namemap.csv"):
+        for line in open("namemap.csv"):
             a, n = line.strip().split("\t")
             _namemap[n] = int(a)
     return _namemap.get(nam)
@@ -53,7 +76,8 @@ def _format(c, v, vv=None):
     return ("%s%d(%+d)" % (c,v,vv)) if vv != 0 else ("%s%d(=)" % (c,v))
 
 def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False):
-    if date is None: date = todaystr
+    import time
+    if date is None: date = time.strftime("%d.%m.%Y")
     strs = [_format("C",c,cc), _format("D",d,dd), _format("G",g,gg), _format("Q",q), _format("S",s), _format("I",i)]
     rownr = get_ags(sheets)[ags]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
@@ -80,21 +104,21 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
         print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
         do_apply = False
     if do_apply and cc is None and c < int(row[0]): do_apply = False
-    if "Bot" in row[17]: return # schon von Bot kommentiert
+    #if "Bot" in row[17]: return # schon von Bot kommentiert
     if do_apply:
         reqs = list()
         if c != int(prev[0]) and c != int(row[7]):
             reqs.append({"range": "Haupt!K%d" % rownr, "values": [[c]]})
         #elif c is not None: comment=comment.replace(strs[0], "(%s)" % strs[0])
-        if d is not None and d != int(prev[2]) and d != int(row[12]):
+        if d is not None and d != int(prev[2]) and d != force_int(row[12]):
             reqs.append({"range": "Haupt!P%d" % rownr, "values": [[d]]})
         #elif d is not None: comment=comment.replace(strs[1], "(%s)" % strs[1])
-        if g is not None and g != int(prev[1]) and g != int(row[8]):
+        if g is not None and g != int(prev[1]) and g != force_int(row[8]):
             reqs.append({"range": "Haupt!L%d" % rownr, "values": [[g]]})
         #elif g is not None: comment=comment.replace(strs[2], "(%s)" % strs[2])
-        if q is not None and q != int(row[9]): reqs.append({"range": "Haupt!M%d" % rownr, "values": [[q]]})
-        if s is not None and s != int(row[10]): reqs.append({"range": "Haupt!N%d" % rownr, "values": [[s]]})
-        if i is not None and i != int(row[11]): reqs.append({"range": "Haupt!O%d" % rownr, "values": [[i]]})
+        if q is not None and q != force_int(row[9]): reqs.append({"range": "Haupt!M%d" % rownr, "values": [[q]]})
+        if s is not None and s != force_int(row[10]): reqs.append({"range": "Haupt!N%d" % rownr, "values": [[s]]})
+        if i is not None and i != force_int(row[11]): reqs.append({"range": "Haupt!O%d" % rownr, "values": [[i]]})
         if len(reqs) == 0: return
         #comment=comment.replace(")) (", ") ")
         reqs.append({"range": "Haupt!Q%d" % rownr, "values":[[date]]})

@@ -2,13 +2,7 @@
 from botbase import *
 
 def hamelnpyrmont(sheets):
-    from urllib.request import urlopen
-    import json, datetime
-    url = "https://services2.arcgis.com/50d5wsDbZicDslDY/ArcGIS/rest/services/Gemeinden_F_Covid/FeatureServer/0/query?where=Status%3D%27an%27&outFields=*&returnGeometry=false&orderByFields=Datum+DESC&groupByFieldsForStatistics=Datum&outStatistics=[{%22onStatisticField%22%3A%22i_gesamt%22%2C%22outStatisticFieldName%22%3A%22i_gesamt%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22infiziert%22%2C%22outStatisticFieldName%22%3A%22infiziert%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22genesen%22%2C%22outStatisticFieldName%22%3A%22genesen%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22neu_infizierte_zum_Vortag%22%2C%22outStatisticFieldName%22%3A%22neu_infizierte_zum_Vortag%22%2C%22statisticType%22%3A%22sum%22}%2C{%22onStatisticField%22%3A%22Todesf%C3%A4ll%22%2C%22outStatisticFieldName%22%3A%22Todesf%C3%A4ll%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22quarantaen%22%2C%22outStatisticFieldName%22%3A%22quarantaen%22%2C%22statisticType%22%3A%22sum%22}]&resultRecordCount=1&f=json"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
-    data = json.loads(data)
+    data = get_json("https://services2.arcgis.com/50d5wsDbZicDslDY/ArcGIS/rest/services/Gemeinden_F_Covid/FeatureServer/0/query?where=Status%3D%27an%27&outFields=*&returnGeometry=false&orderByFields=Datum+DESC&groupByFieldsForStatistics=Datum&outStatistics=[{%22onStatisticField%22%3A%22i_gesamt%22%2C%22outStatisticFieldName%22%3A%22i_gesamt%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22infiziert%22%2C%22outStatisticFieldName%22%3A%22infiziert%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22genesen%22%2C%22outStatisticFieldName%22%3A%22genesen%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22neu_infizierte_zum_Vortag%22%2C%22outStatisticFieldName%22%3A%22neu_infizierte_zum_Vortag%22%2C%22statisticType%22%3A%22sum%22}%2C{%22onStatisticField%22%3A%22Todesf%C3%A4ll%22%2C%22outStatisticFieldName%22%3A%22Todesf%C3%A4ll%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22quarantaen%22%2C%22outStatisticFieldName%22%3A%22quarantaen%22%2C%22statisticType%22%3A%22sum%22}]&resultRecordCount=1&f=json")
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
     date = datetime.datetime.fromtimestamp(data["Datum"]/1000)

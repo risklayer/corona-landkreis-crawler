@@ -4,16 +4,7 @@ import re
 _shpat = re.compile(r"schleswig-holstein.de").search
 
 def sh(sheets):
-    from urllib.request import urlopen
-    from bs4 import BeautifulSoup
-    url = "https://www.schleswig-holstein.de/DE/Schwerpunkte/Coronavirus/Zahlen/zahlen_node.html"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
-    encoding = "UTF-8" # default
-    if 'charset=' in client.headers.get('content-type', '').lower():
-        encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
-    soup = BeautifulSoup(data, "lxml", from_encoding=encoding)
+    soup = get_soup("https://www.schleswig-holstein.de/DE/Schwerpunkte/Coronavirus/Zahlen/zahlen_node.html")
     table = soup.find(id="cvd19_kreistabelle_kumulativ")
     if not table: raise Exception("SH HTML Tabelle cvd19_kreistabelle_kumulativ nicht gefunden.")
     stand = table.findNext("p").text

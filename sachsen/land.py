@@ -4,21 +4,14 @@ import re
 _sachsen = re.compile(r"coronavirus.sachsen.de").search
 
 def sachsen(sheets):
-    from urllib.request import urlopen
-    import json, dateutil.parser, datetime
+    import dateutil.parser, datetime
     # url = "https://www.coronavirus.sachsen.de/infektionsfaelle-in-sachsen-4151.html"
-    url = "https://www.coronavirus.sachsen.de/corona-statistics/rest/stateOfDataApi.jsp"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
-    updated = dateutil.parser.isoparse(json.loads(data).get("lastUpdate"))
+    data = get_json("https://www.coronavirus.sachsen.de/corona-statistics/rest/stateOfDataApi.jsp")
+    updated = dateutil.parser.isoparse(data.get("lastUpdate"))
     if updated.date() != datetime.date.today(): raise Exception("Sachsen noch alt? " + str(updated))
     updated = updated.strftime("%d.%m.%Y %H:%M")
 
-    url = "https://www.coronavirus.sachsen.de/corona-statistics/rest/infectionOverview.jsp"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
+    data = get_json("https://www.coronavirus.sachsen.de/corona-statistics/rest/infectionOverview.jsp")
     for ags, v in json.loads(data).items():
         ags = int(ags)
         if ags == 14: continue # Land. Unten G ausfüllen?

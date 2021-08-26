@@ -4,16 +4,7 @@ from botbase import *
 def berlin(sheets):
     import re
     def _extract(text): return int(re.search(r"(-?[0-9 ]+)", text)[0].replace(" ",""))
-    from urllib.request import urlopen
-    from bs4 import BeautifulSoup
-    url = "https://data.lageso.de/lageso/corona/corona.html"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
-    encoding = "UTF-8" # default
-    if 'charset=' in client.headers.get('content-type', '').lower():
-        encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
-    soup = BeautifulSoup(data, "lxml", from_encoding=encoding)
+    data = get_soup("https://data.lageso.de/lageso/corona/corona.html")
     stand = soup.find(class_="toptitle").find("p").text
     if not today in stand: raise Exception("Berlin noch alt? " + stand)
     ags = 11000

@@ -2,16 +2,7 @@
 from botbase import *
 
 def hamburg(sheets):
-    from urllib.request import urlopen
-    from bs4 import BeautifulSoup
-    url = "https://www.hamburg.de/corona-zahlen"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
-    encoding = "UTF-8" # default
-    if 'charset=' in client.headers.get('content-type', '').lower():
-        encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
-    soup = BeautifulSoup(data, "lxml", from_encoding=encoding)
+    soup = get_soup("https://www.hamburg.de/corona-zahlen")
     lis = soup.find("main").findAll("li")
     ags = 2000
     c, cc, g, d, dd, s, i = None,None,None,None,None,None,None

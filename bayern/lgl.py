@@ -4,16 +4,7 @@ import re, time
 _lglpat = re.compile(r"lgl.bayern.de").search
 
 def lgl(sheets):
-    from urllib.request import urlopen
-    from bs4 import BeautifulSoup
-    url = "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
-    encoding = "UTF-8" # default
-    if 'charset=' in client.headers.get('content-type', '').lower():
-        encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
-    soup = BeautifulSoup(data, "lxml", from_encoding=encoding)
+    soup = get_soup("https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm")
     table = soup.find(id="tableLandkreise")
     if not table: raise Exception("LGL HTML Tabelle tableLandkreise nicht gefunden.")
     if not todaystr in table.find("caption").text: raise Exception("LGL noch alt? " +table.find("caption").text)

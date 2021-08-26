@@ -2,13 +2,8 @@
 from botbase import *
 
 def essen(sheets):
-    from urllib.request import urlopen
-    import json, datetime
-    url = "https://utility.arcgis.com/usrsvcs/servers/a2bd9c6789d64a1e9f5fce73ebd7a165/rest/services/essen/Covid19_Dashboard/MapServer/1/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&groupByFieldsForStatistics=STATUS&outStatistics=[{%22statisticType%22:%22sum%22,%22onStatisticField%22:%22ANZGES%22,%22outStatisticFieldName%22:%22sum%22},{%22statisticType%22:%22max%22,%22onStatisticField%22:%22DATEXP%22,%22outStatisticFieldName%22:%22DATEXP%22},{%22statisticType%22:%22max%22,%22onStatisticField%22:%22DATUM%22,%22outStatisticFieldName%22:%22DATUM%22}]&outFields=*"
-    client = urlopen(url)
-    data = client.read()
-    client.close()
-    data = json.loads(data)
+    import datetime
+    data = get_json("https://utility.arcgis.com/usrsvcs/servers/a2bd9c6789d64a1e9f5fce73ebd7a165/rest/services/essen/Covid19_Dashboard/MapServer/1/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&groupByFieldsForStatistics=STATUS&outStatistics=[{%22statisticType%22:%22sum%22,%22onStatisticField%22:%22ANZGES%22,%22outStatisticFieldName%22:%22sum%22},{%22statisticType%22:%22max%22,%22onStatisticField%22:%22DATEXP%22,%22outStatisticFieldName%22:%22DATEXP%22},{%22statisticType%22:%22max%22,%22onStatisticField%22:%22DATUM%22,%22outStatisticFieldName%22:%22DATUM%22}]&outFields=*")
     date = data["features"][0]["attributes"]["DATUM"]
     date = datetime.datetime.fromtimestamp(date/1000)
     if (date + datetime.timedelta(hours=24)).date() < datetime.date.today(): raise Exception("Essen noch nicht aktuell")
