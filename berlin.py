@@ -4,9 +4,9 @@ from botbase import *
 def berlin(sheets):
     import re
     def _extract(text): return int(re.search(r"(-?[0-9 ]+)", text)[0].replace(" ",""))
-    data = get_soup("https://data.lageso.de/lageso/corona/corona.html")
+    soup = get_soup("https://data.lageso.de/lageso/corona/corona.html")
     stand = soup.find(class_="toptitle").find("p").text
-    if not today in stand: raise Exception("Berlin noch alt? " + stand)
+    if not todaystr in stand: raise Exception("Berlin noch alt? " + stand)
     ags = 11000
     c = _extract(soup.find(id="box-fallzahl").find(class_="inner").text)
     d = _extract(soup.find(id="box-todesfaelle").find(class_="inner").text)
@@ -21,7 +21,7 @@ def berlin(sheets):
             row = [x.text for x in row.findAll("td")]
             if "stationärer Behandlung" in row[0]: s = int(row[1])
             if "ITS" in row[0]: i = int(row[1])
-    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, s=s, i=i, d=d, dd=dd, sig="Bot", comment="Bot", dry_run=dry_run, date=today)
+    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, s=s, i=i, d=d, dd=dd, sig="Bot")
     return True
 
 schedule.append(Task(9, 0, 10, 0, 300, berlin, 11000))

@@ -14,7 +14,7 @@ def essen(sheets):
         if f["STATUS"] == 4: g = f["sum"]
         if f["STATUS"] == 5: d = f["sum"]
     ags, date = 5113, data["features"][0]["attributes"]["DATEXP"]
-    update(sheets, ags, c=c, g=g, d=d, sig="Bot", comment="Bot Dashboard", dry_run=dry_run, date=date)
+    update(sheets, ags, c=c, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date)
     return True
 
 schedule.append(Task(8, 10, 10, 10, 1800, essen, 5113))

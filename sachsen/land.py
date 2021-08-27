@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from botbase import *
-import re
+import re, time
 _sachsen = re.compile(r"coronavirus.sachsen.de").search
 
 def sachsen(sheets):
@@ -12,12 +12,15 @@ def sachsen(sheets):
     updated = updated.strftime("%d.%m.%Y %H:%M")
 
     data = get_json("https://www.coronavirus.sachsen.de/corona-statistics/rest/infectionOverview.jsp")
-    for ags, v in json.loads(data).items():
+    batch=[]
+    for ags, v in data.items():
         ags = int(ags)
         if ags == 14: continue # Land. Unten G ausfüllen?
         # print(ags, v)
         c, cc, d, dd = v["totalInfections"], v["infectionsDifferenceToYesterday"], v["totalDeaths"], v["deathsDifferenceToYesterday"]
-        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Bot", check=_sachsen)
+        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Bot", check=_sachsen, batch=batch)
+        time.sleep(5)
+    do_batch(sheets, batch)
     return True
 
 schedule.append(Task(13, 30, 16, 00, 300, sachsen, 14730))

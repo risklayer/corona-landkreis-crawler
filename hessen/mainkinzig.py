@@ -11,8 +11,8 @@ def mainkinzig(sheets):
     d = data["TF"]
     g = c - d- data["NeuInf"]
     # TODO: Impfungen auch?
-    update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Dashboard Bot", date=date)
+    update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Dashboard Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(17, 30, 21, 30, 600, mainkinzig, 6435))
+schedule.append(Task(16, 30, 21, 30, 600, mainkinzig, 6435))
 if __name__ == '__main__': mainkinzig(googlesheets())

@@ -11,7 +11,7 @@ def coesfeld(sheets):
     d, dd = data["verstorben"], data["verstorben_Änderung"]
     g, gg = data["gesundet"], data["gesundet_Änderung"]
     d, g = d + 4, g - 4 # 4 "mit" Korrigieren
-    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", dry_run=dry_run, date=date, ignore_delta=True)
+    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(11, 30, 13, 30, 180, coesfeld, 5558))

@@ -12,7 +12,7 @@ def steinfurt(sheets):
     c, cc = data["INFIZIERTE_SUM"], data["INFIZIERTE"]
     d, dd = data["VERSTORBENE_SUM"], data["VERSTORBENE"]
     g, gg = data["GESUNDETE_SUM"], data["GESUNDETE"]
-    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", dry_run=dry_run, date=date, ignore_delta=True)
+    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(18, 15, 19, 30, 180, steinfurt, 5566))

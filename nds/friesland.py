@@ -7,10 +7,10 @@ def friesland(sheets):
     #for k,v in data.items(): print(k,v,sep="\t")
     ags, date = 3455, data["Datenaktualitaet"].replace(","," ")
     if not todaystr in date: raise Exception("Friesland noch alt")
-    c, cc = data["Faelle_gesamt"], data["Faelle_gesamt_veraenderung"]
-    d, dd = data["verstorben"], data["verstorben_veraenderung"]
-    g, gg = data["genesen"], data["genesen_veraenderung"]
-    q, s = data["Quarantaene_aktuell"], data["Faelle_stationaer"]
+    c, cc = int(data["Faelle_gesamt"]), int(data["Faelle_gesamt_Veraenderung"])
+    d, dd = int(data["verstorben"]), int(data["verstorben_Veraenderung"])
+    g, gg = int(data["genesen"]), int(data["genesen_Veraenderung"])
+    q, s = int(data["Quarantaene_aktuell"]), int(data["Faelle_stationaer"])
     update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, sig="Bot", date=date)
     return True
 

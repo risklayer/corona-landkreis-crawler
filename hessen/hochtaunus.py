@@ -17,5 +17,5 @@ def hochtaunus(sheets):
     update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date)
     return True
 
-schedule.append(Task(17, 30, 21, 30, 600, hochtaunus, 6434))
+schedule.append(Task(16, 30, 21, 30, 600, hochtaunus, 6434))
 if __name__ == '__main__': hochtaunus(googlesheets())

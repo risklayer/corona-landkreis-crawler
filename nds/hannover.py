@@ -8,7 +8,7 @@ def hannover(sheets):
     ags, date = 3241, data["DATUM"]
     if not todaystr in date: raise Exception("Hannover noch alt")
     c, cc, d, g = data["GESAMTZAHL"], data["NEUINFEKTIONEN"], data["TODESFAELLE"], data["GENESEN"]
-    update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Dashboard", date=date)
+    update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Dashboard", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(11, 55, 14, 30, 300, hannover, 3241))

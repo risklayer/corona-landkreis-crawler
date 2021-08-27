@@ -3,7 +3,7 @@ Requirements
 Pretty standard python, except for the Google API client libraries.
 
 ```
-pip install google-api-python-client beautifulsoup4 python-dateutil lxml
+pip install google-auth-oauthlib google-api-python-client beautifulsoup4 python-dateutil lxml
 ```
 
 Register application

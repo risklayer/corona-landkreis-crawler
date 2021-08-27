@@ -14,7 +14,7 @@ def wuppertal(sheets):
     sig, comment = "Bot", "Bot"
     if hour < 20: sig, comment = "Vorläufig", "Zwischenstand Bot"
     date = datetime.datetime(year=date.year, month=date.month, day=date.day, hour=hour).strftime("%d.%m.%Y %H:%M")
-    update(sheets, ags, c=c, g=g, d=d, sig=sig, comment=comment, dry_run=dry_run, date=date, check=lambda x: x == None or x == "" or x == "Vorläufig")
+    update(sheets, ags, c=c, g=g, d=d, sig=sig, comment=comment, date=date, check=lambda x: x == None or x == "" or x == "Vorläufig")
     if hour < 20: return False
     return True
 

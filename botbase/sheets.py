@@ -75,7 +75,7 @@ def _format(c, v, vv=None):
     if vv is None: return "%s%d" % (c,v)
     return ("%s%d(%+d)" % (c,v,vv)) if vv != 0 else ("%s%d(=)" % (c,v))
 
-def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False):
+def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False, batch=None):
     import time
     if date is None: date = time.strftime("%d.%m.%Y")
     strs = [_format("C",c,cc), _format("D",d,dd), _format("G",g,gg), _format("Q",q), _format("S",s), _format("I",i)]
@@ -83,14 +83,14 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
     if not rownr: raise Exception("AGS '%s' not found" % ags)
     curr = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN" % rownr, valueRenderOption="UNFORMATTED_VALUE").execute()
     row = curr.get('values', [])[0]
-    check = True if check is None else check(row[14])
+    check = True if check is None else check(row[14]) and True
     if row[15] is not None and row[15] != "" and row[15] != "nn" and row[15] != "RKI" and (check and row[15] != "Vorläufig"):
         comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
         print("Skipping:", ags, rownr, comment, "is already:", row[15])
         return # already filled!
     if not check: sig = "Vorläufig"
     comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
-    print("Found:", ags, rownr, comment)
+    print("Found:", ags, rownr, comment, check)
 
     prev = int(row[0]), int(row[-2]), int(row[-1])
     do_apply = True
@@ -119,7 +119,7 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
         if q is not None and q != force_int(row[9]): reqs.append({"range": "Haupt!M%d" % rownr, "values": [[q]]})
         if s is not None and s != force_int(row[10]): reqs.append({"range": "Haupt!N%d" % rownr, "values": [[s]]})
         if i is not None and i != force_int(row[11]): reqs.append({"range": "Haupt!O%d" % rownr, "values": [[i]]})
-        if len(reqs) == 0: return
+        #if len(reqs) == 0: return
         #comment=comment.replace(")) (", ") ")
         reqs.append({"range": "Haupt!Q%d" % rownr, "values":[[date]]})
         reqs.append({"range": "Haupt!S%d" % rownr, "values":[[sig]]})
@@ -128,10 +128,25 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
         if dry_run:
             print(*reqs, sep="\n")
             return
-        responses = sheets.values().batchUpdate(spreadsheetId=spreadsheet_id, body = {"valueInputOption":"USER_ENTERED", "data":reqs}).execute()
-        for resp in responses["responses"]:
-            if resp.get("updatedCells") != 1: print("Failed?", resp, file=sys.stderr)
+        if batch is not None:
+            batch.extend(reqs)
+        else:
+            do_batch(sheets, reqs)
         return
     if do_apply or row[17] is None or row[17] == "": # or row is RKI pattern!
         v = comment + " " + row[17] if row[17] is not None and row[17] != "" else comment
+        if batch is not None:
+            batch.append({"range":"Haupt!U%d" % rownr, "values":[["("+v+")"]]})
+            return
         set_one(sheets, "Haupt!U%d" % rownr, "("+v+")", dry_run=dry_run) # Comment
+
+def do_batch(sheets, reqs, dry_run=dry_run):
+    if dry_run:
+        print(*reqs, sep="\n")
+        return
+    if len(reqs) == 0: return
+    #print(*reqs, sep="\n")
+    responses = sheets.values().batchUpdate(spreadsheetId=spreadsheet_id, body = {"valueInputOption":"USER_ENTERED", "data":reqs}).execute()
+    if not "responses" in responses: print(responses)
+    for resp in responses["responses"]:
+        if resp.get("updatedCells") != 1: print("Failed?", resp, file=sys.stderr)

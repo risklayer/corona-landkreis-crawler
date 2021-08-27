@@ -8,6 +8,7 @@ def lgl(sheets):
     table = soup.find(id="tableLandkreise")
     if not table: raise Exception("LGL HTML Tabelle tableLandkreise nicht gefunden.")
     if not todaystr in table.find("caption").text: raise Exception("LGL noch alt? " +table.find("caption").text)
+    batch=[]
     for row in table.findAll("tr")[1:-1]:
         row = [x.text.strip() for x in row.findAll("td")]
         ags = ags_from_name(row[0])
@@ -16,8 +17,9 @@ def lgl(sheets):
             continue
         c, d = force_int(row[1]), force_int(row[6])
         cc, dd = force_int(row[2]), force_int(row[7])
-        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Bot", check=_lglpat)
-        time.sleep(50) # to avoid rate limit problems
+        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Bot", check=_lglpat, batch=batch)
+        time.sleep(5) # to reduce rate limit problems
+    do_batch(sheets, batch)
     return True
 
 schedule.append(Task(14, 00, 15, 00, 120, lgl, 9774))

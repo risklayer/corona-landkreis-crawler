@@ -20,5 +20,5 @@ def zak(sheets):
     update(sheets, ags, c=c, g=g, d=d, s=s, i=i, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(17, 00, 18, 30, 300, zak, 8417))
+schedule.append(Task(16, 30, 18, 30, 300, zak, 8417))
 if __name__ == '__main__': zak(googlesheets())

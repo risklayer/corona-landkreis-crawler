@@ -4,7 +4,7 @@ from botbase import *
 def helmstedt(sheets):
     data = get_json("https://geoportal.helmstedt.de/arcgis/rest/services/Projekte/Covid19_LKHE_Werte/FeatureServer/0/query?f=json&cacheHint=true&resultOffset=0&resultRecordCount=25&where=1%3D1&outFields=*&returnGeometry=false&spatialRel=esriSpatialRelIntersects")
     data = data["features"][0]["attributes"]
-    for k,v in data.items(): print(k,v,sep="\t")
+    #for k,v in data.items(): print(k,v,sep="\t")
     ags, date = 3154, data["Datum_text"]
     if not todaystr in date: raise Exception("Helmsted noch alt")
     c, cc = data["bestaetigt"], data["Inf_zum_Vortag"]
