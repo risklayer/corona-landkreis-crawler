@@ -24,5 +24,5 @@ def berlin(sheets):
     update(sheets, ags, c=c, cc=cc, g=g, gg=gg, s=s, i=i, d=d, dd=dd, sig="Bot")
     return True
 
-schedule.append(Task(9, 0, 10, 0, 300, berlin, 11000))
+schedule.append(Task(9, 0, 11, 0, 300, berlin, 11000))
 if __name__ == '__main__': berlin(googlesheets())

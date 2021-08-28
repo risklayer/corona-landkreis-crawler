@@ -4,7 +4,7 @@ import re, time
 _rlpat = re.compile(r"lua.rlp.de|speyer.de|rhein-pfalz-kreis.de").search
 
 def rlp(sheets):
-    blacklist=[7317,7340,7320] # Pirmasens, Südwestpfalz, Zweibrücken
+    blacklist=[7317,7340,7320,7333] # Pirmasens, Südwestpfalz, Zweibrücken, Donnersbergkreis
     soup = get_soup("https://lua.rlp.de/de/presse/detail/news/News/detail/coronavirus-sars-cov-2-aktuelle-fallzahlen-fuer-rheinland-pfalz/")
     stand = soup.find(id="content").find("h5").text
     if not todaystr in stand: raise Exception("RLP noch alt? " + stand)

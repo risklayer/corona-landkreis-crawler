@@ -17,5 +17,5 @@ def sbk(sheets):
     update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", comment="Bot OHNE S", date=date)
     return True
 
-schedule.append(Task(9, 00, 10, 30, 300, sbk, 8326))
+schedule.append(Task(9, 00, 11, 30, 300, sbk, 8326))
 if __name__ == '__main__': sbk(googlesheets())

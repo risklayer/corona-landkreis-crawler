@@ -5,7 +5,7 @@ def lippe(sheets):
     import datetime, locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     qdatum = datetime.date.today().strftime("%d. %b. %Y")
-    data = get_json("https://services-eu1.arcgis.com/H1pvqvVi8lTTXlkG/arcgis/rest/services/Verlauf_Lippe2/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=ObjectId+DESC&resultRecordCount=2&f=json")
+    data = get_json("https://services-eu1.arcgis.com/H1pvqvVi8lTTXlkG/arcgis/rest/services/Verlauf_Lippe2/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Infizierte+DESC&resultRecordCount=2&f=json")
     data1 = data["features"][0]["attributes"]
     data2 = data["features"][1]["attributes"]
     #for k,v in data1.items(): print(k,v,sep="\t")

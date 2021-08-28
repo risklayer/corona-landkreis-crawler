@@ -14,5 +14,5 @@ def euskirchen(sheets):
     update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(13, 30, 15, 30, 300, euskirchen, 5366))
+schedule.append(Task(13, 30, 16, 00, 300, euskirchen, 5366))
 if __name__ == '__main__': euskirchen(googlesheets())

@@ -1,5 +1,6 @@
 from .friesland import friesland
 from .gbentheim import gbentheim
+from .goslar import goslar
 from .hamelnpyrmont import hamelnpyrmont
 from .hannover import hannover
 from .heidekreis import heidekreis
