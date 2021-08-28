@@ -7,7 +7,7 @@ def lgl(sheets):
     soup = get_soup("https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm")
     table = soup.find(id="tableLandkreise")
     if not table: raise Exception("LGL HTML Tabelle tableLandkreise nicht gefunden.")
-    if not todaystr in table.find("caption").text: raise Exception("LGL noch alt? " +table.find("caption").text)
+    if not today().format("%d.%m.%Y") in table.find("caption").text: raise NotYetAvailableException("LGL noch alt? " +table.find("caption").text)
     batch=[]
     for row in table.findAll("tr")[1:-1]:
         row = [x.text.strip() for x in row.findAll("td")]

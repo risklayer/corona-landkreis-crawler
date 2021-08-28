@@ -17,7 +17,7 @@ def hamburg(sheets):
             if "Stationär gesamt" in li.text: s = int(db.text)
             if "Intensiv gesamt" in li.text: i = int(db.text)
     stand = soup.find("main").find(class_="chart_publication").text
-    if not todaystr in stand: raise Exception("Hamburg noch alt? " + stand)
+    if not datetime.date.today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("Hamburg noch alt? " + stand)
     update(sheets, ags, c=c, cc=cc, g=g, s=s, i=i, d=d, dd=dd, sig="Bot")
     return True
 

@@ -8,7 +8,7 @@ def sh(sheets):
     table = soup.find(id="cvd19_kreistabelle_kumulativ")
     if not table: raise Exception("SH HTML Tabelle cvd19_kreistabelle_kumulativ nicht gefunden.")
     stand = table.findNext("p").text
-    if not todaystr in stand: raise Exception("Schleswig-Holstein noch alt? " + stand)
+    if not today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("Schleswig-Holstein noch alt? " + stand)
     for row in table.find("tbody").findAll("tr"):
         row = [x.text.strip() for x in row.findAll("td")]
         #print(row)

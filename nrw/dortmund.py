@@ -7,16 +7,15 @@ def dortmund(sheets):
     data2 = data.iloc[-2]
     data = data.iloc[-1]
     date = data["Datum"]
-    if not todaystr in date: raise Exception("Dortmund noch alt: "+date)
-    c, cc = data["positive Testergebnisse insgesamt"], data["Zuwachs positiver Testergebnisse zum Vortag"]
-    d = data["Verstorben ursächlich an COVID-19"] + data["Verstorben aufgrund anderer Ursachen"]
-    dd = d - (data2["Verstorben ursächlich an COVID-19"] + data2["Verstorben aufgrund anderer Ursachen"])
-    g = data["genesene Personen gesamt"]
-    gg = g - data2["genesene Personen gesamt"]
-    s = data["darunter aktuell stationär behandelte Personen"]
-    i = data["darunter aktuell intensivmedizinisch behandelte Personen"]
-    ags = 5913
-    update(sheets, ags, c=c, cc=cc, g=g, d=d, s=s, i=i, sig="Bot", date=date, ignore_delta=False)
+    if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Dortmund noch alt: "+date)
+    c, cc = int(data["positive Testergebnisse insgesamt"]), int(data["Zuwachs positiver Testergebnisse zum Vortag"])
+    d = int(data["Verstorben ursächlich an COVID-19"] + data["Verstorben aufgrund anderer Ursachen"])
+    dd = d - int(data2["Verstorben ursächlich an COVID-19"] + data2["Verstorben aufgrund anderer Ursachen"])
+    g = int(data["genesene Personen gesamt"])
+    gg = int(g - data2["genesene Personen gesamt"])
+    s = int(data["darunter aktuell stationär behandelte Personen"])
+    i = int(data["darunter aktuell intensivmedizinisch behandelte Personen"])
+    update(sheets, 5913, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date, ignore_delta=False)
     return True
 
 schedule.append(Task(17, 00, 18, 30, 360, dortmund, 5913))

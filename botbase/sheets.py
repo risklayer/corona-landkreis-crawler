@@ -18,6 +18,30 @@ _ctx = ssl.create_default_context()
 _ctx.check_hostname = False
 _ctx.verify_mode = ssl.CERT_NONE
 
+class NotYetAvailableException(Exception): pass
+
+import datetime
+def check_date(d, lk, offset=datetime.timedelta(0)):
+    import datetime, dateutil.parser
+    if isinstance(d, datetime.datetime):
+        if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
+        return d
+    if isinstance(d, datetime.date):
+        if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
+        return d
+    if isinstance(d, int):
+        if d >= 20210101 and d <= 20230101:
+            d = datetime.datetime(year=d//10000, month=(d//100)%100, day=d%100)
+        elif d > 1e10:
+            d = datetime.datetime.utcfromtimestamp(d / 1000) # arcgis dashboard timestamps
+        else:
+            d = datetime.datetime.utcfromtimestamp(d)
+        if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
+        return d
+    d = dateutil.parser.parse(d.replace("Uhr","").replace(","," ").replace("  "," ").strip())
+    if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
+    return d
+
 def get_json(url):
     from urllib.request import urlopen
     import json
@@ -88,15 +112,20 @@ def _format(c, v, vv=None):
     return ("%s%d(%+d)" % (c,v,vv)) if vv != 0 else ("%s%d(=)" % (c,v))
 
 def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False, batch=None):
-    import time
-    if date is None: date = time.strftime("%d.%m.%Y")
+    import datetime
+    if date is None:
+        date = datetime.date.today().strftime("%d.%m.%Y")
+    elif isinstance(date, datetime.datetime):
+        date = date.strftime("%d.%m.%Y %H:%M").replace(" 00:00","")
+    elif isinstance(date, datetime.date):
+        date = date.strftime("%d.%m.%Y")
     strs = [_format("C",c,cc), _format("D",d,dd), _format("G",g,gg), _format("Q",q), _format("S",s), _format("I",i)]
     rownr = get_ags(sheets)[ags]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
     curr = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN" % rownr, valueRenderOption="UNFORMATTED_VALUE").execute()
     row = curr.get('values', [])[0]
     check = True if check is None else check(row[14]) and True
-    if row[15] is not None and row[15] != "" and row[15] != "nn" and row[15] != "RKI" and (check and row[15] != "Vorläufig"):
+    if row[15] is not None and row[15] != "" and row[15] != "nn" and row[15] != "RKI" and check and row[15] != "Vorläufig":
         comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
         print("Skipping:", ags, rownr, comment, "is already:", row[15])
         return # already filled!
@@ -116,7 +145,7 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
         print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
         do_apply = False
     if do_apply and cc is None and c < int(row[0]): do_apply = False
-    #if "Bot" in row[17]: return # schon von Bot kommentiert
+    if "Bot" in row[17]: return # schon von Bot kommentiert
     if do_apply:
         reqs = list()
         if c != int(prev[0]) and c != int(row[7]):

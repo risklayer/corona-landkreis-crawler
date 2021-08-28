@@ -7,7 +7,7 @@ def rlp(sheets):
     blacklist=[7317,7340,7320,7333] # Pirmasens, Südwestpfalz, Zweibrücken, Donnersbergkreis
     soup = get_soup("https://lua.rlp.de/de/presse/detail/news/News/detail/coronavirus-sars-cov-2-aktuelle-fallzahlen-fuer-rheinland-pfalz/")
     stand = soup.find(id="content").find("h5").text
-    if not todaystr in stand: raise Exception("RLP noch alt? " + stand)
+    if not today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("RLP noch alt? " + stand)
     batch = []
     for row in soup.find(id="content").findAll("tr")[3:-1]:
         row = [x.text.strip() for x in row.findAll("td")]

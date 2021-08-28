@@ -2,17 +2,17 @@
 from botbase import *
 
 def meissen(sheets):
-    import datetime
     data = get_json("https://services3.arcgis.com/nuqf686aSQH6Su4v/arcgis/rest/services/CSV_Daten_zu_COVID/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Datum+DESC&resultRecordCount=1&f=json")
     data = data["features"][0]["attributes"]
     # for k,v in data.items(): print(k,v,sep="\t")
-    ags, date = 14627, datetime.datetime.utcfromtimestamp(data["Datum"]/1000)
-    if (date + datetime.timedelta(hours=6)).date() < datetime.date.today(): raise Exception("Meissen noch alt: "+str(date))
-    date = date.strftime("%d.%m.%Y %H:%M")
+    #ags, date = 14627, datetime.datetime.utcfromtimestamp(data["Datum"]/1000)
+    #if (date + datetime.timedelta(hours=6)).date() < datetime.date.today(): raise Exception("Meissen noch alt: "+str(date))
+    #date = date.strftime("%d.%m.%Y %H:%M")
+    date = check_date(data["Datum"], "Meissen")
     c, cc = data["Indexfälle_gesamt"], data["Neue_Indexfälle"]
     d, dd = data["Sterbefälle_gesamt"], data["Neue_Sterbefälle"]
     g = c - d - data["Aktive_Quarantäne"]
-    update(sheets, ags, c=c, cc=cc, g=g, d=d, dd=dd, sig="Bot", comment="Bot ohne QSI Dashboard", date=date, ignore_delta=True)
+    update(sheets, 14627, c=c, cc=cc, g=g, d=d, dd=dd, sig="Bot", comment="Bot ohne QSI Dashboard", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(11, 15, 12, 45, 180, meissen, 14627))

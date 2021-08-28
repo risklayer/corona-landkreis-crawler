@@ -9,12 +9,11 @@ def lippe(sheets):
     data1 = data["features"][0]["attributes"]
     data2 = data["features"][1]["attributes"]
     #for k,v in data1.items(): print(k,v,sep="\t")
-    if data1["Datum"] != qdatum: raise Exception("Lippe noch alt? "+data1["Datum"]+" expected "+qdatum)
-    ags = 5766
+    if data1["Datum"] != qdatum: raise NotYetAvailableException("Lippe noch alt? "+data1["Datum"]+" expected "+qdatum)
     c, d, g = data1["Infizierte"], data1["Verstorbene"], data1["Gesunde"]
     cc, dd, gg = data2["Infizierte"], data2["Verstorbene"], data2["Gesunde"]
     cc, dd, gg = c - cc, d - dd, g - gg
-    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot")
+    update(sheets, 5766, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot")
     return True
 
 schedule.append(Task(9, 50, 11, 30, 300, lippe, 5766))

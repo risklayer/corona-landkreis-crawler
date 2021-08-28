@@ -4,14 +4,14 @@ import random, time
 from datetime import datetime
 from heapq import heapify, heapreplace
 
-import sh, berlin, hamburg, nds, bremen, nrw, hessen, rlp, bw, bayern, sachsen
+import sh, berlin, hamburg, nds, bremen, nrw, hessen, rlp, bw, bayern, sachsen, sanhalt
 
 def scheduler(sheets):
     queue = [(task.next_time("init"), task) for task in botbase.schedule]
     heapify(queue)
     while True:
-        botbase.todaystr = time.strftime("%d.%m.%Y") # update today value
-        nextex, task = queue[0] # peek() heap
+        #botbase.todaystr = time.strftime("%d.%m.%Y") # update today value
+        nextex, task = queue[0] # heap.peek()
         delay = (nextex - datetime.now()).total_seconds()
         if delay > 0:
             delay += random.random() * 2 # reduce collissions when running multiple times

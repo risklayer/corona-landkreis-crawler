@@ -6,7 +6,7 @@ def berlin(sheets):
     def _extract(text): return int(re.search(r"(-?[0-9 ]+)", text)[0].replace(" ",""))
     soup = get_soup("https://data.lageso.de/lageso/corona/corona.html")
     stand = soup.find(class_="toptitle").find("p").text
-    if not todaystr in stand: raise Exception("Berlin noch alt? " + stand)
+    if not datetime.date.today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("Berlin noch alt? " + stand)
     ags = 11000
     c = _extract(soup.find(id="box-fallzahl").find(class_="inner").text)
     d = _extract(soup.find(id="box-todesfaelle").find(class_="inner").text)

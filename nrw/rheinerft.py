@@ -2,21 +2,20 @@
 from botbase import *
 
 def rheinerft(sheets):
-    import datetime
     #data = get_json("https://services7.arcgis.com/lDivAOFOYuYRJqnX/arcgis/rest/services/REK_C19/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&f=json")
     data = get_json("https://services7.arcgis.com/lDivAOFOYuYRJqnX/ArcGIS/rest/services/Zeit_C19/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Datum+DESC&resultRecordCount=2&f=json")
-    data1 = data["features"][0]["attributes"]
-    data2 = data["features"][1]["attributes"]
+    data1, data2 = data["features"][0]["attributes"], data["features"][1]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    ags, date = 5362, datetime.datetime.utcfromtimestamp(data1["Datum"] / 1000)
-    if date.date() < datetime.date.today(): raise Exception("Rhein-Erft noch alt: "+str(date))
-    date = date.strftime("%d.%m.%Y")
+    #ags, date = 5362, datetime.datetime.utcfromtimestamp(data1["Datum"] / 1000)
+    #if date.date() < datetime.date.today(): raise Exception("Rhein-Erft noch alt: "+str(date))
+    #date = date.strftime("%d.%m.%Y")
+    date = check_date(data1["Datum"], "Rhein-Erft")
     c, cc = data1["bestätigte_Fälle_insgesamt"], data2["bestätigte_Fälle_insgesamt"]
     d, dd = data1["Todesfälle"], data2["Todesfälle"]
     g, gg = data1["Genesen"], data2["Genesen"]
     q = data1["Personen_in_Quarantäne"]
     cc, dd, gg = c - cc, d - dd, g - gg
-    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", comment="Dashboard ohne SI", ignore_delta=False, date=date)
+    update(sheets, 5362, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", comment="Dashboard ohne SI", ignore_delta=False, date=date)
     return True
 
 schedule.append(Task(16, 15, 19, 30, 300, rheinerft, 5362))

@@ -7,7 +7,7 @@ _matchbremen = re.compile(r"([0-9.]+)\s+\([+]?([-0-9.]+)\)")
 def bremen(sheets):
     soup = get_soup("https://www.gesundheit.bremen.de/corona/corona/zahlen/corona_fallzahlen-37649")
     stand = soup.find(id="main").find("h2").text
-    if not todaystr in stand: raise Exception("Bremen noch alt? " + stand)
+    if not datetime.date.today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("Bremen noch alt? " + stand)
     tables = soup.find(id="main").findAll("table")
     row = tables[1].findAll("tr")[1].findAll("td")
     ss, ii = int(row[1].text), int(row[2].text)

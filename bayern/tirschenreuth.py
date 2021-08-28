@@ -2,19 +2,19 @@
 from botbase import *
 
 def tirschenreuth(sheets):
-    import datetime
     data = get_json("https://services3.arcgis.com/fygSJbpgKmtJnuHJ/ArcGIS/rest/services/Corona_Fallmonitor_Dashboard_V02/FeatureServer/0/query?where=AGS%3D9377&outFields=*&orderByFields=Datum+desc&resultRecordCount=2&f=json")
     data2 = data["features"][1]["attributes"]
     data = data["features"][0]["attributes"]
     # for k,v in data.items(): print(k,v,sep="\t")
-    ags, date = 9377, datetime.datetime.utcfromtimestamp(data["Datum"] / 1000)
-    if date.date() < datetime.date.today(): raise Exception("Tirschenreuth noch alt: "+str(date))
-    date = date.strftime("%d.%m.%Y %H:%M")
+    #ags = 9377 #date = datetime.datetime.utcfromtimestamp(data["Datum"] / 1000)
+    date = check_date(data["Datum"], "Tirschenreuth")
+    #if date.date() < datetime.date.today(): raise Exception("Tirschenreuth noch alt: "+str(date))
+    #date = date.strftime("%d.%m.%Y %H:%M")
     c, cc = data["Infektionen_insg"], data["Infektionen_Tag"]
     d, dd = data["Todesfälle_insg"], data2["Todesfälle_insg"]
     g, gg = data["Genesene_ins"], data2["Genesene_ins"]
     dd, gg = d - dd, g - gg
-    update(sheets, ags, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
+    update(sheets, 9377, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(11, 30, 14, 30, 600, tirschenreuth, 9377))
