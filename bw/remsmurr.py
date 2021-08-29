@@ -5,9 +5,7 @@ def remsmurr(sheets):
     data = get_json("https://services5.arcgis.com/0bChhVBO7DpK81l8/arcgis/rest/services/Corona_Kennzahlen_Sicht/FeatureServer/0/query?f=json&where=1%3D1&outFields=*&returnGeometry=false")
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    #ags, date = 8119, data["Timedate"].replace(" Uhr","")
     date = check_date(data["Timedate"], "Rems-Murr")
-    #if not todaystr in date: raise Exception("Remsmurr noch alt: "+str(date))
     c, cc = data["positivAll"], data["positivAllV"]
     d, dd = data["totAll"], data["totAllV"]
     g, gg = data["gesundAllV"], data["gesundAllV"]

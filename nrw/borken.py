@@ -6,8 +6,6 @@ def borken(sheets):
     assert "24:00" in data["STAND"]
     date = dateutil.parser.parse(data["STAND"].split(" ")[0]) + datetime.timedelta(days=1) # 24:00
     date = check_date(date, "Borken")
-    #if date.date() < datetime.date.today(): raise Exception("Borken noch alt: "+str(date))
-    #date = date.strftime("%d.%m.%Y")
     data = get_json("https://corona.kreis-borken.de/api/data")[0]
     #for k,v in data.items(): print(k,v,sep="\t")
     c, cc = data["INFIZIERTE_SUM"], force_int(data["INFIZIERTE"])

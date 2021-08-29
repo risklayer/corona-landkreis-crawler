@@ -5,8 +5,6 @@ def heidekreis(sheets):
     data = get_json("https://services1.arcgis.com/CSnFgu7AbHmWtZb9/arcgis/rest/services/Covid19_Entwicklung_LKHK_Public/FeatureServer/0/query?f=json&where=ver_ffentlichen_ver_ffentlichen%3D%27Ja%27&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&resultOffset=0&resultRecordCount=50&resultType=standard&cacheHint=true")
     data = data["features"][0]["attributes"]
     # for k,v in data.items(): print(k,v,sep="\t")
-    #ags, date = 3358, data["datum_ttmmjjjj"]
-    #if not todaystr in date: raise Exception("Heidekreis noch alt")
     date = check_date(data["datum_ttmmjjjj"], "Heidekreis")
     c, cc = data["bisher_best_tigte_f_lle"], data["differenz_zum_vortag"]
     d, dd = data["gesamt_verstorbene"], data["differenz_zum_vortag_verstorben"]

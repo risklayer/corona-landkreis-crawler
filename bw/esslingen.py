@@ -7,8 +7,6 @@ def esslingen(sheets):
     date = data[0]["attributes"]["dat_zahl"]
     date = datetime.date(year=date//10000, month=(date//100)%100, day=date%100) + datetime.timedelta(days=1)
     date = check_date(date, "Esslingen")
-    #if date < datetime.date.today(): raise Exception("Esslingen noch alt: "+str(date))
-    #date = date.strftime("%d.%m.%Y")
     c, cc = data[0]["attributes"]["inf_ges"], data[1]["attributes"]["inf_ges"]
     a, aa = data[0]["attributes"]["pers_qua"], data[1]["attributes"]["pers_qua"]
     data2 = get_json("https://services2.arcgis.com/mL26ZKdlhFJH9AoM/ArcGIS/rest/services/LGA_pandemie_daten_formel/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Meldedatum+DESC&resultRecordCount=2&f=json")["features"]

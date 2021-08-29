@@ -15,5 +15,6 @@ from .rheinerft import rheinerft
 from .rheinkneuss import rheinkneuss
 from .rheinsieg import rheinsieg
 from .soest import soest
+from .solingen import solingen
 from .steinfurt import steinfurt
 from .wuppertal import wuppertal

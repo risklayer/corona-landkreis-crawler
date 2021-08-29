@@ -6,9 +6,6 @@ def rheinerft(sheets):
     data = get_json("https://services7.arcgis.com/lDivAOFOYuYRJqnX/ArcGIS/rest/services/Zeit_C19/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Datum+DESC&resultRecordCount=2&f=json")
     data1, data2 = data["features"][0]["attributes"], data["features"][1]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    #ags, date = 5362, datetime.datetime.utcfromtimestamp(data1["Datum"] / 1000)
-    #if date.date() < datetime.date.today(): raise Exception("Rhein-Erft noch alt: "+str(date))
-    #date = date.strftime("%d.%m.%Y")
     date = check_date(data1["Datum"], "Rhein-Erft")
     c, cc = data1["bestätigte_Fälle_insgesamt"], data2["bestätigte_Fälle_insgesamt"]
     d, dd = data1["Todesfälle"], data2["Todesfälle"]

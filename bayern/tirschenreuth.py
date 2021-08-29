@@ -6,10 +6,7 @@ def tirschenreuth(sheets):
     data2 = data["features"][1]["attributes"]
     data = data["features"][0]["attributes"]
     # for k,v in data.items(): print(k,v,sep="\t")
-    #ags = 9377 #date = datetime.datetime.utcfromtimestamp(data["Datum"] / 1000)
     date = check_date(data["Datum"], "Tirschenreuth")
-    #if date.date() < datetime.date.today(): raise Exception("Tirschenreuth noch alt: "+str(date))
-    #date = date.strftime("%d.%m.%Y %H:%M")
     c, cc = data["Infektionen_insg"], data["Infektionen_Tag"]
     d, dd = data["Todesfälle_insg"], data2["Todesfälle_insg"]
     g, gg = data["Genesene_ins"], data2["Genesene_ins"]

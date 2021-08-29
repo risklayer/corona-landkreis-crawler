@@ -7,7 +7,7 @@ def lgl(sheets):
     soup = get_soup("https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm")
     table = soup.find(id="tableLandkreise")
     if not table: raise Exception("LGL HTML Tabelle tableLandkreise nicht gefunden.")
-    if not today().format("%d.%m.%Y") in table.find("caption").text: raise NotYetAvailableException("LGL noch alt? " +table.find("caption").text)
+    if not today().strftime("%d.%m.%Y") in table.find("caption").text: raise NotYetAvailableException("LGL noch alt? " +table.find("caption").text)
     batch=[]
     for row in table.findAll("tr")[1:-1]:
         row = [x.text.strip() for x in row.findAll("td")]
@@ -17,7 +17,7 @@ def lgl(sheets):
             continue
         c, d = force_int(row[1]), force_int(row[6])
         cc, dd = force_int(row[2]), force_int(row[7])
-        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Bot", check=_lglpat, batch=batch)
+        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Land", check=_lglpat, batch=batch)
         time.sleep(5) # to reduce rate limit problems
     do_batch(sheets, batch)
     return True

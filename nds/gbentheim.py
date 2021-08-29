@@ -5,9 +5,6 @@ def gbentheim(sheets):
     data = get_json('https://services2.arcgis.com/Nlk3vmtQwSFflkuG/ArcGIS/rest/services/LK_Fallzahlen_Zeitverlauf_aktuelle_Faelle/FeatureServer/1/query?where=Infekt_Kommul>0&outFields=*&orderByFields=Datum+DESC&resultRecordCount=1&f=json')
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    #ags, date = 3456, datetime.datetime.fromtimestamp(data["Datum"]/1000)
-    #if date.date() < datetime.date.today(): raise Exception("Grafschaft Bentheim noch alt")
-    #date = date.strftime("%d.%m.%Y %H:%M")
     date = check_date(data["Datum"], "Grafschaft Bentheim")
     c, cc, d = data["Infekt_Kommul"], data["Neuinfektionen"], data["Tode_gesamt"]
     g, q = data["genesen_gesamt"], data["Quarantaene"]

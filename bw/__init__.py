@@ -2,6 +2,7 @@ from .albdonauulm import albdonauulm
 from .biberach import biberach
 from .bodensee import bodensee
 from .boeblingen import boeblingen
+from .breisgaufreiburg import breisgaufreiburg
 from .esslingen import esslingen
 from .goeppingen import goeppingen
 from .heidelbergrnk import heidelbergrnk

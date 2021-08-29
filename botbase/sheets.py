@@ -5,64 +5,7 @@ spreadsheet_id = '1wg-s4_Lz2Stil6spQEYFdZaBEp8nWW26gVyfHqvcl8s'
 # Global command line "dry run" parameter
 dry_run="--dry-run" in sys.argv
 
-# Parsing utility, ignores whitespace and dots
-def force_int(x, fallback=None):
-    if isinstance(x, int): return x
-    try:
-        return int(x.replace(".","").replace(" ",""))
-    except ValueError: return fallback
-
-# Ignore certificates:
-import ssl
-_ctx = ssl.create_default_context()
-_ctx.check_hostname = False
-_ctx.verify_mode = ssl.CERT_NONE
-
-class NotYetAvailableException(Exception): pass
-
-import datetime
-def check_date(d, lk, offset=datetime.timedelta(0)):
-    import datetime, dateutil.parser
-    if isinstance(d, datetime.datetime):
-        if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
-        return d
-    if isinstance(d, datetime.date):
-        if (d + offset) < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
-        return d
-    if isinstance(d, int):
-        if d >= 20210101 and d <= 20230101:
-            d = datetime.datetime(year=d//10000, month=(d//100)%100, day=d%100)
-        elif d > 1e10:
-            d = datetime.datetime.utcfromtimestamp(d / 1000) # arcgis dashboard timestamps
-        else:
-            d = datetime.datetime.utcfromtimestamp(d)
-        if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
-        return d
-    d = dateutil.parser.parse(d.replace("Uhr","").replace(","," ").replace("  "," ").strip())
-    if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
-    return d
-
-def get_json(url):
-    from urllib.request import urlopen
-    import json
-    with urlopen(url, context=_ctx) as client:
-        return json.loads(client.read())
-
-def get_soup(url):
-    from urllib.request import urlopen
-    from bs4 import BeautifulSoup
-    with urlopen(url, context=_ctx) as client:
-        data = client.read()
-        encoding = "UTF-8" # default
-        if 'charset=' in client.headers.get('content-type', '').lower():
-            encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
-        return BeautifulSoup(data, "lxml", from_encoding=encoding)
-
-def get_csv(url):
-    import pandas
-    from urllib.request import urlopen
-    with urlopen(url, context=_ctx) as client:
-        return pandas.read_csv(client, sep=";")
+from .parse import * # force_int
 
 _namemap=None
 def ags_from_name(nam):

@@ -5,10 +5,7 @@ def loerrach(sheets):
     data = get_json('https://gis.loerrach-landkreis.de/arcgis/rest/services/AGOL/Corona/FeatureServer/1/query?f=json&where=1%3D1&outFields=*&returnGeometry=false')
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    #ags, date = 8336, datetime.datetime.utcfromtimestamp(data["Datum"]/1000)
     date = check_date(data["Datum"], "Lörrach")
-    #if date.date() < datetime.date.today(): raise Exception("Lörrach noch alt: "+str(date))
-    #date = date.strftime("%d.%m.%Y")
     c, cc = data["Befunde_positiv"], data["Befunde_positiv_Zuwachs"]
     d, dd = data["verstorben"], data["verstorben_Zuwachs"]
     a, aa = data["Faelle_aktiv"], data["Faelle_aktiv_Zuwachs"]

@@ -5,10 +5,7 @@ def bodensee(sheets):
     data = get_json('https://services3.arcgis.com/23E2aUPiEN4SKSFV/arcgis/rest/services/Statistik_Corona_HP_allg/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Datum+DESC&resultRecordCount=1&f=json')
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    #ags, date = 8435, datetime.datetime.utcfromtimestamp(data["Datum"]/1000)
     date = check_date(data["Datum"], "Bodensee")
-    #if date.date() < datetime.date.today(): raise Exception("Bodensee noch alt: "+str(date))
-    #date = date.strftime("%d.%m.%Y")
     c, cc = data["Infektionen_BSK"], data["Vortag_I"]
     d, dd = data["Todesfaelle_BSK"], data["Vortag_T"]
     g, gg = data["Genesene_BSK"], data["Vortag_G"]

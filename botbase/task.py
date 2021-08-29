@@ -1,4 +1,3 @@
-### Big TODO: use inheritance to override some of this for particular targets
 class Task:
     def __init__(self, sh, sm, eh, em, interval, fun, ags):
         self.sh = sh
@@ -53,4 +52,12 @@ class Task:
         if start < end: return start
         # reschedule tomorrow
         return datetime(year=today.year, month=today.month, day=today.day, hour=self.sh, minute=self.sm) + timedelta(days=1)
+
+class Hourly(Task):
+    def __str__(self): return "AGS %05d hourly %s" % (self.ags, self.fun.__name__ if self.__class__ == Hourly else self.__class__.__name__)
+    def next_time(self, success):
+        import datetime
+        n = Task.next_time(self, success)
+        if n.minute > 10: return n - datetime.timedelta(minutes=n.minute-5)
+        return n
 

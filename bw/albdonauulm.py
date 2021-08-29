@@ -4,8 +4,6 @@ from botbase import *
 def albdonauulm(sheets):
     data = get_json("https://services8.arcgis.com/rfTkYxW18pzySEF0/ArcGIS/rest/services/Coronadaten_fuer_Dashboard_1_Kreise/FeatureServer/0?f=json")
     date = check_date(data["editingInfo"]["lastEditDate"], "Alb-Donau-Ulm")
-    #date = datetime.datetime.utcfromtimestamp(data["editingInfo"]["lastEditDate"] / 1000.)
-    #if date.date() < datetime.date.today(): raise Exception("Alb-Donau-Ulm noch alt: "+str(date))
     data = get_json("https://services8.arcgis.com/rfTkYxW18pzySEF0/arcgis/rest/services/Coronadaten_fuer_Dashboard_1_Kreise/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=KREIS_NAME+asc&f=json")
     data1, data2 = data["features"][0]["attributes"], data["features"][1]["attributes"]
     #for k,v in data1.items(): print(k,v,sep="\t")

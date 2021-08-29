@@ -19,7 +19,7 @@ def sh(sheets):
         c, d = force_int(row[2]), force_int(row[6], 0)
         cc, dd = force_int(row[3]), force_int(row[7], 0)
         print("AGS", ags, c, cc, d, dd)
-        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Bot", check=_shpat)
+        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Land", check=_shpat)
     return True
 
 schedule.append(Task(19, 00, 22, 00, 180, sh, 1057))
