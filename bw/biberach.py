@@ -11,7 +11,7 @@ def biberach(sheets):
     #date = date.strftime("%d.%m.%Y %H:%M")
     c, cc = data["Fallzahlen"], data["FZ_Diff_Vortag"]
     d, g = data["Todesfaelle"], data["Genesene"]
-    update(sheets, 8426, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Dashboard", date=date)
+    update(sheets, 8426, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date)
     return True
 
 schedule.append(Task(15, 00, 16, 30, 300, biberach, 8426))

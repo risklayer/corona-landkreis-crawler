@@ -15,14 +15,14 @@ def osnabrueck(sheets):
         if rec["GEM"] == 3404000: # STADT
             c, d = int(rec["bestaetigt"]), int(rec["Tote"])
             g, q = int(rec["Genesene"]), int(rec["Quarantaene"])
-            update(sheets, 3404, c=c, g=g, d=d, q=q, sig="Bot", comment="API", date=date)
+            update(sheets, 3404, c=c, g=g, d=d, q=q, sig="Bot", comment="Bot API", date=date)
             continue
         ac += int(rec["bestaetigt"])
         ad += int(rec["Tote"])
         ag += int(rec["Genesene"])
         aq += int(rec["Quarantaene"])
     # Landkreis
-    update(sheets, 3459, c=ac, g=ag, d=ad, q=aq, sig="Bot", comment="API", date=date)
+    update(sheets, 3459, c=ac, g=ag, d=ad, q=aq, sig="Bot", comment="Bot API", date=date)
     return True
 
 schedule.append(Task(9, 00, 10, 30, 360, osnabrueck, 3459))

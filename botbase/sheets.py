@@ -1,4 +1,4 @@
-import sys
+import sys, re
 # Spreadsheet ID we are using
 spreadsheet_id = '1wg-s4_Lz2Stil6spQEYFdZaBEp8nWW26gVyfHqvcl8s'
 
@@ -27,7 +27,7 @@ def check_date(d, lk, offset=datetime.timedelta(0)):
         if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
         return d
     if isinstance(d, datetime.date):
-        if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
+        if (d + offset) < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
         return d
     if isinstance(d, int):
         if d >= 20210101 and d <= 20230101:
@@ -111,6 +111,8 @@ def _format(c, v, vv=None):
     if vv is None: return "%s%d" % (c,v)
     return ("%s%d(%+d)" % (c,v,vv)) if vv != 0 else ("%s%d(=)" % (c,v))
 
+_stripbot=re.compile(r"\(?Bot.*(?: [A-Z][0-9]+[()0-9=]+)+\)?")
+
 def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False, batch=None):
     import datetime
     if date is None:
@@ -125,10 +127,11 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
     curr = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN" % rownr, valueRenderOption="UNFORMATTED_VALUE").execute()
     row = curr.get('values', [])[0]
     check = True if check is None else check(row[14]) and True
-    if row[15] is not None and row[15] != "" and row[15] != "nn" and row[15] != "RKI" and check and row[15] != "Vorläufig":
+    if row[15] is not None and row[15] != "" and row[15] != "nn" and row[15] != "RKI" and (row[15] != "Vorläufig" and check):
         comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
         print("Skipping:", ags, rownr, comment, "is already:", row[15])
         return # already filled!
+    #if not check and row[15] == "Vorläufig": return
     if not check: sig = "Vorläufig"
     comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
     print("Found:", ags, rownr, comment, check)
@@ -145,7 +148,7 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
         print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
         do_apply = False
     if do_apply and cc is None and c < int(row[0]): do_apply = False
-    if "Bot" in row[17]: return # schon von Bot kommentiert
+    if sig in row[17]: return # schon von Bot kommentiert
     if do_apply:
         reqs = list()
         if c != int(prev[0]) and c != int(row[7]):
@@ -164,7 +167,7 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
         #comment=comment.replace(")) (", ") ")
         reqs.append({"range": "Haupt!Q%d" % rownr, "values":[[date]]})
         reqs.append({"range": "Haupt!S%d" % rownr, "values":[[sig]]})
-        v = comment + " " + row[17] if row[17] is not None and row[17] != "" and not row[17].startswith("Zwischenstand") else comment
+        v = comment + " " + _stripbot.sub("",row[17]) if row[17] is not None and row[17] != "" and not row[17].startswith("Zwischenstand") else comment
         reqs.append({"range": "Haupt!U%d" % rownr, "values":[[v]]})
         if dry_run:
             print(*reqs, sep="\n")
@@ -175,7 +178,7 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
             do_batch(sheets, reqs)
         return
     if do_apply or row[17] is None or row[17] == "": # or row is RKI pattern!
-        v = comment + " " + row[17] if row[17] is not None and row[17] != "" else comment
+        v = comment + " " + _stripbot.sub("",row[17]) if row[17] is not None and row[17] != "" else comment
         if batch is not None:
             batch.append({"range":"Haupt!U%d" % rownr, "values":[["("+v+")"]]})
             return

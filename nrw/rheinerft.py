@@ -15,7 +15,7 @@ def rheinerft(sheets):
     g, gg = data1["Genesen"], data2["Genesen"]
     q = data1["Personen_in_Quarantäne"]
     cc, dd, gg = c - cc, d - dd, g - gg
-    update(sheets, 5362, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", comment="Dashboard ohne SI", ignore_delta=False, date=date)
+    update(sheets, 5362, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", comment="Bot Dashboard ohne SI", ignore_delta=False, date=date)
     return True
 
 schedule.append(Task(16, 15, 19, 30, 300, rheinerft, 5362))
