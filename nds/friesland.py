@@ -11,7 +11,7 @@ def friesland(sheets):
     d, dd = int(data["verstorben"]), int(data["verstorben_Veraenderung"])
     g, gg = int(data["genesen"]), int(data["genesen_Veraenderung"])
     q, s = int(data["Quarantaene_aktuell"]), int(data["Faelle_stationaer"])
-    update(sheets, 3455, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, sig="Bot", date=date)
+    update(sheets, 3455, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, sig="Bot", date=date, ignore_delta=True) # delta am WE falsch?
     return True
 
 schedule.append(Task(15, 15, 17, 30, 360, friesland, 3455))

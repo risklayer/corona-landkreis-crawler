@@ -3,7 +3,7 @@ from botbase import *
 
 def dortmund(sheets):
     data = get_csv("https://rathaus.dortmund.de/statData/shiny/FB53-Coronafallzahlen.csv")
-    # print(data.tail(), data.columns)
+    print(data.tail(), data.columns)
     data2 = data.iloc[-2]
     data = data.iloc[-1]
     date = data["Datum"]
@@ -15,7 +15,7 @@ def dortmund(sheets):
     gg = int(g - data2["genesene Personen gesamt"])
     s = int(data["darunter aktuell stationär behandelte Personen"])
     i = int(data["darunter aktuell intensivmedizinisch behandelte Personen"])
-    update(sheets, 5913, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date, ignore_delta=False)
+    update(sheets, 5913, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", comment="Bot ohne Q", date=date, ignore_delta=False)
     return True
 
 schedule.append(Task(17, 00, 18, 30, 360, dortmund, 5913))

@@ -3,9 +3,12 @@ from .gbentheim import gbentheim
 from .goslar import goslar
 from .hamelnpyrmont import hamelnpyrmont
 from .hannover import hannover
+from .harburg import harburg
 from .heidekreis import heidekreis
 from .helmstedt import helmstedt
 from .hildesheim import hildesheim
+from .holzminden import holzminden
+from .lueneburg import lueneburg
 from .nienburg import nienburg
 from .osnabrueck import osnabrueck
 from .salzgitter import salzgitter
