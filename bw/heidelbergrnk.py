@@ -10,12 +10,12 @@ def heidelbergrnk(sheets):
     c, cc = data["ges_hd"], data["ges_dif_hd"]
     d, dd = data["vst_hd"], data["vst_dif_hd"]
     g, gg = data["gn_hd"], data["gn_dif_hd"]
-    update(sheets, 8221, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date)
+    update(sheets, 8221, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0) # delta am Montag
     # Rhein-Neckar-Kreis
     c, cc = data["ges_rnk"], data["ges_dif_rnk"]
     d, dd = data["vst_rnk"], data["vst_dif_rnk"]
     g, gg = data["gn_rnk"], data["gn_dif_rnk"]
-    update(sheets, 8228, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date)
+    update(sheets, 8226, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0) # delta am Montag
     return True
 
 schedule.append(Task(7, 55, 9, 30, 300, heidelbergrnk, 8226))

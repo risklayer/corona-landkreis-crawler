@@ -9,7 +9,7 @@ def wuppertal(sheets):
     g, d = latest["ABGESCHL"], latest["D_TOD_SUM"]
     c = latest["INFIZIERT"] + g + d
     sig, comment = "Bot", "Bot"
-    if hour < 20: sig, comment = "Vorläufig", "Zwischenstand "
+    if hour < 20: sig, comment = "Vorläufig", "Zwischenstand"
     date = datetime.datetime(year=date.year, month=date.month, day=date.day, hour=hour) #.strftime("%d.%m.%Y %H:%M")
     update(sheets, 5124, c=c, g=g, d=d, sig=sig, comment=comment, date=date, check=lambda x: x == None or x == "" or x == "Vorläufig")
     return hour >= 20

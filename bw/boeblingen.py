@@ -10,7 +10,7 @@ def boeblingen(sheets):
     c, cc = data["ges_heu"], data["ges_diff"]
     d, dd = data["tot_heu"], data["tot_diff"]
     g, gg = data["gene_heu"], data["gene_diff"]
-    update(sheets, 8115, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date)
+    update(sheets, 8115, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0)
     return True
 
 schedule.append(Task(9, 00, 10, 30, 300, boeblingen, 8115))

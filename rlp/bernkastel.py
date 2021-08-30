@@ -11,7 +11,7 @@ def bernkastel(sheets):
     c, cc = data["Infizierte"], data2["Veraenderu"]
     d = data["Todesfaelle"]
     g, gg = data["Genesene"], data["Genesene_Vortag"]
-    update(sheets, 7231, c=c, cc=cc, g=g, gg=gg, d=d, sig="Bot", ignore_delta=False)
+    update(sheets, 7231, c=c, cc=cc, g=g, gg=gg, d=d, sig="Bot", ignore_delta=today().weekday()==0) # Delta nur Montags?
     return True
 
 schedule.append(Task(12, 30, 12, 40, 360, bernkastel, 7231)) # Wochenede früher

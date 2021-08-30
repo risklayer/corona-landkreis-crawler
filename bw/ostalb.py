@@ -4,7 +4,7 @@ from botbase import *
 def ostalb(sheets):
     data = get_json("https://services7.arcgis.com/qBm3dGfAio0LQTV7/arcgis/rest/services/StatistikLR/FeatureServer/0/query?where=DATUM<%3D'"+today().strftime("%Y-%m-%d")+"'&outFields=*&orderByFields=Datum+DESC&resultRecordCount=2&f=json")
     data = data["features"]
-    for k,v in data[0]["attributes"].items(): print(k,v,sep="\t")
+    # for k,v in data[0]["attributes"].items(): print(k,v,sep="\t")
     date = check_date(data[0]["attributes"]["Datum_Update"], "Ostalbkreis")
     c, cc = data[0]["attributes"]["Gesamtfälle"], data[1]["attributes"]["Gesamtfälle"]
     d, dd = data[0]["attributes"]["Anzahl_der_Verstorbenen"], data[1]["attributes"]["Anzahl_der_Verstorbenen"]

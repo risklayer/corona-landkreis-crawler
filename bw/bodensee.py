@@ -16,7 +16,7 @@ def bodensee(sheets):
     #for k,v in data.items(): print(k,v,sep="\t")
     s, i = data["COVID_19_Stationaer"], data["Intensiv_Behandelte"]
     # TODO: Impfungen auch?
-    update(sheets, 8435, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, i=i, sig="", comment="C Land noch Bot", date=date, ignore_delta=True)
+    update(sheets, 8435, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, i=i, sig="", comment="C Land noch Bot", date=date, ignore_delta=True, without_c=True)
     return True
 
 schedule.append(Task(16, 30, 18, 30, 360, bodensee, 8435))

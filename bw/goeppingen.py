@@ -10,7 +10,7 @@ def goeppingen(sheets):
     c, cc = data["Fall_kum"], data["Neuinfi"]
     d, dd = data["Ster_kum"], data["Ster_dif"]
     g, gg = data["Gene_kum"], data["Gene_Dif"]
-    update(sheets, 8117, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date)
+    update(sheets, 8117, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0)
     return True
 
 schedule.append(Task(13, 00, 15, 30, 360, goeppingen, 8117))

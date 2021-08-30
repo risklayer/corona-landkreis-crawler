@@ -14,5 +14,5 @@ def tirschenreuth(sheets):
     update(sheets, 9377, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(11, 30, 14, 30, 600, tirschenreuth, 9377))
+schedule.append(Task(11, 30, 16, 30, 900, tirschenreuth, 9377))
 if __name__ == '__main__': tirschenreuth(googlesheets())

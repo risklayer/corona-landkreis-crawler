@@ -22,5 +22,5 @@ def bremen(sheets):
         update(sheets, ags, c=c, cc=cc, g=g, gg=gg, s=s, i=i, d=d, dd=dd, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(16, 15, 18, 30, 300, bremen, 4011))
+schedule.append(Task(16, 00, 18, 30, 300, bremen, 4011))
 if __name__ == '__main__': bremen(googlesheets())

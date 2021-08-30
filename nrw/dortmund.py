@@ -3,7 +3,7 @@ from botbase import *
 
 def dortmund(sheets):
     data = get_csv("https://rathaus.dortmund.de/statData/shiny/FB53-Coronafallzahlen.csv")
-    print(data.tail(), data.columns)
+    #print(data.tail(), data.columns)
     data2 = data.iloc[-2]
     data = data.iloc[-1]
     date = data["Datum"]

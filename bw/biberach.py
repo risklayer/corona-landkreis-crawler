@@ -8,7 +8,7 @@ def biberach(sheets):
     date = check_date(data["Stand"], "Biberach")
     c, cc = data["Fallzahlen"], data["FZ_Diff_Vortag"]
     d, g = data["Todesfaelle"], data["Genesene"]
-    update(sheets, 8426, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date)
+    update(sheets, 8426, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date, ignore_delta=today().weekday()==0)
     return True
 
 schedule.append(Task(15, 00, 16, 30, 300, biberach, 8426))

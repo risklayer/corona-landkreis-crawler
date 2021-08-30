@@ -13,5 +13,5 @@ def heilbronnlk(sheets):
     update(sheets, 8125, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(16, 00, 18, 30, 360, heilbronnlk, 8125))
+schedule.append(Task(15, 30, 18, 30, 360, heilbronnlk, 8125))
 if __name__ == '__main__': heilbronnlk(googlesheets())

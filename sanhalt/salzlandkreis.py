@@ -9,7 +9,7 @@ def salzlandkreis(sheets):
     c, cc = data["Faelle_G_1"], data["Faelle_Heu"]
     d, dd = data["Todesfaell"], data["Todesfae_1"]
     g = data["Faelle_G_3"] # Summe_Fa_1 - keine Ahung
-    update(sheets, 15089, c=c, cc=cc, g=g, d=d, dd=dd, sig="", comment="Bot Dashboard, C später Land", date=date, ignore_delta=True)
+    update(sheets, 15089, c=c, cc=cc, g=g, d=d, dd=dd, sig="", comment="Bot Dashboard, C später Land", date=date, ignore_delta=True, without_c=True)
     return True
 
 schedule.append(Task(10, 00, 11, 30, 300, salzlandkreis, 15089))

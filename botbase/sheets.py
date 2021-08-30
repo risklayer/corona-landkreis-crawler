@@ -56,7 +56,7 @@ def _format(c, v, vv=None):
 
 _stripbot=re.compile(r"\(?Bot.*(?: [A-Z][0-9]+[()0-9=]+)+\)?")
 
-def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False, batch=None):
+def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False, batch=None, without_c=False):
     import datetime
     if date is None:
         date = datetime.date.today().strftime("%d.%m.%Y")
@@ -70,18 +70,18 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
     curr = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN" % rownr, valueRenderOption="UNFORMATTED_VALUE").execute()
     row = curr.get('values', [])[0]
     check = True if check is None else check(row[14]) and True
-    if row[15] is not None and row[15] != "" and row[15] != "nn" and row[15] != "RKI" and (row[15] != "Vorläufig" and check):
+    if row[15] is not None and row[15] not in ["", "nn", "RKI", "Vorläufig"]:
         comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
         print("Skipping:", ags, rownr, comment, "is already:", row[15])
         return # already filled!
     #if not check and row[15] == "Vorläufig": return
     if not check: sig = "Vorläufig"
     comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
-    print("Found:", ags, rownr, comment, check)
+    print(ags, row[15], "->", comment)
 
     prev = int(row[0]), int(row[-2]), int(row[-1])
     do_apply = True
-    if not ignore_delta and cc is not None and prev[0] != c - cc:
+    if not without_c and not ignore_delta and cc is not None and prev[0] != c - cc:
         print("Previous C value does not match: %d vs. %d" % (prev[0], c - cc))
         do_apply = False
     if not ignore_delta and dd is not None and prev[2] != d - dd:
@@ -90,7 +90,7 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
     if not ignore_delta and gg is not None and prev[1] != g - gg:
         print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
         do_apply = False
-    if do_apply and cc is None and c < int(row[0]): do_apply = False
+    #if not without_c and do_apply and cc is None and c < int(row[0]): do_apply = False
     if sig in row[17]: return # schon von Bot kommentiert
     if do_apply:
         reqs = list()

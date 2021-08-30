@@ -10,7 +10,7 @@ def remsmurr(sheets):
     d, dd = data["totAll"], data["totAllV"]
     g, gg = data["gesundAllV"], data["gesundAllV"]
     cc, dd, gg = c - cc, d - dd, g - gg
-    update(sheets, 8119, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date)
+    update(sheets, 8119, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0) # delta montags
     return True
 
 schedule.append(Task(16, 00, 17, 30, 360, remsmurr, 8119))

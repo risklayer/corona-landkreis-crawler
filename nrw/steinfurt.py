@@ -10,8 +10,8 @@ def steinfurt(sheets):
     c, cc = data["INFIZIERTE_SUM"], data["INFIZIERTE"]
     d, dd = data["VERSTORBENE_SUM"], data["VERSTORBENE"]
     g, gg = data["GESUNDETE_SUM"], data["GESUNDETE"]
-    update(sheets, 5566, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
+    update(sheets, 5566, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0)
     return True
 
-schedule.append(Task(18, 15, 19, 30, 180, steinfurt, 5566))
+schedule.append(Task(18, 15, 19, 30, 300, steinfurt, 5566))
 if __name__ == '__main__': steinfurt(googlesheets())

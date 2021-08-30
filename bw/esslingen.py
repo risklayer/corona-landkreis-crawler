@@ -13,7 +13,7 @@ def esslingen(sheets):
     d, dd = data2[0]["attributes"]["verstorben"], data2[1]["attributes"]["verstorben"]
     g, gg = c - a - d, cc - aa - dd # G berechnen
     cc, dd, gg = c - cc, d - dd, g -gg # Änderung
-    update(sheets, 8116, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date)
+    update(sheets, 8116, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0) # ignore am Montag würde reichen
     return True
 
 schedule.append(Task(9, 00, 10, 30, 300, esslingen, 8116))

@@ -13,5 +13,5 @@ def rheinsieg(sheets):
     update(sheets, 5382, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot", comment="Bot Dashboard", date=date)
     return True
 
-schedule.append(Task(16, 15, 18, 30, 300, rheinsieg, 5382))
+schedule.append(Task(15, 30, 18, 30, 300, rheinsieg, 5382))
 if __name__ == '__main__': rheinsieg(googlesheets())
