@@ -14,5 +14,5 @@ def coesfeld(sheets):
     update(sheets, 5558, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(11, 30, 13, 30, 180, coesfeld, 5558))
+schedule.append(Task(9, 30, 13, 30, 360, coesfeld, 5558))
 if __name__ == '__main__': coesfeld(googlesheets())

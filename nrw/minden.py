@@ -14,5 +14,5 @@ def minden(sheets):
     update(sheets, 5770, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", comment="Bot Dashboard", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(16, 10, 18, 30, 360, minden, 5770))
+schedule.append(Task(15, 10, 18, 30, 360, minden, 5770))
 if __name__ == '__main__': minden(googlesheets())

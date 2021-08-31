@@ -18,5 +18,5 @@ def heidelbergrnk(sheets):
     update(sheets, 8226, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0) # delta am Montag
     return True
 
-schedule.append(Task(7, 55, 9, 30, 300, heidelbergrnk, 8226))
+schedule.append(Task(7, 55, 10, 30, 300, heidelbergrnk, 8226))
 if __name__ == '__main__': heidelbergrnk(googlesheets())

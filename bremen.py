@@ -2,7 +2,7 @@
 from botbase import *
 import re
 
-_matchbremen = re.compile(r"([0-9.]+)\s+\([+]?([-0-9.]+)\)")
+_matchbremen = re.compile(r"([0-9.]+)\s+\([+ ]*([-0-9.]+)\)")
 
 def bremen(sheets):
     soup = get_soup("https://www.gesundheit.bremen.de/corona/corona/zahlen/corona_fallzahlen-37649")

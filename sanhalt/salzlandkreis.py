@@ -12,5 +12,5 @@ def salzlandkreis(sheets):
     update(sheets, 15089, c=c, cc=cc, g=g, d=d, dd=dd, sig="", comment="Bot Dashboard, C später Land", date=date, ignore_delta=True, without_c=True)
     return True
 
-schedule.append(Task(10, 00, 11, 30, 300, salzlandkreis, 15089))
+schedule.append(Task(15, 00, 17, 30, 300, salzlandkreis, 15089))
 if __name__ == '__main__': salzlandkreis(googlesheets())

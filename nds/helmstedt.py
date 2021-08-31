@@ -6,7 +6,7 @@ def helmstedt(sheets):
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
     date = data["Datum_text"]
-    if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Helmsted noch alt")
+    if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Helmstedt noch alt: "+date)
     c, cc = data["bestaetigt"], data["Inf_zum_Vortag"]
     d = data["Todesfaelle"]
     g, gg = data["genesen"], data["Genesen_zum_Vortag"]

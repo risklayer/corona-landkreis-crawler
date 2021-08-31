@@ -12,5 +12,5 @@ def ludwigsburg(sheets):
     update(sheets, 8118, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(17, 00, 18, 30, 300, ludwigsburg, 8118))
+schedule.append(Task(16, 00, 18, 30, 300, ludwigsburg, 8118))
 if __name__ == '__main__': ludwigsburg(googlesheets())

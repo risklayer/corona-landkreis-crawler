@@ -9,7 +9,7 @@ def meissen(sheets):
     c, cc = data["Indexfälle_gesamt"], data["Neue_Indexfälle"]
     d, dd = data["Sterbefälle_gesamt"], data["Neue_Sterbefälle"]
     g = c - d - data["Aktive_Quarantäne"]
-    update(sheets, 14627, c=c, cc=cc, g=g, d=d, dd=dd, sig="Bot", comment="Bot ohne QSI Dashboard", date=date, ignore_delta=today().weekday()==0)
+    update(sheets, 14627, c=c, cc=cc, g=g, d=d, dd=dd, sig="Bot", comment="Bot ohne QSI Dashboard", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(11, 15, 12, 45, 180, meissen, 14627))
