@@ -7,7 +7,7 @@ def force_int(x, fallback=None):
     if isinstance(x, int): return x
     if isinstance(x, str) and x.lower() in _zahlen: return _zahlen[x.lower()]
     try:
-        return int(x.replace(".","").replace(" ",""))
+        return int(x.replace(".","").replace(" ","").lstrip("+"))
     except ValueError: return fallback
 
 import datetime
@@ -28,7 +28,8 @@ def check_date(d, lk, offset=datetime.timedelta(0)):
             d = datetime.datetime.utcfromtimestamp(d)
         if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
         return d
-    d = dateutil.parser.parse(d.replace("Uhr","").replace(","," ").replace("  "," ").strip())
-    if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
-    return d
+    d = d.replace("Uhr","").replace(","," ").replace("  "," ").strip()
+    pd = dateutil.parser.parse(d, dayfirst="-" not in d)
+    if (pd + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
+    return pd
 
