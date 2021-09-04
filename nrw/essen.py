@@ -15,5 +15,5 @@ def essen(sheets):
     update(sheets, 5113, c=c, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date)
     return True
 
-schedule.append(Task(8, 10, 10, 10, 1800, essen, 5113))
+schedule.append(Task(8, 10, 20, 10, 1800, essen, 5113))
 if __name__ == '__main__': essen(googlesheets())

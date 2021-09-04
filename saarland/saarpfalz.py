@@ -12,8 +12,8 @@ def saarpfalz(sheets):
     ps = [x.get_text(" ") for x in content.findAll("p")]
     #for p in ps: print(p)
     stand = [p for p in ps if "Stand:" in p][0]
-    #print(stand, today().strftime("%e. %B"))
-    #if not today().strftime("%e. %B").strip() in stand: raise NotYetAvailableException("Saarpfalz noch alt: "+stand)
+    #print(stand, today().strftime("%-d. %B"))
+    if not today().strftime("%-d. %B") in stand: raise NotYetAvailableException("Saarpfalz noch alt: "+stand)
     args={}
     for p in ps:
         m = _saarpfalz_c.search(p)

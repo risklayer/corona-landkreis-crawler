@@ -33,5 +33,5 @@ def wiesbaden(sheets):
     update(sheets, 6414, **args, sig="Bot")
     return True
 
-schedule.append(Task(15, 35, 20, 35, 600, wiesbaden, 6414))
+schedule.append(Task(15, 0, 20, 35, 600, wiesbaden, 6414))
 if __name__ == '__main__': wiesbaden(googlesheets())

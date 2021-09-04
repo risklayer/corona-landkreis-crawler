@@ -6,8 +6,8 @@ def harburg(sheets):
     content = soup.find(id="content")
     rows = content.find("table", border="1").findAll("tr")
     rows = [[x.text.strip() for x in row.findAll("td")] for row in rows[:3]]
-    #for row in rows: print(row)
-    if not today().strftime("%d.%m.") in rows[1][0]: raise NotYetAvailableException("Harburg noch alt:" + rows[0][1])
+    for row in rows: print(row)
+    if not today().strftime("%d.%m.") in rows[1][0]: raise NotYetAvailableException("Harburg noch alt:" + rows[1][0])
     assert "insgesamt" in rows[0][4]
     c, cc = force_int(rows[1][4]), force_int(rows[2][4],0)
     assert "verstorben" in rows[0][6]

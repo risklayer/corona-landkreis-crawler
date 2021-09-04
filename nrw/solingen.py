@@ -12,7 +12,7 @@ def solingen(sheets):
     main = soup.find("main").find("article")
     ps = [p.text for p in main.findAll("p")]
     #print(ps)
-    if not today().strftime("%d.%m.") in ps[0]: raise NotYetAvailableException("Solingen noch alt:" + rows[0][1])
+    if not today().strftime("%d.%m.") in ps[0]: raise NotYetAvailableException("Solingen noch alt:" + ps[0])
     args=dict()
     for p in ps:
         m = _solingen_c.search(p)
@@ -30,5 +30,5 @@ def solingen(sheets):
     update(sheets, 5122, **args, sig="Bot")
     return True
 
-schedule.append(Task(11, 2, 20, 35, 600, solingen, 5122))
+schedule.append(Task(10, 30, 20, 35, 600, solingen, 5122))
 if __name__ == '__main__': solingen(googlesheets())

@@ -7,7 +7,7 @@ def dithmarschen(sheets):
     header = [[x.text.strip() for x in row.findAll("th")] for row in rows]
     rows = [[x.text.strip() for x in row.findAll("td")] for row in rows]
     #for row in rows: print(row)
-    if not today().strftime("%d.%m.%Y") in header[0][1]: raise NotYetAvailableException("Dithmarschen noch alt:" + rows[0][1])
+    if not today().strftime("%d.%m.%Y") in header[0][1]: raise NotYetAvailableException("Dithmarschen noch alt: " + header[0][1])
     assert "Gesamtzahl" in rows[2][0]
     c, cc = force_int(rows[2][1]), force_int(rows[2][2],0)
     assert "Klinik" in rows[4][0]

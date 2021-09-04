@@ -15,5 +15,5 @@ def helmstedt(sheets):
     update(sheets, 3154, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot", date=date)
     return True
 
-schedule.append(Task(15, 30, 17, 30, 300, helmstedt, 3154))
+schedule.append(Task(14, 30, 17, 30, 300, helmstedt, 3154))
 if __name__ == '__main__': helmstedt(googlesheets())

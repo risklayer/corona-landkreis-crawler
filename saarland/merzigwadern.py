@@ -31,5 +31,5 @@ def merzigwadern(sheets):
     update(sheets, 10042, **args, sig="Bot", ignore_delta=False)
     return True
 
-schedule.append(Task(15, 30, 20, 35, 600, merzigwadern, 10042))
+schedule.append(Task(14, 30, 20, 35, 600, merzigwadern, 10042))
 if __name__ == '__main__': merzigwadern(googlesheets())

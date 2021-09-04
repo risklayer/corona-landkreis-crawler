@@ -9,8 +9,8 @@ _augsburg_g = re.compile(r"Davon genesen: ([0-9.]+)")
 def augsburg(sheets):
     soup = get_soup("https://www.augsburg.de/umwelt-soziales/gesundheit/coronavirus/fallzahlen")
     main = soup.find(role="main")
-    h2 = main.find("h2").text
-    if not today().strftime("%e. %B %Y").strip() in h2: raise NotYetAvailableException("Augsburg noch alt:" + h2)
+    h2 = main.find(text=re.compile(r"7-Tage-Inzidenz Stadt Augsburg"))
+    if not today().strftime("%-d. %B %Y") in h2: raise NotYetAvailableException("Augsburg noch alt:" + h2)
     ps = [p.text for p in main.findAll("p")]
     #print(ps)
     args=dict()

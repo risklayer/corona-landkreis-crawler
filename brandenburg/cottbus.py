@@ -7,7 +7,7 @@ def cottbus(sheets):
     soup = get_soup("http://www.cottbus.de/verwaltung/gb_iii/gesundheit/corona/index.html")
     main = soup.find(id="cbf_main")
     cap = main.find("caption").text
-    if not today().strftime("%d.%m.%Y") in cap: raise NotYetAvailableException("Bochum noch alt:" + cap)
+    if not today().strftime("%d.%m.%Y") in cap: raise NotYetAvailableException("Cottbus noch alt:" + cap)
     args=dict()
     for row in main.findAll("tr"):
         row = [x.text.strip() for x in row.findAll("td")]

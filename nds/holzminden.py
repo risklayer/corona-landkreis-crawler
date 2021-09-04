@@ -12,5 +12,5 @@ def holzminden(sheets):
     update(sheets, 3255, c=c, cc=cc, g=g, gg=gg, d=d, sig="Bot", date=date, ignore_delta=today().weekday()==0)
     return True
 
-schedule.append(Task(15, 0, 17, 30, 360, holzminden, 3255))
+schedule.append(Task(13, 30, 17, 30, 360, holzminden, 3255))
 if __name__ == '__main__': holzminden(googlesheets())

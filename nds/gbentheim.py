@@ -11,6 +11,6 @@ def gbentheim(sheets):
     update(sheets, 3456, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(11, 15, 11, 20, 360, gbentheim, 3456))
+schedule.append(Task(10, 55, 11, 20, 360, gbentheim, 3456))
 schedule.append(Task(15, 15, 17, 30, 360, gbentheim, 3456))
 if __name__ == '__main__': gbentheim(googlesheets())

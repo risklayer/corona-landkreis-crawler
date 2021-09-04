@@ -14,5 +14,5 @@ def friesland(sheets):
     update(sheets, 3455, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, sig="Bot", date=date, ignore_delta=True) # delta am WE falsch?
     return True
 
-schedule.append(Task(15, 15, 17, 30, 360, friesland, 3455))
+schedule.append(Task(13, 30, 17, 30, 360, friesland, 3455))
 if __name__ == '__main__': friesland(googlesheets())

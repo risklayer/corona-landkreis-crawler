@@ -1,3 +1,4 @@
+from .cloppenburg import cloppenburg
 from .friesland import friesland
 from .gbentheim import gbentheim
 from .goslar import goslar
@@ -8,8 +9,10 @@ from .heidekreis import heidekreis
 from .helmstedt import helmstedt
 from .hildesheim import hildesheim
 from .holzminden import holzminden
+from .leer import leer
 from .lueneburg import lueneburg
 from .nienburg import nienburg
 from .osnabrueck import osnabrueck
 from .salzgitter import salzgitter
 from .uelzen import uelzen
+from .verden import verden

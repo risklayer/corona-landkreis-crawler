@@ -6,7 +6,7 @@ def guetersloh(sheets):
     data = data["features"][0]["attributes"]
     #for k, v in data.items(): print(k, v, sep="\t")
     date = data["datum"]
-    if not today().strftime("%d.%m") in date: raise NotYetAvailableException("Gütersloh noch nicht aktuell")
+    if not today().strftime("%d.%m") in date: raise NotYetAvailableException("Gütersloh noch nicht aktuell: "+date)
     c, g, d = data["summe_bestaetigt"], data["summe_genesen"], data["summe_tote"]
     aa, gg, dd = data["entwicklung_aktiv_vortag"], data["entwicklung_genesen_vortag"], data["entwicklung_tote_vortag"]
     cc = aa + gg + dd

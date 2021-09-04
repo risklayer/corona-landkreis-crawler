@@ -4,7 +4,7 @@ from botbase import *
 def borken(sheets):
     data = get_json("https://corona.kreis-borken.de/api/incidents")
     assert "24:00" in data["STAND"]
-    date = dateutil.parser.parse(data["STAND"].split(" ")[0]) + datetime.timedelta(days=1) # 24:00
+    date = dateutil.parser.parse(data["STAND"].split(" ")[0], dayfirst=True) + datetime.timedelta(days=1) # 24:00
     date = check_date(date, "Borken")
     data = get_json("https://corona.kreis-borken.de/api/data")[0]
     #for k,v in data.items(): print(k,v,sep="\t")

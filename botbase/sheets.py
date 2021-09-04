@@ -56,7 +56,19 @@ def _format(c, v, vv=None):
 
 _stripbot=re.compile(r"\(?Bot.*(?: [A-Z][0-9]+[()0-9=]+)+\)?")
 
-def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None, sig="Bot", comment=None, dry_run=dry_run, date=None, check=None, ignore_delta=False, batch=None, without_c=False):
+def fetch_rows(sheets, batch):
+    agsmap = get_ags(sheets)
+    rownrs = [agsmap[ags] for ags in batch]
+    if None in rownrs: raise Exception("Some AGS was not found")
+    minrow, maxrow = min(rownrs), max(rownrs)
+    data = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN%d" % (minrow, maxrow), valueRenderOption="UNFORMATTED_VALUE").execute()
+    values = data.get('values')
+    return [ values[x-minrow] for x in rownrs ]
+
+def update(sheets, ags,
+    c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None,
+    sig="Bot", comment=None, date=None, without_c=False,
+    dry_run=dry_run, check=None, ignore_delta=False, batch=None, row=None):
     import datetime
     if date is None:
         date = datetime.date.today().strftime("%d.%m.%Y")
@@ -67,8 +79,9 @@ def update(sheets, ags, c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=
     strs = [_format("C",c,cc), _format("D",d,dd), _format("G",g,gg), _format("Q",q), _format("S",s), _format("I",i)]
     rownr = get_ags(sheets)[ags]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
-    curr = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN" % rownr, valueRenderOption="UNFORMATTED_VALUE").execute()
-    row = curr.get('values', [])[0]
+    if not row: # row may be provided already
+        curr = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN" % rownr, valueRenderOption="UNFORMATTED_VALUE").execute()
+        row = curr.get('values', [])[0]
     check = True if check is None else check(row[14]) and True
     if row[15] is not None and row[15] not in ["", "nn", "RKI", "Vorläufig"]:
         comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])

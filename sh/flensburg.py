@@ -7,9 +7,9 @@ def flensburg(sheets):
     rows = content.find("table").findAll("tr")
     rows = [[x.text.strip() for x in row.findAll("td")] for row in rows]
     #print(rows)
-    if not today().strftime("%d.%m.") in rows[0][1]: raise NotYetAvailableException("Flensburg noch alt:" + rows[0][1])
+    if not today().strftime("%d.%m.") in rows[0][1]: raise NotYetAvailableException("Flensburg noch alt: " + rows[0][1])
     assert "Gesamtzahl" in rows[1][0]
-    c, cc = force_int(rows[1][1]), force_int(rows[1][2],0)
+    c, cc = force_int(rows[1][1].replace("*","")), force_int(rows[1][2],0)
     assert "Verstorbene" in rows[3][0]
     d, dd = force_int(rows[3][1]), force_int(rows[3][2],0)
     assert "Genesene" in rows[4][0]

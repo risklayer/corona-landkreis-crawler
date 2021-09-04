@@ -7,7 +7,7 @@ def lueneburg(sheets):
     rows = content.find(id="table_4").findAll("tr")
     rows = [[x.text.strip() for x in row.findAll(["td","th"])] for row in rows]
     #print(rows[0],rows[-2],rows[-1], sep="\n")
-    if not today().strftime("%d.%m.") in rows[-1][1]: raise NotYetAvailableException("Lueneburg noch alt:" + rows[0][1])
+    if not today().strftime("%d.%m.") in rows[-1][1]: raise NotYetAvailableException("Lueneburg noch alt:" + rows[-1][1])
     assert "Gesamt" in rows[0][5]
     c, cc = force_int(rows[-1][5]), force_int(rows[-2][5])
     assert "Todesf" in rows[0][7]

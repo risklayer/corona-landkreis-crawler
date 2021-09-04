@@ -10,7 +10,7 @@ def tuttlingen(sheets):
     d, dd = data["LKTUT_T"], data["LKTUT_T_VOR"]
     g, gg = data["LKTUT_G"], data["LKTUT_G_VOR"]
     # TODO: Impfungen auch?
-    update(sheets, 8327, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=today().weekday()==0)
+    update(sheets, 8327, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True) #today().weekday()==0)
     return True
 
 schedule.append(Task(12, 30, 13, 30, 360, tuttlingen, 8327))

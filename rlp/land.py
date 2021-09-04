@@ -8,7 +8,7 @@ def rlp(sheets):
     soup = get_soup("https://lua.rlp.de/de/presse/detail/news/News/detail/coronavirus-sars-cov-2-aktuelle-fallzahlen-fuer-rheinland-pfalz/")
     stand = soup.find(id="content").find("h5").text
     if not today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("RLP noch alt? " + stand)
-    batch = []
+    todo = []
     for row in soup.find(id="content").findAll("tr")[3:-1]:
         row = [x.text.strip() for x in row.findAll("td")]
         #print(row)
@@ -19,8 +19,14 @@ def rlp(sheets):
             continue
         c, d, g = int(row[1]), int(row[4]), int(row[5])
         cc = int(row[2])
-        update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Land", comment="Land", check=_rlpat, batch=batch)
-        time.sleep(1) # avoid rate limit problems
+        todo.append([ags,c,cc,g,d])
+    rows = fetch_rows(sheets, [x[0] for x in todo])
+    batch = []
+    for i,x in enumerate(todo):
+        ags,c,cc,g,d = x
+        if ags == 7133: g = None # divergiert stark derzeit
+        if ags == 7132: g = None # divergiert stark derzeit
+        update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Land", comment="Land", check=_rlpat, batch=batch, row=rows[i])
     do_batch(sheets, batch)
     return True
 

@@ -4,6 +4,7 @@ _zahlen = {"niemand":0, "keinerlei":0, "kein": 0, "keine": 0, "keinen":0, "ein":
 
 # Parsing utility, ignores whitespace and dots
 def force_int(x, fallback=None):
+    if x is None: return fallback
     if isinstance(x, int): return x
     if isinstance(x, str) and x.lower() in _zahlen: return _zahlen[x.lower()]
     try:
