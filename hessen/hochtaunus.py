@@ -11,7 +11,7 @@ def hochtaunus(sheets):
     g, gg = data["Genesene"], data["Genesene_Delta_Vortag"]
     s, i = data["KKH_Pat"], data["KKH_Int"]
     # TODO: Impfungen auch?
-    update(sheets, 6434, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date)
+    update(sheets, 6434, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date, ignore_delta=today().weekday()==0) # Delta nur Montags ignorieren
     return True
 
 schedule.append(Task(16, 30, 21, 30, 600, hochtaunus, 6434))

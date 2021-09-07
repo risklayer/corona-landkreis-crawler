@@ -14,7 +14,7 @@ def wiesbaden(sheets):
     main = soup.find(id="SP-content")
     ps = [p.text for p in main.findAll(["p", "strong", "li"])]
     #for p in ps: print(p)
-    if not any([today().strftime("%d. %B %Y") in p for p in ps]): raise NotYetAvailableException("Wiesbaden noch alt:" + ps[:3])
+    if not any([today().strftime("%d. %B %Y") in p for p in ps]): raise NotYetAvailableException("Wiesbaden noch alt: " + " ".join(ps[:3]))
     args=dict()
     for p in ps:
         m = _wiesbaden_c.search(p)

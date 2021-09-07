@@ -6,7 +6,7 @@ def nienburg(sheets):
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
     date = data["Letzte_Aktualisierung_text"].replace(",","").replace(" Uhr","")
-    if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Nienburg noch alt")
+    if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Nienburg noch alt: "+date)
     c, cc = data["Faelle_bestaetigt"], data["Delta_Faelle_bestaetigt"]
     d, dd = data["Todesfaelle"], data["Delta_Todesfaelle"]
     g, gg = data["Faelle_genesen"], data["Delta_Faelle_genesen"]

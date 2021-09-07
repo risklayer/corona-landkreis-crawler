@@ -15,7 +15,7 @@ def flensburg(sheets):
     assert "Genesene" in rows[4][0]
     g, gg = force_int(rows[4][1]), force_int(rows[4][2],0)
     assert "Quarantäne" in rows[5][0]
-    q = force_int(rows[5][1]) + c - d - g
+    q = force_int(rows[5][1].replace("*","")) + c - d - g
     update(sheets, 1001, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, sig="Bot", ignore_delta=True)
     return True
 

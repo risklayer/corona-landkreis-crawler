@@ -12,7 +12,7 @@ def essen2(sheets):
     soup = get_soup("https://www.essen.de/leben/gesundheit/corona_virus/coronavirus_updates.de.html")
     main = soup.find(id="contentMitte")
     ps = [x.parent.parent for x in main.findAll(text=re.compile(r"\d+\.\d+\.20\d\d, \d+:\d+ Uhr"))]
-    p = next(p for p in ps if "Essener Coronavirus-Situation" in p.get_text())
+    p = next(p for p in ps if "COVID-19-Infektion" in p.get_text() and "wieder genesen" in p.get_text())
     text = p.get_text(" ")
     #print(text)
     datestr = p.find("strong").text.rstrip(":")

@@ -18,5 +18,5 @@ def breisgaufreiburg(sheets):
     update(sheets, 8311, c=c, cc=cc, d=d, sig="Bot", ignore_delta=False)
     return True
 
-schedule.append(Task(9, 00, 10, 30, 360, breisgaufreiburg, 8311))
+schedule.append(Task(9, 00, 11, 30, 360, breisgaufreiburg, 8311))
 if __name__ == '__main__': breisgaufreiburg(googlesheets())

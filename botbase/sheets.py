@@ -104,7 +104,7 @@ def update(sheets, ags,
         print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
         do_apply = False
     #if not without_c and do_apply and cc is None and c < int(row[0]): do_apply = False
-    if sig in row[17]: return # schon von Bot kommentiert
+    if sig != "" and sig in row[17]: return # schon von Bot kommentiert
     if do_apply:
         reqs = list()
         if c != int(prev[0]) and c != int(row[7]):

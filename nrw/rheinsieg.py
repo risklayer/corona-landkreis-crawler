@@ -10,7 +10,7 @@ def rheinsieg(sheets):
     d = data["Verstorben"]
     g, gg = data["Geheilt"], data["Geheilt_Tag"]
     q = data["Absonderung"]
-    update(sheets, 5382, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot", comment="Bot Dashboard", date=date)
+    update(sheets, 5382, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot", comment="Bot Dashboard", date=date, ignore_delta=today().weekday()==0)
     return True
 
 schedule.append(Task(15, 30, 18, 30, 300, rheinsieg, 5382))
