@@ -22,6 +22,8 @@ def sanhalt(sheets):
         #print(ags, i, *row.values[:4], d1.values[i,dom])
         c, d, g = row.values[1:4]
         cc = d1.values[i,dom]
+        if ags == 15088: continue # Saalekreis
+        if ags == 15089: d = None # Salzlandkreis
         if ags == 15090: d, g = d + 8, g - 8 # Stendal
         #update(sheets, ags, c=c, cc=cc, d=d, g=g, sig="Land", comment="Land", date=date, check=_sanhalt, batch=batch)
         #time.sleep(5)

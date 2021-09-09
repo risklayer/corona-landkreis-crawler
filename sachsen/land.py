@@ -14,6 +14,9 @@ def sachsen(sheets):
         if ags == 14: continue # Land. Unten G ausfüllen?
         # print(ags, v)
         c, cc, d, dd = v["totalInfections"], v["infectionsDifferenceToYesterday"], v["totalDeaths"], v["deathsDifferenceToYesterday"]
+        if ags == 14511: d,dd=None,None # Chemniz, use RKI D
+        if ags == 14628: d += 6 # Sächsische Schweiz
+        if ags == 14523: d += 27 # Vogtlandkreis
         #update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Land", date=date, check=_sachsen, batch=batch)
         todo.append([ags,c,cc,d,dd])
     rows = fetch_rows(sheets, [x[0] for x in todo])

@@ -26,5 +26,5 @@ def essen2(sheets):
     update(sheets, 5113, c=c, g=g, d=d, q=q, s=s, i=i, sig="Bot", date=date)
     return True
 
-schedule.append(Task(10, 30, 12, 35, 600, essen2, 5113))
+schedule.append(Task(9, 30, 12, 35, 600, essen2, 5113))
 if __name__ == '__main__': essen2(googlesheets())

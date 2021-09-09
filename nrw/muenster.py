@@ -17,5 +17,5 @@ def muenster(sheets):
     update(sheets, 5515, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot", ignore_delta=today().weekday()==0) # kein Delta am Montag
     return True
 
-schedule.append(Task(12, 0, 12, 45, 300, muenster, 5515))
+schedule.append(Task(12, 0, 13, 45, 300, muenster, 5515))
 if __name__ == '__main__': muenster(googlesheets())

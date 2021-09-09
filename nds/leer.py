@@ -26,5 +26,5 @@ def leer(sheets):
     update(sheets, 3457, **args, sig="Bot", ignore_delta=False)
     return True
 
-schedule.append(Task(11, 2, 12, 35, 360, leer, 3457))
+schedule.append(Task(11, 2, 14, 35, 360, leer, 3457))
 if __name__ == '__main__': leer(googlesheets())

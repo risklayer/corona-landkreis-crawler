@@ -2,8 +2,8 @@
 from botbase import *
 
 def esslingen(sheets):
-    data = get_json('https://services2.arcgis.com/mL26ZKdlhFJH9AoM/arcgis/rest/services/es_corona/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&orderByFields=dat_zahl+desc&groupByFieldsForStatistics=dat_zahl&outStatistics=[{"statisticType"%3A"sum"%2C"onStatisticField"%3A"inf_ges"%2C"outStatisticFieldName"%3A"inf_ges"}%2C{"statisticType"%3A"sum"%2C"onStatisticField"%3A"pers_qua"%2C"outStatisticFieldName"%3A"pers_qua"}]&resultRecordCount=2&f=json')["features"]
-    #for k,v in data.items(): print(k,v,sep="\t")
+    data = get_json('https://services2.arcgis.com/mL26ZKdlhFJH9AoM/ArcGIS/rest/services/es_corona/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&orderByFields=dat_zahl+desc&groupByFieldsForStatistics=dat_zahl&outStatistics=[{"statisticType"%3A"sum"%2C"onStatisticField"%3A"inf_ges"%2C"outStatisticFieldName"%3A"inf_ges"}%2C{"statisticType"%3A"sum"%2C"onStatisticField"%3A"pers_qua"%2C"outStatisticFieldName"%3A"pers_qua"}]&resultRecordCount=2&f=json')["features"]
+    for k,v in data[0].items(): print(k,v,sep="\t")
     date = data[0]["attributes"]["dat_zahl"]
     date = datetime.date(year=date//10000, month=(date//100)%100, day=date%100) + datetime.timedelta(days=1)
     date = check_date(date, "Esslingen")

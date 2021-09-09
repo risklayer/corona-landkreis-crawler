@@ -125,6 +125,7 @@ def update(sheets, ags,
         reqs.append({"range": "Haupt!S%d" % rownr, "values":[[sig]]})
         v = comment + " " + _stripbot.sub("",row[17]) if row[17] is not None and row[17] != "" and not row[17].startswith("Zwischenstand") else comment
         reqs.append({"range": "Haupt!U%d" % rownr, "values":[[v]]})
+        reqs.append({"range": "Haupt!V%d" % rownr, "values":[[""]]})
         if dry_run:
             print(*reqs, sep="\n")
             return
