@@ -22,5 +22,5 @@ def cottbus(sheets):
     update(sheets, 12052, **args, sig="Bot")
     return True
 
-schedule.append(Task(10, 2, 11, 35, 600, cottbus, 12052))
+schedule.append(Task(10, 2, 13, 35, 600, cottbus, 12052))
 if __name__ == '__main__': cottbus(googlesheets())
