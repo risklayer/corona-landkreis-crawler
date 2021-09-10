@@ -69,6 +69,8 @@ def update(sheets, ags,
     c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None,
     sig="Bot", comment=None, date=None, without_c=False,
     dry_run=dry_run, check=None, ignore_delta=False, batch=None, row=None):
+    if c is not None and c == 0: raise IllegalValueException("C is "+c+" for AGS "+ags+": "+comment)
+    if g is not None and g == 0: raise IllegalValueException("G is "+g+" for AGS "+ags+": "+comment)
     import datetime
     if date is None:
         date = datetime.date.today().strftime("%d.%m.%Y")
