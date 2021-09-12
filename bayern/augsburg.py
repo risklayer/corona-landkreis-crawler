@@ -25,7 +25,7 @@ def augsburg(sheets):
         if m: args["cc"] = force_int(m.group(1))
     #print(args)
     assert "c" in args and "d" in args and "g" in args
-    update(sheets, 9761, **args, sig="Bot")
+    update(sheets, 9761, **args, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(10, 2, 12, 35, 600, augsburg, 9761))
