@@ -11,6 +11,7 @@ from .hohenlohe import hohenlohe
 from .loerrach import loerrach
 from .ludwigsburg import ludwigsburg
 from .ostalb import ostalb
+from .ravensburg import ravensburg
 from .remsmurr import remsmurr
 from .sbk import sbk
 from .sigmaringen import sigmaringen
