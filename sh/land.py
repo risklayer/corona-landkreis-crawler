@@ -22,5 +22,5 @@ def sh(sheets):
         update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Land", check=_shpat)
     return True
 
-schedule.append(Task(19, 00, 22, 00, 180, sh, 1057))
+schedule.append(Task(18, 30, 22, 00, 180, sh, 1057))
 if __name__ == '__main__': sh(googlesheets())
