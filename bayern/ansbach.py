@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 from botbase import *
 
-_ansbachl_c = re.compile(r"Infektionsfälle Landkreis Ansbach:\s*([0-9.]+)\s*\(\+?\s*(-?[0-9.]+)?", re.U)
-_ansbachs_c = re.compile(r"Infektionsfälle Stadt Ansbach:\s*([0-9.]+)\s*\(\+?\s*(-?[0-9.]+)?", re.U)
+_ansbachl_c = re.compile(r"Infektionsfälle Landkreis Ansbach:\s*([0-9.]+)\s*\(\s*\+?\s*(-?[0-9.]+)?", re.U)
+_ansbachs_c = re.compile(r"Infektionsfälle Stadt Ansbach:\s*([0-9.]+)\s*\(\s*\+?\s*(-?[0-9.]+)?", re.U)
 _ansbachl_g = re.compile(r"Genesene Landkreis Ansbach:\s*([0-9.]+)", re.U)
 _ansbachs_g = re.compile(r"Genesene Stadt Ansbach:\s*([0-9.]+)", re.U)
 _ansbachl_d = re.compile(r"Verstorbene Landkreis Ansbach:\s*([0-9.]+)", re.U)
