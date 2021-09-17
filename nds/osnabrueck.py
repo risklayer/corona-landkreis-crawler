@@ -24,5 +24,5 @@ def osnabrueck(sheets):
     update(sheets, 3459, c=ac, g=ag, d=ad, q=aq+aa, sig="Bot", comment="Bot API", date=date)
     return True
 
-schedule.append(Task(9, 00, 10, 30, 360, osnabrueck, 3459))
+schedule.append(Task(9, 00, 11, 30, 360, osnabrueck, 3459))
 if __name__ == '__main__': osnabrueck(googlesheets())

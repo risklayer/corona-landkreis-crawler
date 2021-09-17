@@ -18,7 +18,7 @@ def dithmarschen(sheets):
     d, dd = force_int(rows[7][1]), force_int(rows[7][2],0)
     assert "Quarantäne" in rows[8][0]
     q = force_int(rows[8][1]) + c - d - g
-    update(sheets, 1051, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta=False)
+    update(sheets, 1051, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(15, 2, 20, 35, 600, dithmarschen, 1051))

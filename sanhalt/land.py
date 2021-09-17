@@ -10,9 +10,8 @@ def sanhalt(sheets):
     data = get_raw("https://lavst.azurewebsites.net/Corona/Verlauf/COVID19_Aktuell_Sachsen_Anhalt.csv").decode("iso-8859-1")
     data = _csvbreak.split(data)
     date = check_date(data[0].split("Stand:")[1].split(";")[0], "Sachsen-Anhalt")
-    d1 = pandas.read_csv(io.StringIO(data[3]), sep=";", thousands=".", decimal=",", skiprows=2)
-    #print(d1.columns, d1.columns.get_loc("31.08.2021"))
-    d2 = pandas.read_csv(io.StringIO(data[5]), sep=";", thousands=".", decimal=",")
+    d1 = pandas.read_csv(io.StringIO(data[4]), sep=";", thousands=".", decimal=",", skiprows=2)
+    d2 = pandas.read_csv(io.StringIO(data[6]), sep=";", thousands=".", decimal=",")
     assert (d2.columns[1:4] == ["Anzahl Fälle","verstorben","Genesene"]).all(), d2.columns[1:5]
     dom = d1.columns.get_loc(today().strftime("%d.%m.%Y")) # day of month
     todo=[]
@@ -24,7 +23,7 @@ def sanhalt(sheets):
         cc = d1.values[i,dom]
         if ags == 15088: continue # Saalekreis
         if ags == 15089: d = None # Salzlandkreis
-        if ags == 15090: d, g = d + 8, g - 8 # Stendal
+        #if ags == 15090: d, g = d + 8, g - 8 # Stendal
         #update(sheets, ags, c=c, cc=cc, d=d, g=g, sig="Land", comment="Land", date=date, check=_sanhalt, batch=batch)
         #time.sleep(5)
         todo.append([ags,c,cc,g,d])

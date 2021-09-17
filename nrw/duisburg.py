@@ -27,5 +27,5 @@ def duisburg(sheets):
     update(sheets, 5112, **args, sig="Bot")
     return True
 
-schedule.append(Task(9, 2, 13, 35, 600, duisburg, 5112))
+schedule.append(Task(9, 2, 15, 35, 600, duisburg, 5112))
 if __name__ == '__main__': duisburg(googlesheets())

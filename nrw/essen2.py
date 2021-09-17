@@ -22,9 +22,9 @@ def essen2(sheets):
     g = force_int(_essen_g.search(text).group(1))
     s = force_int(_essen_s.search(text).group(1))
     i = force_int(_essen_i.search(text).group(1))
-    q = force_int(_essen_q.search(text).group(1))
+    q = force_int(_essen_q.search(text).group(1)) + (c-d-g)
     update(sheets, 5113, c=c, g=g, d=d, q=q, s=s, i=i, sig="Bot", date=date)
     return True
 
-schedule.append(Task(9, 30, 12, 35, 600, essen2, 5113))
+schedule.append(Task(9, 30, 14, 35, 600, essen2, 5113))
 if __name__ == '__main__': essen2(googlesheets())
