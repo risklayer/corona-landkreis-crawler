@@ -12,6 +12,7 @@ from .guetersloh import guetersloh
 from .hamm import hamm
 from .heinsberg import heinsberg
 from .hoexter import hoexter
+from .leverkusen import leverkusen
 from .lippe import lippe
 from .minden import minden
 from .muelheim import muelheim
@@ -26,4 +27,5 @@ from .rheinsieg import rheinsieg
 from .soest import soest
 from .solingen import solingen
 from .steinfurt import steinfurt
+from .warendorf import warendorf
 from .wuppertal import wuppertal

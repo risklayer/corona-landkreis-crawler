@@ -15,6 +15,7 @@ def leer(sheets):
     for row in content.findAll("tr"):
         row = [x.get_text(" ") for x in row.findAll(["td","th"])]
         #print(row)
+        if len(row) < 2: continue
         if "Bestätigte" in row[0]: args["c"], args["cc"] =  map(force_int, _twovals.search(row[1]).groups())
         if "genesene Personen" in row[0]: args["g"] = force_int(row[1])
         if "verstorbene Personen" in row[0]: args["d"] = force_int(row[1])

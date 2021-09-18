@@ -109,13 +109,13 @@ def update(sheets, ags,
     if sig != "" and sig in row[17]: return # schon von Bot kommentiert
     if do_apply:
         reqs = list()
-        if c != int(prev[0]) and c != int(row[7]):
+        if not without_c and c != int(prev[0]) and c != int(row[7]) and (cc is not None or c > int(prev[0])):
             reqs.append({"range": "Haupt!K%d" % rownr, "values": [[c]]})
         #elif c is not None: comment=comment.replace(strs[0], "(%s)" % strs[0])
-        if d is not None and d != int(prev[2]) and d != force_int(row[12]):
+        if d is not None and d != int(prev[2]) and d != force_int(row[12]) and (dd is not None or d > int(prev[2])):
             reqs.append({"range": "Haupt!P%d" % rownr, "values": [[d]]})
         #elif d is not None: comment=comment.replace(strs[1], "(%s)" % strs[1])
-        if g is not None and g != int(prev[1]) and g != force_int(row[8]):
+        if g is not None and g != int(prev[1]) and g != force_int(row[8]) and (gg is not None or g > int(prev[1])):
             reqs.append({"range": "Haupt!L%d" % rownr, "values": [[g]]})
         #elif g is not None: comment=comment.replace(strs[2], "(%s)" % strs[2])
         if q is not None and q != force_int(row[9]): reqs.append({"range": "Haupt!M%d" % rownr, "values": [[q]]})

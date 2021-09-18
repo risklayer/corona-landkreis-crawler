@@ -11,7 +11,7 @@ def muelheim(sheets):
     g, gg = data1["Anzahl_P_1"], data2["Anzahl_P_1"]
     cc, dd, gg = c - cc, d - dd, g - gg
     q = data1["Anzahl_Qua"]
-    update(sheets, 5117, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=False)
+    update(sheets, 5117, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", date=date, ignore_delta=False)
     return True
 
 schedule.append(Task(9, 00, 10, 00, 180, muelheim, 5117))
