@@ -10,6 +10,7 @@ def hamelnpyrmont(sheets):
     d, a, q = data["Todesfäll"], data["infiziert"], data["quarantaen"]
     c, d = c + 13, d + 3
     g = c - a - d
+    q += a
     update(sheets, 3252, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", date=date, ignore_delta=True)
     return True
 
