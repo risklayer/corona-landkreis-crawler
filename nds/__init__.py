@@ -1,4 +1,5 @@
 from .cloppenburg import cloppenburg
+from .emden import emden
 from .friesland import friesland
 from .gbentheim import gbentheim
 from .goslar import goslar

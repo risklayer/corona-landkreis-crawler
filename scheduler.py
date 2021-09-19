@@ -4,7 +4,7 @@ import random, time
 from datetime import datetime
 from heapq import heapify, heapreplace
 
-import sh, hamburg, nds, bremen, nrw, hessen, rlp, bw, bayern, saarland, berlin, brandenburg, sachsen, sanhalt
+import sh, hamburg, nds, bremen, nrw, hessen, rlp, bw, bayern, saarland, berlin, brandenburg, sachsen, sanhalt, thueringen
 
 def scheduler(sheets):
     queue = [(task.next_time("init"), task) for task in botbase.schedule]

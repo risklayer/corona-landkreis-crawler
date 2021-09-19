@@ -5,7 +5,7 @@ _enkreis_c = re.compile(r"([0-9.]+) bestätigte")
 _enkreis_cc = re.compile(r"um ([0-9.]+) gestiegen")
 _enkreis_d = re.compile(r"([0-9.]+) Personen im Zusammenhang mit einer Corona-Infektion verstorben")
 _enkreis_g = re.compile(r"([0-9.]+) Menschen gelten als genesen")
-_enkreis_si = re.compile(r"([0-9.]+) Patienten mit einer Corona-Infektion in stationärer Behandlung, ([0-9.]+) Person(?:en)? werden intensivmedizinisch betreut")
+_enkreis_si = re.compile(r"([0-9.]+) Patienten mit einer Corona-Infektion in stationärer Behandlung, ([0-9.]+) Person(?:en)? werden intensiv", re.U)
 _enkreis_q = re.compile(r"([0-9.]+) Kreisbewohner in Quarantäne")
 
 def enkreis(sheets):
@@ -28,7 +28,7 @@ def enkreis(sheets):
     s, i, q = None, None, None
     m = _enkreis_q.search(text)
     if m: q = force_int(m.group(1))
-    mm = _enkreis_si.search(text)
+    m = _enkreis_si.search(text)
     if m: s, i = force_int(m.group(1)), force_int(m.group(2))
     update(sheets, 5954, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot")
     return True
