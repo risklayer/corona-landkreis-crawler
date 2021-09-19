@@ -5,6 +5,7 @@ from .coesfeld import coesfeld
 from .dortmund import dortmund
 from .dueren import dueren
 from .duisburg import duisburg
+from .enkreis import enkreis
 from .essen import essen # dashboard, am WE
 from .essen2 import essen2 # text
 from .euskirchen import euskirchen
@@ -14,6 +15,7 @@ from .heinsberg import heinsberg
 from .hoexter import hoexter
 from .leverkusen import leverkusen
 from .lippe import lippe
+from .mettmann import mettmann
 from .minden import minden
 from .muelheim import muelheim
 from .muenster import muenster
