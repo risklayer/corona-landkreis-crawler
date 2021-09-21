@@ -2,7 +2,7 @@
 from botbase import *
 
 _mettmann_a = re.compile(r"([0-9.]+) Infizierte erfasst")
-_mettmann_d = re.compile(r"Verstorbene zählt der Kreis bislang insgesamt ([0-9.]*[0-9])")
+_mettmann_d = re.compile(r"Verstorbene zählt der Kreis (?:damit )bislang insgesamt ([0-9.]*[0-9])")
 _mettmann_g = re.compile(r"([0-9.]+) Personen gelten als genesen")
 
 def mettmann(sheets):

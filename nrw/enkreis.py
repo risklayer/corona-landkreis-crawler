@@ -12,7 +12,7 @@ def enkreis(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.enkreis.de/")
     articles = soup.findAll(class_="article")
-    article = next(a for a in articles if "Neuinfektionen" in a.find("h2").get_text())
+    article = next(a for a in articles if "bestätigte Corona" in a.find(itemprop="description").get_text())
     date = article.find("time").text if article else None
     date = check_date(date, "EN-Kreis")
     url = urljoin("https://www.enkreis.de/", article.find("a")["href"])

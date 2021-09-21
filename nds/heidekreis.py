@@ -11,7 +11,7 @@ def heidekreis(sheets):
     g, gg = data["aktuell_anzahl_genesene"], data["differenz_zum_vortag_genesene"]
     s, i = data["betreuter_personen_im_hk_klinik"], data["intensivmedizinisch_betreuter_p"]
     # TODO: Impfungen auch?
-    update(sheets, 3358, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date)
+    update(sheets, 3358, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(12, 15, 13, 30, 180, heidekreis, 3358))

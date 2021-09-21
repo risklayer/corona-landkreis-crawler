@@ -12,6 +12,7 @@ def rheinkneuss(sheets):
     q, s = data1["quarantane"], data1["infizierte_im_krankenhaus"]
     # TODO: Impfungen auch?
     cc, dd, gg = c - cc, d - dd, g - gg
+    q += c - d - g
     update(sheets, 5162, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, sig="Bot", date=date, ignore_delta=True)
     return True
 

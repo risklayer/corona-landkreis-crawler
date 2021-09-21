@@ -2,12 +2,14 @@
 from botbase import *
 
 def leverkusen(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.leverkusen.de/leben-in-lev/corona-info-leverkusen/index.php")
     content = soup.find(id="SP-content-inner")
     rows = content.find("table").findAll("tr")
     rows = [[x.text.strip() for x in row.findAll("td")] for row in rows]
     #print(rows)
-    if not today().strftime("%-d. %b") in rows[1][0]: raise NotYetAvailableException("Leverkusen noch alt: " + rows[0][1])
+    if not today().strftime("%-d. %b") in rows[1][0]: raise NotYetAvailableException("Leverkusen noch alt: " + rows[1][0])
     assert "Bestätigte" in rows[0][1]
     c, cc = force_int(rows[1][1]), force_int(rows[2][1],0)
     assert "Todesfälle" in rows[0][2]
