@@ -2,13 +2,14 @@
 from botbase import *
 
 _mettmann_a = re.compile(r"([0-9.]+) Infizierte erfasst")
-_mettmann_d = re.compile(r"Verstorbene zählt der Kreis (?:damit )bislang insgesamt ([0-9.]*[0-9])")
+_mettmann_d = re.compile(r"Verstorbene zählt der Kreis (?:damit )?bislang insgesamt ([0-9.]*[0-9])")
 _mettmann_g = re.compile(r"([0-9.]+) Personen gelten als genesen")
 
 def mettmann(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.kreis-mettmann-corona.de/Aktuelle-Meldungen/")
-    article = soup.find(class_="mitteilungen").find("li")
+    article = soup.find(class_="mitteilungen").findAll("li")
+    article = next(x for x in article if "Corona-Virus:" in x.get_text())
     if not today().strftime("%d.%m.%Y") in article.get_text(): raise NotYetAvailableException("Mettmann noch alt: "+article.find(class_="list-text").find("small").get_text())
     url = urljoin("https://www.kreis-mettmann-corona.de/Aktuelle-Meldungen/", article.find("a")["href"])
     print("Getting", url)

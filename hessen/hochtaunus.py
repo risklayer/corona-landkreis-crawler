@@ -10,6 +10,7 @@ def hochtaunus(sheets):
     d, dd = data["Verstorben"], data["Verstorben_Delta_Vortag"]
     g, gg = data["Genesene"], data["Genesene_Delta_Vortag"]
     s, i = data["KKH_Pat"], data["KKH_Int"]
+    if g+d > c: g -= d
     # TODO: Impfungen auch?
     update(sheets, 6434, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date, ignore_delta=today().weekday()==0) # Delta nur Montags ignorieren
     return True

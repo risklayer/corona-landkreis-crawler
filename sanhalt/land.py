@@ -32,7 +32,7 @@ def sanhalt(sheets):
     batch = []
     for i,x in enumerate(todo):
         ags,c,cc,g,d = x
-        update(sheets, ags, c=c, cc=cc, d=d, g=g, sig="Land", comment="Land", date=date, check=_sanhalt, batch=batch, row=rows[i])
+        update(sheets, ags, c=c, cc=cc, d=d, g=g, sig="Land", comment="Land", date=date, check=_sanhalt, batch=batch, row=rows[i], ignore_delta="sachsen-anhalt" in rows[i][14])
     do_batch(sheets, batch)
     return True
 

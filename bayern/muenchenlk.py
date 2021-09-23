@@ -20,7 +20,7 @@ def muenchenlk(sheets):
     assert "c" in args and "d" in args and "g" in args
     comment = "Bot"
     if "cm" in args:
-        if args["cm"] > 0: comment = "C-%d Streichungen Bot" % args["cm"]
+        if args["cm"] is not None and args["cm"] > 0: comment = "C-%d Streichungen Bot" % args["cm"]
         del args["cm"]
     update(sheets, 9184, **args, sig="Bot", comment=comment, ignore_delta=True)
     return True

@@ -20,7 +20,7 @@ def kaiserslautern(sheets):
     c2, g2, d2 = map(lambda x:force_int(x, 0), _kl_lk.search(p).groups())
     c3, g3, d3 = map(lambda x:force_int(x, 0), _kl_sk.search(p).groups())
     update(sheets, 7312, c=c1, cc=cc1, d=d1, g=g1, gg=gg1,sig="Bot", ignore_delta=False)
-    update(sheets, 7335, c=c2+c3, cc=cc2+cc3, d=d2+d3, g=g2+g3, gg=gg2+gg3, sig="Bot", ignore_delta=False)
+    update(sheets, 7335, c=c2+c3, cc=cc2+cc3, d=d2+d3, g=g2+g3, gg=gg2+gg3, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(18, 2, 21, 35, 600, kaiserslautern, 7335))
