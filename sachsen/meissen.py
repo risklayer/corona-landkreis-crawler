@@ -12,5 +12,5 @@ def meissen(sheets):
     update(sheets, 14627, c=c, cc=cc, g=g, d=d, dd=dd, sig="Bot", comment="Bot ohne QSI Dashboard", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(11, 00, 12, 45, 180, meissen, 14627))
+schedule.append(Task(11, 00, 14, 45, 180, meissen, 14627))
 if __name__ == '__main__': meissen(googlesheets())

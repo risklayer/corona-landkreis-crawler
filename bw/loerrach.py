@@ -5,7 +5,7 @@ def loerrach(sheets):
     data = get_json('https://gis.loerrach-landkreis.de/arcgis/rest/services/AGOL/Corona/FeatureServer/1/query?f=json&where=1%3D1&outFields=*&returnGeometry=false')
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    date = check_date(data["Datum"], "Lörrach")
+    date = check_date(data["Datum"], "Lörrach", datetime.timedelta(hours=6))
     c, cc = data["Befunde_positiv"], data["Befunde_positiv_Zuwachs"]
     d, dd = data["verstorben"], data["verstorben_Zuwachs"]
     a, aa = data["Faelle_aktiv"], data["Faelle_aktiv_Zuwachs"]

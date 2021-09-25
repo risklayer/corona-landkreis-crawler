@@ -32,5 +32,5 @@ def halle(sheets):
     update(sheets, 15002, **args, sig="Bot")
     return True
 
-schedule.append(Task(10, 00, 11, 35, 360, halle, 15002))
+schedule.append(Task(10, 00, 13, 35, 360, halle, 15002))
 if __name__ == '__main__': halle(googlesheets())
