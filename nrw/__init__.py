@@ -10,6 +10,7 @@ from .essen import essen # dashboard, am WE
 from .essen2 import essen2 # text
 from .euskirchen import euskirchen
 from .guetersloh import guetersloh
+from .hagen import hagen
 from .hamm import hamm
 from .heinsberg import heinsberg
 from .hoexter import hoexter

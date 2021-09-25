@@ -21,7 +21,7 @@ def emden(sheets):
     c, g, gg, d = map(force_int, _emden.search(text).groups())
     cc = force_int(_emden_cc.search(text).group(1))
     q = force_int(_emden_q.search(text).group(1))
-    update(sheets, 3402, c=c, cc=cc, d=d, g=g, q=q, sig="Bot")
+    update(sheets, 3402, c=c, cc=cc, d=d, g=g, q=q, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(9, 30, 12, 35, 360, emden, 3402))

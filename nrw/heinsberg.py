@@ -14,8 +14,8 @@ def heinsberg(sheets):
     if not today().strftime("%-d. %B %Y") in ps[0]: raise NotYetAvailableException("Heinsberg noch alt:" + ps[0])
     c = force_int(_heinsberg_c.search(ps[0]).group(1))
     d = force_int(_heinsberg_d.search(ps[0]).group(1)) + 37 # "mit"
-    a = force_int(_heinsberg_a.search(ps[0]).group(1))
-    g = c - d - a
+    a = force_int(_heinsberg_a.search(ps[0]).group(1)) if _heinsberg_a.search(ps[0]) else None
+    g = c - d - a if a else None
     update(sheets, 5370, c=c, d=d, g=g, sig="Bot")
     return True
 

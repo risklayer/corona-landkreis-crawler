@@ -1,3 +1,4 @@
+from .aurich import aurich
 from .cloppenburg import cloppenburg
 from .emden import emden
 from .friesland import friesland
@@ -13,7 +14,11 @@ from .holzminden import holzminden
 from .leer import leer
 from .lueneburg import lueneburg
 from .nienburg import nienburg
+from .northeim import northeim
 from .osnabrueck import osnabrueck
+from .osterholz import osterholz
+from .row import row
 from .salzgitter import salzgitter
+from .schaumburg import schaumburg
 from .uelzen import uelzen
 from .verden import verden

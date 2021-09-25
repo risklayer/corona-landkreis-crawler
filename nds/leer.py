@@ -4,7 +4,7 @@ from botbase import *
 
 _twovals = re.compile(r"([0-9.]+) \(\+?\s*(-?[0-9.]+)\s*\)")
 _stand = re.compile(r"Stand:")
-_station = re.compile(r"befinden\s+sich\s+([.0-9]+|\w+)\s+Personen\s+in\s+stationärer\s+Behandlung", re.U)
+_station = re.compile(r"befinde[nt]\s+sich\s+([.0-9]+|\w+)\s+Person(?:en)?\s+in\s+stationärer\s+Behandlung", re.U)
 
 def leer(sheets):
     soup = get_soup("https://www.landkreis-leer.de/Leben-Lernen/Coronavirus")
