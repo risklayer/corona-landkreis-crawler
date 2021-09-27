@@ -13,7 +13,6 @@ from .helmstedt import helmstedt
 from .hildesheim import hildesheim
 from .holzminden import holzminden
 from .leer import leer
-from .lueneburg import lueneburg
 from .nienburg import nienburg
 from .northeim import northeim
 from .osnabrueck import osnabrueck
