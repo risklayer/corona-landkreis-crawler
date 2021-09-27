@@ -10,12 +10,15 @@ def saarlouis(sheets):
     soup = get_soup("https://www.kreis-saarlouis.de/Corona-Virus/Corona-Ticker.htm?")
     content = soup.find(id="content_frame")
     ps = []
-    cur = content.find("hr").nextSibling
+    cur = next(content.find("hr").parent.children)
     stop = cur.findNext("hr")
-    while cur is not None and cur != stop:
+    while cur is not None:
         if isinstance(cur, bs4.Tag): ps.extend([p for p in cur.find_all(text=True) if not p.strip() == ""])
         cur = cur.nextSibling
-    #for p in ps: print(p)
+        if cur == stop:
+            if len(ps) > 4: break
+            stop = cur.findNext("hr")
+    #for p in ps: print("A",p)
     #date = check_date(p[0], "Merzig-Wadern")
     if not today().strftime("%d.%m.%Y") in ps[0]: raise NotYetAvailableException("Saarlouis noch alt: "+ps[0])
     args={}
