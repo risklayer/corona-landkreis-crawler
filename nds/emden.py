@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_emden_cc = re.compile(r"haben wir ([0-9.]+|\w+) Corona-Neuinfektion(?:en)?")
+_emden_cc = re.compile(r"haben wir\s+([0-9.]+|\w+)\s+(?:Corona-)?Neuinfektion(?:en)?")
 _emden = re.compile(r"([0-9.]+) Personen, von denen ([0-9.]+) \(\+?(-?[0-9.]+)\) Personen genesen und ([0-9.]+) Personen verstorben")
 _emden_q = re.compile(r"in Quarantäne befindlichen Personen beträgt ([0-9.]+)")
 
@@ -9,7 +9,7 @@ def emden(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.emden.de/nachrichten")
     articles = soup.findAll(itemtype="http://schema.org/Article")
-    article = next(a for a in articles if "Neuinfektionen" in a.find("h3").get_text())
+    article = next(a for a in articles if "Neuinfektion" in a.find("h3").get_text())
     date = article.find("time").text if article else None
     date = check_date(date, "Emden")
     url = urljoin("https://www.emden.de/", article.find("a")["href"])

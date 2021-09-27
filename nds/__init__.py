@@ -3,6 +3,7 @@ from .cloppenburg import cloppenburg
 from .emden import emden
 from .friesland import friesland
 from .gbentheim import gbentheim
+from .goettingen import goettingen
 from .goslar import goslar
 from .hamelnpyrmont import hamelnpyrmont
 from .hannover import hannover

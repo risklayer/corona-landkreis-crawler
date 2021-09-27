@@ -6,7 +6,7 @@ _oberhausen_d = re.compile(r"Todesfälle: ([0-9.]+) \(([0-9.]+)\)")
 _oberhausen_g = re.compile(r"Genesene Personen: ([0-9.]+) \(([0-9.]+)\)")
 _oberhausen_q = re.compile(r"Quarantäne: ([0-9.]+) \(([0-9.]+)\)")
 _oberhausen_s = re.compile(r"Krankenhaus: ([0-9.]+) \(([0-9.]+)\)")
-_oberhausen_i = re.compile(r"([0-9.]+) \(([0-9.]+)\) Personen auf der Intensiv")
+_oberhausen_i = re.compile(r"([0-9.]+) \(\s*([0-9.]+)\s*\) Personen auf der Intensiv")
 
 def oberhausen(sheets):
     import bs4
