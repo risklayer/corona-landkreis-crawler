@@ -2,7 +2,7 @@
 from botbase import *
 import re
 
-_matchbremen = re.compile(r"([0-9.]+)\s+\([+ ]*([-0-9.]+)\)")
+_matchbremen = re.compile(r"([0-9.]+)\s*\([+ ]*([-0-9.]+)\)")
 
 def bremen(sheets):
     soup = get_soup("https://www.gesundheit.bremen.de/corona/corona/zahlen/corona_fallzahlen-37649")
@@ -13,7 +13,7 @@ def bremen(sheets):
     ss, ii = int(row[1].text), int(row[2].text)
     for row in tables[0].findAll("tr")[2:]:
         row = [x.text.strip() for x in row.findAll("td")]
-        # print(row)
+        #print(row)
         if row[0] == "Stadtgemeinde Bremen": ags, s, i = 4011, ss, ii
         elif row[0] == "Stadtgemeinde Bremerhaven": ags, s, i = 4012, 0, 0
         else: continue
