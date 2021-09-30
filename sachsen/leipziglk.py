@@ -9,8 +9,9 @@ _leipziglk_q = re.compile(r"([0-9.]+) Personen in Quarantäne")
 def leipziglk(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.landkreisleipzig.de/pressemeldungen.html")
-    articles = soup.findAll("article")
+    articles = soup.find(itemprop="articleSection").findAll("article")
     article = next(a for a in articles if "bestätigte Fälle" in a.find("h2").get_text())
+    #print(article)
     date = article.find("time").text if article else None
     #print(date)
     date = check_date(date.split(" ")[1], "LK Leipzig")

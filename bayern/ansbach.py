@@ -14,7 +14,7 @@ def ansbach(sheets):
     ps = [p.get_text(" ") for p in main.findAll("p")]
     #for p in ps: print(p)
     h2 = [x for x in ps if x.startswith("Stand:")][-1].split(":")[1].strip()
-    date = check_date(h2, "Ansbach")
+    date = check_date(h2.split(" ")[0], "Ansbach")
     #if not today().strftime("%-d.%-m") in h2: raise NotYetAvailableException("Ansbach noch alt: " + h2)
     #datestr = "wurden für " + (today() - datetime.timedelta(1)).strftime("%A, %-d. %B")
     #if not any(datestr in p for p in ps): raise NotYetAvailableException("Ansbach noch alt, erwarte: "+datestr)

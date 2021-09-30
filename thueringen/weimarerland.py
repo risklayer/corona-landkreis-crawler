@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from botbase import *
 
-_weimarerland_c = re.compile(r"([0-9.]+) (?:\(([+-][0-9.]+)\) )?Fälle bisher")
-_weimarerland_d = re.compile(r"([0-9.]+) (?:\(([+-][0-9.]+)\) )?Verstorbene")
-_weimarerland_g = re.compile(r"([0-9.]+) (?:\(([+-][0-9.]+)\) )?genesen")
+_weimarerland_c = re.compile(r"([0-9.]+) (?:\(\+?\s*(-?[0-9.]+)\) )?Fälle bisher")
+_weimarerland_d = re.compile(r"([0-9.]+) (?:\(\+?\s*(-?[0-9.]+)\) )?Verstorbene")
+_weimarerland_g = re.compile(r"([0-9.]+) (?:\(\+?\s*(-?[0-9.]+)\) )?genesen")
 _weimarerland_s = re.compile(r"([0-9.]+) Personen in station")
 _weimarerland_q1 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Kontaktpersonen")
 _weimarerland_q2 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Reiserück")
