@@ -31,4 +31,5 @@ from .soest import soest
 from .solingen import solingen
 from .steinfurt import steinfurt
 from .warendorf import warendorf
+from .wesel import wesel
 from .wuppertal import wuppertal

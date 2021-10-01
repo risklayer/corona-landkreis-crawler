@@ -26,7 +26,7 @@ def leipziglk(sheets):
     a = force_int(_leipziglk_a.search(text).group(1))
     q = force_int(_leipziglk_q.search(text).group(1))
     g = c - d - a
-    update(sheets, 14729, c=c, cc=cc, d=d, dd=dd, g=g, q=q, sig="Bot")
+    update(sheets, 14729, c=c, cc=cc, d=d, dd=dd, g=g, q=q, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(12, 30, 15, 35, 360, leipziglk, 14729))

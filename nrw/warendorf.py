@@ -2,19 +2,12 @@
 from botbase import *
 
 def warendorf(sheets):
-    soup = get_soup("https://www.kreis-warendorf.de/aktuelles/presseinformationen/aktuelle-informationen-zum-coronavirus")
-    content = soup.find(id="corona-tabelle-7-tage")
-    rows = content.find("table").findAll("tr")
-    rows = [[x.text.strip() for x in row.findAll(["td","th"])] for row in rows]
-    #print(rows)
-    date = check_date(rows[1][0], "Warendorf")
-    assert "Bestätigte" in rows[0][3]
-    c, cc = force_int(rows[1][3]), force_int(rows[1][2],0)
-    assert "Verstorben" in rows[0][5]
-    d, dd = force_int(rows[1][5]), force_int(rows[2][5],0)
-    assert "Gesundet" in rows[0][4]
-    g, gg = force_int(rows[1][4]), force_int(rows[2][4],0)
-    dd, gg = d - dd, g - gg
+    data = get_json("https://geoportal.kreis-warendorf.de/geoportal/snippets/corona/data/confirmed.json")
+    d1, d2 = data[-2:]
+    date = check_date(d2["datetime"], "Warendorf")
+    c, cc = int(d2["confirmed"]), int(d2["new"])
+    g, d = int(d2["recovered"]), int(d2["death"])
+    gg, dd = g - int(d1["recovered"]), d - int(d1["death"])
     update(sheets, 5570, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", comment="Bot ohne SI", ignore_delta=False)
     return True
 
