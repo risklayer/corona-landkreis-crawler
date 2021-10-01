@@ -9,7 +9,7 @@ def obk(sheets):
     for row in rows:
         row = [x.text for x in row.findAll(["th","td"])]
         if len(row) != 3: continue
-        if "Stand:" in row[2]: args["date"] = check_date(row[2].split("\n")[1].strip().rstrip(","), "OBK")
+        if "Stand:" in row[2]: args["date"] = check_date(row[2].strip().split("\n")[1].strip().rstrip(","), "OBK")
         if "Positiv getestete Personen" in row[0]:
             args["c"] = force_int(row[2])
             args["cc"] = args["c"] - force_int(row[1])

@@ -9,16 +9,22 @@ _oberhausen_s = re.compile(r"Krankenhaus: ([0-9.]+) \(([0-9.]+)\)")
 _oberhausen_i = re.compile(r"([0-9.]+) \(\s*([0-9.]+)\s*\) Personen auf der Intensiv")
 
 def oberhausen(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     import bs4
     soup = get_soup("https://www.oberhausen.de/de/index/rathaus/verwaltung/umwelt-gesundheit-und-mobilitat/gesundheit/aktuelle_informationen/informationen_zum_coronavirus/aktuelle_meldungen.php")
     main = soup.find(id="content")
     text = ""
-    cur = main.find("hr").previous_sibling
+    cur = next(main.find("hr").parent.children)
     while cur is not None:
-        if isinstance(cur, bs4.Tag): text = cur.get_text(" ") + "\n" + text
-        cur = cur.previous_sibling
+        if isinstance(cur, bs4.Tag): text = text + "\n" + cur.get_text(" ")
+        cur = cur.next_sibling
+        if isinstance(cur, bs4.Tag) and cur.name == "hr":
+            if "Aktuelle Informationen" in text: break
+            text = ""
     text = text.strip()
     #print(text)
+    #print(today().strftime("%-d. %B %Y"))
     if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Oberhausen noch alt: "+text.split("\n")[0])
     c, cc = map(force_int, _oberhausen_c.search(text).groups())
     d, dd = map(force_int, _oberhausen_d.search(text).groups())
