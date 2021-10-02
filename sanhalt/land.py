@@ -6,10 +6,11 @@ _csvbreak = re.compile(r"\r?\n;{10,}\r?\n",re.M)
 _sanhalt = re.compile(r"verbraucherschutz.sachsen-anhalt.de").search
 
 def sanhalt(sheets):
-    import pandas, io
+    import pandas, io, dateparser
     data = get_raw("https://lavst.azurewebsites.net/Corona/Verlauf/COVID19_Aktuell_Sachsen_Anhalt.csv").decode("iso-8859-1")
     data = _csvbreak.split(data)
-    date = check_date(data[0].split("Stand:")[1].split(";")[0], "Sachsen-Anhalt")
+    date = dateparser.parse(data[0].split("Stand:")[1].split(";")[0], locales=["de"])
+    date = check_date(date, "Sachsen-Anhalt")
     d1 = pandas.read_csv(io.StringIO(data[5]), sep=";", thousands=".", decimal=",", skiprows=2)
     d2 = pandas.read_csv(io.StringIO(data[7]), sep=";", thousands=".", decimal=",")
     #print(d1, d2)

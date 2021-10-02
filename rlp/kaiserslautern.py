@@ -2,7 +2,7 @@
 from botbase import *
 
 _kl_cc = re.compile(r"Neufälle \(([0-9.]+) x? *Stadt(?: KL)? *[,;] ([0-9.]+) x? *(?:LK KL|Landkreis)(?:[,;] *([0-9.]+) x? *Streitkräfte)?\)")
-_kl_gg = re.compile(r"\(([0-9.]+) x? *Stadt(?: KL)?[,;] ([0-9.]+) x? *(?:LK KL|Landkreis)(?:[, ;] *([0-9.]+) x? *Streitkräfte)?\)? konnten die Quarantäne verlassen")
+_kl_gg = re.compile(r"\(([0-9.]+) x? *Stadt(?: KL)?[,;] ([0-9.]+) x? *(?:LK KL|Landkreis)(?:[, ;] *([0-9.]+) x? *Streitkräfte)?\)? *konnten die Quarantäne verlassen")
 #_kl_gg = re.compile(r"\(([0-9.]+) x? *Stadt KL, ([0-9.]+) x? *LK KL?\) konnten die Quarantäne verlassen")
 _kl_stadt = re.compile(r"Stadt KL: ([0-9.]+) Indexfälle, ([0-9.]+) Genesene, (\d+) Todesfälle")
 _kl_lk = re.compile(r"LK KL: ([0-9.]+) Indexfälle, ([0-9.]+) Genesene, (\d+) Todesfälle")
