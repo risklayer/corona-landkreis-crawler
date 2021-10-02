@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_stand = re.compile(r"Aktueller Stand Corona:?\s*\((\d\d\.\d\d\.20\d\d)\)")
+_stand = re.compile(r"Aktueller Stand Corona:?\s*\((\d{1,2}\.\d{1,2}\.20\d\d)\)")
 _row_c = re.compile(r"bisher ([0-9.]+) Fälle", re.U)
 _row_cc = re.compile(r"([0-9.]+) neue Corona-Fälle", re.U)
 _row_g = re.compile(r"([0-9.]+) davon sind mittlerweile wieder genesen", re.U)
