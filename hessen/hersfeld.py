@@ -32,5 +32,5 @@ def hersfeld(sheets):
     update(sheets, 6632, **args, sig="Bot")
     return True
 
-schedule.append(Task(13, 0, 15, 35, 360, hersfeld, 6632))
+schedule.append(Task(13, 0, 16, 35, 360, hersfeld, 6632))
 if __name__ == '__main__': hersfeld(googlesheets())

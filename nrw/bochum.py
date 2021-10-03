@@ -2,6 +2,8 @@
 from botbase import *
 
 def bochum(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.bochum.de/Corona/Details-zu-den-aktuellen-Corona-Zahlen-in-Bochum")
     main = soup.find(id="par3600044514644979").parent
     h4 = main.find("h4").text
@@ -9,11 +11,12 @@ def bochum(sheets):
     args=dict()
     for row in main.findAll("tr"):
         row = [x.text for x in row.findAll("td")]
-        if "Bestätigte" in row[0]: args["c"], args["cc"] = force_int(row[1]), force_int(row[2])
-        if "genesen" in row[0]: args["g"], args["gg"] = force_int(row[1]), force_int(row[2])
+        #print(row)
+        if "Bestätigte" in row[0]: args["c"], args["cc"] = force_int(row[1]), force_int(row[2], 0)
+        if "genesen" in row[0]: args["g"], args["gg"] = force_int(row[1]), force_int(row[2], 0)
         if "verstorben an" in row[0] or "verstorben mit" in row[0]:
             args["d"] = args.get("d",0) + force_int(row[1])
-            args["dd"] = args.get("dd",0) + force_int(row[2])
+            args["dd"] = args.get("dd",0) + force_int(row[2], 0)
         if "stationär" in row[0]: args["s"] = force_int(row[1])
         if "intensiv" in row[0]: args["i"] = force_int(row[1])
         # TODO: Impfungen?
