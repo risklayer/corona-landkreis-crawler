@@ -26,5 +26,5 @@ def obk(sheets):
     update(sheets, 5374, **args, sig="Bot", comment="Bot ohne SI", ignore_delta=today().weekday()==0)
     return True
 
-schedule.append(Task(10, 30, 12, 35, 600, obk, 5374))
+schedule.append(Task(10, 30, 14, 35, 600, obk, 5374))
 if __name__ == '__main__': obk(googlesheets())

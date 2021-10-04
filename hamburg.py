@@ -21,5 +21,5 @@ def hamburg(sheets):
     update(sheets, ags, c=c, cc=cc, g=g, s=s, i=i, d=d, dd=dd, sig="Bot")
     return True
 
-schedule.append(Task(11, 55, 12, 30, 120, hamburg, 2000))
+schedule.append(Task(11, 55, 13, 30, 120, hamburg, 2000))
 if __name__ == '__main__': hamburg(googlesheets())

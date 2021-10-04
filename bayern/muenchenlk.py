@@ -25,5 +25,5 @@ def muenchenlk(sheets):
     update(sheets, 9184, **args, sig="Bot", comment=comment, ignore_delta=True)
     return True
 
-schedule.append(Task(15, 32, 17, 35, 360, muenchenlk, 9184))
+schedule.append(Task(15, 16, 17, 35, 360, muenchenlk, 9184))
 if __name__ == '__main__': muenchenlk(googlesheets())

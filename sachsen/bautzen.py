@@ -10,7 +10,7 @@ def bautzen(sheets):
     date = _stand.search(main.find(text=_stand)).group(1)
     date = check_date(date,"Bautzen")
     rows = [[x.text for x in row.findAll(["th","td"])] for row in main.findAll("tr")]
-    print(*rows, sep="\n")
+    #print(*rows, sep="\n")
     assert "Vergleich" in rows[0][2]
     assert "Gesamt" in rows[1][0]
     c, cc = force_int(rows[1][1].replace("*","")), force_int(rows[1][2].replace("*",""))
@@ -25,5 +25,5 @@ def bautzen(sheets):
     update(sheets, 14625, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, s=s, q=q, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(13, 30, 15, 35, 600, bautzen, 14625))
+schedule.append(Task(13, 30, 17, 35, 600, bautzen, 14625))
 if __name__ == '__main__': bautzen(googlesheets())

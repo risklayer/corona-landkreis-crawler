@@ -2,13 +2,13 @@
 from botbase import *
 
 _neumuenster_c = re.compile(r"([0-9.]+)\s+bestätigte")
-_neumuenster_d = re.compile(r"([0-9.]+)\s+Menschen[^0-9]*Covid-19 verstorben")
-_neumuenster_g = re.compile(r"([0-9.]+)\s+Patienten[^0-9]*Covid-19 genesen")
-_neumuenster_s = re.compile(r"([0-9.]+)\s+Personen[^0-9]*Covid-19 im Krankenhaus")
+_neumuenster_d = re.compile(r"([0-9.]+)\s+Personen[^0-9]*Covid-19 verstorben", re.U)
+_neumuenster_g = re.compile(r"([0-9.]+)\s+Patienten[^0-9]*Covid-19 genesen", re.U)
+_neumuenster_s = re.compile(r"([0-9.]+)\s+Personen[^0-9]*Covid-19 im Krankenhaus", re.U)
 _neumuenster_q = re.compile(r"([0-9.]+)\s+Personen in Quarantäne")
 
 def neumuenster(sheets):
-    soup = get_soup("https://www.neumuenster.de/aktuelle-meldungen/meldung/covid-19-inzidenz-stabil/")
+    soup = get_soup("https://www.neumuenster.de/aktuelle-meldungen/meldung/26-covid-19-todesfall/")
     main = soup.find("article")
     check_date(main.find("time")["datetime"], "Neumünster")
     text = "\n".join([x.get_text() for x in main.findAll("li")])

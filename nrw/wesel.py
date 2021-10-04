@@ -34,8 +34,8 @@ def wesel(sheets):
     assert "Patienten" in tab2[0][1]
     assert "Intensiv" in tab2[0][2]
     assert "Aktueller Stand" in tab2[2][0]
-    s, i = map(force_int, tab1[2][1:3])
-    update(sheets, 5170, c=c, cc=cc, d=d, g=g, s=s, i=i, sig="Bot")
+    s, i = map(force_int, tab2[2][1:3])
+    update(sheets, 5170, c=c, cc=cc, d=d, g=g, s=s, i=i, sig="Bot", ignore_delta=today().weekday()==0) # delta montags
     return True
 
 schedule.append(Task(12, 30, 14, 35, 360, wesel, 5170))
