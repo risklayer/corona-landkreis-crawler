@@ -24,5 +24,5 @@ def weimarerland(sheets):
     update(sheets, 16071, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot")
     return True
 
-schedule.append(Task(10, 00, 11, 35, 360, weimarerland, 16071))
+schedule.append(Task(10, 00, 13, 35, 360, weimarerland, 16071))
 if __name__ == '__main__': weimarerland(googlesheets())
