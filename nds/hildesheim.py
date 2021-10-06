@@ -10,7 +10,7 @@ def hildesheim(sheets):
     c, cc = data["infizierte_gesamt"] + mit, data["veraend_z_vortag"]
     d = data["todesfaelle"] + mit
     g, q = data["genesene"], data["quarant"]
-    update(sheets, 3254, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", date=date)
+    update(sheets, 3254, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(14, 30, 17, 30, 300, hildesheim, 3254))

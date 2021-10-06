@@ -18,7 +18,7 @@ def hamburg(sheets):
             if "Intensiv gesamt" in li.text: i = int(db.text)
     stand = soup.find("main").find(class_="chart_publication").text
     if not datetime.date.today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("Hamburg noch alt? " + stand)
-    update(sheets, ags, c=c, cc=cc, g=g, s=s, i=i, d=d, dd=dd, sig="Bot")
+    update(sheets, ags, c=c, cc=cc, g=g, s=s, i=i, d=d, dd=dd, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(11, 55, 13, 30, 120, hamburg, 2000))
