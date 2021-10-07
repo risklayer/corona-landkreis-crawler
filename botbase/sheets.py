@@ -65,6 +65,8 @@ def fetch_rows(sheets, batch):
     values = data.get('values')
     return [ values[x-minrow] for x in rownrs ]
 
+_rkire = re.compile(r"D\d+\([0-9=]+\) RKI")
+
 def update(sheets, ags,
     c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None,
     sig="Bot", comment=None, date=None, without_c=False,
@@ -136,7 +138,7 @@ def update(sheets, ags,
         else:
             do_batch(sheets, reqs)
         return
-    if do_apply or row[17] is None or row[17] == "": # or row is RKI pattern!
+    if do_apply or row[17] is None or row[17] == "" or _rkire.match(row[17]): # or row is RKI pattern!
         v = comment + " " + _stripbot.sub("",row[17]) if row[17] is not None and row[17] != "" else comment
         if batch is not None:
             batch.append({"range":"Haupt!U%d" % rownr, "values":[["("+v+")"]]})

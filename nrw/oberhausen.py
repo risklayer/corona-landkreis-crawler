@@ -36,5 +36,5 @@ def oberhausen(sheets):
     update(sheets, 5119, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, sig="Bot")
     return True
 
-schedule.append(Task(10, 30, 12, 35, 600, oberhausen, 5119))
+schedule.append(Task(10, 30, 13, 35, 600, oberhausen, 5119))
 if __name__ == '__main__': oberhausen(googlesheets())

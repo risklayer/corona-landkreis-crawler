@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from botbase import *
 
-_northeim_c = re.compile(r"mittlerweile ([0-9.]+) \(([+-]?[0-9.]+)\) Corona-Infektionen")
-_northeim_g = re.compile(r"([0-9.]+) \(([+-]?[0-9.]+)\) Personen gelten mittlerweile als genesen")
-_northeim_d = re.compile(r"insgesamt ([0-9.]+) \(([+-]?[0-9.]+)\) Personen verstorben")
+_northeim_c = re.compile(r"mittlerweile ([0-9.]+)\s*\(([+-]?[0-9.]+)\) Corona-Infektionen")
+_northeim_g = re.compile(r"([0-9.]+)\s*\(([+-]?[0-9.]+)\) Personen gelten mittlerweile als genesen")
+_northeim_d = re.compile(r"insgesamt ([0-9.]+)\s*\(([+-]?[0-9.]+)\) Personen verstorben")
 
 def northeim(sheets):
     from urllib.parse import urljoin

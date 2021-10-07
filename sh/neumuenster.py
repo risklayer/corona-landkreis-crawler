@@ -2,13 +2,18 @@
 from botbase import *
 
 _neumuenster_c = re.compile(r"([0-9.]+)\s+bestätigte")
-_neumuenster_d = re.compile(r"([0-9.]+)\s+Personen[^0-9]*Covid-19 verstorben", re.U)
+_neumuenster_d = re.compile(r"([0-9.]+)\s+(?:Menschen|Personen)[^0-9]*Covid-19 verstorben", re.U)
 _neumuenster_g = re.compile(r"([0-9.]+)\s+Patienten[^0-9]*Covid-19 genesen", re.U)
-_neumuenster_s = re.compile(r"([0-9.]+)\s+Personen[^0-9]*Covid-19 im Krankenhaus", re.U)
+_neumuenster_s = re.compile(r"([0-9.]+)\s+Person(?:en)?[^0-9]*Covid-19 im Krankenhaus", re.U)
 _neumuenster_q = re.compile(r"([0-9.]+)\s+Personen in Quarantäne")
 
 def neumuenster(sheets):
-    soup = get_soup("https://www.neumuenster.de/aktuelle-meldungen/meldung/26-covid-19-todesfall/")
+    from urllib.parse import urljoin
+    soup = get_soup("https://www.neumuenster.de/aktuelle-meldungen/")
+    art = next(x for x in soup.find("main").findAll("article") if "Corona-Neuinfektionen" in x.get_text())
+    url = urljoin("https://www.neumuenster.de/", art.find("a")["href"])
+    print("Getting", url)
+    soup = get_soup(url)
     main = soup.find("article")
     check_date(main.find("time")["datetime"], "Neumünster")
     text = "\n".join([x.get_text() for x in main.findAll("li")])
