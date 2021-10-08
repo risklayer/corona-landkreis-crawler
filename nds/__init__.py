@@ -22,3 +22,6 @@ from .salzgitter import salzgitter
 from .schaumburg import schaumburg
 from .uelzen import uelzen
 from .verden import verden
+from .wilhelmshaven import wilhelmshaven
+from .wittmund import wittmund
+from .wolfenbuettel import wolfenbuettel

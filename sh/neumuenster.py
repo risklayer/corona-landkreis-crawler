@@ -26,5 +26,5 @@ def neumuenster(sheets):
     update(sheets, 1004, c=c, d=d, g=g, s=s, q=q, sig="Bot")
     return True
 
-schedule.append(Task(13, 0, 14, 35, 600, neumuenster, 1004))
+schedule.append(Task(13, 0, 15, 35, 600, neumuenster, 1004))
 if __name__ == '__main__': neumuenster(googlesheets())

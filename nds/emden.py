@@ -2,7 +2,7 @@
 from botbase import *
 
 _emden_cc = re.compile(r"haben wir\s+([0-9.]+|\w+)\s+(?:Corona-)?Neuinfektion(?:en)?")
-_emden = re.compile(r"([0-9.]+) Personen, von denen ([0-9.]+) \(\+?(-?[0-9.]+)\) Personen genesen und ([0-9.]+) Personen verstorben")
+_emden = re.compile(r"([0-9.]+) Personen, von denen ([0-9.]+) \(\+?(-? *[0-9.]+)\) Personen genesen und ([0-9.]+) Personen verstorben")
 _emden_q = re.compile(r"in Quarantäne befindlichen Personen beträgt ([0-9.]+)")
 
 def emden(sheets):
