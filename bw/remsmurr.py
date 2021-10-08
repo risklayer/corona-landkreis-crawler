@@ -8,7 +8,7 @@ def remsmurr(sheets):
     date = check_date(data["Timedate"], "Rems-Murr")
     c, cc = data["positivAll"], data["positivAllV"]
     d, dd = data["totAll"], data["totAllV"]
-    g, gg = data["gesundAllV"], data["gesundAllV"]
+    g, gg = data["gesundAll"], data["gesundAllV"]
     cc, dd, gg = c - cc, d - dd, g - gg
     update(sheets, 8119, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True) #today().weekday()==0) # delta montags
     return True

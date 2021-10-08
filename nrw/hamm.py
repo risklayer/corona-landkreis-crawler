@@ -13,7 +13,7 @@ _hamm_cc2 = re.compile(r"zusätzlich *([0-9.]+) Nachmeldungen")
 def hamm(sheets):
     soup = get_soup("https://www.hamm.de/corona")
     main = soup.find(id="c78919")
-    date = check_date(main.find("em").text, "Hamm")
+    date = check_date(main.find("em").text.replace("Stand:",""), "Hamm")
     #if not today().strftime("%d.%m.%Y") in main.text: raise NotYetAvailableException("Hamm noch alt:" + main.text)
     text = main.get_text(separator=" ")
     #print(text)
