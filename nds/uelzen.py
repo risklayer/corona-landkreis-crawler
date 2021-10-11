@@ -8,7 +8,7 @@ _uelzen_s = re.compile(r"([0-9.]+|\w+) Personen mit oder wegen COVID-19")
 _uelzen_q = re.compile(r"In häuslicher Quarantäne befinden sich ([0-9.]+) Personen")
 
 def uelzen(sheets):
-    soup = get_soup("https://www.landkreis-uelzen.de/home/soziales-familie-und-gesundheit/gesundheit/corona-virus/corona-update.aspx")
+    soup = get_soup("https://www.landkreis-uelzen.de/home/soziales-familie-und-gesundheit/gesundheit/covid-19-pandemie/corona-update.aspx")
     main = soup.find(id="ctl01_contentpane").find(class_="description")
     if not today().strftime("%d.%m.%Y") in main.find("u").text: raise NotYetAvailableException("Uelzen noch alt:" + main.find("u").text)
     ps = [p.text for p in main.findAll("p")]

@@ -12,7 +12,7 @@ def halle(sheets):
         raise NotYetAvailableException("Halle (Saale) noch alt: "+article.find("strong").get_text());
     tables = article.findAll("table")
     args = dict()
-    for table in tables[:4]:
+    for table in tables[:5]:
         tab = [[x.get_text() for x in row.findAll(["td","th"])] for row in table.findAll("tr")]
         if len(tab)<2: continue
         #print(*tab, sep="\n")

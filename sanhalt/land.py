@@ -37,5 +37,5 @@ def sanhalt(sheets):
     do_batch(sheets, batch)
     return True
 
-schedule.append(Task(11, 30, 16, 00, 720, sanhalt, 15087))
+schedule.append(Task(11, 30, 17, 00, 720, sanhalt, 15087))
 if __name__ == '__main__': sanhalt(googlesheets())
