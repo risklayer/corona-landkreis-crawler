@@ -15,7 +15,7 @@ def unstrut(sheets):
     assert "schwer" in rows[5][0]
     i = force_int(rows[5][1])
     assert "Quarant" in rows[8][0]
-    q = force_int(rows[8][1]) + a
+    q = force_int(rows[8][1]) + s
     assert "Infizierte ab" in rows[9][0]
     c = force_int(rows[9][1])
     assert "Neuinfekt" in rows[10][0]

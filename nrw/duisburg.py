@@ -9,7 +9,7 @@ def duisburg(sheets):
     main = soup.find(class_="spalte-1")
     h4 = main.find(text=re.compile(r"Stand"))
     date = check_date(_duispat.search(h4).group(1), "Duisburg", datetime.timedelta(hours=12))
-    args=dict()
+    args,tmp=dict(), dict()
     for row in main.findAll("td"):
         row = (row.find("h4"), row.find("h3"))
         if row[0] is None or row[1] is None: continue
@@ -18,12 +18,13 @@ def duisburg(sheets):
         if "Bestätigte" in row[0]: args["c"], args["cc"] = map(force_int, _duisnum.search(row[1]).groups())
         if "Genesen" in row[0]: args["g"], args["gg"] = map(force_int, _duisnum.search(row[1]).groups())
         if "Verstorben" in row[0]: args["d"], args["dd"] = map(force_int, _duisnum.search(row[1]).groups())
-        if "Aktuell Infiziert" in row[0]: args["q"] = args.get("q", 0) + force_int(_duisnum.search(row[1]).group(1))
-        if "Kontaktpersonen" in row[0]: args["q"] = args.get("q", 0) + force_int(row[1])
+        if "Aktuell Infiziert" in row[0]: tmp["a"] = force_int(_duisnum.search(row[1]).group(1))
+        if "Kontaktpersonen" in row[0]: tmp["k"] = force_int(row[1])
         if "In Intensiv" in row[0]: args["i"] = force_int(row[1])
         # TODO: Impfungen auch?
     #print(args)
     assert "c" in args and "d" in args and "g" in args
+    args["q"] = tmp.get("a",0) + tmp.get("k",0)
     update(sheets, 5112, **args, sig="Bot")
     return True
 
