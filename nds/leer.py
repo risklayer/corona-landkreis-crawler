@@ -7,6 +7,8 @@ _stand = re.compile(r"Stand:")
 _station = re.compile(r"befinde[nt]\s+sich\s+([.0-9]+|\w+)\s+Person(?:en)?\s+in\s+stationärer\s+Behandlung", re.U)
 
 def leer(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.landkreis-leer.de/Leben-Lernen/Coronavirus")
     content = soup.find(id="vorlesen")
     date = content.find(text=_stand)
@@ -20,7 +22,8 @@ def leer(sheets):
         if "genesene Personen" in row[0]: args["g"] = force_int(row[1])
         if "verstorbene Personen" in row[0]: args["d"] = force_int(row[1])
         if "Quarantäne" in row[0]: args["q"] = force_int(row[1])
-    gen = content.find(text=re.compile(r"stationär",re.U)).parent
+    gen = content.find(text=re.compile(r"stationärer Behandlung",re.U)).parent
+    print(gen)
     if gen: args["s"] = force_int(_station.search(gen.get_text(" ")).group(1))
     #print(args)
     assert "c" in args and "d" in args and "g" in args

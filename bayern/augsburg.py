@@ -7,6 +7,8 @@ _augsburg_d = re.compile(r"Davon verstorben: ([0-9.]+)")
 _augsburg_g = re.compile(r"Davon genesen: ([0-9.]+)")
 
 def augsburg(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.augsburg.de/umwelt-soziales/gesundheit/coronavirus/fallzahlen")
     main = soup.find(role="main")
     h2 = main.find(text=re.compile(r"Stand:"))

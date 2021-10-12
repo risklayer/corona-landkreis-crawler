@@ -30,7 +30,7 @@ def lahndill(sheets):
         args["i"] = args.get("i",0) + force_int(m[1])
     for m in _lahndill_s2.findall(text):
         args["s"] = args.get("s",0) + force_int(m[0])
-    args["q"] = force_int(_lahndill_q.search(text).group(1))
+    args["q"] = a + force_int(_lahndill_q.search(text).group(1))
     assert "d" in args and "g" in args
     args["c"] = a + args["g"] + args["d"]
     assert "c" in args and "d" in args and "g" in args

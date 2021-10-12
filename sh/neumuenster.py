@@ -22,7 +22,7 @@ def neumuenster(sheets):
     d = force_int(_neumuenster_d.search(text).group(1))
     g = force_int(_neumuenster_g.search(text).group(1))
     s = force_int(_neumuenster_s.search(text).group(1))
-    q = force_int(_neumuenster_q.search(text).group(1))
+    q = force_int(_neumuenster_q.search(text).group(1)) + c - d - g
     update(sheets, 1004, c=c, d=d, g=g, s=s, q=q, sig="Bot")
     return True
 

@@ -80,6 +80,7 @@ def update(sheets, ags,
         date = date.strftime("%d.%m.%Y %H:%M").replace(" 00:00","")
     elif isinstance(date, datetime.date):
         date = date.strftime("%d.%m.%Y")
+    if ignore_delta in ["mon", "Mon", "mo", "Mo", "montag", "Montag"]: ignore_delta = datetime.date.today().weekday()==0
     strs = [_format("C",c,cc), _format("D",d,dd), _format("G",g,gg), _format("Q",q), _format("S",s), _format("I",i)]
     rownr = get_ags(sheets)[ags]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
