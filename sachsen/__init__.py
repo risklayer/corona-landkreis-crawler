@@ -4,3 +4,4 @@ from .dresden import dresden
 from .goerlitz import goerlitz
 from .leipziglk import leipziglk
 from .meissen import meissen
+from .mittelsachsen import mittelsachsen
