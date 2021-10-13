@@ -12,7 +12,7 @@ def weimar(sheets):
     article = soup.find("h3").parent
     text = article.get_text(" ").strip()
     #print(text)
-    if not today().strftime("Stand: %d.%m.%Y") in text: raise NotYetAvailableException("Weimar noch alt");
+    if not today().strftime("Stand %d.%m.%Y") in text: raise NotYetAvailableException("Weimar noch alt");
     c, cc = map(force_int, _weimar_c.search(text).groups())
     d, dd = map(force_int, _weimar_d.search(text).groups())
     g, gg = map(force_int, _weimar_g.search(text).groups())

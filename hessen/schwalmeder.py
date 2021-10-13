@@ -23,5 +23,5 @@ def schwalmeder(sheets):
     update(sheets, 6634, c=c, cc=cc, d=d, dd=dd, g=g, sig="Bot")
     return True
 
-schedule.append(Task(14, 10, 16, 35, 600, schwalmeder, 6634))
+schedule.append(Task(14, 10, 16, 35, 360, schwalmeder, 6634))
 if __name__ == '__main__': schwalmeder(googlesheets())

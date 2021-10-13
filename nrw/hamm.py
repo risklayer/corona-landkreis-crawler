@@ -30,5 +30,5 @@ def hamm(sheets):
     update(sheets, 5915, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(16, 2, 19, 35, 600, hamm, 5915))
+schedule.append(Task(15, 32, 19, 35, 360, hamm, 5915))
 if __name__ == '__main__': hamm(googlesheets())

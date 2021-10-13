@@ -9,10 +9,13 @@ _ostprignitz_q1 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Kontaktpersonen")
 _ostprignitz_q2 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Reiserück")
 
 def ostprignitz(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.ostprignitz-ruppin.de/index.phtml?mNavID=353.254&sNavID=353.254&La=1")
     rows = [[x.get_text() for x in row.findAll(["th","td"])] for row in soup.find("table").findAll("tr")]
     #print(*rows, sep="\n")
-    if not today().strftime("%-d. %U %Y") in rows[1][0]: raise NotYetAvailableException("Ostprignitz noch alt");
+    #print(today().strftime("%-d. %B %Y"))
+    if not today().strftime("%-d. %B %Y") in rows[1][0]: raise NotYetAvailableException("Ostprignitz noch alt");
     c, cc, a, g, gg, d = map(force_int, rows[1][1:7])
     c, g = c + 3, g + 3
     update(sheets, 12068, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot")

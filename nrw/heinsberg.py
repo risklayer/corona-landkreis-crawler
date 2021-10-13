@@ -6,6 +6,8 @@ _heinsberg_d = re.compile(r"Verstorbenen liegt im Kreis Heinsberg bei ([0-9.]+)\
 _heinsberg_a = re.compile(r"([0-9.]+) Personen als noch nicht genesen")
 
 def heinsberg(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.kreis-heinsberg.de/aktuelles/aktuelles/?pid=5294")
     main = soup.find(id="directory")
     ps = [p.get_text(" ").strip() for p in main.findAll("p")]
