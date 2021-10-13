@@ -8,7 +8,7 @@ def mittelsachsen(sheets):
     main = soup.find("main").find("table")
     rows = [[x.get_text() for x in row.findAll("td")] for row in main.findAll("tr")]
     #print(*rows, sep="\n")
-    if not today().strftime("%-d. %U") in rows[0][0]: raise NotYetAvailableException("Mittelsachsen noch alt");
+    if not today().strftime("%-d. %B") in rows[0][0]: raise NotYetAvailableException("Mittelsachsen noch alt: "+rows[0][0]);
     assert "Bestätigte" in rows[0][0]
     c = force_int(rows[0][1])
     assert "Todesfälle" in rows[1][0]

@@ -9,7 +9,7 @@ def goettingen(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.goettingen.de/leben/aktuelles-leben-in-goettingen.html")
     articles = soup.find(id="content").findAll(class_="teaser1")
-    article = next(a for a in articles if "aktuelle Infektionen" in a.get_text())
+    article = next(a for a in articles if "aktuelle Infektionen" in a.get_text() or "Neuinfektionen" in a.get_text())
     date = article.find(class_="magazinedate").text if article else None
     date = check_date(date, "Göttingen")
     url = urljoin("https://www.goettingen.de/", article.find("a")["href"])
