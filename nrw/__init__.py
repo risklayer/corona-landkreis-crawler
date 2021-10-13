@@ -17,6 +17,7 @@ from .hoexter import hoexter
 from .leverkusen import leverkusen
 from .lippe import lippe
 from .mettmann import mettmann
+from .mgladbach import mgladbach
 from .minden import minden
 from .muelheim import muelheim
 from .muenster import muenster
