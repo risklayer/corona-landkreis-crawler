@@ -4,7 +4,7 @@ from botbase import *
 _offenbach_c = re.compile(r"Insgesamt wurden bislang ([0-9.]+)\sMenschen in Offenbach positiv")
 _offenbach_d = re.compile(r"Todesfälle in Offenbach gab es bisher insgesamt ([0-9.]+)\.")
 _offenbach_g = re.compile(r"([0-9.]+ )Menschen sind inzwischen wieder genesen")
-_offenbach_si = re.compile(r"Es werden derzeit (\S+) Person(?:en)? aus Offenbach im Krankenhaus behandelt, bei (\S+) Person(?:en)? ist der Zustand kritisch")
+_offenbach_si = re.compile(r"Es werden derzeit\s+(\S+)\s+Person(?:en)? aus Offenbach im Krankenhaus behandelt, bei\s+(\S+)\s+Person(?:en)? ist der Zustand kritisch")
 
 def offenbach(sheets):
     import locale
