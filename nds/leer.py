@@ -2,7 +2,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_twovals = re.compile(r"([0-9.]+) \(\+?\s*(-?[0-9.]+)\s*\)")
+_twovals = re.compile(r"([0-9.]+) \(\+?\s*(-?[0-9.]+)\s*")
 _stand = re.compile(r"Stand:")
 _station = re.compile(r"befinde[nt]\s+sich\s+([.0-9]+|\w+)\s+Person(?:en)?\s+in\s+stationärer\s+Behandlung", re.U)
 
@@ -23,11 +23,11 @@ def leer(sheets):
         if "verstorbene Personen" in row[0]: args["d"] = force_int(row[1])
         if "Quarantäne" in row[0]: args["q"] = force_int(row[1])
     gen = content.find(text=re.compile(r"stationärer Behandlung",re.U)).parent
-    print(gen)
+    #print(gen)
     if gen: args["s"] = force_int(_station.search(gen.get_text(" ")).group(1))
     #print(args)
     assert "c" in args and "d" in args and "g" in args
-    update(sheets, 3457, **args, sig="Bot", ignore_delta=False)
+    update(sheets, 3457, **args, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(11, 2, 14, 35, 360, leer, 3457))

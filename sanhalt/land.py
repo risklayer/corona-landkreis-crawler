@@ -2,7 +2,7 @@
 from botbase import *
 import re, time
 
-_csvbreak = re.compile(r"\r?\n;{10,}\r?\n",re.M)
+_csvbreak = re.compile(r"\r?\n(?:;{10,}\r?\n)+",re.M)
 _sanhalt = re.compile(r"verbraucherschutz.sachsen-anhalt.de").search
 
 def sanhalt(sheets):
@@ -11,10 +11,12 @@ def sanhalt(sheets):
     data = _csvbreak.split(data)
     date = dateparser.parse(data[0].split("Stand:")[1].split(";")[0], locales=["de"])
     date = check_date(date, "Sachsen-Anhalt")
-    d1 = pandas.read_csv(io.StringIO(data[5]), sep=";", thousands=".", decimal=",", skiprows=2)
-    d2 = pandas.read_csv(io.StringIO(data[7]), sep=";", thousands=".", decimal=",")
+    d1 = pandas.read_csv(io.StringIO(data[5]), sep=";", thousands=".", decimal=",", skiprows=1)
+    d2 = pandas.read_csv(io.StringIO(data[7]), sep=";", thousands=".", decimal=",", skiprows=1)
     #print(d1, d2)
-    assert (d2.columns[1:4] == ["Anzahl Fälle","verstorben","Genesene"]).all(), d2.columns[1:5]
+    assert "Anzahl Fälle" in d2.columns[1]
+    assert "verstorben" in d2.columns[2]
+    assert "Genesen" in d2.columns[3]
     dom = d1.columns.get_loc(today().strftime("%d.%m.%Y")) # day of month
     todo=[]
     for i, row in d2.iterrows():

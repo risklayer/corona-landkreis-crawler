@@ -31,7 +31,7 @@ def schaumburg(sheets):
     q = force_int(_schaumburg_q.search(text).group(1))
     s = force_int(_schaumburg_s.search(text).group(1)) if _schaumburg_s.search(text) is not None else None
     d = c - a - g
-    update(sheets, 3257, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta=False)
+    update(sheets, 3257, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(12, 32, 15, 35, 360, schaumburg, 3257))

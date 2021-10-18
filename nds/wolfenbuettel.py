@@ -19,7 +19,7 @@ def wolfenbuettel(sheets):
     args["g"], args["gg"] = map(force_int, _wolfenbuettel_g.search(text).groups())
     #print(args)
     assert "c" in args and "d" in args and "g" in args
-    update(sheets, 3158, **args, sig="Bot")
+    update(sheets, 3158, **args, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(11, 30, 14, 35, 600, wolfenbuettel, 3158))

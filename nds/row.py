@@ -23,7 +23,7 @@ def row(sheets):
     m = _row_s.search(text)
     s = force_int(m.group(1)) if m else None
     q += c - g - d
-    update(sheets, 3357, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta=False)
+    update(sheets, 3357, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(11, 32, 16, 35, 360, row, 3357))

@@ -22,7 +22,7 @@ def northeim(sheets):
     c, cc = map(force_int, _northeim_c.search(text).groups())
     d, dd = map(force_int, _northeim_d.search(text).groups())
     g, gg = map(force_int, _northeim_g.search(text).groups())
-    update(sheets, 3155, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot")
+    update(sheets, 3155, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(13, 00, 14, 55, 360, northeim, 3155))

@@ -18,7 +18,7 @@ def ostprignitz(sheets):
     if not today().strftime("%-d. %B %Y") in rows[1][0]: raise NotYetAvailableException("Ostprignitz noch alt");
     c, cc, a, g, gg, d = map(force_int, rows[1][1:7])
     c, g = c + 3, g + 3
-    update(sheets, 12068, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot")
+    update(sheets, 12068, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(12, 00, 17, 35, 360, ostprignitz, 12068))

@@ -21,7 +21,7 @@ def osterholz(sheets):
     q, _ = map(force_int, _osterholz_q.search(text).groups())
     s = force_int(_osterholz_s.search(text).group(1))
     q += c - g - d
-    update(sheets, 3356, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta=False)
+    update(sheets, 3356, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(11, 32, 14, 35, 360, osterholz, 3356))

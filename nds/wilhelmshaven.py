@@ -20,7 +20,7 @@ def wilhelmshaven(sheets):
     date = check_date(_stand.search(date).group(1),"Wilhelmshaven")
     #print(args)
     assert "c" in args and "d" in args and "g" in args
-    update(sheets, 3405, **args, sig="Bot", ignore_delta=False)
+    update(sheets, 3405, **args, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(13, 20, 15, 35, 360, wilhelmshaven, 3405))

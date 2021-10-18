@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_weimar_c = re.compile(r"positiv Getesteten:\s*([0-9.]+)\s*\(Veränderung zum Vortag:\s*\+?(-?[0-9.]+)\)", re.U)
+_weimar_c = re.compile(r"positiv Getesteten:\s*([0-9.]+)\s*\(Veränderung zum (?:Vor|Frei)tag:\s*\+?(-?[0-9.]+)", re.U)
 _weimar_g = re.compile(r"Genesenen:\s*([0-9.]+)\s*\(\+?(-?[0-9.]+)\)", re.U)
 _weimar_d = re.compile(r"Verstorbenen:\s*([0-9.]+)\s*\(\+?(-?[0-9.]+)\)", re.U)
 _weimar_s = re.compile(r"Behandelten:\s*([0-9.]+)\s*\(\+?(-?[0-9.]+)\)", re.U)
@@ -18,7 +18,7 @@ def weimar(sheets):
     g, gg = map(force_int, _weimar_g.search(text).groups())
     s = force_int(_weimar_s.search(text).group(1))
     q, qq = map(force_int, _weimar_q.search(text).groups())
-    update(sheets, 16055, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot")
+    update(sheets, 16055, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(10, 00, 15, 35, 360, weimar, 16055))
