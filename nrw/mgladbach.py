@@ -19,7 +19,7 @@ def mgladbach(sheets):
     q, qq = map(force_int, _mgladbach_q.search(text).groups())
     d = force_int(_mgladbach_d.search(text).group(1))
     cc, gg, qq = c - cc, g - gg, q - qq
-    update(sheets, 5116, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot")
+    update(sheets, 5116, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot", ignore_delta=datetime.date.today().weekday()==6) # Sonntags delta ignorieren
     return True
 
 schedule.append(Task(10, 0, 12, 35, 600, mgladbach, 5116))
