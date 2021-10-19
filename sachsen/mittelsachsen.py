@@ -15,7 +15,9 @@ def mittelsachsen(sheets):
     d = force_int(rows[1][1])
     assert "stationär" in rows[2][0]
     s = force_int(rows[2][1])
-    update(sheets, 14522, c=c, d=d, s=s, sig="Bot")
+    assert "beatmet" in rows[3][0]
+    i = force_int(rows[3][1])
+    update(sheets, 14522, c=c, d=d, s=s, i=i, sig="Bot")
     return True
 
 schedule.append(Task(12, 00, 13, 35, 360, mittelsachsen, 14522))

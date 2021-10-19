@@ -22,7 +22,7 @@ def schaumburg(sheets):
     content = soup.find("article")
     text = content.get_text().strip()
     #print(text)
-    if "nicht gestiegen" in text:
+    if "nicht gestiegen" in text or "weiterhin bei" in text:
         cc, c = 0, force_int(_schaumburg_c2.search(text).group(1))
     else:
         cc, c = map(force_int, _schaumburg_c.search(text).groups())
