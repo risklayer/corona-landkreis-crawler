@@ -4,7 +4,7 @@ from botbase import *
 _gesamt_c = re.compile(r"Insgesamt wurden *([0-9.]+) *Fälle")
 _gesamt_g = re.compile(r"([0-9.]+) *Personen sind gesundet")
 _gesamt_d = re.compile(r"Insgesamt sind *([0-9.]+) *Personen verstorben")
-_landau = re.compile(r"Stadt Landau: *([0-9.]+) Personen *\( *([0-9.]+) *davon gesundet, *([0-9.]+) * verstorben")
+_landau = re.compile(r"Stadt Landau *: *([0-9.]+) Personen *\( *([0-9.]+) *davon gesundet, *([0-9.]+) *verstorben")
 
 def landau(sheets):
     from urllib.parse import urljoin

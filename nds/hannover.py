@@ -8,6 +8,7 @@ def hannover(sheets):
     date = data["DATUM"]
     if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Hannover noch alt")
     c, cc, d, g = data["GESAMTZAHL"], data["NEUINFEKTIONEN"], data["TODESFAELLE"], data["GENESEN"]
+    d += 66
     update(sheets, 3241, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date, ignore_delta=True)
     return True
 

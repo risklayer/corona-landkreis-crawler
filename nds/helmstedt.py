@@ -6,7 +6,7 @@ def helmstedt(sheets):
     data2 = data["features"][1]["attributes"]
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    date = check_date(datetime.datetime.utcfromtimestamp(data["Datum"]/1000), "Helmstedt")
+    date = check_date(datetime.datetime.utcfromtimestamp(data["Datum"]/1000), "Helmstedt", datetime.timedelta(hours=3))
     data3 = get_json("https://services.arcgis.com/zu026cYG1eiMynLL/arcgis/rest/services/COVID_V2a_Werte_Sicht1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&f=json")
     c, cc = data["bisher_infiziert"], data2["bisher_infiziert"]
     d, dd = data["Todesfaelle"], data2["Todesfaelle"]
