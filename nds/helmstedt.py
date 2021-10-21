@@ -2,7 +2,7 @@
 from botbase import *
 
 def helmstedt(sheets):
-    data = get_json("https://services.arcgis.com/zu026cYG1eiMynLL/arcgis/rest/services/COVID_V2a_Kreis_Chronologie_SICHT/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&orderByFields=Datum+desc&resultRecordCount=2&f=json")
+    data = get_json("https://services.arcgis.com/zu026cYG1eiMynLL/arcgis/rest/services/COVID_V2d_Kreis_Chronologie_SICHT/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&orderByFields=Datum+desc&resultRecordCount=2&f=json")
     data2 = data["features"][1]["attributes"]
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")

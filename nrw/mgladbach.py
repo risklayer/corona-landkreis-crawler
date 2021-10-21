@@ -22,5 +22,5 @@ def mgladbach(sheets):
     update(sheets, 5116, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot")
     return True
 
-schedule.append(Task(10, 30, 12, 35, 600, mgladbach, 5116))
+schedule.append(Task(10, 0, 12, 35, 600, mgladbach, 5116))
 if __name__ == '__main__': mgladbach(googlesheets())

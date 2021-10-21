@@ -32,12 +32,12 @@ def get_soup(url):
             encoding = client.headers.get("content-type").lower().split("charset=")[1].strip()
         return BeautifulSoup(data, "lxml", from_encoding=encoding)
 
-def get_csv(url):
+def get_csv(url, sep=";"):
     import pandas, gzip
     from urllib.request import urlopen, Request
     from io import StringIO
     with urlopen(Request(url, headers={'Accept-Encoding': 'gzip'}), context=_ctx, timeout=60) as client:
         data = client.read()
         if client.info().get('Content-Encoding') == 'gzip': data = gzip.decompress(data)
-        return pandas.read_csv(StringIO(data.decode("utf-8")), sep=";")
+        return pandas.read_csv(StringIO(data.decode("utf-8")), sep=sep)
 
