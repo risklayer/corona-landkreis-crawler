@@ -34,6 +34,6 @@ def schaumburg(sheets):
     update(sheets, 3257, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(12, 32, 15, 35, 360, schaumburg, 3257))
+schedule.append(Task(12, 32, 16, 35, 360, schaumburg, 3257))
 if __name__ == '__main__': schaumburg(googlesheets())
 

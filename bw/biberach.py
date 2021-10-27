@@ -2,13 +2,23 @@
 from botbase import *
 
 def biberach(sheets):
-    data = get_json('https://services9.arcgis.com/41cRQoNICXEIjSKu/arcgis/rest/services/Covid19/FeatureServer/2/query?where=1%3D1&outFields=*&returnGeometry=false&outStatistics=[{%22onStatisticField%22%3A%22Fallzahlen%22%2C%22outStatisticFieldName%22%3A%22Fallzahlen%22%2C%22statisticType%22%3A%22sum%22}%2C{%22onStatisticField%22%3A%22Genesene%22%2C%22outStatisticFieldName%22%3A%22Genesene%22%2C%22statisticType%22%3A%22sum%22}%2C{%22onStatisticField%22%3A%22Todesfaelle%22%2C%22outStatisticFieldName%22%3A%22Todesfaelle%22%2C%22statisticType%22%3A%22sum%22}%2C{%22onStatisticField%22%3A%22FZ_Diff_Vortag%22%2C%22outStatisticFieldName%22%3A%22FZ_Diff_Vortag%22%2C%22statisticType%22%3A%22sum%22}%2C{"onStatisticField"%3A"Stand"%2C"outStatisticFieldName"%3A"Stand"%2C"statisticType"%3A"max"}]&f=json')
-    data = data["features"][0]["attributes"]
-    #for k,v in data.items(): print(k,v,sep="\t")
-    date = check_date(data["Stand"], "Biberach")
-    c, cc = data["Fallzahlen"], data["FZ_Diff_Vortag"]
-    d, g = data["Todesfaelle"], data["Genesene"]
-    update(sheets, 8426, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date, ignore_delta=today().weekday()==0)
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
+    data = get_soup("https://www.biberach.de/landratsamt/kreisgesundheitsamt.html")
+    body = data.find(id="contentMiddle")
+    #print(body.get_text(), today().strftime("%-d. %B %Y"))
+    if not today().strftime("%-d. %B %Y") in body.get_text(): raise NotYetAvailableException("Biberach: "+body.find("strong").get_text())
+    rows = [[x.get_text() for x in y.findAll(["td","th"])] for y in body.find(class_="csc-frame").findAll("tr")]
+    #print(*rows, sep="\n")
+    assert "Infizierte gesamt" in rows[0][0]
+    c = force_int(rows[0][1])
+    assert "Differenz" in rows[1][0]
+    cc = force_int(rows[1][1])
+    assert "Genesene gesamt" in rows[2][0]
+    g = force_int(rows[2][1])
+    assert "Verstorbene gesamt" in rows[3][0]
+    d = force_int(rows[3][1])
+    update(sheets, 8426, c=c, cc=cc, g=g, d=d, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 00, 16, 30, 300, biberach, 8426))

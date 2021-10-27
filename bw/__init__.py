@@ -13,6 +13,7 @@ from .ludwigsburg import ludwigsburg
 from .ostalb import ostalb
 from .ravensburg import ravensburg
 from .remsmurr import remsmurr
+from .sha import sha
 from .sbk import sbk
 from .sigmaringen import sigmaringen
 from .zak import zak

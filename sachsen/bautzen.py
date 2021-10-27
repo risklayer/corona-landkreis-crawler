@@ -21,7 +21,7 @@ def bautzen(sheets):
     assert "station" in rows[5][0]
     s = force_int(rows[5][1].replace("*",""))
     assert "Quarantänen" in rows[6][0]
-    q = force_int(rows[6][1].replace("*",""))
+    q = force_int(rows[6][1].replace("*","")) + c-g-d
     update(sheets, 14625, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, s=s, q=q, sig="Bot", ignore_delta=True)
     return True
 

@@ -12,5 +12,5 @@ def paderborn(sheets):
     update(sheets, 5774, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", comment="Bot Dashboard ohne QSI", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(16, 0, 18, 30, 360, paderborn, 5774))
+schedule.append(Task(15, 0, 18, 30, 360, paderborn, 5774))
 if __name__ == '__main__': paderborn(googlesheets())

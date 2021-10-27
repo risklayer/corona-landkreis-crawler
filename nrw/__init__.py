@@ -32,6 +32,8 @@ from .siegen import siegen
 from .soest import soest
 from .solingen import solingen
 from .steinfurt import steinfurt
+from .unna import unna
+from .viersen import viersen
 from .warendorf import warendorf
 from .wesel import wesel
 from .wuppertal import wuppertal
