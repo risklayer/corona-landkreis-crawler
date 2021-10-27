@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from botbase import *
 
-_weimarerland_c = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Fälle bisher")
-_weimarerland_d = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Verstorbene")
-_weimarerland_g = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?genesen")
-_weimarerland_s = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Personen in station")
-_weimarerland_q1 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Kontaktpersonen")
-_weimarerland_q2 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Reiserück")
+_weimarerland_c = re.compile(r"([0-9.]+)\s+(?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Fälle bisher", re.U)
+_weimarerland_d = re.compile(r"([0-9.]+)\s+(?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Verstorbene", re.U)
+_weimarerland_g = re.compile(r"([0-9.]+)\s+(?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?genesen", re.U)
+_weimarerland_s = re.compile(r"([0-9.]+)\s+(?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Personen in station", re.U)
+_weimarerland_q1 = re.compile(r"([0-9.]+)\s+(?:\([-+0-9 ]*\))?\s*Kontaktpersonen", re.U)
+_weimarerland_q2 = re.compile(r"([0-9.]+)\s+(?:\([-+0-9 ]*\))?\s*Reiserück", re.U)
 
 def weimarerland(sheets):
     soup = get_soup("https://weimarerland.de/de/aktuelle-informationen-zum-coronavirus/aktuelle-informationen-zum-coronavirus.html")

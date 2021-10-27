@@ -19,7 +19,7 @@ def obk(sheets):
         if "Todesfälle" in row[0]:
             args["d"] = force_int(row[2])
             args["dd"] = args["d"] - force_int(row[1])
-        if "Quarantäne" in row[0]: args["q"] = force_int(row[2])
+        if "angeordneter Quarantäne" in row[0]: args["q"] = force_int(row[2])
     #print(args)
     assert "c" in args and "d" in args and "g" in args
     assert "date" in args

@@ -28,6 +28,7 @@ from .rbk import rbk
 from .rheinerft import rheinerft
 from .rheinkneuss import rheinkneuss
 from .rheinsieg import rheinsieg
+from .siegen import siegen
 from .soest import soest
 from .solingen import solingen
 from .steinfurt import steinfurt
