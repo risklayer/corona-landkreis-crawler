@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 from botbase import *
 
-_weimarerland_c = re.compile(r"([0-9.]+) (?:\(\+?\s*(-? *[0-9.]+)\)\s*)?Fälle bisher")
-_weimarerland_d = re.compile(r"([0-9.]+) (?:\(\+?\s*(-? *[0-9.]+)\)\s*)?Verstorbene")
-_weimarerland_g = re.compile(r"([0-9.]+) (?:\(\+?\s*(-? *[0-9.]+)\)\s*)?genesen")
-_weimarerland_s = re.compile(r"([0-9.]+) (?:\(\+?\s*(-? *[0-9.]+)\)\s*)?Personen in station")
+_weimarerland_c = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Fälle bisher")
+_weimarerland_d = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Verstorbene")
+_weimarerland_g = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?genesen")
+_weimarerland_s = re.compile(r"([0-9.]+) (?:\(\s*\+?\s*(-? *[0-9.]+)\)\s*)?Personen in station")
 _weimarerland_q1 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Kontaktpersonen")
 _weimarerland_q2 = re.compile(r"([0-9.]+) (?:\([-+0-9 ]*\))?\s*Reiserück")
 

@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 from botbase import *
 
-_hersfeld_c = re.compile(r"Infektionen\sinsgesamt:\s([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\szum\sVortag")
+_hersfeld_c = re.compile(r"Infektionen\sinsgesamt:\s([0-9.]+)")
+#_hersfeld_c = re.compile(r"Infektionen\sinsgesamt:\s([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\szum\sVortag")
 _hersfeld_d = re.compile(r"Todesfälle:\s([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\szum\sVortag")
-_hersfeld_g = re.compile(r"Genesungen:\s([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\szum\sVortag")
+#_hersfeld_g = re.compile(r"Genesungen:\s([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\szum\sVortag")
+_hersfeld_g = re.compile(r"Genesungen:\s([0-9.]+)")
 _hersfeld_s = re.compile(r"([0-9.]+)\sinfizierte\sin\sBehandlung,\sdavon\s([0-9.]+)\sauf\sintensiv")
 _hersfeld_q = re.compile(r"Quarantäne:\s([0-9.]+)")
 
@@ -18,16 +20,18 @@ def hersfeld(sheets):
     args=dict()
     for p in ps:
         m = _hersfeld_c.search(p)
-        if m: args["c"], args["cc"] = force_int(m.group(1)), force_int(m.group(2))
+        #if m: args["c"], args["cc"] = force_int(m.group(1)), force_int(m.group(2))
+        if m: args["c"] = force_int(m.group(1))
         m = _hersfeld_d.search(p)
         if m: args["d"], args["dd"] = force_int(m.group(1)), force_int(m.group(2))
         m = _hersfeld_g.search(p)
-        if m: args["g"], args["gg"] = force_int(m.group(1)), force_int(m.group(2))
+        if m: args["g"] = force_int(m.group(1))
+        #if m: args["g"], args["gg"] = force_int(m.group(1)), force_int(m.group(2))
         m = _hersfeld_s.search(p)
         if m: args["s"], args["i"] = force_int(m.group(1)), force_int(m.group(2))
         m = _hersfeld_q.search(p)
         if m: args["q"] = force_int(m.group(1))
-    # print(args)
+    #print(args)
     assert "c" in args and "d" in args and "g" in args
     update(sheets, 6632, **args, sig="Bot")
     return True
