@@ -12,7 +12,7 @@ def erfurt(sheets):
     article = soup.find("main").find("section").find(class_="ym-gl")
     text = article.get_text()
     #print(text)
-    date = check_date(_erfurt_st.search(text).group(1), "Erfurt", datetime.timedelta(1)) + datetime.timedelta(1) # RKI-Stand
+    date = check_date(_erfurt_st.search(text).group(1), "Erfurt")
     c = force_int(_erfurt_c.search(text).group(1))
     cc = force_int(_erfurt_cc.search(text).group(1))
     d = force_int(_erfurt_d.search(text).group(1))

@@ -22,5 +22,5 @@ def kitzingen(sheets):
     update(sheets, 9675, c=c, d=d, g=g, q=q, sig="Bot")
     return True
 
-schedule.append(Task(10, 2, 12, 35, 600, kitzingen, 9675))
+schedule.append(Task(10, 2, 14, 35, 600, kitzingen, 9675))
 if __name__ == '__main__': kitzingen(googlesheets())

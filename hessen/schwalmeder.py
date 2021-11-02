@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_stand = re.compile(r"Stand: \w+, (\d\d\. \w+ 20\d\d)")
+_stand = re.compile(r"Stand:\s*\w+,\s+(\d{1,2}\.\s+\w+\s+20\d\d)", re.U)
 _match_two = re.compile(r"([0-9.]+)\s*\(([+-]?[0-9.]+)\)")
 
 def schwalmeder(sheets):
@@ -9,7 +9,7 @@ def schwalmeder(sheets):
     soup = get_soup("https://www.schwalm-eder-kreis.de/Aktuelles/Aktuelle-Informationen-zum-neuartigen-Coronavirus-Covid-19/Aktuelle-Zahlen-Schwalm-Eder.htm")
     main = soup.find(id="content_frame")
     date = main.find("h4").get_text()
-    #print(date)
+    #print(date, _stand.search(date))
     date = dateparser.parse(_stand.search(date).group(1))
     date = check_date(date, "Schwalmeder")
     rows = [[x.get_text() for x in y.findAll(["td","th"])] for y in main.findAll("tr")]

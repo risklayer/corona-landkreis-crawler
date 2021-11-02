@@ -32,9 +32,9 @@ def bremen(sheets):
                 bh["d"], bh["dd"] = map(force_int, _matchbremen.match(rows[1][4]).groups())
         if rows[0][1] == "Stationär versorgt":
             assert "Intensiv" in rows[0][2]
-            if "Stadtgemeinde Bremen" in rows[1][0]:
+            if "Stadtgemeinde Bremen" in rows[1][0] and not "s" in b:
                 b["s"], b["i"] = map(force_int, rows[1][1:3])
-            if "Stadtgemeinde Bremerhaven" in rows[1][0]:
+            if "Stadtgemeinde Bremerhaven" in rows[1][0] and not "s" in bh:
                 bh["s"], bh["i"] = map(force_int, rows[1][1:3])
     #print(b, bh, sep="\n")
     if not "c" in b and "d" in b and "c" in bh and "d" in bh: return False

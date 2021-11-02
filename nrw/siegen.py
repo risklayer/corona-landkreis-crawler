@@ -37,7 +37,7 @@ def siegen(sheets):
     m2 = _siegen_si2.search(text)
     if m and m2: s, i = s + force_int(m2.group(1)), i + force_int(m2.group(2), 0)
     if not m2 and "von außerhalb" in text: s, i = None, None
-    comment = "Bot, check SI" if s > 0 else "Bot ohne SI"
+    comment = "Bot, check SI" if s is not None and s > 0 else "Bot ohne SI"
     update(sheets, 5970, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", comment=comment)
     return True
 

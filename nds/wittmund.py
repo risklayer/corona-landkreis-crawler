@@ -20,7 +20,7 @@ def wittmund(sheets):
     #print(args)
     assert "c" in args and "d" in args and "g" in args
     if "q" in args: args["q"] = args["q"] + args["c"] - args["d"] - args["g"]
-    update(sheets, 3462, **args, sig="Bot", ignore_delta=False)
+    update(sheets, 3462, **args, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(10, 40, 15, 35, 360, wittmund, 3462))

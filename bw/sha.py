@@ -5,7 +5,7 @@ _sha_c = re.compile(r"insgesamt +([0-9.]+) +bestätigte")
 _sha_d = re.compile(r"([0-9.]+) +Corona-Erkrankte[^\d]+Covid-19 verstorben")
 _sha_g = re.compile(r"([0-9.]+) +Corona-Erkrankte[^\d]+wieder gesundet")
 _sha_q = re.compile(r"in Quarantäne: +([0-9.]+)")
-_sha_si = re.compile(r"([0-9.]+|\w+) (?:positiver? )?(?:Covid-19-)?(?:F[aä]lle?|Patiente?n?) auf Station \w+ ([0-9.]+|\w+) (?:positiver? )?(?:F[aä]lle?|Patiente?n?) auf der Intensiv")
+_sha_si = re.compile(r"([0-9.]+|\w+) (?:positiver? )?(?:Covid-19-)?(?:F[aä]lle?|Patiente?n?) auf Station [^.]+ ([0-9.]+|\w+) (?:positiver? )?(?:F[aä]lle?|Patiente?n?) auf der Intensiv")
 
 def sha(sheets):
     soup = get_soup("https://www.lrasha.de/index.php?id=953&publish%5Bid%5D=1212280&publish%5Bstart%5D=")

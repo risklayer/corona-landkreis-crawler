@@ -7,7 +7,7 @@ _ctx.verify_mode = ssl.CERT_NONE
 def get_raw(url):
     import gzip
     from urllib.request import urlopen, Request
-    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip'}), context=_ctx, timeout=60) as client:
+    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip', 'User-Agent': 'RiskLayer Spreadsheet Bot'}), context=_ctx, timeout=60) as client:
         data = client.read()
         if client.info().get('Content-Encoding') == 'gzip': data = gzip.decompress(data)
         return data
@@ -15,7 +15,7 @@ def get_raw(url):
 def get_json(url):
     from urllib.request import urlopen, Request
     import json, gzip
-    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip'}), context=_ctx, timeout=60) as client:
+    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip', 'User-Agent': 'RiskLayer Spreadsheet Bot'}), context=_ctx, timeout=60) as client:
         data = client.read()
         if client.info().get('Content-Encoding') == 'gzip': data = gzip.decompress(data)
         return json.loads(data)
@@ -24,7 +24,7 @@ def get_soup(url):
     import gzip
     from urllib.request import urlopen, Request
     from bs4 import BeautifulSoup
-    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip'}), context=_ctx, timeout=60) as client:
+    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip', 'User-Agent': 'RiskLayer Spreadsheet Bot'}), context=_ctx, timeout=60) as client:
         data = client.read()
         if client.info().get('Content-Encoding') == 'gzip': data = gzip.decompress(data)
         encoding = "UTF-8" # default
@@ -36,7 +36,7 @@ def get_csv(url, sep=";"):
     import pandas, gzip
     from urllib.request import urlopen, Request
     from io import StringIO
-    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip'}), context=_ctx, timeout=60) as client:
+    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip', 'User-Agent': 'RiskLayer Spreadsheet Bot'}), context=_ctx, timeout=60) as client:
         data = client.read()
         if client.info().get('Content-Encoding') == 'gzip': data = gzip.decompress(data)
         return pandas.read_csv(StringIO(data.decode("utf-8")), sep=sep)
