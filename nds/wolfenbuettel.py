@@ -22,5 +22,5 @@ def wolfenbuettel(sheets):
     update(sheets, 3158, **args, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(11, 30, 14, 35, 600, wolfenbuettel, 3158))
+schedule.append(Task(11, 30, 15, 35, 600, wolfenbuettel, 3158))
 if __name__ == '__main__': wolfenbuettel(googlesheets())

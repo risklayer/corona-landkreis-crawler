@@ -10,7 +10,8 @@ def ebersberg(sheets):
     #print(str(date), filterdate)
     # for k,v in data.items(): print(k,v,sep="\t")
     date = check_date(date, "Ebersberg")
-    data = get_json('https://services-eu1.arcgis.com/CZ1GXX3MIjSRSHoC/arcgis/rest/services/EBE_Gemeinden_Inzidenztabelle/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Datum_Meldung+DESC&groupByFieldsForStatistics=Datum_Meldung&outStatistics=[{"onStatisticField"%3A"positiv_neu"%2C"outStatisticFieldName"%3A"positiv_neu"%2C"statisticType"%3A"sum"}]&resultRecordCount=1&f=json')
+    data = get_json('https://services-eu1.arcgis.com/CZ1GXX3MIjSRSHoC/arcgis/rest/services/EBE_Gemeinden_Inzidenztabelle_3/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Datum_Meldung+DESC&groupByFieldsForStatistics=Datum_Meldung&outStatistics=[{"onStatisticField"%3A"positiv_neu"%2C"outStatisticFieldName"%3A"positiv_neu"%2C"statisticType"%3A"sum"}]&resultRecordCount=1&f=json')
+    #print(data)
     cc = data["features"][0]["attributes"]["positiv_neu"]
     # D kommt vom RKI, aber wir brauchen es für G
     data = get_json('https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?f=json&cacheHint=true&resultOffset=0&resultRecordCount=1&where=GEN%3D%27Ebersberg%27&outFields=*&resultType=standard&returnGeometry=false&spatialRel=esriSpatialRelIntersects')

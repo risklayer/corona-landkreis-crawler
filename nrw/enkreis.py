@@ -34,5 +34,5 @@ def enkreis(sheets):
     update(sheets, 5954, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot")
     return True
 
-schedule.append(Task(11, 30, 14, 35, 360, enkreis, 5954))
+schedule.append(Task(11, 30, 15, 35, 360, enkreis, 5954))
 if __name__ == '__main__': enkreis(googlesheets())

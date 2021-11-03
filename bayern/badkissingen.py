@@ -13,7 +13,7 @@ def badkissingen(sheets):
     main = soup.find("article") #.find(class_="article-detail")
     text = main.get_text(" ").strip()
     # print(text)
-    if not today().strftime("am %-d.%m.%Y") in text: raise NotYetAvailableException("Bad Kissingen noch alt.")
+    if not today().strftime("am %d.%m.%Y") in text: raise NotYetAvailableException("Bad Kissingen noch alt.")
     c = force_int(_badkissingen_c.search(text).group(1))
     cc = force_int(_badkissingen_cc.search(text).group(1))
     d = force_int(_badkissingen_d.search(text).group(1))
