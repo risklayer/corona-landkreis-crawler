@@ -7,7 +7,7 @@ def biberach(sheets):
     data = get_soup("https://www.biberach.de/landratsamt/kreisgesundheitsamt.html")
     body = data.find(id="contentMiddle")
     #print(body.find("strong").get_text(), today().strftime("%d. %B %Y"))
-    if not today().strftime("%d. %B %Y") in re.sub("\s+"," ",body.get_text()): raise NotYetAvailableException("Biberach: "+body.find("strong").get_text())
+    if not today().strftime("Stand: %d. %B %Y") in re.sub("\s+"," ",body.get_text()): raise NotYetAvailableException("Biberach: "+body.find("strong").get_text())
     rows = [[x.get_text() for x in y.findAll(["td","th"])] for y in body.find(class_="csc-frame").findAll("tr")]
     #print(*rows, sep="\n")
     assert "Infizierte gesamt" in rows[0][0]

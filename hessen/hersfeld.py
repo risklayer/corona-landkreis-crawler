@@ -6,7 +6,7 @@ _hersfeld_c = re.compile(r"Infektionen\sinsgesamt:\s([0-9.]+)")
 _hersfeld_d = re.compile(r"Todesfälle:\s([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\szum\sVortag")
 #_hersfeld_g = re.compile(r"Genesungen:\s([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\szum\sVortag")
 _hersfeld_g = re.compile(r"Genesungen:\s([0-9.]+)")
-_hersfeld_s = re.compile(r"([0-9.]+)\sinfizierte\sin\sBehandlung,\sdavon\s([0-9.]+)\sauf\sintensiv")
+_hersfeld_s = re.compile(r"([0-9.]+)\sinfizierte(?:\sPersone?n?)?\sin\sBehandlung,\sdavon\s([0-9.]+)(?:\sPersone?n?)?\sauf\s[Ii]ntensiv")
 _hersfeld_q = re.compile(r"Quarantäne:\s([0-9.]+)")
 
 def hersfeld(sheets):

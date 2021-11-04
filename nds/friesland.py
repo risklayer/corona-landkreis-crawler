@@ -2,7 +2,9 @@
 from botbase import *
 
 def friesland(sheets):
-    data = get_json("https://services9.arcgis.com/NdRIoRRHq1CjkAY8/arcgis/rest/services/Covid19_Fallzahlen/FeatureServer/0/query?where=Datum%3C%3D%27"+today().strftime("%Y-%m-%d")+"%27&outFields=*&&orderByFields=Datum+DESC&resultRecordCount=1&f=json")
+    tomorrow = today() + datetime.timedelta(1)
+    data = get_json("https://services9.arcgis.com/NdRIoRRHq1CjkAY8/arcgis/rest/services/Covid19_Fallzahlen/FeatureServer/0/query?where=Datum%3C%3D%27"+tomorrow.strftime("%Y-%m-%d")+"%27&outFields=*&&orderByFields=Datum+DESC&resultRecordCount=1&f=json")
+    #print(data)
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
     date = data["Datenaktualitaet"].replace(","," ")

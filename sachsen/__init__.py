@@ -5,3 +5,5 @@ from .goerlitz import goerlitz
 from .leipziglk import leipziglk
 from .meissen import meissen
 from .mittelsachsen import mittelsachsen
+from .osterz import osterz
+from .zwickau import zwickau

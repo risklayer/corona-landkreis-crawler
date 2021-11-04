@@ -22,7 +22,7 @@ def stwendel(sheets):
         if m: args["g"] = force_int(m.group(1))
     # print(args)
     assert "c" in args and "d" in args and "g" in args
-    update(sheets, 10046, **args, sig="Bot", ignore_delta=False)
+    update(sheets, 10046, **args, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(15, 30, 20, 35, 360, stwendel, 10046))

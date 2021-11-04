@@ -25,5 +25,5 @@ def ebersberg(sheets):
     update(sheets, 9175, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", comment="Bot Dashboard ohne SI", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(16, 30, 18, 30, 600, ebersberg, 9175))
+schedule.append(Task(15, 30, 18, 30, 600, ebersberg, 9175))
 if __name__ == '__main__': ebersberg(googlesheets())

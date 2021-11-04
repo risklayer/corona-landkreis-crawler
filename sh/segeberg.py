@@ -17,7 +17,7 @@ def segeberg(sheets):
     #print(next(x for x in main.findAll(class_="aufklappcontent_container")))
     main = next(x for x in main.findAll(class_="aufklappcontent_container") if "Gesamtzahl" in x.get_text())
     text = main.get_text(" ").strip()
-    print(text)
+    #print(text)
     date = check_date(_segeberg_st.search(text).group(1), "Segeberg")
     c = force_int(_segeberg_c.search(text).group(1))
     cc = force_int(_segeberg_cc.search(text).group(1))
@@ -29,5 +29,5 @@ def segeberg(sheets):
     update(sheets, 1060, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(16, 14, 19, 35, 360, segeberg, 1060))
+schedule.append(Task(16, 1, 19, 35, 360, segeberg, 1060))
 if __name__ == '__main__': segeberg(googlesheets())

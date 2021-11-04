@@ -8,8 +8,9 @@ def halle(sheets):
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.halle.de/de/Verwaltung/Presseportal/Nachrichten/index.aspx?NewsId=45334")
     article = soup.find(id="content-inner")
-    if not today().strftime("%-d. %B %Y") in article.find("strong").get_text():
-        raise NotYetAvailableException("Halle (Saale) noch alt: "+article.find("strong").get_text());
+    s = next(x for x in article.findAll("strong") if "Corona-Lage" in x.get_text())
+    if not today().strftime("%-d. %B %Y") in s.get_text():
+        raise NotYetAvailableException("Halle (Saale) noch alt: "+s);
     tables = article.findAll("table")
     args = dict()
     for table in tables[:5]:

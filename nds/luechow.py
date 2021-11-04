@@ -2,11 +2,11 @@
 from botbase import *
 
 _luechow_c = re.compile(r"([0-9.]+) *\(\+?([0-9]+) Neuinfektionen\) *COVID-19-Fälle")
-_luechow_a = re.compile(r"([0-9.]+) *\(\+?([0-9]+)\) aktive Fälle")
+_luechow_a = re.compile(r"([0-9.]+) *(?:\(\+?([0-9]+)\))? aktive Fälle")
 _luechow_g = re.compile(r"([0-9.]+) *Genesene")
 _luechow_d = re.compile(r"([0-9.]+) *Verstorbene")
-_luechow_q1 = re.compile(r"([0-9.]+) *\(\+?([0-9]+)\) Kontaktpersonen")
-_luechow_q2 = re.compile(r"([0-9.]+) *\(\+?([0-9]+)\) Reiserückkehrer")
+_luechow_q1 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? Kontaktpersonen")
+_luechow_q2 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? Reiserückkehrer")
 _luechow_s = re.compile(r"in einem Krankenhaus: ([0-9.]+)")
 _luechow_st = re.compile(r"Fallzahlen\s*\(Stand: (\d\d?\. \w+ 20\d\d), (\d\d?)\.(\d\d) Uhr", re.M)
 

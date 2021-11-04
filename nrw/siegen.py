@@ -41,5 +41,5 @@ def siegen(sheets):
     update(sheets, 5970, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", comment=comment)
     return True
 
-schedule.append(Task(11, 0, 14, 35, 360, siegen, 5970))
+schedule.append(Task(10, 0, 14, 35, 360, siegen, 5970))
 if __name__ == '__main__': siegen(googlesheets())

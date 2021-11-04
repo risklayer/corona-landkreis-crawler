@@ -2,13 +2,20 @@ from .lgl import lgl
 from .ansbach import ansbach
 from .augsburg import augsburg
 from .badkissingen import badkissingen
+from .bamberg import bamberg
 from .bayreuth import bayreuth
 from .ebersberg import ebersberg
+from .ffb import ffb
+from .forchheim import forchheim
 from .dingolfing import dingolfing
 from .garmisch import garmisch
 from .kitzingen import kitzingen
+from .kulmbach import kulmbach
 from .landsberg import landsberg
+from .miltenberg import miltenberg
 from .muenchen import muenchen
 from .muenchenlk import muenchenlk
+from .nea import nea
+from .neuburg import neuburg
 from .tirschenreuth import tirschenreuth
 

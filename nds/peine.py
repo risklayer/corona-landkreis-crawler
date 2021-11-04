@@ -23,5 +23,5 @@ def peine(sheets):
     update(sheets, 3157, c=c, cc=cc, d=d, g=g, q=q, sig="Bot")
     return True
 
-schedule.append(Task(16, 30, 19, 35, 360, peine, 3157))
+schedule.append(Task(15, 30, 19, 35, 360, peine, 3157))
 if __name__ == '__main__': peine(googlesheets())

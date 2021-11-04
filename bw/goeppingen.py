@@ -2,7 +2,7 @@
 from botbase import *
 
 def goeppingen(sheets):
-    data = get_json("https://services2.arcgis.com/NnzYQCJaH5AXJ1MQ/arcgis/rest/services/Fallzahlen_Entwicklung/FeatureServer/0/query?where=Fall_kum>0&outFields=*&orderByFields=IT+DESC&resultRecordCount=1&f=json")
+    data = get_json("https://services2.arcgis.com/NnzYQCJaH5AXJ1MQ/arcgis/rest/services/Fallzahlen_Entwicklung_neu2/FeatureServer/0/query?where=Fall_kum>0&outFields=*&orderByFields=IT+DESC&resultRecordCount=1&f=json")
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
     date = data["Datum"]

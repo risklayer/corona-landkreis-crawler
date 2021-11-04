@@ -1,5 +1,6 @@
 from .aurich import aurich
 from .cloppenburg import cloppenburg
+from .cuxhaven import cuxhaven
 from .emden import emden
 from .friesland import friesland
 from .gbentheim import gbentheim
