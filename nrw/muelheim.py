@@ -14,5 +14,5 @@ def muelheim(sheets):
     update(sheets, 5117, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", date=date, ignore_delta=False)
     return True
 
-schedule.append(Task(9, 00, 10, 00, 180, muelheim, 5117))
+schedule.append(Task(7, 30, 10, 0, 180, muelheim, 5117))
 if __name__ == '__main__': muelheim(googlesheets())
