@@ -15,6 +15,7 @@ def harburg(sheets):
     assert "genesen" in rows[0][7]
     g, gg = force_int(rows[1][7]), force_int(rows[2][7],0)
     cc, dd, gg = c - cc, d - dd, g - gg
+    if g == c - d: g, gg = None, None
     update(sheets, 3353, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", ignore_delta=False)
     return True
 

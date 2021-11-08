@@ -21,7 +21,7 @@ def badkissingen(sheets):
     m = _badkissingen_s.search(text)
     s = force_int(m.group(1)) if m else None
     q = force_int(_badkissingen_q.search(text).group(1)) + c - d -g
-    update(sheets, 9672, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot")
+    update(sheets, 9672, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(12, 2, 14, 35, 600, badkissingen, 9672))

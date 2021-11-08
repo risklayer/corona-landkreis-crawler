@@ -22,5 +22,5 @@ def forchheim(sheets):
     update(sheets, 9474, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(16, 0, 18, 35, 360, forchheim, 9474))
+schedule.append(Task(14, 0, 18, 35, 360, forchheim, 9474))
 if __name__ == '__main__': forchheim(googlesheets())

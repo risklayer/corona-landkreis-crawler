@@ -16,7 +16,7 @@ def cottbus(sheets):
         if "bestätigt" in row[0]: args["c"] = force_int(row[1])
         if "zum Vortag" in row[0] and not "Verstorbene" in row[0]: args["cc"] = force_int(row[1])
         if "Verstorbene" in row[0]: args["d"], args["dd"] = map(force_int, _twonums.search(row[1]).groups())
-        if "davon auf der ITS" in row[0]: args["s"], args["i"] = map(force_int, _twonums.search(row[1]).groups())
+        if "Covid-Patienten im Carl-Thiem-Klinikum" in row[0]: args["s"], args["i"] = map(force_int, _twonums.search(row[1]).groups())
     #print(args)
     assert "c" in args and "d" in args
     update(sheets, 12052, **args, sig="Bot")

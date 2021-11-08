@@ -39,5 +39,5 @@ def muenchen(sheets):
     update(sheets, 9162, **args, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(13, 32, 15, 35, 360, muenchen, 9162))
+schedule.append(Task(13, 32, 16, 35, 360, muenchen, 9162))
 if __name__ == '__main__': muenchen(googlesheets())

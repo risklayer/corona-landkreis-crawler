@@ -9,6 +9,7 @@ def sh(sheets):
     if not table: raise Exception("SH HTML Tabelle cvd19_kreistabelle_kumulativ nicht gefunden.")
     stand = table.findNext("p").text
     if not today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("Schleswig-Holstein noch alt? " + stand)
+    todo = []
     for row in table.find("tbody").findAll("tr"):
         row = [x.text.strip() for x in row.findAll("td")]
         #print(row)
@@ -19,7 +20,13 @@ def sh(sheets):
         c, d = force_int(row[2]), force_int(row[6], 0)
         cc, dd = force_int(row[3]), force_int(row[7], 0)
         print("AGS", ags, c, cc, d, dd)
-        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Land", check=_shpat)
+        todo.append( (ags,c,cc,d,dd) )
+    rows = fetch_rows(sheets, [x[0] for x in todo])
+    batch=[]
+    for i,x in enumerate(todo):
+        ags,c,cc,d,dd = x
+        update(sheets, ags, c=c, cc=cc, d=d, dd=dd, sig="Land", comment="Land", check=_shpat, batch=batch, row=rows[i])
+    do_batch(sheets, batch)
     return True
 
 schedule.append(Task(18, 30, 22, 00, 180, sh, 1057))

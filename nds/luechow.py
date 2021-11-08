@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 from botbase import *
 
-_luechow_c = re.compile(r"([0-9.]+) *\(\+?([0-9]+) Neuinfektionen\) *COVID-19-Fälle")
-_luechow_a = re.compile(r"([0-9.]+) *(?:\(\+?([0-9]+)\))? aktive Fälle")
+_luechow_c = re.compile(r"([0-9.]+) *\(\+?(-?[0-9]+) Neuinfektionen\) *COVID-19-Fälle")
+_luechow_a = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? aktive Fälle")
 _luechow_g = re.compile(r"([0-9.]+) *Genesene")
 _luechow_d = re.compile(r"([0-9.]+) *Verstorbene")
 _luechow_q1 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? Kontaktpersonen")
@@ -26,7 +26,7 @@ def luechow(sheets):
     s = force_int(_luechow_s.search(text).group(1))
     g = c - d - a
     q = q1 + q2 + a
-    update(sheets, 3354, c=c, cc=cc, d=d, g=g, q=q, s=s, date=date, sig="Bot")
+    update(sheets, 3354, c=c, cc=cc, d=d, g=g, q=q, s=s, date=date, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(16, 30, 19, 35, 360, luechow, 3354))

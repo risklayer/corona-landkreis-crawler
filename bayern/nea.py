@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 from botbase import *
 
-_nea_st = re.compile(r"Landkreis, (\d\d\.\d\d.20\d\d)")
+_nea_st = re.compile(r"Landkreis, (\d\d?\.\d\d.20\d\d)")
 
 def nea(sheets):
     soup = get_soup("https://www.kreis-nea.de/service-themen/gesundheit-soziales/aktuelle-situation-coronavirus-sars-cov-2.html")
-    main = soup.find(id="content").find(class_="inner")
+    main = next(x for x in soup.find(id="content").find(class_="inner").findAll("div") if "Aktuelle Corona" in x.get_text())
+    #print(main)
     rows = [[x.get_text() for x in row.findAll(["td","th"])] for row in main.findAll("tr")]
     #print(*rows, sep="\n")
     date = _nea_st.search(main.find("h3").get_text()).group(1)

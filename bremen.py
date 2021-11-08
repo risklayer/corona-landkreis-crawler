@@ -2,7 +2,7 @@
 from botbase import *
 import re
 
-_matchbremen = re.compile(r"([0-9.]+)\s*\([+ ]*([-0-9.]+)\)")
+_matchbremen = re.compile(r"([0-9.]+)\s*(?:\([+ ]*([-0-9.]+)\))?")
 _matchh1bremen = re.compile(r"^Stadt Bremen")
 _matchh1bremerhaven = re.compile(r"^Stadt Bremerhaven")
 
@@ -17,7 +17,7 @@ def bremen(sheets):
         text = table.parent.parent.get_text(" ").strip()
         if not datetime.date.today().strftime("%d.%m.%Y") in text: continue
         rows = [[x.get_text().strip() for x in row.findAll(["th","td"])] for row in table.findAll("tr")]
-        #print(*rows,"---",sep="\n")
+        print(*rows,"---",sep="\n")
         if rows[0][1] == "Aktive Infektionen":
             assert "insgesamt" in rows[0][2]
             assert "Genesene" in rows[0][3]

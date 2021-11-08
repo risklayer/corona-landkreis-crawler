@@ -35,7 +35,7 @@ def lahndill(sheets):
     args["c"] = a + args["g"] + args["d"]
     assert "c" in args and "d" in args and "g" in args
     #print(args)
-    update(sheets, 6532, **args, sig="Bot")
+    update(sheets, 6532, **args, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(13, 0, 16, 35, 600, lahndill, 6532))

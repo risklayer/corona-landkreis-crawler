@@ -16,7 +16,8 @@ def sha(sheets):
     c = force_int(_sha_c.search(text).group(1))
     d = force_int(_sha_d.search(text).group(1))
     g = force_int(_sha_g.search(text).group(1))
-    q = force_int(_sha_q.search(text).group(1)) + c - d - g
+    m = _sha_q.search(text)
+    q = force_int(m.group(1)) + c - d - g if m else None
     s, i = 0, 0
     for m in _sha_si.findall(text):
         s += force_int(m[0])

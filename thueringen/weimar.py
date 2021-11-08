@@ -21,5 +21,5 @@ def weimar(sheets):
     update(sheets, 16055, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(10, 00, 15, 35, 360, weimar, 16055))
+schedule.append(Task(10, 00, 15, 45, 360, weimar, 16055))
 if __name__ == '__main__': weimar(googlesheets())

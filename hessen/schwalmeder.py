@@ -20,7 +20,7 @@ def schwalmeder(sheets):
     g = force_int(rows[1][1])
     assert "verstorben" in rows[0][2]
     d, dd = map(force_int, _match_two.search(rows[1][2]).groups())
-    update(sheets, 6634, c=c, cc=cc, d=d, dd=dd, g=g, sig="Bot")
+    update(sheets, 6634, c=c, cc=cc, d=d, dd=dd, g=g, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(14, 10, 16, 35, 360, schwalmeder, 6634))

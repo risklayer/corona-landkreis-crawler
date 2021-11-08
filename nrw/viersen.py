@@ -36,7 +36,7 @@ def viersen(sheets):
     if m: s = force_int(m.group(1))
     m = _viersen_i.search(text)
     if m: i = force_int(m.group(1))
-    update(sheets, 5166, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot")
+    update(sheets, 5166, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 30, 18, 35, 360, viersen, 5166))

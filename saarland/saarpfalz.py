@@ -21,7 +21,7 @@ def saarpfalz(sheets):
     cc = force_int(_saarpfalz_cc.search(text).group(1))
     g = force_int(_saarpfalz_g.search(text).group(1))
     d = c - g - a
-    update(sheets, 10045, c=c, cc=cc, d=d, g=g, sig="Bot", ignore_delta=False)
+    update(sheets, 10045, c=c, cc=cc, d=d, g=g, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(14, 30, 17, 35, 600, saarpfalz, 10045))
