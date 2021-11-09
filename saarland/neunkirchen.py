@@ -3,10 +3,10 @@ from botbase import *
 
 # Beware: this site uses plenty of non-breaking spaces
 _neunkirchen_cc = re.compile(r"gibt\ses\s([0-9.]+|\w+)\sweitere", re.U)
-_neunkirchen_c = re.compile(r"insgesamt\salso\s([0-9.]+)\spositive", re.U)
+_neunkirchen_c = re.compile(r"insgesamt\salso\s(?:weiter\s)?([0-9.]+)\spositive", re.U)
 _neunkirchen_d = re.compile(r"\s([0-9.]+)\sCovid-19-Todesfälle", re.U)
 _neunkirchen_g = re.compile(r"können\s([0-9.]+)\s*Personen\s[^\s]*\s*als\sgeheilt", re.U)
-_neunkirchen_gg = re.compile(r"können\s[0-9.]+\s*Personen\s\(([+-]*[0-9]+)\)\salsşgeheilt", re.U)
+_neunkirchen_gg = re.compile(r"können\s[0-9.]+\s*Personen\s\(([+-]*[0-9]+)\)\sals\sgeheilt", re.U)
 
 def neunkirchen(sheets):
     soup = get_soup("https://www.landkreis-neunkirchen.de/index.php?id=3554")
@@ -31,7 +31,7 @@ def neunkirchen(sheets):
         m = _neunkirchen_gg.search(p)
         if m: args["gg"] = force_int(m.group(1))
     #print(args)
-    assert "c" in args and "d" in args and "g" in args
+    assert "c" in args and "d" in args and "g" in args, str(args)
     update(sheets, 10043, **args, sig="Bot", ignore_delta=False)
     return True
 

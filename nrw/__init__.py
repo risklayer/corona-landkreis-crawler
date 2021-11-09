@@ -13,7 +13,9 @@ from .guetersloh import guetersloh
 from .hagen import hagen
 from .hamm import hamm
 from .heinsberg import heinsberg
+from .herford import herford
 from .hoexter import hoexter
+from .kleve import kleve
 from .leverkusen import leverkusen
 from .lippe import lippe
 from .mettmann import mettmann

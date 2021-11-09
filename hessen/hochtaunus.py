@@ -15,5 +15,5 @@ def hochtaunus(sheets):
     update(sheets, 6434, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date, ignore_delta=today().weekday()==0) # Delta nur Montags ignorieren
     return True
 
-schedule.append(Task(16, 30, 21, 30, 600, hochtaunus, 6434))
+schedule.append(Task(15, 30, 21, 30, 600, hochtaunus, 6434))
 if __name__ == '__main__': hochtaunus(googlesheets())

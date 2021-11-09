@@ -2,7 +2,7 @@
 from botbase import *
 
 def heilbronnlk(sheets):
-    data = get_json("https://services.arcgis.com/XUIQq0C4I0YmPJjS/arcgis/rest/services/CoronaLK_alles/FeatureServer/0/query?f=json&resultRecordCount=1&where=1%3D1&orderByFields=Datum%20DESC&outFields=*&returnGeometry=false")
+    data = get_json("https://services.arcgis.com/XUIQq0C4I0YmPJjS/arcgis/rest/services/CVD_INDEX_LK_V/FeatureServer/0/query?f=json&resultRecordCount=1&where=1%3D1&orderByFields=Datum%20DESC&outFields=*&returnGeometry=false")
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
     date = check_date(data["Datum"], "LKHeilbronn")

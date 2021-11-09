@@ -6,10 +6,10 @@ def biberach(sheets):
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     data = get_soup("https://www.biberach.de/landratsamt/kreisgesundheitsamt.html")
     body = data.find(id="contentMiddle")
-    #print(body.find("strong").get_text(), today().strftime("%d. %B %Y"))
+    print(body.find("strong").get_text(), today().strftime("%d. %B %Y"))
     if not today().strftime("Stand: %d. %B %Y") in re.sub("\s+"," ",body.get_text()): raise NotYetAvailableException("Biberach: "+body.find("strong").get_text())
     rows = [[x.get_text() for x in y.findAll(["td","th"])] for y in body.find(class_="csc-frame").findAll("tr")]
-    #print(*rows, sep="\n")
+    print(*rows, sep="\n")
     assert "Infizierte gesamt" in rows[0][0]
     c = force_int(rows[0][1])
     assert "Differenz" in rows[1][0]

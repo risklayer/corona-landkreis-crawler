@@ -7,7 +7,7 @@ _stade_g = re.compile(r"Genesene: *([0-9.]+) *\(\+?(-? *[0-9.]+|unverändert)\)"
 _stade_d = re.compile(r"Verstorbene: *([0-9.]+) *\(\+?(-? *[0-9.]+|unverändert)\)")
 _stade_q = re.compile(r"Quarantäne: *([0-9.]+)")
 _stade_si = re.compile(r"([0-9.]+) *\((?:[0-9.+-]+|unverändert)\) stationär, davon ([0-9.]+) *\((?:[0-9.+-]+|unverändert)\) *Patient")
-_stade_st = re.compile(r"Stand (\d\d\.\d\d\.20\d\d) / (\d\d:\d\d) Uhr")
+_stade_st = re.compile(r"Stand (\d\d\.\d\d\.20\d\d) / (\d\d:\d\d) *Uhr")
 
 def stade(sheets):
     soup = get_soup("https://www.landkreis-stade.de/corona")

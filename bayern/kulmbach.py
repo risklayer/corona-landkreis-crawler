@@ -28,5 +28,5 @@ def kulmbach(sheets):
     update(sheets, 9477, c=c, cc=cc, d=d, g=g, gg=gg, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(16, 0, 18, 35, 360, kulmbach, 9477))
+schedule.append(Task(15, 30, 18, 35, 600, kulmbach, 9477))
 if __name__ == '__main__': kulmbach(googlesheets())
