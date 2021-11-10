@@ -14,6 +14,7 @@ def force_int(x, fallback=None):
 import datetime
 def check_date(d, lk, offset=datetime.timedelta(0)):
     import datetime, dateutil.parser
+    if d == None: raise NotYetAvailableException(lk+" noch alt: date is None")
     if isinstance(d, datetime.datetime):
         if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
         return d

@@ -26,7 +26,8 @@ from .muenster import muenster
 from .oberhausen import oberhausen
 from .obk import obk
 from .paderborn import paderborn
-from .rbk import rbk
+from .rbk import rbk # dashboard
+from .rbk2 import rbk2 # PM
 from .rheinerft import rheinerft
 from .rheinkneuss import rheinkneuss
 from .rheinsieg import rheinsieg

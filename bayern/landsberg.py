@@ -22,5 +22,5 @@ def landsberg(sheets):
     update(sheets, 9181, c=c, d=d, g=g, q=q, sig="Bot")
     return True
 
-schedule.append(Task(10, 3, 12, 35, 360, landsberg, 9181))
+schedule.append(Task(9, 3, 12, 35, 360, landsberg, 9181))
 if __name__ == '__main__': landsberg(googlesheets())

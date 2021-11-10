@@ -6,7 +6,7 @@ _miltenberg_cc = re.compile(r"([0-9.]+) Neuinfektionen")
 _miltenberg_d = re.compile(r"gab (?:bisher )?([0-9.]+) Todesfälle")
 _miltenberg_a = re.compile(r"Aktuell befinden sich ([0-9.]+) mit SARS-CoV-2 infizierte")
 _miltenberg_q = re.compile(r"([0-9.]+) Menschen als Kontaktperson I in Quarantäne")
-_miltenberg_si = re.compile(r"([0-9.]+\w+) Persone?n? aus dem Landkreis in stationärer Behandlung(?:, davon sind ([0-9.]+|\w+) intensiv)", re.U)
+_miltenberg_si = re.compile(r"([0-9.]+|\w+) Persone?n? aus dem Landkreis in stationärer Behandlung(?:, davon sind ([0-9.]+|\w+) intensiv)?", re.U)
 
 def miltenberg(sheets):
     from urllib.parse import urljoin

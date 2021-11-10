@@ -4,7 +4,7 @@ from botbase import *
 def oberspreewald(sheets):
     soup = get_soup("https://www.osl-online.de/seite/447426/informationen-zum-coronavirus.html")
     main = soup.find(id="content")
-    cap = main.find("small").text
+    cap = main.find("small").parent.get_text()
     if not today().strftime("%d.%m.%Y") in cap: raise NotYetAvailableException("Oberspreewald noch alt:" + cap)
     args=dict()
     a, q = None, None

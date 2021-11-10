@@ -19,5 +19,5 @@ def dingolfing(sheets):
     update(sheets, 9279, c=c, d=d, g=g, sig="Bot")
     return True
 
-schedule.append(Task(9, 30, 11, 35, 600, dingolfing, 9279))
+schedule.append(Task(9, 4, 11, 35, 600, dingolfing, 9279))
 if __name__ == '__main__': dingolfing(googlesheets())

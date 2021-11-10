@@ -21,17 +21,17 @@ _agsmap=None
 def get_ags(sheets):
     global _agsmap
     if _agsmap: return _agsmap
-    result = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!C6:C406").execute()
+    result = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!A6:C406").execute()
     values = result.get('values', [])
     _agsmap=dict()
     for i, row in enumerate(values):
-        _agsmap[int(row[0])] = i + 6
+        _agsmap[int(row[2])] = (i + 6, row[0])
     return _agsmap
 
 def is_signed(sheets, ags):
     """Check if a row is already signed. We need to sleep a bit here, to avoid triggering Google rate limits."""
     ags = int(ags)
-    rownr = get_ags(sheets)[ags]
+    rownr = get_ags(sheets)[ags][0]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
     import time
     time.sleep(.5)
@@ -58,7 +58,7 @@ _stripbot=re.compile(r"\(?Bot.*(?: [A-Z][0-9]+[()0-9=]+)+\)?")
 
 def fetch_rows(sheets, batch):
     agsmap = get_ags(sheets)
-    rownrs = [agsmap[ags] for ags in batch]
+    rownrs = [agsmap[ags][0] for ags in batch]
     if None in rownrs: raise Exception("Some AGS was not found")
     minrow, maxrow = min(rownrs), max(rownrs)
     data = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN%d" % (minrow, maxrow), valueRenderOption="UNFORMATTED_VALUE").execute()
@@ -82,7 +82,7 @@ def update(sheets, ags,
         date = date.strftime("%d.%m.%Y")
     if ignore_delta in ["mon", "Mon", "mo", "Mo", "montag", "Montag"]: ignore_delta = datetime.date.today().weekday()==0
     strs = [_format("C",c,cc), _format("D",d,dd), _format("G",g,gg), _format("Q",q), _format("S",s), _format("I",i)]
-    rownr = get_ags(sheets)[ags]
+    rownr = get_ags(sheets)[ags][0]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
     if not row: # row may be provided already
         curr = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!D%d:AN" % rownr, valueRenderOption="UNFORMATTED_VALUE").execute()
@@ -95,7 +95,7 @@ def update(sheets, ags,
     #if not check and row[15] == "Vorläufig": return
     if not check: sig = "Vorläufig"
     comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
-    print(ags, row[15], "->", comment)
+    print(ags, get_ags(sheets)[ags][1], row[15], "->", comment)
 
     prev = int(row[0]), int(row[-2]), int(row[-1])
     do_apply = True

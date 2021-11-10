@@ -14,7 +14,7 @@ def stade(sheets):
     main = soup.find(id="nolis_content_site").find(class_="innen")
     text = main.get_text(" ").strip()
     #print(text)
-    date = check_date(" ".join(_stade_st.search(text).groups()), "Stade", datetime.timedelta(hours=6))
+    date = check_date(" ".join(_stade_st.search(text).groups()), "Stade", datetime.timedelta(hours=8))
     a, aa = map(force_int, _stade_a.search(text).groups())
     c, cc = map(force_int, _stade_c.search(text).groups())
     d, dd = map(force_int, _stade_d.search(text).groups())

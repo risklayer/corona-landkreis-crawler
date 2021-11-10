@@ -8,7 +8,7 @@ _luechow_d = re.compile(r"([0-9.]+) *Verstorbene")
 _luechow_q1 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? Kontaktpersonen")
 _luechow_q2 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? Reiserückkehrer")
 _luechow_s = re.compile(r"in einem Krankenhaus: ([0-9.]+)")
-_luechow_st = re.compile(r"Fallzahlen\s*\(Stand: (\d\d?\. \w+ 20\d\d), (\d\d?)\.(\d\d) Uhr", re.M)
+_luechow_st = re.compile(r"Fallzahlen\s*\(Stand:\s*(\d\d?\.\s*\w+\s+20\d\d), (\d\d?)(?:\.(\d\d))?\s*Uhr", re.M)
 
 def luechow(sheets):
     soup = get_soup("https://www.luechow-dannenberg.de/home/familie-soziales-gesundheit/corona-virus.aspx")
@@ -16,7 +16,7 @@ def luechow(sheets):
     text = articles.get_text(" ").strip()
     #print(text)
     m = _luechow_st.search(text)
-    date = m.group(1) + " " +m.group(2) + ":" + m.group(3)
+    date = m.group(1) + " " +m.group(2) + ":" + (m.group(3) if m.group(3) else "00")
     date = check_date(date, "Lüchow-Dannenberg")
     c, cc = map(force_int, _luechow_c.search(text).groups())
     a, aa = map(force_int, _luechow_a.search(text).groups())
