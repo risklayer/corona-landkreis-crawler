@@ -10,7 +10,7 @@ def wartburg(sheets):
     soup = get_soup("https://www.wartburgkreis.de/leben-im-wartburgkreis/gesundheit/aktuelle-informationen-zum-corona-virus/fallzahlen")
     article = soup.find("article")
     text = article.find(class_="ce-bodytext").get_text(" ").strip()
-    print(text)
+    #print(text)
     m = _wartburg_st.search(text)
     date = m.group(1)+" "+m.group(2)+":"+m.group(3)
     date = check_date(date, "Wartburg")

@@ -29,7 +29,7 @@ def rbk2(sheets):
     if m: q = force_int(m.group(1))
     m = _rbk2_si.search(text)
     if m: s, i = force_int(m.group(1)), force_int(m.group(2))
-    update(sheets, 5378, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot")
+    update(sheets, 5378, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(11, 30, 14, 35, 600, rbk2, 5378))

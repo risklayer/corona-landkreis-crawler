@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import botbase
-import random, time
+import random, time, sys
 from datetime import datetime
 from heapq import heapify, heapreplace
 
@@ -8,6 +8,7 @@ import sh, hamburg, nds, bremen, nrw, hessen, rlp, bw, bayern, saarland, berlin,
 
 def scheduler(sheets):
     queue = [(task.next_time("init"), task) for task in botbase.schedule]
+    if "--all" in sys.argv: queue = [(datetime.now(), task) for task in botbase.schedule]
     heapify(queue)
     while True:
         #botbase.todaystr = time.strftime("%d.%m.%Y") # update today value

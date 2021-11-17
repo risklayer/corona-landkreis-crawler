@@ -11,7 +11,7 @@ def oberspreewald(sheets):
     for row in main.findAll("tr"):
         row = [x.text.strip() for x in row.findAll("td")]
         if len(row) != 2: continue
-        # print(row, force_int(row[1]))
+        #print(row, force_int(row[1]))
         if "bestätigt" in row[0]: args["c"] = force_int(row[1])
         if "Neufälle" in row[0]: args["cc"] = force_int(row[1])
         if "Genesene" in row[0]: args["g"] = force_int(row[1])
@@ -21,6 +21,7 @@ def oberspreewald(sheets):
         if "Quarant" in row[0]: q = int(re.search(r"(\d+)", row[1]).group(1))
     if a is not None and q is not None: args["q"] = a + q
     #print(args)
+    if not "g" in args: args["g"] = args["c"] - args["d"] - a
     assert "c" in args and "d" in args and "g" in args
     update(sheets, 12066, **args, sig="Bot")
     return True

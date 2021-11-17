@@ -2,11 +2,11 @@
 from botbase import *
 
 _luechow_c = re.compile(r"([0-9.]+) *\(\+?(-?[0-9]+) Neuinfektionen\) *COVID-19-Fälle")
-_luechow_a = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? aktive Fälle")
+_luechow_a = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? *aktive Fälle")
 _luechow_g = re.compile(r"([0-9.]+) *Genesene")
-_luechow_d = re.compile(r"([0-9.]+) *Verstorbene")
-_luechow_q1 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? Kontaktpersonen")
-_luechow_q2 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? Reiserückkehrer")
+_luechow_d = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? *Verstorbene")
+_luechow_q1 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? *Kontaktpersonen")
+_luechow_q2 = re.compile(r"([0-9.]+) *(?:\(\+?(-?[0-9]+)\))? *Reiserückkehrer")
 _luechow_s = re.compile(r"in einem Krankenhaus: ([0-9.]+)")
 _luechow_st = re.compile(r"Fallzahlen\s*\(Stand:\s*(\d\d?\.\s*\w+\s+20\d\d), (\d\d?)(?:\.(\d\d))?\s*Uhr", re.M)
 
@@ -20,13 +20,13 @@ def luechow(sheets):
     date = check_date(date, "Lüchow-Dannenberg")
     c, cc = map(force_int, _luechow_c.search(text).groups())
     a, aa = map(force_int, _luechow_a.search(text).groups())
-    d = force_int(_luechow_d.search(text).group(1))
+    d, dd = map(force_int, _luechow_d.search(text).groups())
     q1 = force_int(_luechow_q1.search(text).group(1))
     q2 = force_int(_luechow_q2.search(text).group(1))
     s = force_int(_luechow_s.search(text).group(1))
     g = c - d - a
     q = q1 + q2 + a
-    update(sheets, 3354, c=c, cc=cc, d=d, g=g, q=q, s=s, date=date, sig="Bot", ignore_delta=True)
+    update(sheets, 3354, c=c, cc=cc, d=d, dd=dd, g=g, q=q, s=s, date=date, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(16, 30, 19, 35, 360, luechow, 3354))

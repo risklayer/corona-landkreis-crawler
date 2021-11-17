@@ -38,7 +38,7 @@ def siegen(sheets):
     if m and m2: s, i = s + force_int(m2.group(1)), i + force_int(m2.group(2), 0)
     if not m2 and "von außerhalb" in text: s, i = None, None
     comment = "Bot, check SI" if s is not None and s > 0 else "Bot ohne SI"
-    update(sheets, 5970, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", comment=comment)
+    update(sheets, 5970, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", comment=comment, ignore_delta="mon")
     return True
 
 schedule.append(Task(10, 0, 14, 35, 360, siegen, 5970))

@@ -21,7 +21,7 @@ def weimarerland(sheets):
     q1 = force_int(_weimarerland_q1.search(text).group(1))
     q2 = force_int(_weimarerland_q2.search(text).group(1))
     q = c - g - d + q1 + q2
-    update(sheets, 16071, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot")
+    update(sheets, 16071, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(10, 00, 13, 35, 360, weimarerland, 16071))

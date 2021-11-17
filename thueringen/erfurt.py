@@ -20,5 +20,5 @@ def erfurt(sheets):
     update(sheets, 16051, c=c, cc=cc, d=d, g=g, sig="Bot", date=date)
     return True
 
-schedule.append(Task(8, 00, 11, 35, 360, erfurt, 16051))
+schedule.append(Task(8, 00, 12, 35, 360, erfurt, 16051))
 if __name__ == '__main__': erfurt(googlesheets())

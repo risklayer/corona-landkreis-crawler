@@ -2,7 +2,7 @@
 from botbase import *
 
 _stand = re.compile(r"Stand (\d\d.\d\d.20\d\d)")
-_match_two = re.compile(r"\s*([0-9.]+)\s+\(([+-]?[0-9.]*)\)\s*", re.U | re.M)
+_match_two = re.compile(r"\s*([0-9.]+)\s*\(([+-]?[0-9.]*)\)\s*", re.U | re.M)
 
 def wittmund(sheets):
     soup = get_soup("https://corona.landkreis-wittmund.de/")

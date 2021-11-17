@@ -2,7 +2,7 @@
 from botbase import *
 
 _herford_c = re.compile(r"kreisweit bislang ([0-9.]+) infizierte")
-_herford_cc = re.compile(r"([0-9.]+) neue Corona-Fälle")
+_herford_cc = re.compile(r"([0-9.]+) neue (?:Corona-)?Fälle")
 _herford_d = re.compile(r"im Kreis Herford ([0-9.]+) Todesfälle")
 _herford_g = re.compile(r"gelten ([0-9.]+) Personen als genesen")
 _herford_s = re.compile(r"([0-9.]+) Patient.innen mit einer COVID-19-Infektion stationär")
@@ -30,7 +30,7 @@ def herford(sheets):
     if m: s = force_int(m.group(1))
     m = _herford_i.search(text)
     if m: i = force_int(m.group(1))
-    update(sheets, 5758, c=c, cc=cc, d=d, g=g, s=s, i=i, sig="Bot")
+    update(sheets, 5758, c=c, cc=cc, d=d, g=g, s=s, i=i, sig="Bot", ignore_delta=True) #"mon")
     return True
 
 schedule.append(Task(11, 30, 15, 35, 360, herford, 5758))

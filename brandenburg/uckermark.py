@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 from botbase import *
 
+_match_two = re.compile(r"([0-9.]+)\s*(?:\(\+?(-?[0-9.]+)\))?")
+
 def uckermark(sheets):
     soup = get_soup("https://www.uckermark.de/index.phtml?La=1&sNavID=1897.1&mNavID=1897.1&object=tx,2203.741.1&kat=&kuo=2&sub=0")
     main = soup.find(class_="inhalt")
@@ -12,17 +14,17 @@ def uckermark(sheets):
     date = check_date(date.split(":",1)[-1], "Uckermark")
     row = rows[-3]
     assert "Summe Landkreis Uckermark" in row[0]
-    assert "Vortag" in rows[1][0]
+    assert "Vortag" in rows[1][0] or "Freitag" in rows[1][0]
     assert "Gesamt" in rows[1][1]
     assert "verstorben" in rows[1][2]
     assert "Isolation" in rows[1][3]
     cc = force_int(row[1])
     c = force_int(row[2])
-    d = force_int(row[3])
-    a = force_int(row[4].split("(")[0])
+    d, dd = map(force_int, _match_two.search(row[3]).groups())
+    a, _ = map(force_int, _match_two.search(row[4]).groups())
     g = c - d - a
-    update(sheets, 12073, c=c, cc=cc, d=d, g=g, ignore_delta="mon")
+    update(sheets, 12073, c=c, cc=cc, d=d, dd=dd, g=g, ignore_delta="mon")
     return True
 
-schedule.append(Task(10, 2, 12, 35, 600, uckermark, 12073))
+schedule.append(Task(10, 2, 13, 35, 600, uckermark, 12073))
 if __name__ == '__main__': uckermark(googlesheets())

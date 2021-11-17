@@ -1,3 +1,5 @@
+from .parse import NotYetAvailableException
+
 class Task:
     def __init__(self, sh, sm, eh, em, interval, fun, ags):
         self.sh = sh
@@ -26,6 +28,9 @@ class Task:
         try:
             print("Running", self)
             return self.fun(sheets)
+        except NotYetAvailableException as err:
+            print(err)
+            return False
         except Exception as err:
             print(err)
             # todo: use a custom Exception type for these "errors"

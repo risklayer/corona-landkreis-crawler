@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 from botbase import *
 
-_neuburg_date = re.compile(r"vom (\d\d\.\d\d.20\d\d)")
+_neuburg_date = re.compile(r"Fallzahlen vom (\d\d\.\d\d.20\d\d)")
 
 def neuburg(sheets):
     soup = get_soup("http://www.neuburg-schrobenhausen.info/corona-zahlen-2")
-    table = soup.find(id="main")
-    rows = [[x.get_text().strip() for x in row.findAll(["td","th"])] for row in table.findAll("tr")]
+    main = soup.find(id="main")
+    rows = [[x.get_text().strip() for x in row.findAll(["td","th"])] for row in main.findAll("tr")]
     rows = [[x for x in r if not x == ""] for r in rows]
     rows = [r for r in rows if not len(r) == 0]
     #print(*rows, sep="\n")
-    date = _neuburg_date.search(rows[0][0]).group(1)
+    date = _neuburg_date.search(main.get_text()).group(1)
     date = check_date(date, "Neuburg-Schrobenhausen")
     assert "Neuinfektionen" in rows[1][2]
     cc = force_int(rows[1][1])
@@ -28,5 +28,5 @@ def neuburg(sheets):
     update(sheets, 9185, c=c, cc=cc, d=d, g=g, gg=gg, s=s, sig="Bot", comment="Bot ohne I", ignore_delta="mon")
     return True
 
-schedule.append(Task(12, 30, 15, 35, 360, neuburg, 9185))
+schedule.append(Task(12, 30, 16, 35, 360, neuburg, 9185))
 if __name__ == '__main__': neuburg(googlesheets())

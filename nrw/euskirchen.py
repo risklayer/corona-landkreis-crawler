@@ -10,6 +10,7 @@ def euskirchen(sheets):
     d, dd = data["Todesfaelle_gesamt"], data["Todesfaelle_gesamt_Vortag"]
     a, aa = data["aktuell_positiv"], data["aktuell_positiv_Vortag"]
     g, gg = c - d - a, cc - dd - aa
+    cc, dd, gg = c - cc, d - dd, g - gg
     update(sheets, 5366, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 

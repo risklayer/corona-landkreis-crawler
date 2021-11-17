@@ -13,7 +13,7 @@ def eichsfeld(sheets):
     article = soup.find("main").find(class_="mod_article")
     text = article.get_text()
     #print(text)
-    date = check_date(_eichsfeld_st.search(text).group(1), "Erfurt", datetime.timedelta(1)) + datetime.timedelta(1) # RKI-Stand
+    date = check_date(_eichsfeld_st.search(text).group(1), "Eichsfeld")
     c = force_int(_eichsfeld_c.search(text).group(1))
     cc = force_int(_eichsfeld_cc.search(text).group(1))
     d = force_int(_eichsfeld_d.search(text).group(1))

@@ -3,7 +3,7 @@ from botbase import *
 
 _leipziglk_c = re.compile(r"wurden\s+([0-9.]+)\s+\(\+\s*(-?[0-9]+) zu")
 _leipziglk_d = re.compile(r"\s+([0-9.]+)\s+(?:\(\+\s*(-?[0-9]+)\)\s+)?Todesfälle")
-_leipziglk_a = re.compile(r"([0-9.]+) infizierte")
+_leipziglk_a = re.compile(r"([0-9.]+) [Ii]nfizierte")
 _leipziglk_q = re.compile(r"([0-9.]+) Personen in Quarantäne")
 
 def leipziglk(sheets):

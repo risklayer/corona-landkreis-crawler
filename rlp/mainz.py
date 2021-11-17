@@ -23,5 +23,5 @@ def mainz(sheets):
     update(sheets, 7339, c=cb, cc=ccb, d=db, dd=ddb, g=gb, gg=ggb, sig="Bot", ignore_delta="mon") # Mainz-Bingen
     return True
 
-schedule.append(Task(13, 30, 16, 35, 600, mainz, 7339))
+schedule.append(Task(13, 30, 17, 35, 600, mainz, 7339))
 if __name__ == '__main__': mainz(googlesheets())

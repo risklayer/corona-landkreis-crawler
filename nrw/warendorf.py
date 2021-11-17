@@ -10,7 +10,7 @@ def warendorf(sheets):
     c, cc = int(d2["confirmed"]), int(d2["new"])
     g, d = int(d2["recovered"]), int(d2["death"])
     gg, dd = g - int(d1["recovered"]), d - int(d1["death"])
-    update(sheets, 5570, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", comment="Bot ohne SI", ignore_delta=False)
+    update(sheets, 5570, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", comment="Bot ohne SI", ignore_delta="mon")
     return True
 
 schedule.append(Task(9, 2, 12, 35, 600, warendorf, 5570))
