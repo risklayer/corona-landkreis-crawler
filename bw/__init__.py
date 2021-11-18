@@ -6,10 +6,12 @@ from .breisgaufreiburg import breisgaufreiburg
 from .esslingen import esslingen
 from .goeppingen import goeppingen
 from .heidelbergrnk import heidelbergrnk
+from .heidenheim import heidenheim
 from .heilbronnlk import heilbronnlk
 from .hohenlohe import hohenlohe
 from .loerrach import loerrach
 from .ludwigsburg import ludwigsburg
+from .mannheim import mannheim
 from .ostalb import ostalb
 from .ravensburg import ravensburg
 from .remsmurr import remsmurr

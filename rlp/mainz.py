@@ -3,7 +3,7 @@ from botbase import *
 
 _mainz_c = re.compile(r"([0-9.]+) *\(±?([+-]? *[0-9.]+) *zu (?:gestern|Freitag)\) positiv getestete Personen aus dem Landkreis Mainz-Bingen, *([0-9.]+) *\(±?([+-]? *[0-9.]+) *zu (?:gestern|Freitag)\) aus der Stadt", re.U)
 _mainz_g = re.compile(r"Genesene: [0-9.]+ \(±?[+-]? *[0-9.]+\) *davon Mainz-Bingen: ([0-9.]+) *\(±?([+-]? *[0-9.]+)\) *davon Stadt Mainz: *([0-9.]+) *\(±?([+-]? *[0-9.]+)\)", re.U)
-_mainz_d = re.compile(r"Todesfälle im Landkreis Mainz-Bingen *([0-9.]+) *\(±?([+-]? *[0-9.]+)\) *, *Todesfälle Stadt Mainz *([0-9.]+) *\(±?([+-]? *[0-9.]+)\)", re.U)
+_mainz_d = re.compile(r"Todesfälle im Landkreis Mainz-Bingen *([0-9.]+)(?: *\(±?([+-]? *[0-9.]+)\))? *, *Todesfälle Stadt Mainz *([0-9.]+)(?: *\(±?([+-]? *[0-9.]+)\))?", re.U)
 
 def mainz(sheets):
     from urllib.parse import urljoin

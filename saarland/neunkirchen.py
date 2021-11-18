@@ -32,5 +32,5 @@ def neunkirchen(sheets):
     update(sheets, 10043, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot", ignore_delta=False)
     return True
 
-schedule.append(Task(16, 30, 23, 55, 900, neunkirchen, 10043))
+schedule.append(Task(16, 0, 23, 55, 900, neunkirchen, 10043))
 if __name__ == '__main__': neunkirchen(googlesheets())

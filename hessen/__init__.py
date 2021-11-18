@@ -1,3 +1,4 @@
+from .dadi import dadi
 from .grossgerau import grossgerau
 from .hersfeld import hersfeld
 from .hochtaunus import hochtaunus

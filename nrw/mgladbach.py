@@ -13,7 +13,7 @@ def mgladbach(sheets):
     main = soup.find(class_="main").find(class_="panel")
     text = main.get_text(" ").strip()
     #print(text)
-    if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Mönchengladbach noch alt:" + ps[0])
+    if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Mönchengladbach noch alt:" + text.split("\n")[0])
     c, cc = map(force_int, _mgladbach_c.search(text).groups())
     g, gg = map(force_int, _mgladbach_g.search(text).groups())
     q, qq = map(force_int, _mgladbach_q.search(text).groups())
