@@ -16,10 +16,10 @@ def offenbach(sheets):
     if not today().strftime("Stand: %d. %B %Y") in text: raise NotYetAvailableException("Offenbach noch alt.")
     c = force_int(_offenbach_c.search(text).group(1))
     d = force_int(_offenbach_d.search(text).group(1))
-    g = force_int(_offenbach_g.search(text).group(1))
+    g = force_int(_offenbach_g.search(text).group(1)) if _offenbach_g.search(text) else None
     s, i = map(force_int, _offenbach_si.search(text).groups())
     update(sheets, 6413, c=c, g=g, d=d, s=s, i=i, sig="Bot")
     return True
 
-schedule.append(Task(10, 0, 13, 35, 360, offenbach, 6413))
+schedule.append(Task(10, 0, 14, 35, 360, offenbach, 6413))
 if __name__ == '__main__': offenbach(googlesheets())

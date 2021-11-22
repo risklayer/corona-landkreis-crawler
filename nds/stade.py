@@ -7,7 +7,7 @@ _stade_g = re.compile(r"Genesene: *([0-9.]+) *\(\+?(-? *[0-9.]+|unverändert)\)"
 _stade_d = re.compile(r"Verstorbene: *([0-9.]+) *\(\+?(-? *[0-9.]+|unverändert)\)")
 _stade_q = re.compile(r"Quarantäne: *([0-9.]+)")
 _stade_si = re.compile(r"([0-9.]+) *\((?:[0-9.+-]+|unverändert)\) stationär, davon ([0-9.]+) *\((?:[0-9.+-]+|unverändert)\) *Patient")
-_stade_st = re.compile(r"Stand (\d\d\.\d\d\.20\d\d) / (\d\d:\d\d) *Uhr")
+_stade_st = re.compile(r"Stand (\d\d\.\d\d\.20\d\d) / (\d\d?:\d\d) *Uhr")
 
 def stade(sheets):
     soup = get_soup("https://www.landkreis-stade.de/corona")
@@ -24,5 +24,5 @@ def stade(sheets):
     update(sheets, 3359, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, date=date, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(9, 30, 12, 35, 360, stade, 3359))
+schedule.append(Task(9, 30, 14, 35, 360, stade, 3359))
 if __name__ == '__main__': stade(googlesheets())

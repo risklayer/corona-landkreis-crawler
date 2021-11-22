@@ -19,8 +19,8 @@ def mainz(sheets):
     cb, ccb, cm, ccm = map(force_int, _mainz_c.search(text).groups())
     gb, ggb, gm, ggm = map(force_int, _mainz_g.search(text).groups())
     db, ddb, dm, ddm = map(force_int, _mainz_d.search(text).groups())
-    update(sheets, 7315, c=cm, cc=ccm, d=dm, dd=ddm, g=gm, gg=ggm, sig="Bot", ignore_delta="mon") # Mainz
-    update(sheets, 7339, c=cb, cc=ccb, d=db, dd=ddb, g=gb, gg=ggb, sig="Bot", ignore_delta="mon") # Mainz-Bingen
+    update(sheets, 7315, c=cm, cc=ccm, d=dm, dd=ddm, g=gm, gg=ggm, sig="Bot", ignore_delta=True) # Mainz
+    update(sheets, 7339, c=cb, cc=ccb, d=db, dd=ddb, g=gb, gg=ggb, sig="Bot", ignore_delta=True) # Mainz-Bingen
     return True
 
 schedule.append(Task(13, 30, 17, 35, 600, mainz, 7339))

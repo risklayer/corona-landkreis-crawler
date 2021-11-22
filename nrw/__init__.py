@@ -24,7 +24,8 @@ from .minden import minden
 from .muelheim import muelheim
 from .muenster import muenster
 from .oberhausen import oberhausen
-from .obk import obk
+from .obk import obk # Tabelle
+from .obk2 import obk2 # PM
 from .paderborn import paderborn
 from .rbk import rbk # dashboard
 from .rbk2 import rbk2 # PM

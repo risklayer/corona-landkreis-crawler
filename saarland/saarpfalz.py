@@ -1,21 +1,20 @@
 #!/usr/bin/python3
 from botbase import *
 
-_saarpfalz_c = re.compile(r"infizierten? Personen: *([0-9.]+)")
+_saarpfalz_c = re.compile(r"infizierten? Personen:\s*([0-9.]+)", re.U)
 _saarpfalz_cc = re.compile(r"Neuinfektionen: *([0-9.]+)")
 _saarpfalz_a = re.compile(r"infiziert:\s*([0-9.]+)", re.U)
 _saarpfalz_g = re.compile(r"Genesene: *([0-9.]+)")
+_saarpfalz_st = re.compile(r"Stand: \w+, (\d+\. \w+), \d+ Uhr")
 
 def saarpfalz(sheets):
     soup = get_soup("https://www.saarpfalz-kreis.de/leben-soziales-gesundheit/gesundheit/coronavirus")
-    content = soup.find(id="Item.MessagePartBody")
+    content = soup.find("article").find("section")
     text = content.get_text(" ").strip()
     #print(text)
-    ps = [x.get_text(" ") for x in content.findAll("p")]
-    #for p in ps: print(p)
-    stand = [p for p in ps if "Stand:" in p][0]
-    #print(stand, today().strftime("%-d. %B"))
-    if not today().strftime("%-d. %B") in stand: raise NotYetAvailableException("Saarpfalz noch alt: "+stand)
+    date = _saarpfalz_st.search(text)
+    date = date.group(1) if date else text[:100]
+    check_date(date, "Saarpfalz")
     c = force_int(_saarpfalz_c.search(text).group(1))
     a = force_int(_saarpfalz_a.search(text).group(1))
     cc = force_int(_saarpfalz_cc.search(text).group(1))
