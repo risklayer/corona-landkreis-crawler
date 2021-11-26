@@ -24,8 +24,8 @@ def oberhausen(sheets):
             text = ""
     text = text.strip()
     #print(text)
-    #print(today().strftime("%-d. %B %Y"))
-    if not today().strftime("%-d. %B") in text: raise NotYetAvailableException("Oberhausen noch alt: "+text.split("\n")[0])
+    #print(today().strftime("%A, %-d. %B %Y"))
+    if not today().strftime("Aktuelle Informationen von %A, %-d. %B") in text: raise NotYetAvailableException("Oberhausen noch alt: "+text.split("\n")[0])
     c, cc = map(force_int, _oberhausen_c.search(text).groups())
     d, dd = map(force_int, _oberhausen_d.search(text).groups())
     g, gg = map(force_int, _oberhausen_g.search(text).groups())

@@ -18,4 +18,4 @@ from .muenchenlk import muenchenlk
 from .nea import nea
 from .neuburg import neuburg
 from .tirschenreuth import tirschenreuth
-
+from .traunstein import traunstein

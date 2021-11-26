@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from botbase import *
 
-_stormarn_c = re.compile(r"bestätigten COVID-19-Fälle von *([0-9.]+)")
+_stormarn_c = re.compile(r"(?:bestätigten|erfassten) COVID-19-Fälle (?:\w+ )+([0-9.]+)")
 _stormarn_cc = re.compile(r"([0-9.]+) Neuinfektionen")
-_stormarn_g = re.compile(r"([0-9.]+) Personen gelten als genesen")
+_stormarn_g = re.compile(r"([0-9.]+) Personen gelten (?:\w+ )*als genesen")
 _stormarn_d = re.compile(r"([0-9.]+) Personen sind (?:somit )?verstorben")
 _stormarn_dd = re.compile(r"([0-9.]+) weitere Personen verstorben")
 
@@ -19,7 +19,7 @@ def stormarn(sheets):
         cur = cur.next_sibling
         if isinstance(cur, bs4.Tag) and cur.name == "h4": break
     text = text.strip()
-    #print(text)
+    print(text)
     c = force_int(_stormarn_c.search(text).group(1))
     cc = force_int(_stormarn_c.search(text).group(1))
     g = force_int(_stormarn_g.search(text).group(1))

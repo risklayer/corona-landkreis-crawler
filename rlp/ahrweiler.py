@@ -9,7 +9,7 @@ def ahrweiler(sheets):
     soup = get_soup("https://kreis-ahrweiler.de/spezial/wichtige-informationen-zum-coronavirus/aktuelle-fallzahlen-im-landkreis-ahrweiler/")
     main = soup.find(id="postArticleHero")
     t = main.get_text(" ")
-    print(t)
+    #print(t)
     inam = main.find("figure").find("img")["src"]
     if not today().strftime("%d.%m.%Y") in inam: raise NotYetAvailableException("Ahrweiler noch alt:" + inam)
     c = force_int(_ahrweiler_c.search(t).group(1))

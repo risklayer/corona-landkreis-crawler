@@ -109,11 +109,13 @@ def update(sheets, ags,
         print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
         do_apply = False
     #if not without_c and do_apply and cc is None and c < int(row[0]): do_apply = False
-    if sig != "" and sig in row[17]: return # schon von Bot kommentiert
+    if sig != "" and sig+" C" in row[17]: return # schon von Bot kommentiert
     if do_apply:
         reqs = list()
         if not without_c and c != int(prev[0]) and c != int(row[7]) and (cc is not None or c > int(prev[0])):
             reqs.append({"range": "Haupt!K%d" % rownr, "values": [[c]]})
+        else:
+            if sig == "Vorläufig" and row[15] == "RKI": sig = row[15]
         #elif c is not None: comment=comment.replace(strs[0], "(%s)" % strs[0])
         if d is not None and d != int(prev[2]) and d != force_int(row[12]) and (dd is not None or d > int(prev[2])):
             reqs.append({"range": "Haupt!P%d" % rownr, "values": [[d]]})

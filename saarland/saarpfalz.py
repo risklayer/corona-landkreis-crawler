@@ -16,11 +16,12 @@ def saarpfalz(sheets):
     date = date.group(1) if date else text[:100]
     check_date(date, "Saarpfalz")
     c = force_int(_saarpfalz_c.search(text).group(1))
-    a = force_int(_saarpfalz_a.search(text).group(1))
+    a = force_int(_saarpfalz_a.search(text).group(1)) if _saarpfalz_a.search(text) else None
     cc = force_int(_saarpfalz_cc.search(text).group(1))
-    g = force_int(_saarpfalz_g.search(text).group(1))
-    d = c - g - a
-    update(sheets, 10045, c=c, cc=cc, d=d, g=g, sig="Bot", ignore_delta="mon")
+    g = force_int(_saarpfalz_g.search(text).group(1)) if _saarpfalz_g.search(text) else None
+    d = c - g - a if a and g else None
+    com = "Bot" if d else "Bot unvollständig"
+    update(sheets, 10045, c=c, cc=cc, d=d, g=g, sig="Bot", comment=com, ignore_delta="mon")
     return True
 
 schedule.append(Task(14, 30, 17, 35, 600, saarpfalz, 10045))

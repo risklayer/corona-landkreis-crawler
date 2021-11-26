@@ -24,8 +24,8 @@ def bamberg(sheets):
     c_s, cc_s = map(force_int, rows[7][1:])
     assert "Landkreis Bamberg" in rows[8][0]
     c_l, cc_l = map(force_int, rows[8][1:])
-    update(sheets, 9461, c=c_s, cc=cc_s, date=date, sig="Bot", comment="Bot nur C A"+str(a_s), ignore_delta="mon") # SK
-    update(sheets, 9471, c=c_l, cc=cc_l, date=date, sig="Bot", comment="Bot nur C A"+str(a_l), ignore_delta="mon") # LK
+    update(sheets, 9461, c=c_s, cc=cc_s, date=date, sig=str(a_s), comment="Bot nur C A"+str(a_s), ignore_delta="mon") # SK
+    update(sheets, 9471, c=c_l, cc=cc_l, date=date, sig=str(a_l), comment="Bot nur C A"+str(a_l), ignore_delta="mon") # LK
     return True
 
 schedule.append(Task(14, 30, 16, 35, 360, bamberg, 9471))

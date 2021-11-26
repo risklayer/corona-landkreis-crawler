@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 from botbase import *
 
-_vogelsberg_cc = re.compile(r"([0-9.]+) neue Fälle")
-_vogelsberg_gg = re.compile(r"([0-9.]+) Menschen haben sich bei der Behörde als genesen")
+_vogelsberg_cc = re.compile(r"([0-9.]+) (?:neue Fälle|Neuinfektionen)")
+_vogelsberg_gg = re.compile(r"([0-9.]+) Menschen (?:\w+ )*als genesen", re.U)
 _vogelsberg_c = re.compile(r"Fälle gesamt: ([0-9.]+)")
 _vogelsberg_g = re.compile(r"Genesene: ([0-9.]+)")
 _vogelsberg_d = re.compile(r"Verstorbene: ([0-9.]+)")
@@ -17,7 +17,7 @@ def vogelsberg(sheets):
     print("Getting", link)
     soup = get_soup(link)
     text = soup.find("main").find(class_="id-content").get_text(" ").strip()
-    #print(text)
+    # print(text)
     cc = force_int(_vogelsberg_cc.search(text).group(1))
     c = force_int(_vogelsberg_c.search(text).group(1))
     gg = force_int(_vogelsberg_gg.search(text).group(1))

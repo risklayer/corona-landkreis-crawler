@@ -35,8 +35,8 @@ def ansbach(sheets):
     #print(argss, argsl)
     assert "c" in argsl and "d" in argsl and "g" in argsl
     assert "c" in argss and "d" in argss and "g" in argss
-    update(sheets, 9561, **argss, sig="Bot")
-    update(sheets, 9571, **argsl, sig="Bot")
+    update(sheets, 9561, **argss, sig="Bot", ignore_delta=True)
+    update(sheets, 9571, **argsl, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(12, 33, 15, 35, 600, ansbach, 9571))

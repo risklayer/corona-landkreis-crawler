@@ -9,5 +9,6 @@ from .odenwaldkreis import odenwaldkreis
 from .offenbach import offenbach
 from .schwalmeder import schwalmeder
 from .vogelsberg import vogelsberg
+from .werrameissner import werrameissner
 from .wetterau import wetterau
 from .wiesbaden import wiesbaden
