@@ -3,6 +3,7 @@ from .albdonauulm import albdonauulm
 from .biberach import biberach
 from .bodensee import bodensee
 from .breisgaufreiburg import breisgaufreiburg
+from .emmendingen import emmendingen
 from .esslingen import esslingen
 from .goeppingen import goeppingen
 from .heidelbergrnk import heidelbergrnk

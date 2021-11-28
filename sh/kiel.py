@@ -28,7 +28,7 @@ def kiel(sheets):
     d_groups = _kiel_d.search(teaser)
     if d_groups: args["d"] = force_int(d_groups.group(1))
     #print(args)
-    update(sheets, 1002, **args, sig="Bot")
+    update(sheets, 1002, **args, sig="", comment="Später Land! Bot")
     return True
 
 schedule.append(Task(15, 00, 17, 00, 360, kiel, 1002))
