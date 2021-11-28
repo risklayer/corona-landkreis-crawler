@@ -28,17 +28,22 @@ def get_ags(sheets):
         _agsmap[int(row[2])] = (i + 6, row[0])
     return _agsmap
 
+_signcache = None
 def is_signed(sheets, ags):
     """Check if a row is already signed. We need to sleep a bit here, to avoid triggering Google rate limits."""
     ags = int(ags)
     rownr = get_ags(sheets)[ags][0]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
+    global _signcache
+    if _signcache:
+        v = _signcache[rownr - 6]
+        if v is not None and v != "" and v.lower() != "vorläufig" and v != "nn": return v
     import time
     time.sleep(.5)
-    result = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!S%d" % rownr).execute()
-    values = result.get('values', [])
-    if not values: return None # empty, this is okay.
-    v = values[0][0]
+    values = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!S6:S406").execute().get('values', [])
+    _signcache = [(row[0] if len(row) > 0 else None) for row in values]
+    #print(_signcache, len(_signcache))
+    v = _signcache[rownr - 6]
     if v is None or v == "" or v.lower() == "vorläufig" or v == "nn": return None
     return v
 
@@ -65,7 +70,7 @@ def fetch_rows(sheets, batch):
     values = data.get('values')
     return [ values[x-minrow] for x in rownrs ]
 
-_rkire = re.compile(r"D\d+\([0-9=]+\) RKI")
+_rkire = re.compile(r"D\d+\([+-]?[0-9=]+\) RKI")
 
 def update(sheets, ags,
     c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None,
@@ -130,8 +135,9 @@ def update(sheets, ags,
         #comment=comment.replace(")) (", ") ")
         reqs.append({"range": "Haupt!Q%d" % rownr, "values":[[date]]})
         reqs.append({"range": "Haupt!S%d" % rownr, "values":[[sig]]})
-        v = comment + " " + _stripbot.sub("",row[17]) if row[17] is not None and row[17] != "" and not row[17].startswith("Zwischenstand") else comment
-        reqs.append({"range": "Haupt!U%d" % rownr, "values":[[v]]})
+        if not comment in row[17]:
+            v = comment + " " + _stripbot.sub("",row[17]) if row[17] is not None and row[17] != "" and not row[17].startswith("Zwischenstand") else comment
+            reqs.append({"range": "Haupt!U%d" % rownr, "values":[[v]]})
         reqs.append({"range": "Haupt!V%d" % rownr, "values":[[""]]})
         if dry_run:
             print(*reqs, sep="\n")
@@ -142,6 +148,7 @@ def update(sheets, ags,
             do_batch(sheets, reqs)
         return
     if do_apply or row[17] is None or row[17] == "" or _rkire.match(row[17]): # or row is RKI pattern!
+        if comment in row[17]: return
         v = comment + " " + _stripbot.sub("",row[17]) if row[17] is not None and row[17] != "" else comment
         if batch is not None:
             batch.append({"range":"Haupt!U%d" % rownr, "values":[["("+v+")"]]})

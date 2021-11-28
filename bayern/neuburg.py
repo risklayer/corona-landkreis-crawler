@@ -25,7 +25,7 @@ def neuburg(sheets):
     assert "Kreiskrankenhaus" in rows[7][2]
     assert "KJF Klinik" in rows[8][1]
     s = force_int(rows[7][1]) + force_int(rows[8][0])
-    update(sheets, 9185, c=c, cc=cc, d=d, g=g, gg=gg, s=s, sig="Bot", comment="Bot ohne I", ignore_delta="mon")
+    update(sheets, 9185, c=c, cc=cc, d=d, g=g, gg=gg, s=s, sig="Bot", comment="Bot ohne I", ignore_delta=True)
     return True
 
 schedule.append(Task(12, 30, 16, 35, 360, neuburg, 9185))

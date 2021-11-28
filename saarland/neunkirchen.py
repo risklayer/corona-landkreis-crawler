@@ -3,7 +3,7 @@ from botbase import *
 
 # Beware: this site uses plenty of non-breaking spaces
 _neunkirchen_cc = re.compile(r"gibt\ses\s+([0-9.]+|\w+)\s+weitere", re.U)
-_neunkirchen_c = re.compile(r"insgesamt\salso\s(?:weiter\s)?\s*([0-9.]+)\s+positive", re.U)
+_neunkirchen_c = re.compile(r"insgesamt\salso\s(?:weiter\w+\s)?\s*([0-9.]+)\s+positive", re.U)
 _neunkirchen_d = re.compile(r"\s+([0-9.]+)\s+Covid-19-Todesfälle", re.U)
 _neunkirchen_g = re.compile(r"können\s+([0-9.]+)\s*Personen\s[^\s]*\s*als\sgeheilt", re.U)
 _neunkirchen_gg = re.compile(r"können\s+[0-9.]+\s*Personen\s+\(([+-]*[0-9]+)\)\s+als\sgeheilt", re.U)

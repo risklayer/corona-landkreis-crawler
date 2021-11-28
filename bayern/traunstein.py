@@ -6,7 +6,7 @@ _traunstein_c = re.compile(r"insgesamt ([0-9.]+) bestätigte Fälle")
 _traunstein_g = re.compile(r"genesen gelten mindestens ([0-9.]+) Personen \(([0-9.]+) Personen mehr")
 _traunstein_d = re.compile(r"insgesamt ([0-9.]+) Todesfälle")
 _traunstein_dd = re.compile(r"seit (?:\w+ )*([0-9.]+|\w+) Todesmeldungen")
-_traunstein_si = re.compile(r"([0-9.]+) auf der Normalstation und ([0-9.]+) auf der Intensivstation.")
+#_traunstein_si = re.compile(r"([0-9.]+) auf der Normalstation und ([0-9.]+) auf der Intensivstation.")
 
 def traunstein(sheets):
     soup = get_soup("https://www.traunstein.com/aktuelles")
@@ -24,9 +24,9 @@ def traunstein(sheets):
     g, gg = map(force_int, _traunstein_g.search(text).groups())
     d = force_int(_traunstein_d.search(text).group(1))
     dd = force_int(_traunstein_dd.search(text).group(1)) if _traunstein_dd.search(text) else None
-    s, i = map(force_int, _traunstein_si.search(text).groups())
-    s += i
-    update(sheets, 9189, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, s=s, i=i)
+    #s, i = map(force_int, _traunstein_si.search(text).groups())
+    #s += i
+    update(sheets, 9189, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, comment="Bot ohne SI")
     return True
 
 schedule.append(Task(14, 0, 16, 35, 360, traunstein, 9189))
