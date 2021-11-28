@@ -30,8 +30,11 @@ def oberhausen(sheets):
     d, dd = map(force_int, _oberhausen_d.search(text).groups())
     g, gg = map(force_int, _oberhausen_g.search(text).groups())
     q = force_int(_oberhausen_q.search(text).group(1))
-    s = force_int(_oberhausen_s.search(text).group(1))
-    i = force_int(_oberhausen_i.search(text).group(1))
+    s, i = None, None
+    try:
+        s = force_int(_oberhausen_s.search(text).group(1))
+        i = force_int(_oberhausen_i.search(text).group(1))
+    except: pass
     cc, dd, gg = c - cc, d - dd, g - gg
     update(sheets, 5119, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, sig="Bot")
     return True

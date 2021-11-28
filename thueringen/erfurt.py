@@ -16,7 +16,10 @@ def erfurt(sheets):
     c = force_int(_erfurt_c.search(text).group(1))
     cc = force_int(_erfurt_cc.search(text).group(1))
     d = force_int(_erfurt_d.search(text).group(1))
-    g = force_int(_erfurt_g.search(text).group(1))
+    g = None # nicht am WE
+    try:
+        g = force_int(_erfurt_g.search(text).group(1))
+    except: pass
     update(sheets, 16051, c=c, cc=cc, d=d, g=g, sig="Bot", date=date)
     return True
 
