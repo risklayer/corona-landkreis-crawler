@@ -25,5 +25,5 @@ def stwendel(sheets):
     update(sheets, 10046, **args, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(15, 30, 20, 35, 360, stwendel, 10046))
+schedule.append(Task(15, 6, 20, 35, 360, stwendel, 10046))
 if __name__ == '__main__': stwendel(googlesheets())

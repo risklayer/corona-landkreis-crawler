@@ -29,18 +29,18 @@ def ammerland(sheets):
     infection_data = infection_table.tbody.find_all("tr")[9]  # erste Tabelle
     quar_data = quar_table.tbody.find_all("tr")[3]  # zweite Tabelle
 
-    args["g"] = force_int(infection_data.find_all("td")[1].text.strip())
-    args["cc"] = force_int(infection_data.find_all("td")[3].text.strip())
-    aktuell = force_int(infection_data.find_all("td")[4].text.strip())
+    g = force_int(infection_data.find_all("td")[1].text.strip())
+    cc = force_int(infection_data.find_all("td")[3].text.strip())
+    a = force_int(infection_data.find_all("td")[4].text.strip())
 
     temp = quar_data.find_all("td")[-1]
-    args["q"] = force_int(temp.text.strip()) + aktuell
-    args["d"] = force_int(_ammerland_d.search(temp.findNext("p").findNext("p").text).group(1))
+    q = force_int(temp.text.strip()) + a
+    d = force_int(_ammerland_d.search(temp.findNext("p").findNext("p").text).group(1))
 
-    args["c"] = aktuell + args["g"] + args["d"]
+    c = a + g + d
 
     #print(args)
-    update(sheets, 3451, **args, sig="Bot")
+    update(sheets, 3451, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(14, 30, 16, 30, 360, ammerland, 3451))

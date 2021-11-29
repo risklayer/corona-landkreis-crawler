@@ -25,5 +25,5 @@ def kleve(sheets):
     update(sheets, 5154, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(13, 30, 15, 35, 600, kleve, 5154))
+schedule.append(Task(12, 0, 15, 35, 600, kleve, 5154))
 if __name__ == '__main__': kleve(googlesheets())

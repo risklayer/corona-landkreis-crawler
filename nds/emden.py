@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 from botbase import *
 
-_emden_cc = re.compile(r"haben\swir\s+([0-9.]+|\w+)\s+(?:Corona-)?Neuinfektion(?:en)?")
-_emden = re.compile(r"([0-9.]+)\sPersonen,\svon\sdenen\s*([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\)\sPersonen\sgenesen\sund\s([0-9.]+)\sPersonen\sverstorben")
+_emden_cc = re.compile(r"ha\w+en\swir\s+([0-9.]+|\w+)\s+(?:Corona-)?Neuinfektion(?:en)?")
+_emden = re.compile(r"([0-9.]+)\sPersonen,\svon\sdenen\s*([0-9.]+)\s\(\+?(-?\s*[0-9.]+)\)\sPersonen\sgenesen\sund\s([0-9.]+)\s(?:\(\+?(-?\s*[0-9.]+)\)\s)?Personen\sverstorben")
 _emden_q = re.compile(r"in\sQuarantäne\sbefindlichen\sPersonen\sbeträgt\s([0-9.]+)")
 
 def emden(sheets):
@@ -18,10 +18,10 @@ def emden(sheets):
     soup = get_soup(url)
     text = "\n".join(p.get_text(" ") for p in soup.find(itemprop="articleBody").findAll("p"))
     #print(text)
-    c, g, gg, d = map(force_int, _emden.search(text).groups())
+    c, g, gg, d, dd = map(force_int, _emden.search(text).groups())
     cc = force_int(_emden_cc.search(text).group(1))
     q = force_int(_emden_q.search(text).group(1))
-    update(sheets, 3402, c=c, cc=cc, d=d, g=g, q=q, sig="Bot", ignore_delta=True)
+    update(sheets, 3402, c=c, cc=cc, d=d, dd=dd, g=g, q=q, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(9, 30, 13, 35, 360, emden, 3402))

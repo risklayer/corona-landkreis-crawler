@@ -20,7 +20,7 @@ def dadi(sheets):
     dd = force_int(m.group(1)) if m else None
     assert "gesund" in rows[0][4]
     g = force_int(_dadi2.match(rows[1][4]).group(1))
-    update(sheets, 6432, c=c, cc=cc, g=g, d=d, dd=dd, sig="Bot", comment="Bot ohne SI", ignore_delta=False)
+    update(sheets, 6432, c=c, cc=cc, g=g, d=d, dd=dd, sig="Bot", comment="Bot ohne SI", ignore_delta="mon")
     return True
 
 schedule.append(Task(17, 00, 18, 50, 360, dadi, 6432))

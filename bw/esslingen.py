@@ -22,5 +22,5 @@ def esslingen(sheets):
     update(sheets, 8116, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", ignore_delta=today().weekday()==0) # ignore am Montag würde reichen
     return True
 
-schedule.append(Task(9, 00, 10, 30, 300, esslingen, 8116))
+schedule.append(Task(9, 00, 12, 30, 300, esslingen, 8116))
 if __name__ == '__main__': esslingen(googlesheets())

@@ -3,7 +3,7 @@ from botbase import *
 
 _odenwaldkreis_st = re.compile(r"[Aa]m (?:\w+ \()?(\d\d?\. \w+)\)?")
 _odenwaldkreis_c = re.compile(r"um ([0-9.]+|\w+) auf ([0-9]+\.[0-9]{3})")
-_odenwaldkreis_c2 = re.compile(r"([0-9.]+) neue positive Corona-Testergebnisse \(Gesamt ([0-9.]+)\)")
+_odenwaldkreis_c2 = re.compile(r"([0-9.]+|\w+) neue positive Corona-Testergebnisse \(Gesamt ([0-9.]+)\)")
 _odenwaldkreis_g = re.compile(r"[Gg]elten ([0-9.]+) Personen als genesen(?: – ([0-9.]+|\w) mehr als am Vortag)?")
 _odenwaldkreis_g2 = re.compile(r"([0-9.]+|\w+) weitere Persone?n? (?:sind|gelten als) genesen(?: \(\w+esamt ([0-9.]+|\w))?")
 _odenwaldkreis_d1 = re.compile(r"Zahl der (?:Todesfälle|[Vv]erstorb\w+) (?:\w+\s+)+\(?([0-9.]+)\)?")
@@ -12,7 +12,7 @@ _odenwaldkreis_si = re.compile(r"aktuell ([0-9.]+|\w+) Patienten behandelt, davo
 
 def odenwaldkreis(sheets):
     soup = get_soup("https://www.odenwaldkreis.de/index.php?id=154")
-    li = next(x for x in soup.find(id="main").findAll(class_="news-list-item") if "Die Zahl der positiven" in x.get_text() or "Inzidenz" in x.get_text() or "Neuinfektion" in x.get_text() or "Gesamtzahl" in x.get_text())
+    li = next(x for x in soup.find(id="main").findAll(class_="news-list-item") if "Die Zahl der positiven" in x.get_text() or "Inzidenz" in x.get_text() or "Neuinfektion" in x.get_text() or "Gesamtzahl" in x.get_text() or "Corona-Testergebnisse" in x.get_text())
     #print(li.get_text())
     m = _odenwaldkreis_st.search(li.get_text())
     check_date(m.group(1) if m else li.get_text()[:60], "Odenwaldkreis", datetime.timedelta(1))

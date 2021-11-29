@@ -24,5 +24,5 @@ def wetterau(sheets):
     update(sheets, 6440, c=c, cc=cc, sig=str(a), comment="Bot ohne DG aktiv: "+str(a), ignore_delta=True)
     return True
 
-schedule.append(Task(12, 0, 14, 35, 360, wetterau, 6440))
+schedule.append(Task(12, 0, 15, 35, 360, wetterau, 6440))
 if __name__ == '__main__': wetterau(googlesheets())

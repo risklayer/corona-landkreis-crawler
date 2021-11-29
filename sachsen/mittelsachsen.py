@@ -20,5 +20,5 @@ def mittelsachsen(sheets):
     update(sheets, 14522, c=c, d=d, s=s, i=i, sig="Bot")
     return True
 
-schedule.append(Task(12, 00, 13, 35, 360, mittelsachsen, 14522))
+schedule.append(Task(12, 00, 14, 35, 360, mittelsachsen, 14522))
 if __name__ == '__main__': mittelsachsen(googlesheets())

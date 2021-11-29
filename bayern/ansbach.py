@@ -39,5 +39,5 @@ def ansbach(sheets):
     update(sheets, 9571, **argsl, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(12, 33, 15, 35, 600, ansbach, 9571))
+schedule.append(Task(12, 7, 15, 35, 600, ansbach, 9571))
 if __name__ == '__main__': ansbach(googlesheets())

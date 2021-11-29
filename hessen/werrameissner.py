@@ -28,5 +28,5 @@ def werrameissner(sheets):
     update(sheets, 6636, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, comment="Bot beta")
     return True
 
-schedule.append(Task(10, 30, 13, 35, 600, werrameissner, 6636))
+schedule.append(Task(10, 7, 13, 35, 600, werrameissner, 6636))
 if __name__ == '__main__': werrameissner(googlesheets())

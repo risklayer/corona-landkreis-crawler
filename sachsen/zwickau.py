@@ -24,5 +24,5 @@ def zwickau(sheets):
     update(sheets, 14524, c=c, cc=cc, d=d, dd=dd, g=g, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(11, 50, 13, 35, 360, zwickau, 14524))
+schedule.append(Task(11, 50, 15, 35, 360, zwickau, 14524))
 if __name__ == '__main__': zwickau(googlesheets())

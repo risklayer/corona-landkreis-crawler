@@ -26,7 +26,7 @@ def traunstein(sheets):
     dd = force_int(_traunstein_dd.search(text).group(1)) if _traunstein_dd.search(text) else None
     #s, i = map(force_int, _traunstein_si.search(text).groups())
     #s += i
-    update(sheets, 9189, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, comment="Bot ohne SI")
+    update(sheets, 9189, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, comment="Bot ohne SI", ignore_delta="mon")
     return True
 
 schedule.append(Task(14, 0, 16, 35, 360, traunstein, 9189))
