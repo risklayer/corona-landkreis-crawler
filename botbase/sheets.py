@@ -29,21 +29,25 @@ def get_ags(sheets):
     return _agsmap
 
 _signcache = None
+_signcacheexpire = None
 def is_signed(sheets, ags):
     """Check if a row is already signed. We need to sleep a bit here, to avoid triggering Google rate limits."""
+    import time
     ags = int(ags)
     rownr = get_ags(sheets)[ags][0]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
-    global _signcache
-    if _signcache:
-        v = _signcache[rownr - 6]
+    global _signcache, _signcacheexpire
+    if _signcache and _signcacheexpire > time.time():
+        v = _signcache[rownr - 6] if rownr - 6 < len(_signcache) else None # trailing empty cells are not returned by google
         if v is not None and v != "" and v.lower() != "vorläufig" and v != "nn": return v
     import time
     time.sleep(.5)
-    values = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!S6:S406").execute().get('values', [])
+    values = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!S6:S406").execute()
+    values = values.get('values', [])
     _signcache = [(row[0] if len(row) > 0 else None) for row in values]
-    #print(_signcache, len(_signcache))
-    v = _signcache[rownr - 6]
+    _signcacheexpire = time.time() + 600 # cache only 10 minutes, not to the next day.
+    #print("Cache size:", len(_signcache))
+    v = _signcache[rownr - 6] if rownr - 6 < len(_signcache) else None # trailing empty cells are not returned by google
     if v is None or v == "" or v.lower() == "vorläufig" or v == "nn": return None
     return v
 

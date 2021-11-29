@@ -28,5 +28,5 @@ def obk2(sheets):
     update(sheets, 5374, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i)
     return True
 
-schedule.append(Task(9, 30, 13, 35, 600, obk2, 5374))
+schedule.append(Task(9, 12, 13, 35, 600, obk2, 5374))
 if __name__ == '__main__': obk2(googlesheets())

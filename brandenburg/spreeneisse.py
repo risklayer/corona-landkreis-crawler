@@ -21,5 +21,5 @@ def spreeneisse(sheets):
     update(sheets, 12071, c=c, cc=cc, d=d, g=g, q=q, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(10, 2, 13, 35, 600, spreeneisse, 12071))
+schedule.append(Task(9, 33, 13, 35, 600, spreeneisse, 12071))
 if __name__ == '__main__': spreeneisse(googlesheets())

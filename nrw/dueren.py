@@ -12,5 +12,5 @@ def dueren(sheets):
     update(sheets, 5358, c=c, cc=cc, g=g, d=d, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(10, 45, 13, 10, 300, dueren, 5358))
+schedule.append(Task(9, 30, 13, 10, 300, dueren, 5358))
 if __name__ == '__main__': dueren(googlesheets())

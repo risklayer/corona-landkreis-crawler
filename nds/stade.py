@@ -24,5 +24,5 @@ def stade(sheets):
     update(sheets, 3359, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, date=date, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(9, 30, 14, 35, 360, stade, 3359))
+schedule.append(Task(9, 15, 14, 35, 360, stade, 3359))
 if __name__ == '__main__': stade(googlesheets())

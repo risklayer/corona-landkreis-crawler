@@ -11,5 +11,5 @@ def goslar(sheets):
     update(sheets, 3153, c=c, cc=cc, g=g, d=d, sig="Bot")
     return True
 
-schedule.append(Task(11, 15, 13, 30, 360, goslar, 3153))
+schedule.append(Task(9, 15, 13, 30, 360, goslar, 3153))
 if __name__ == '__main__': goslar(googlesheets())
