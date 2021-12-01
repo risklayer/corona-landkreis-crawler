@@ -6,10 +6,13 @@ _muenster_g = re.compile(r"([0-9.]+) +\(\+? *([-0-9.]+)\) [A-Za-z ]*?wieder gene
 _muenster_d = re.compile(r"([0-9.]+) +[A-Za-z ]*?storben")
 
 def muenster(sheets):
+    import locale
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.muenster.de/corona_entwicklung.html")
     main = soup.find("main")
     p = main.find("li").get_text(" ")
     #print(p)
+    #date = check_date(p.split(":")[0], "Münster")
     if not today().strftime("%-d. %B") in p: raise NotYetAvailableException("Münster noch alt:" + p)
     c, cc = map(force_int, _muenster_c.search(p).groups())
     g, gg = map(force_int, _muenster_g.search(p).groups())

@@ -19,5 +19,5 @@ def bodensee(sheets):
     update(sheets, 8435, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, i=i, sig="", comment="C Land noch", date=date, ignore_delta=True, without_c=True)
     return True
 
-schedule.append(Task(16, 30, 18, 30, 360, bodensee, 8435))
+schedule.append(Task(9, 30, 18, 30, 360, bodensee, 8435))
 if __name__ == '__main__': bodensee(googlesheets())

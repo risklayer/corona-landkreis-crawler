@@ -27,5 +27,5 @@ def bayreuth(sheets):
     update(sheets, 9472, c=cl, cc=ccl, d=dl, g=gl, sig="Bot", ignore_delta=True) # LK
     return True
 
-schedule.append(Task(10, 2, 12, 35, 600, bayreuth, 9472))
+schedule.append(Task(9, 2, 12, 35, 600, bayreuth, 9472))
 if __name__ == '__main__': bayreuth(googlesheets())

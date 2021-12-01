@@ -4,6 +4,7 @@ from botbase import *
 _miltenberg_c = re.compile(r"Coronavirus-Infektionen beläuft sich auf ([0-9.]+) Fälle")
 _miltenberg_cc = re.compile(r"([0-9.]+) Neuinfektionen")
 _miltenberg_d = re.compile(r"gab (?:bisher )?([0-9.]+) Todesfälle")
+_miltenberg_d2 = re.compile(r"Todesfälle auf ([0-9.]+)\.")
 _miltenberg_a = re.compile(r"Aktuell befinden sich ([0-9.]+) mit SARS-CoV-2 infizierte")
 _miltenberg_q = re.compile(r"([0-9.]+) Menschen als Kontaktperson I in Quarantäne")
 _miltenberg_si = re.compile(r"([0-9.]+|\w+) Persone?n? aus dem Landkreis in stationärer Behandlung(?:, davon sind ([0-9.]+|\w+) intensiv)?", re.U)
@@ -24,7 +25,7 @@ def miltenberg(sheets):
     a = force_int(_miltenberg_a.search(text).group(1))
     c = force_int(_miltenberg_c.search(text).group(1))
     cc = force_int(_miltenberg_cc.search(text).group(1))
-    d = force_int(_miltenberg_d.search(text).group(1))
+    d = force_int((_miltenberg_d.search(text) or _miltenberg_d2.search(text)).group(1))
     q = force_int(_miltenberg_q.search(text).group(1))
     g = c - d - a
     q = q + a
@@ -32,5 +33,5 @@ def miltenberg(sheets):
     update(sheets, 9676, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot")
     return True
 
-schedule.append(Task(10, 45, 15, 35, 360, miltenberg, 9676))
+schedule.append(Task(10, 15, 15, 35, 360, miltenberg, 9676))
 if __name__ == '__main__': miltenberg(googlesheets())

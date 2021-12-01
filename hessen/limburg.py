@@ -27,5 +27,5 @@ def limburg(sheets):
     update(sheets, 6533, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i)
     return True
 
-schedule.append(Task(13, 30, 15, 35, 360, limburg, 6533))
+schedule.append(Task(10, 15, 15, 35, 360, limburg, 6533))
 if __name__ == '__main__': limburg(googlesheets())

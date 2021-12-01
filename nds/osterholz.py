@@ -24,5 +24,5 @@ def osterholz(sheets):
     update(sheets, 3356, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(11, 32, 14, 35, 360, osterholz, 3356))
+schedule.append(Task(8, 32, 14, 35, 600, osterholz, 3356))
 if __name__ == '__main__': osterholz(googlesheets())

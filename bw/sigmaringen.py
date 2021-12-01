@@ -13,5 +13,5 @@ def sigmaringen(sheets):
     update(sheets, 8437, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date)
     return True
 
-schedule.append(Task(15, 25, 16, 10, 300, sigmaringen, 8437))
+schedule.append(Task(15, 5, 16, 10, 300, sigmaringen, 8437))
 if __name__ == '__main__': sigmaringen(googlesheets())

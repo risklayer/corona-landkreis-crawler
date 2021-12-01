@@ -14,5 +14,5 @@ def hohenlohe(sheets):
     update(sheets, 8126, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(14, 00, 16, 30, 300, hohenlohe, 8126))
+schedule.append(Task(9, 00, 16, 30, 300, hohenlohe, 8126))
 if __name__ == '__main__': hohenlohe(googlesheets())

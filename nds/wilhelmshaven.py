@@ -23,5 +23,5 @@ def wilhelmshaven(sheets):
     update(sheets, 3405, **args, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(13, 20, 15, 35, 360, wilhelmshaven, 3405))
+schedule.append(Task(13, 9, 15, 35, 360, wilhelmshaven, 3405))
 if __name__ == '__main__': wilhelmshaven(googlesheets())

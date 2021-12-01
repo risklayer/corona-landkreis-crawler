@@ -14,5 +14,5 @@ def mainkinzig(sheets):
     update(sheets, 6435, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(15, 30, 21, 30, 600, mainkinzig, 6435))
+schedule.append(Task(13, 3, 21, 30, 600, mainkinzig, 6435))
 if __name__ == '__main__': mainkinzig(googlesheets())
