@@ -30,7 +30,7 @@ def emmendingen(sheets):
     update(sheets, 8316, **args, sig="Bot")
     return True
 
-schedule.append(Task(15, 45, 17, 45, 360, emmendingen, 8316))
+schedule.append(Task(18, 10, 20, 45, 360, emmendingen, 8316))
 if __name__ == '__main__': emmendingen(googlesheets())
 
 

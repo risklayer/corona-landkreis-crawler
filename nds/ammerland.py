@@ -43,7 +43,7 @@ def ammerland(sheets):
     update(sheets, 3451, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(14, 30, 16, 30, 360, ammerland, 3451))
+schedule.append(Task(15, 40, 17, 25, 360, ammerland, 3451))
 if __name__ == '__main__': ammerland(googlesheets())
 
 
