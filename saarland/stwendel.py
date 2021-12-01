@@ -10,7 +10,7 @@ def stwendel(sheets):
     content = soup.find("main").find("article")
     ps = [p for p in content.find(id="c3085").find_all(text=True) if not p.strip() == ""]
     # for p in ps: print(p)
-    if not today().strftime("%d.%m.") in ps[1]: raise NotYetAvailableException("St. Wendel noch alt: "+ps[1])
+    if not today().strftime("-%d.%m.") in ps[1]: raise NotYetAvailableException("St. Wendel noch alt: "+ps[1])
     args={}
     args["c"] = force_int(content.find(id="c3083").find("tfoot").findAll("td")[-1].text)
     for p in ps:

@@ -19,7 +19,7 @@ def cottbus(sheets):
         if "Covid-Patienten im Carl-Thiem-Klinikum" in row[0]: args["s"], args["i"] = map(force_int, _twonums.search(row[1]).groups())
     #print(args)
     assert "c" in args and "d" in args
-    update(sheets, 12052, **args, sig="Bot")
+    update(sheets, 12052, **args, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(10, 2, 15, 35, 600, cottbus, 12052))

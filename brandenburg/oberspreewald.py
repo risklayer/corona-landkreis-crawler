@@ -26,5 +26,5 @@ def oberspreewald(sheets):
     update(sheets, 12066, **args, sig="Bot")
     return True
 
-schedule.append(Task(10, 2, 12, 35, 600, oberspreewald, 12066))
+schedule.append(Task(9, 2, 12, 35, 600, oberspreewald, 12066))
 if __name__ == '__main__': oberspreewald(googlesheets())

@@ -25,5 +25,5 @@ def landau(sheets):
     update(sheets, 7337, c=c2, d=d2, g=g2, sig="Bot") # Südl. Weinstraße
     return True
 
-schedule.append(Task(13, 30, 17, 35, 600, landau, 7337))
+schedule.append(Task(13, 1, 17, 35, 600, landau, 7337))
 if __name__ == '__main__': landau(googlesheets())

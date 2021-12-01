@@ -4,7 +4,7 @@ from botbase import *
 _segeberg_c = re.compile(r"Gesamtzahl aller bisher nachgewiesenen Infizierten im Kreis beträgt jetzt ([0-9.]+)")
 _segeberg_cc = re.compile(r"([0-9.]+) per PCR-Test nachgewiesene Corona-Neuinfektionen")
 _segeberg_g = re.compile(r"genesen gelten ([0-9.]+)")
-_segeberg_d = re.compile(r"Verstorbenen? an oder mit COVID-19 [^.]* ([0-9.]+)")
+_segeberg_d = re.compile(r"Verstorbenen? an oder mit COVID-[^.]* ([0-9.]+)")
 _segeberg_q = re.compile(r"Quarantäne befinden sich derzeit ([0-9.]+)")
 _segeberg_s = re.compile(r"([0-9.]+|\w+) Personen werden in einer Klinik")
 _segeberg_i = re.compile(r"([0-9.]+|\w+) davon intensivmedizinisch")

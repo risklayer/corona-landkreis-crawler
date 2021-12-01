@@ -12,5 +12,5 @@ def hannover(sheets):
     update(sheets, 3241, c=c, cc=cc, g=g, d=d, sig="Bot", comment="Bot Dashboard", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(11, 55, 14, 30, 300, hannover, 3241))
+schedule.append(Task(8, 55, 14, 30, 600, hannover, 3241))
 if __name__ == '__main__': hannover(googlesheets())

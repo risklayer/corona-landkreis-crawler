@@ -31,5 +31,5 @@ def garmisch(sheets):
     update(sheets, 9180, **args, sig="Bot")
     return True
 
-schedule.append(Task(15, 32, 19, 35, 360, garmisch, 9180))
+schedule.append(Task(15, 7, 19, 35, 360, garmisch, 9180))
 if __name__ == '__main__': garmisch(googlesheets())

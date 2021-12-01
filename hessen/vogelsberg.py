@@ -23,7 +23,7 @@ def vogelsberg(sheets):
     gg = force_int(_vogelsberg_gg.search(text).group(1))
     g = force_int(_vogelsberg_g.search(text).group(1))
     d = force_int(_vogelsberg_d.search(text).group(1))
-    update(sheets, 6535, c=c, cc=cc, d=d, g=g, gg=gg)
+    update(sheets, 6535, c=c, cc=cc, d=d, g=g, gg=gg, ignore_delta=True)
     return True
 
 schedule.append(Task(13, 30, 15, 35, 360, vogelsberg, 6535))

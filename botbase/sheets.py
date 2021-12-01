@@ -74,7 +74,7 @@ def fetch_rows(sheets, batch):
     values = data.get('values')
     return [ values[x-minrow] for x in rownrs ]
 
-_rkire = re.compile(r"D\d+\([+-]?[0-9=]+\) RKI")
+_rkire = re.compile(r"RKI D\d+\([+-]?[0-9=]+\)")
 
 def update(sheets, ags,
     c, cc=None, d=None, dd=None, g=None, gg=None, q=None, s=None, i=None,

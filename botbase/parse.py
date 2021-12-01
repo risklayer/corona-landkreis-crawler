@@ -11,6 +11,29 @@ def force_int(x, fallback=None):
         return int(x.replace(".","").replace(" ","").lstrip("+"))
     except ValueError: return fallback
 
+import dateutil.parser
+class GermanParserInfo(dateutil.parser.parserinfo):
+    WEEKDAYS = [("Mo.", "Montag"),
+                ("Di.", "Dienstag"),
+                ("Mi.", "Mittwoch"),
+                ("Do.", "Donnerstag"),
+                ("Fr.", "Freitag"),
+                ("Sa.", "Samstag"),
+                ("So.", "Sonntag")]
+    MONTHS = [("Jan.", "Jan", "Januar", "January"),
+              ("Feb.", "Feb", "Februar", "February"),
+              ("Mär.", "Mär", "März", "Mar.", "Mar", "March"),
+              ("Apr.", "Apr", "April"),
+              ("Mai", "May"),
+              ("Jun.", "Jun", "Juni", "June"),
+              ("Jul.", "Jul", "Juli", "July"),
+              ("Aug.", "Aug", "August"),
+              ("Sep.", "Sep", "September"),
+              ("Okt.", "Okt", "Oktober", "Oct.", "Oct", "October"),
+              ("Nov.", "Nov", "November"),
+              ("Dez.", "Dez", "Dezember", "Dec.", "Dec", "December")]
+
+
 import datetime
 def check_date(d, lk, offset=datetime.timedelta(0)):
     import datetime, dateutil.parser
@@ -31,7 +54,10 @@ def check_date(d, lk, offset=datetime.timedelta(0)):
         if (d + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
         return d
     d = d.replace("Uhr","").replace(","," ").replace("  "," ").strip()
-    pd = dateutil.parser.parse(d, dayfirst="-" not in d)
+    try:
+        pd = dateutil.parser.parse(d, parserinfo=GermanParserInfo(dayfirst="." in d))
+    except Exception as e:
+        raise NotYetAvailableException(lk+" parser error: "+str(d))
     if (pd + offset).date() < datetime.date.today(): raise NotYetAvailableException(lk+" noch alt: "+str(d))
     return pd
 

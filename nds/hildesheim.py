@@ -13,5 +13,5 @@ def hildesheim(sheets):
     update(sheets, 3254, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(12, 4, 17, 30, 300, hildesheim, 3254))
+schedule.append(Task(10, 4, 17, 30, 300, hildesheim, 3254))
 if __name__ == '__main__': hildesheim(googlesheets())

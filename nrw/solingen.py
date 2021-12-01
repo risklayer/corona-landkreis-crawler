@@ -30,5 +30,5 @@ def solingen(sheets):
     update(sheets, 5122, **args, sig="Bot")
     return True
 
-schedule.append(Task(10, 30, 20, 35, 600, solingen, 5122))
+schedule.append(Task(9, 30, 20, 35, 600, solingen, 5122))
 if __name__ == '__main__': solingen(googlesheets())
