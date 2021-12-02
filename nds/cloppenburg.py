@@ -20,5 +20,5 @@ def cloppenburg(sheets):
     update(sheets, 3453, c=c, cc=cc2, g=g, gg=gg2, d=d, q=q, sig="Bot", comment="Bot Dashboard ohne SI", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(12, 55, 19, 30, 360, cloppenburg, 3453))
+schedule.append(Task(12, 35, 19, 30, 360, cloppenburg, 3453))
 if __name__ == '__main__': cloppenburg(googlesheets())

@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from botbase import *
 
-_obk2_c = re.compile(r"Positiv getestete Personen \(PCR-Test\) seit Pandemiebeginn\**: ([0-9.]+) \(=?\+?(-?[0-9.]*)\)")
-_obk2_d = re.compile(r"verstorben: ([0-9.]+) \(=?\+?(-?[0-9.]*)\)")
-_obk2_g = re.compile(r"aus Quarantäne entlassen: ([0-9.]+) \(=?\+?(-?[0-9.]*)\)")
-_obk2_s = re.compile(r"in Krankenhäusern\**: ([0-9.]+) \(=?\+?-?[0-9.]*\)")
-_obk2_ni = re.compile(r"auf Normalstation\**: ([0-9.]+) \(=?\+?-?[0-9.]*\)")
-_obk2_q = re.compile(r"in angeordneter Quarantäne\**: ([0-9.]+) \(=?\+?-?[0-9.]*\)")
+_obk2_c = re.compile(r"Positiv getestete Personen \(PCR-Test\) seit Pandemiebeginn\**: ([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)")
+_obk2_d = re.compile(r"verstorben: ([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)")
+_obk2_g = re.compile(r"aus Quarantäne entlassen: ([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)")
+_obk2_s = re.compile(r"in Krankenhäusern\**: ([0-9.]+)\s*\(=?\+?-?[0-9.]*\)")
+_obk2_ni = re.compile(r"auf Normalstation\**: ([0-9.]+)\s*\(=?\+?-?[0-9.]*\)")
+_obk2_q = re.compile(r"in angeordneter Quarantäne\**: ([0-9.]+)\s*\(=?\+?-?[0-9.]*\)")
 
 def obk2(sheets):
     soup = get_soup("https://www.obk.de/cms200/aktuelles/pressemitteilungen/")

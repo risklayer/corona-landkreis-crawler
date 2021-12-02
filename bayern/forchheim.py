@@ -2,7 +2,7 @@
 from botbase import *
 
 _forchheim_st = re.compile(r"Stand: (\d\d\.\d\d\.20\d\d); (\d\d:\d\d) Uhr")
-_forchheim_split = re.compile(r"^\n\+?(-?[0-9]+) *\n\n\+?(-?[0-9]+) *\n\n\+?(?:(-?[0-9]+))?\n_+\n\+?(-?[0-9]+)[\n\s]*$")
+_forchheim_split = re.compile(r"^\n\+?\s*(-?[0-9]+) *\n\n\+?\s*(-?[0-9]+) *\n\n\+?\s*(?:(-?[0-9]+))?\n_+\n\+?\s*(-?[0-9]+)[\n\s]*$")
 
 def forchheim(sheets):
     def _fo_clean(x):

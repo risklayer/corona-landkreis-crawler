@@ -7,7 +7,8 @@ _twoval = re.compile(r"([0-9.]+)(?:\s+\(\+?\s*(-?[0-9.]+)\s*\))?")
 def heidenheim(sheets):
     data = get_soup("https://www.info-corona-lrahdh.de/startseite")
     body = data.find(role="main").find("article")
-    date = _heidenheim_st.search(body.find("h2").get_text()).group(1)
+    #print(body.find("h2", text=_heidenheim_st).get_text())
+    date = _heidenheim_st.search(body.find("h2", text=_heidenheim_st).get_text()).group(1)
     date = check_date(date, "Heidenheim")
     rows = [[x.get_text() for x in y.findAll(["td","th"])] for y in body.findAll("tr")]
     #print(*rows, sep="\n")

@@ -19,7 +19,7 @@ def eichsfeld(sheets):
     d = force_int(_eichsfeld_d.search(text).group(1))
     s = force_int(_eichsfeld_s.search(text).group(1))
     i = force_int(_eichsfeld_i.search(text).group(1))
-    update(sheets, 16061, c=c, cc=cc, d=d, s=s, i=i, sig="Bot", date=date)
+    update(sheets, 16061, c=c, cc=cc, d=d, s=s, i=i, sig="Bot", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(9, 20, 12, 35, 360, eichsfeld, 16061))

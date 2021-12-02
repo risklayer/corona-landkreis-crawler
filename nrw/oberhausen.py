@@ -22,7 +22,7 @@ def oberhausen(sheets):
         if isinstance(cur, bs4.Tag) and cur.name == "hr":
             if "Aktuelle Informationen" in text: break
             text = ""
-    text = text.strip()
+    text = re.sub(r"\s+", " ", text.strip()) # geschützte leerzeichen...
     #print(text)
     #print(today().strftime("%A, %-d. %B %Y"))
     if not today().strftime("Aktuelle Informationen von %A, %-d. %B") in text: raise NotYetAvailableException("Oberhausen noch alt: "+text.split("\n")[0])
