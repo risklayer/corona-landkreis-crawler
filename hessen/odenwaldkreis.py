@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_odenwaldkreis_st = re.compile(r"[Aa]m (?:\w+ \()?(\d\d?\. \w+)\)?")
+_odenwaldkreis_st = re.compile(r"(?:[Aa]m|gestern) (?:\w+ )?\(?(\d\d?\. \w+)\)?")
 _odenwaldkreis_c = re.compile(r"um ([0-9.]+|\w+) auf ([0-9]+\.[0-9]{3})")
 _odenwaldkreis_c2 = re.compile(r"([0-9.]+|\w+) neue positive Corona-Testergebnisse \(Gesamt ([0-9.]+)\)")
 _odenwaldkreis_g = re.compile(r"[Gg]elten ([0-9.]+) Personen als genesen(?: – ([0-9.]+|\w) mehr als am Vortag)?")

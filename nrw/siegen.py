@@ -3,7 +3,7 @@ from botbase import *
 
 _siegen_c = re.compile(r"insgesamt ([0-9.]+) Personen aus Siegen-Wittgenstein mit dem Coronavirus")
 _siegen_cc = re.compile(r"([0-9.]+|\w+) neue Coronafälle")
-_siegen_d = re.compile(r", ([0-9.]+) verstorben\.")
+_siegen_d = re.compile(r", ([0-9.]+)\*? verstorben\.")
 _siegen_g = re.compile(r"([0-9.]+) sind wieder genesen")
 _siegen_gg = re.compile(r"([0-9.]+|\w+) als genesen aus der")
 _siegen_si = re.compile(r"([0-9.]+|\w+) Personen aus Siegen-Wittgenstein in einem Krankenhaus behandelt werden, ([0-9.]+|\w+) davon intensiv")

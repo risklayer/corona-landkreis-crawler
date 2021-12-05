@@ -14,8 +14,8 @@ def heidenheim(sheets):
     #print(*rows, sep="\n")
     assert "bestätigte" in rows[0][0]
     c, cc = map(force_int, _twoval.search(rows[1][0]).groups())
-    assert "Todesfälle" in rows[0][2]
-    d, dd = map(force_int, _twoval.search(rows[1][2]).groups())
+    assert "Todesfälle" in rows[0][1]
+    d, dd = map(force_int, _twoval.search(rows[1][1]).groups())
     update(sheets, 8135, c=c, cc=cc, d=d, dd=dd, sig="Bot", ignore_delta="mon")
     return True
 

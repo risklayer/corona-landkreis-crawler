@@ -2,7 +2,7 @@
 from botbase import *
 
 _merzig_cc = re.compile(r"([0-9.]+|\w+) neue Covid")
-_merzig_c = re.compile(r"infiziert wurden, liegt bei ([0-9.]+)\.")
+_merzig_c = re.compile(r"infiziert wurden, liegt bei ([0-9.]+)")
 _merzig_d = re.compile(r"([0-9.]+) Todesfälle")
 _merzig_d2 = re.compile(r"Todesfälle [\w\s-]+ auf ([0-9.]+) gestiegen", re.U)
 _merzig_g = re.compile(r"genesen gelten, liegt bei ([0-9.]+)\.")
@@ -30,7 +30,7 @@ def merzigwadern(sheets):
         m = _merzig_g.search(p)
         if m: args["g"] = force_int(m.group(1))
     #print(args)
-    assert "c" in args and "d" in args and "g" in args
+    assert "c" in args and "d" in args and "g" in args, str(args)
     update(sheets, 10042, **args, sig="Bot", ignore_delta=False)
     return True
 
