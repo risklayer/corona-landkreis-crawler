@@ -99,7 +99,7 @@ def update(sheets, ags,
     check = True if check is None else check(row[14]) and True
     if row[15] is not None and row[15] not in ["", "nn", "RKI", "Vorläufig"]:
         comment = (comment if comment else sig) + " " + " ".join([x for x in strs if x is not None])
-        print("Skipping:", ags, rownr, comment, "is already:", row[15])
+        print("Skipping:", ags, get_ags(sheets)[ags][1], rownr, comment, "is already:", row[15])
         return # already filled!
     #if not check and row[15] == "Vorläufig": return
     if not check: sig = "Vorläufig"

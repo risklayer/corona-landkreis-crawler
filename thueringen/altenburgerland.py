@@ -33,7 +33,7 @@ def altenburgerland(sheets):
     s = force_int(_altenburgerland_s.search(content).group(1))
     i = force_int(_altenburgerland_i.search(content).group(1))
 
-    update(sheets, 16077, c=c, cc=cc, d=d, s=s, i=i, sig="Bot")
+    update(sheets, 16077, c=c, cc=cc, d=d, s=s, i=i, sig="Bot", comment="Bot ohne G")
     return True
 
 schedule.append(Task(15, 10, 16, 40, 360, altenburgerland, 16077))

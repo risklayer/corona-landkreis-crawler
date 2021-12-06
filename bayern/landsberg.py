@@ -10,10 +10,10 @@ def landsberg(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.landkreis-landsberg.de/aktuelles/fragen-antworten-zu-corona/")
-    main = soup.find("main").find(class_="ce-bodytext")
+    main = soup.find("main").find(id="c7705") #class_="ce-bodytext")
     text = main.get_text(" ")
     #print(text)
-    if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Landsberg noch alt")
+    if not today().strftime("%d. %B %Y") in text: raise NotYetAvailableException("Landsberg noch alt")
     c = force_int(_landsberg_c.search(text).group(1))
     d = force_int(_landsberg_d.search(text).group(1))
     g = force_int(_landsberg_g.search(text).group(1))

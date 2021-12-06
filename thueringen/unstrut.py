@@ -26,7 +26,7 @@ def unstrut(sheets):
     gg = force_int(rows[12][1])
     assert "Verstorbene" in rows[13][0]
     d = force_int(rows[13][1])
-    update(sheets, 16064, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot")
+    update(sheets, 16064, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(8, 30, 12, 35, 360, unstrut, 16064))

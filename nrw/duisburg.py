@@ -20,12 +20,13 @@ def duisburg(sheets):
         if "Verstorben" in row[0]: args["d"], args["dd"] = map(force_int, _duisnum.search(row[1]).groups())
         if "Aktuell Infiziert" in row[0]: tmp["a"] = force_int(_duisnum.search(row[1]).group(1))
         if "Kontaktpersonen" in row[0]: tmp["k"] = force_int(row[1])
-        if "In Intensiv" in row[0]: args["i"] = force_int(row[1])
+        if "stationär" in row[0] and not "Stand" in row[0]: args["s"] = force_int(row[1])
+        if "Intensivb" in row[0] and not "Stand" in row[0]: args["i"] = force_int(row[1])
         # TODO: Impfungen auch?
     #print(args)
     assert "c" in args and "d" in args and "g" in args
     args["q"] = tmp.get("a",0) + tmp.get("k",0)
-    update(sheets, 5112, **args, sig="Bot")
+    update(sheets, 5112, **args, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(9, 2, 15, 35, 600, duisburg, 5112))

@@ -21,9 +21,9 @@ def wittenberg(sheets):
 
     c = force_int(_wittenberg_c.search(content).group(1))
     cc = force_int(_wittenberg_cc.search(content).group(1))
-    d = force_int(_wittenberg_d.search(content).group(1))
+    d = force_int(_wittenberg_d.search(content).group(1)) if _wittenberg_d.search(content) else None
 
-    update(sheets, 15091, c=c, cc=cc, d=d, sig="Bot")
+    update(sheets, 15091, c=c, cc=cc, d=d, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 5, 16, 35, 360, wittenberg, 15091))

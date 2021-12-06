@@ -25,7 +25,7 @@ def obk2(sheets):
     s = force_int(_obk2_s.search(text).group(1))
     i = s - force_int(_obk2_ni.search(text).group(1))
     q = force_int(_obk2_q.search(text).group(1))
-    update(sheets, 5374, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i)
+    update(sheets, 5374, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, ignore_delta="mon")
     return True
 
 schedule.append(Task(9, 12, 13, 35, 600, obk2, 5374))

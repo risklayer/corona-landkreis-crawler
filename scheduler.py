@@ -15,7 +15,7 @@ def scheduler(sheets):
         nextex, task = queue[0] # heap.peek()
         delay = (nextex - datetime.now()).total_seconds()
         if delay > 0:
-            delay = delay + random.random() * 45 # reduce collissions when running multiple times
+            delay = delay + random.random() * 15 # reduce collissions when running multiple times
             print("Waiting for %d seconds for AGS %05d %s at %s" % (delay, task.ags, task.fun.__name__, nextex))
             time.sleep(delay)
         success = task.run(sheets)

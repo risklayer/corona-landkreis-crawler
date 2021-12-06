@@ -2,14 +2,16 @@
 from botbase import *
 import re, time
 _rlpat = re.compile(r"lua.rlp.de|speyer.de|rhein-pfalz-kreis.de").search
-_rlpstand = re.compile(r"Datenstand: \d+\.\d+.20\d\d")
+_rlpstand = re.compile(r"Datenstand: (\d\d?\.\d\d?.20\d\d(?:, \d\d?:\d\d)?)")
 
 def rlp(sheets):
     blacklist=[7317,7340,7320,7138,7141,7211,7235] # Pirmasens, Südwestpfalz, Zweibrücken, Neuwied,Rhein-Lahn,Trier,Trier-Saarburg
     soup = get_soup("https://lua.rlp.de/de/presse/detail/news/News/detail/coronavirus-sars-cov-2-aktuelle-fallzahlen-fuer-rheinland-pfalz/")
     cont = soup.find(id="content").find(text=re.compile(r"Laborbestätigt, seit Beginn der Pandemie")).find_parent("table")
     stand = soup.find(id="content").find(text=_rlpstand)
-    if not today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("RLP noch alt? " + stand)
+    #print(stand)
+    date = check_date(_rlpstand.search(stand).group(1), "RLP")
+    #if not today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("RLP noch alt? " + stand)
     todo = []
     for row in cont.findAll("tr")[3:-1]:
         row = [x.text.strip() for x in row.findAll("td")]
@@ -27,8 +29,8 @@ def rlp(sheets):
     for i,x in enumerate(todo):
         ags,c,cc,g,d = x
         #if ags == 7133: g = None # Donnersberg divergiert stark derzeit
-        if ags == 7132: g = None # divergiert stark derzeit
-        update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Land", comment="Land", check=_rlpat, batch=batch, row=rows[i])
+        #if ags == 7132: g = None # divergiert stark derzeit
+        update(sheets, ags, c=c, cc=cc, g=g, d=d, sig="Land", comment="Land", check=_rlpat, batch=batch, row=rows[i], date=date)
     do_batch(sheets, batch)
     return True
 

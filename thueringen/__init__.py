@@ -8,4 +8,3 @@ from .unstrut import unstrut
 from .wartburg import wartburg
 from .weimar import weimar
 from .weimarerland import weimarerland
-from .wittenberg import wittenberg
