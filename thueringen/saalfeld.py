@@ -30,7 +30,7 @@ def saalfeld(sheets):
     cc = force_int(_saalfeld_cc.search(content).group(1))
     d = force_int(_saalfeld_d.search(content).group(1))
 
-    update(sheets, 16073, c=c, cc=cc, d=d, sig="Bot")
+    update(sheets, 16073, c=c, cc=cc, d=d, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 45, 17, 45, 360, saalfeld, 16073))

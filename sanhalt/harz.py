@@ -36,8 +36,8 @@ def harz(sheets):
     s = force_int(_harz_s.search(content).group(1))
     i = force_int(_harz_i.search(content).group(1))
 
-    update(sheets, 15085, c=c, cc=cc, q=q, s=s, i=i, sig=str(a), comment="Bot ohne DG A"+str(a))
+    update(sheets, 15085, c=c, cc=cc, q=q, s=s, i=i, sig=str(a), comment="Bot ohne DG A"+str(a), ignore_delta="mon")
     return True
 
-schedule.append(Task(11, 52, 13, 52, 360, harz, 15085))
+schedule.append(Task(14, 52, 16, 52, 360, harz, 15085))
 if __name__ == '__main__': harz(googlesheets())
