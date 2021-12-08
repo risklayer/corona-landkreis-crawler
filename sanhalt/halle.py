@@ -10,7 +10,7 @@ def halle(sheets):
     article = soup.find(id="content-inner")
     s = next(x for x in article.findAll("strong") if "Corona-Lage" in x.get_text())
     if not today().strftime("%-d. %B %Y") in s.get_text():
-        raise NotYetAvailableException("Halle (Saale) noch alt: "+s);
+        raise NotYetAvailableException("Halle (Saale) noch alt: "+str(s));
     tables = article.findAll("table")
     args = dict()
     for table in tables[:5]:

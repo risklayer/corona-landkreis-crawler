@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_bamberg_st = re.compile(r"Stand: (\d\d?\. \w+ 20\d\d, \d\d?:\d\d) Uhr")
+_bamberg_st = re.compile(r"Stand: (\d\d?\. \w+ 20\d\d, \d\d?(?::\d\d)?) Uhr")
 _space_re = re.compile(r"^\s*(.*?)\s*$")
 
 def bamberg(sheets):

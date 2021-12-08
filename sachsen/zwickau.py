@@ -9,7 +9,7 @@ def zwickau(sheets):
     rows = [[x.get_text().strip() for x in row.findAll(["th","td"])] for row in table.findAll("tr")]
     #print(*rows, sep="\n")
     col = today().weekday() + 1
-    date = rows[0][col] if force_int(rows[1][col]) > 0 else ""
+    date = rows[0][col] if force_int(rows[1][col]) is not None else ""
     date = check_date(date, "Zwickau")
     assert "alle Infektionsfälle" in rows[1][0]
     c = force_int(rows[1][col])

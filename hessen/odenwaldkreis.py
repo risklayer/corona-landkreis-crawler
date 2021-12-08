@@ -17,5 +17,5 @@ def odenwaldkreis(sheets):
     update(sheets, 6437, c=c, d=d, g=g, s=s, i=i, date=date)
     return True
 
-schedule.append(Task(9, 30, 11, 35, 600, odenwaldkreis, 6437))
+schedule.append(Task(8, 30, 11, 35, 600, odenwaldkreis, 6437))
 if __name__ == '__main__': odenwaldkreis(googlesheets())

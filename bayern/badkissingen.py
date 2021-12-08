@@ -7,9 +7,9 @@ _badkissingen_cc = re.compile(r"(-?[0-9.]+) neue Corona-Fälle")
 _badkissingen_cc2 = re.compile(r"Neuinfizierten: (-?[0-9.]+)")
 _badkissingen_a = re.compile(r"aktuell Infizierten: (-?[0-9.]+)")
 _badkissingen_d = re.compile(r"([0-9.]+) Personen, die positiv auf COVID-19 getestet waren, sind verstorben")
-_badkissingen_d2 = re.compile(r"Zahl der Todesfälle im Zusammenhang mit Covid-19 [\w\s]*([0-9.]+)\.", re.U)
+_badkissingen_d2 = re.compile(r"Zahl der Todesfälle im Zusammenhang mit Covid-19:? (?:\w+\s+)?([0-9.]+)[\s.]", re.U)
 _badkissingen_g = re.compile(r"gesundet gelten inzwischen ([0-9.]+) Personen")
-_badkissingen_s = re.compile(r"davon werden ([0-9.]+) (?:Personen )?stationär")
+_badkissingen_s = re.compile(r"davon\swerden\s([0-9.]+)\s(?:Personen\s)?station")
 _badkissingen_q = re.compile(r"([0-9.]+) Kontaktpersonen")
 
 def badkissingen(sheets):
@@ -29,7 +29,8 @@ def badkissingen(sheets):
     s = force_int(m.group(1)) if m else None
     m = _badkissingen_q.search(text)
     q = force_int(m.group(1)) + c - d -g if m else None
-    update(sheets, 9672, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta=True) #"mon")
+    comment = "Bot" + (" ohne S" if s is None else "") + (" ohne Q" if q is None else "")
+    update(sheets, 9672, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", comment=comment, ignore_delta=True) #"mon")
     return True
 
 schedule.append(Task(12, 2, 14, 35, 600, badkissingen, 9672))

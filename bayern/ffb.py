@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_ffb_c = re.compile(r"Stand \w+, (\d\d\.\d\d.20\d\d) \((\d\d?:\d\d) Uhr\), gibt es insgesamt ([0-9.]+) Corona-Infizierte")
+_ffb_c = re.compile(r"Stand\s\w+,\s(\d\d?\.\d\d?.20\d\d)\s\((\d\d?:\d\d)\sUhr\),\sgibt\ses\sinsgesamt\s([0-9.]+)\sCorona-Infizierte", re.U)
 _ffb_d = re.compile(r"Todesfälle insgesamt mit Covid-19-Befund und Wohnsitz im Landkreis Fürstenfeldbruck: ([0-9.]+) \(Stand (\d\d\.\d\d.20\d\d)\)")
 _ffb_g = re.compile(r"Genesene: ([0-9.]+) Personen \(Stand (\d\d\.\d\d.20\d\d)\)")
 
