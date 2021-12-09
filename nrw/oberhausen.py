@@ -25,7 +25,7 @@ def oberhausen(sheets):
     text = re.sub(r"\s+", " ", text.strip()) # geschützte leerzeichen...
     #print(text)
     #print(today().strftime("%A, %-d. %B %Y"))
-    if not today().strftime("Aktuelle Informationen von %A, %-d. %B") in text: raise NotYetAvailableException("Oberhausen noch alt: "+text.split("\n")[0])
+    if not today().strftime("Aktuelle Informationen von %A, %-d. %B") in text: raise NotYetAvailableException("Oberhausen noch alt: "+text.split("\n")[0][:40])
     c, cc = map(force_int, _oberhausen_c.search(text).groups())
     d, dd = map(force_int, _oberhausen_d.search(text).groups())
     g, gg = map(force_int, _oberhausen_g.search(text).groups())

@@ -2,9 +2,11 @@
 from botbase import *
 
 def bonn(sheets):
+    import locale
     soup = get_soup("https://www.bonn.de/themen-entdecken/gesundheit-verbraucherschutz/corona-zahlen.php")
     main = soup.find(id="SP-Content")
     h2 = main.find("h2", class_="SP-Headline--paragraph").text
+    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     if not today().strftime("%d. %B %Y") in h2: raise NotYetAvailableException("Bonn noch alt:" + h2)
     args=dict()
     for row in main.findAll("tr"):

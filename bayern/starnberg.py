@@ -31,5 +31,5 @@ def starnberg(sheets):
 
     return True
 
-schedule.append(Task(16, 15, 18, 15, 360, starnberg, 9188))
+schedule.append(Task(16, 1, 18, 15, 360, starnberg, 9188))
 if __name__ == '__main__': starnberg(googlesheets())

@@ -33,8 +33,8 @@ def harz(sheets):
     temp = force_int(_harz_q.search(content).group(1))
     q = a + temp
 
-    s = force_int(_harz_s.search(content).group(1))
-    i = force_int(_harz_i.search(content).group(1))
+    s = force_int(_harz_s.search(content).group(1)) if _harz_s.search(content) else None
+    i = force_int(_harz_i.search(content).group(1)) if _harz_i.search(content) else None
 
     update(sheets, 15085, c=c, cc=cc, q=q, s=s, i=i, sig=str(a), comment="Bot ohne DG A"+str(a), ignore_delta="mon")
     return True

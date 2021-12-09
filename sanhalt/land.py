@@ -11,8 +11,8 @@ def sanhalt(sheets):
     data = _csvbreak.split(data)
     date = dateparser.parse(data[0].split("Stand:")[1].split(";")[0], locales=["de"])
     date = check_date(date, "Sachsen-Anhalt")
-    d1 = pandas.read_csv(io.StringIO(data[5]), sep=";", thousands=".", decimal=",", skiprows=1)
-    d2 = pandas.read_csv(io.StringIO(data[7]), sep=";", thousands=".", decimal=",", skiprows=1)
+    d1 = pandas.read_csv(io.StringIO(data[4]), sep=";", thousands=".", decimal=",", skiprows=1)
+    d2 = pandas.read_csv(io.StringIO(data[6]), sep=";", thousands=".", decimal=",", skiprows=1)
     #print(d1, d2)
     assert "Anzahl Fälle" in d2.columns[1]
     assert "verstorben" in d2.columns[2]

@@ -37,5 +37,5 @@ def cochem(sheets):
     update(sheets, 7135, **args, sig="Bot")
     return True
 
-schedule.append(Task(15, 30, 17, 30, 360, cochem, 7135))
+schedule.append(Task(14, 30, 17, 30, 360, cochem, 7135))
 if __name__ == '__main__': cochem(googlesheets())
