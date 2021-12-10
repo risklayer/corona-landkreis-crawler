@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 from botbase import *
 
-_obk2_c = re.compile(r"Positiv getestete Personen \(PCR-Test\) seit Pandemiebeginn\**: ([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)")
-_obk2_d = re.compile(r"verstorben: ([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)")
-_obk2_g = re.compile(r"aus Quarantäne entlassen: ([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)")
-_obk2_s = re.compile(r"in Krankenhäusern\**: ([0-9.]+)\s*\(=?\+?-?[0-9.]*\)")
-_obk2_ni = re.compile(r"auf Normalstation\**: ([0-9.]+)\s*\(=?\+?-?[0-9.]*\)")
-_obk2_q = re.compile(r"in angeordneter Quarantäne\**: ([0-9.]+)\s*\(=?\+?-?[0-9.]*\)")
+_obk2_c = re.compile(r"Positiv\sgetestete\sPersonen\s\(PCR-Test\)\sseit\sPandemiebeginn\**:\s*([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)", re.U)
+_obk2_d = re.compile(r"verstorben:\s([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)", re.U)
+_obk2_g = re.compile(r"aus\sQuarantäne\sentlassen:\s([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)", re.U)
+_obk2_s = re.compile(r"in\sKrankenhäusern\**:\s([0-9.]+)\s*\(=?\+?-?[0-9.]*\)", re.U)
+_obk2_ni = re.compile(r"auf\sNormalstation\**:\s([0-9.]+)\s*\(=?\+?-?[0-9.]*\)", re.U)
+_obk2_q = re.compile(r"in\sangeordneter\sQuarantäne\**:\s([0-9.]+)\s*\(=?\+?-?[0-9.]*\)", re.U)
 
 def obk2(sheets):
     soup = get_soup("https://www.obk.de/cms200/aktuelles/pressemitteilungen/")
-    li = next(x for x in soup.find(id="col3").findAll("li") if "weitere Fälle" in x.get_text())
+    li = next(x for x in soup.find(id="col3").findAll("li") if "weitere Fälle" in x.get_text() or "neue Fälle" in x.get_text())
     check_date(li.get_text().split(":")[0], "Oberbergischer Kreis")
     link = li.find("a")["href"] if li else None
     from urllib.parse import urljoin

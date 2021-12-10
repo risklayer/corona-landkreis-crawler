@@ -21,7 +21,7 @@ def sh(sheets):
         cc, dd = force_int(row[3]), force_int(row[7], 0)
         if ags == 1055: c = c - 1 # Ostholstein offset
         if ags == 1056: c = c + 17 # Pinneberg offset
-        print("AGS", ags, c, cc, d, dd)
+        #print("AGS", ags, c, cc, d, dd)
         todo.append( (ags,c,cc,d,dd) )
     rows = fetch_rows(sheets, [x[0] for x in todo])
     batch=[]

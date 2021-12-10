@@ -17,7 +17,7 @@ def bremen(sheets):
         text = table.parent.parent.get_text(" ").strip()
         if not datetime.date.today().strftime("%d.%m.%Y") in text: continue
         rows = [[x.get_text().strip() for x in row.findAll(["th","td"])] for row in table.findAll("tr")]
-        print(*rows,"---",sep="\n")
+        #print(*rows,"---",sep="\n")
         if rows[0][1] == "Aktive Infektionen":
             assert "insgesamt" in rows[0][2]
             assert "Genesene" in rows[0][3]

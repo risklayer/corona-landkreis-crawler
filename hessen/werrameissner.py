@@ -25,7 +25,7 @@ def werrameissner(sheets):
     q = force_int(_werrameissner_q.search(text).group(1))
     s, i = map(force_int, _werrameissner_si.search(text).groups())
     s += i
-    update(sheets, 6636, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, comment="Bot beta")
+    update(sheets, 6636, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, comment="Bot")
     return True
 
 schedule.append(Task(10, 7, 13, 35, 600, werrameissner, 6636))

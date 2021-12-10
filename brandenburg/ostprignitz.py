@@ -4,7 +4,7 @@ from botbase import *
 _ostprignitz_c = re.compile(r"Bestätigte Fälle: *([0-9.]+), davon neu: (\d+)")
 _ostprignitz_g = re.compile(r"Genesungen: *([0-9.]+)(?:, davon neu: (\d+))?")
 _ostprignitz_d = re.compile(r"Sterbefälle: *([0-9.]+)")
-_ostprignitz_st = re.compile(r"Stand: *(\d\d?\.\d\d?\.20\d\d), (\d\d)\.(\d\d)")
+_ostprignitz_st = re.compile(r"Stand: *(\d\d?\.\d\d?\.20\d\d), (\d\d)(?:\.(\d\d))?")
 
 def ostprignitz(sheets):
     import locale
@@ -13,7 +13,7 @@ def ostprignitz(sheets):
     text = soup.find(class_="main-content-area").get_text(" ").strip()
     #print(text)
     date = _ostprignitz_st.search(text)
-    date = date.group(1)+" "+date.group(2)+":"+date.group(3) if date else None
+    date = date.group(1)+" "+date.group(2)+":"+(date.group(3) or "00") if date else None
     date = check_date(date, "Ostprignitz")
     c, cc = map(force_int, _ostprignitz_c.search(text).groups())
     g, gg = map(force_int, _ostprignitz_g.search(text).groups())
