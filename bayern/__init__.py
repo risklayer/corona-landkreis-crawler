@@ -21,4 +21,5 @@ from .pfaffenhofen import pfaffenhofen
 from .starnberg import starnberg
 from .tirschenreuth import tirschenreuth
 from .traunstein import traunstein
+from .wschongau import wschongau
 from .wunsiedel import wunsiedel

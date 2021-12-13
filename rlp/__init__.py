@@ -1,5 +1,7 @@
 from .land import rlp
 from .ahrweiler import ahrweiler
+from .altenkirchen import altenkirchen
+from .alzeyworms import alzeyworms
 from .bernkastel import bernkastel
 from .cochem import cochem
 from .kaiserslautern import kaiserslautern
