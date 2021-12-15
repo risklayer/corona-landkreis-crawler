@@ -6,27 +6,23 @@ _duisnum = re.compile(r"([0-9.]+)\s*\(\+?(-?[0-9]+)\)")
 
 def duisburg(sheets):
     soup = get_soup("https://co-du.info/")
-    main = soup.find(class_="spalte-1")
-    h4 = main.find(text=re.compile(r"Stand"))
-    date = check_date(_duispat.search(h4).group(1), "Duisburg", datetime.timedelta(hours=12))
+    main = soup.find(id="infektionsbox")
+    h4 = main.find(text=_duispat)
+    date = check_date(_duispat.search(h4).group(1) if h4 else main.find("h4").get_text(), "Duisburg", datetime.timedelta(hours=12))
     args,tmp=dict(), dict()
-    for row in main.findAll("td"):
-        row = (row.find("h4"), row.find("h3"))
-        if row[0] is None or row[1] is None: continue
-        row = (row[0].text.strip(), row[1].text.strip())
-        #print(row)
-        if "Bestätigte" in row[0]: args["c"], args["cc"] = map(force_int, _duisnum.search(row[1]).groups())
-        if "Genesen" in row[0]: args["g"], args["gg"] = map(force_int, _duisnum.search(row[1]).groups())
-        if "Verstorben" in row[0]: args["d"], args["dd"] = map(force_int, _duisnum.search(row[1]).groups())
-        if "Aktuell Infiziert" in row[0]: tmp["a"] = force_int(_duisnum.search(row[1]).group(1))
-        if "Kontaktpersonen" in row[0]: tmp["k"] = force_int(row[1])
-        if "stationär" in row[0] and not "Stand" in row[0]: args["s"] = force_int(row[1])
-        if "Intensivb" in row[0] and not "Stand" in row[0]: args["i"] = force_int(row[1])
-        # TODO: Impfungen auch?
-    #print(args)
-    assert "c" in args and "d" in args and "g" in args
-    args["q"] = tmp.get("a",0) + tmp.get("k",0)
-    update(sheets, 5112, **args, sig="Bot", ignore_delta="mon")
+    assert "Bestätigt" in main.find(id="infektion11").get_text()
+    assert "Verstorben" in main.find(id="infektion21").get_text()
+    assert "Genesen" in main.find(id="infektion13").get_text()
+    c, cc = map(force_int, _duisnum.search(main.find(id="infektion11").find("h3").get_text()).groups())
+    d, dd = map(force_int, _duisnum.search(main.find(id="infektion21").find("h3").get_text()).groups())
+    g, gg = map(force_int, _duisnum.search(main.find(id="infektion13").find("h3").get_text()).groups())
+    assert "Kontakt" in main.find(id="infektion23").get_text()
+    q = c - d - g + force_int(main.find(id="infektion23").find("h3").get_text())
+    assert "station" in soup.find(id="station11").get_text()
+    s = force_int(soup.find(id="station11").find("h3").get_text())
+    assert "Intensiv" in soup.find(id="station21gr").get_text()
+    i = force_int(soup.find(id="station21gr").find("h3").get_text())
+    update(sheets, 5112, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(9, 2, 15, 35, 600, duisburg, 5112))

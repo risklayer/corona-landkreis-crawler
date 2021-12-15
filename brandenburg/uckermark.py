@@ -26,5 +26,5 @@ def uckermark(sheets):
     update(sheets, 12073, c=c, cc=cc, d=d, dd=dd, g=g, ignore_delta="mon")
     return True
 
-schedule.append(Task(10, 2, 13, 35, 600, uckermark, 12073))
+schedule.append(Task(10, 2, 14, 35, 600, uckermark, 12073))
 if __name__ == '__main__': uckermark(googlesheets())

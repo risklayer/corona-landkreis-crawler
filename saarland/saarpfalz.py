@@ -5,7 +5,7 @@ _saarpfalz_c = re.compile(r"infizierten? Personen:\s*([0-9.]+)", re.U)
 _saarpfalz_cc = re.compile(r"Neuinfektionen: *([0-9.]+)")
 _saarpfalz_a = re.compile(r"infiziert:\s*([0-9.]+)", re.U)
 _saarpfalz_g = re.compile(r"Genesene: *([0-9.]+)")
-_saarpfalz_st = re.compile(r"Stand: \w+, (\d+\. \w+), \d+(?:[.:]\d\d)? Uhr")
+_saarpfalz_st = re.compile(r"Stand:\s*\w+,\s*(\d+\.\s*\w+),\s*\d+(?:[.:]\d\d)?\s*Uhr")
 
 def saarpfalz(sheets):
     soup = get_soup("https://www.saarpfalz-kreis.de/leben-soziales-gesundheit/gesundheit/coronavirus")

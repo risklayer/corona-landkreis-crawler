@@ -10,8 +10,8 @@ def hohenlohe(sheets):
     #for k,v in data.items(): print(k,v,sep="\t")
     c, cc = data["ix_gesamt"], data["ix_neu"]
     g, d = data["ix_genesen"], data["ix_verstorben"]
-    q = c - g - d + data["k1_aktiv"]
-    update(sheets, 8126, c=c, cc=cc, g=g, d=d, q=q, sig="Bot", date=date, ignore_delta=True)
+    #q = c - g - d + data["k1_aktiv"]
+    update(sheets, 8126, c=c, cc=cc, g=g, d=d, sig="Bot", date=date, ignore_delta=True)
     return True
 
 schedule.append(Task(9, 00, 16, 30, 300, hohenlohe, 8126))

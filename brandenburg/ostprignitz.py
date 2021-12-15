@@ -19,7 +19,8 @@ def ostprignitz(sheets):
     g, gg = map(force_int, _ostprignitz_g.search(text).groups())
     d = force_int(_ostprignitz_d.search(text).group(1))
     c, g = c + 3, g + 3
-    update(sheets, 12068, c=c, cc=cc, d=d, g=g, gg=gg, date=date, ignore_delta=True)
+    # TODO: SI
+    update(sheets, 12068, c=c, cc=cc, d=d, g=g, gg=gg, date=date, ignore_delta=True, comment="Bot ohne SI")
     return True
 
 schedule.append(Task(12, 00, 17, 35, 360, ostprignitz, 12068))

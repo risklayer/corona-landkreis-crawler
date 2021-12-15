@@ -17,7 +17,7 @@ def weimarerland(sheets):
     c, cc = map(force_int, _weimarerland_c.search(text).groups())
     d, dd = map(force_int, _weimarerland_d.search(text).groups())
     g, gg = map(force_int, _weimarerland_g.search(text).groups())
-    s = force_int(_weimarerland_s.search(text).group(1))
+    s = force_int(_weimarerland_s.search(text).group(1)) if _weimarerland_s.search(text) else None
     q1 = force_int(_weimarerland_q1.search(text).group(1))
     q2 = force_int(_weimarerland_q2.search(text).group(1))
     q = c - g - d + q1 + q2

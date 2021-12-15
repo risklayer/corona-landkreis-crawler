@@ -21,7 +21,7 @@ def mettmann(sheets):
     d = force_int(_mettmann_d.search(text).group(1))
     g = force_int(_mettmann_g.search(text).group(1))
     c = a + d + g
-    update(sheets, 5158, c=c, d=d, g=g, sig="Bot ohne QS")
+    update(sheets, 5158, c=c, d=d, g=g, comment="Bot ohne QS")
     return True
 
 schedule.append(Task(11, 55, 13, 35, 360, mettmann, 5158))

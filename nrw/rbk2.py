@@ -11,7 +11,7 @@ _rbk2_q = re.compile(r"([0-9.]+) Personen befinden sich in Quarantäne")
 def rbk2(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.rbk-direkt.de/aktuelles.aspx")
-    article = next(a for a in soup.find(id="content-left").findAll("article") if "Corona-Virus:" in a.get_text())
+    article = next(a for a in soup.find(id="content-left").findAll("article") if "Corona-Fälle" in a.get_text())
     date = article.find("time").text if article else None
     date = check_date(date, "RBK")
     url = urljoin("https://www.rbk-direkt.de/", article.find(href=True)["href"])
