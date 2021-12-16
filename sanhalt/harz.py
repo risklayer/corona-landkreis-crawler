@@ -18,6 +18,7 @@ def harz(sheets):
     link = entry.find(href=True)["href"] if entry else None
     #print(entry, link)
     if not today().strftime("%e. %B %Y") in entry.get_text(): raise NotYetAvailableException("Harz noch alt:" + entry.get_text())
+    from urllib.parse import urljoin
     link = urljoin("https://www.kreis-hz.de/de/aktuelle-informationen-1584944219.html", link)
     print("Getting", link)
     content = get_soup(link).find("div", {"class": "gcarticle-detail-content"}).text
@@ -32,7 +33,7 @@ def harz(sheets):
     s = force_int(_harz_s.search(content).group(1)) if _harz_s.search(content) else None
     i = force_int(_harz_i.search(content).group(1)) if _harz_i.search(content) else None
 
-    update(sheets, 15085, c=c, cc=cc, q=q, s=s, i=i, sig=str(a), comment="Bot ohne DG A"+str(a), ignore_delta="mon")
+    update(sheets, 15085, c=c, cc=cc, q=q, s=s, i=i, sig=str(a), comment="Bot ohne DG A"+str(a), ignore_delta=True) #"mon")
     return True
 
 schedule.append(Task(14, 52, 16, 52, 360, harz, 15085))

@@ -16,9 +16,12 @@ def mgladbach(sheets):
     if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Mönchengladbach noch alt:" + text.split("\n")[0])
     c, cc = map(force_int, _mgladbach_c.search(text).groups())
     g, gg = map(force_int, _mgladbach_g.search(text).groups())
-    q, qq = map(force_int, _mgladbach_q.search(text).groups())
+    q = None
+    try:
+        q, _ = map(force_int, _mgladbach_q.search(text).groups())
+    except AttributeError: pass
     d = force_int(_mgladbach_d.search(text).group(1))
-    cc, gg, qq = c - cc, g - gg, q - qq
+    cc, gg = c - cc, g - gg
     update(sheets, 5116, c=c, cc=cc, g=g, gg=gg, d=d, q=q, sig="Bot", ignore_delta=datetime.date.today().weekday()==6) # Sonntags delta ignorieren
     return True
 

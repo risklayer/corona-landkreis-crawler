@@ -23,7 +23,7 @@ def segeberg(sheets):
     cc = force_int(_segeberg_cc.search(text).group(1))
     g = force_int(_segeberg_g.search(text).group(1))
     d = force_int(_segeberg_d.search(text).group(1))
-    q = force_int(_segeberg_q.search(text).group(1))
+    q = force_int(_segeberg_q.search(text).group(1)) + c - g - d
     s = force_int(_segeberg_s.search(text).group(1))
     i = force_int(_segeberg_i.search(text).group(1))
     update(sheets, 1060, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta=True)
