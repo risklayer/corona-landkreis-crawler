@@ -16,8 +16,10 @@ def spreeneisse(sheets):
     assert "Todesfälle" in rows[6][0]
     d = force_int(rows[6][1])
     assert "Quarantäne" in rows[4][0]
-    q = force_int(rows[4][1]) + c - g - d
-    if q > 4 * (c - g - d): q = None # komischer Wert mal wieder
+    q = force_int(rows[4][1])
+    if q is not None:
+        q = q + c - g - d
+        if q > 4 * (c - g - d): q = None # komischer Wert mal wieder
     update(sheets, 12071, c=c, cc=cc, d=d, g=g, q=q, sig="Bot", ignore_delta="mon")
     return True
 

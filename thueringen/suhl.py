@@ -29,5 +29,5 @@ def suhl(sheets):
     update(sheets, 16054, c=c, cc=cc, d=d, q=q, sig="Bot")
     return True
 
-schedule.append(Task(10, 45, 12, 30, 360, suhl, 16054))
+schedule.append(Task(9, 45, 12, 30, 360, suhl, 16054))
 if __name__ == '__main__': suhl(googlesheets())

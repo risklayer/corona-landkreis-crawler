@@ -13,8 +13,8 @@ def paderborn(sheets):
     c, cc = data["BE_AKTUINT"], force_int(data["BE_DIF1INT"])
     d, dd = data["TO_AKTUINT"], force_int(data["TO_DIF1INT"])
     g, gg = data["GE_AKTUINT"], force_int(data["GE_DIF1INT"])
-    update(sheets, 5774, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", comment="Bot Dashboard ohne QSI", ignore_delta=True)
+    update(sheets, 5774, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", comment="Bot Dashboard ohne QSI", ignore_delta=True, date=date)
     return True
 
-schedule.append(Task(15, 0, 18, 30, 360, paderborn, 5774))
+schedule.append(Task(17, 0, 18, 30, 360, paderborn, 5774))
 if __name__ == '__main__': paderborn(googlesheets())

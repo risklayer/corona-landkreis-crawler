@@ -25,5 +25,5 @@ def greiz(sheets):
 
     return True
 
-schedule.append(Task(11, 54, 13, 54, 360, greiz, 16076))
+schedule.append(Task(9, 54, 13, 54, 360, greiz, 16076))
 if __name__ == '__main__': greiz(googlesheets())

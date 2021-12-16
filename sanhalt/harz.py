@@ -11,20 +11,16 @@ _harz_s = re.compile(r"([0-9.]+|\w+) COVID-19-Patienten versorgt")
 _harz_i = re.compile(r"([0-9.]+|\w+) intensivmedizinisch")
 
 def harz(sheets):
-
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
-    domain = "https://www.kreis-hz.de/"
     soup = get_soup("https://www.kreis-hz.de/de/aktuelle-informationen-1584944219.html")
-
-    for h3 in soup.find_all("h3"):
-        header = h3.text
-        if "Coronavirus" in header and "Stand vom" in header:
-            if not today().strftime("%e. %B %Y") in header: raise NotYetAvailableException("Harz noch alt:" + header)
-            link = h3.find_all("a", "href"==True)[1]["href"]
-            break
-
-    content = get_soup(domain+link).find("div", {"class": "gcarticle-detail-content"}).text
+    entry = next(x for x in soup.find(id="section_1_1343_1167").find_all("h3") if "Coronavirus" in x.get_text() and "Stand" in x.get_text())
+    link = entry.find(href=True)["href"] if entry else None
+    #print(entry, link)
+    if not today().strftime("%e. %B %Y") in entry.get_text(): raise NotYetAvailableException("Harz noch alt:" + entry.get_text())
+    link = urljoin("https://www.kreis-hz.de/de/aktuelle-informationen-1584944219.html", link)
+    print("Getting", link)
+    content = get_soup(link).find("div", {"class": "gcarticle-detail-content"}).text
 
     c = force_int(_harz_c.search(content).group(1))
     cc = force_int(_harz_cc.search(content).group(1))

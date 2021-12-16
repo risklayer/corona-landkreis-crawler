@@ -19,7 +19,7 @@ def stormarn(sheets):
         cur = cur.next_sibling
         if isinstance(cur, bs4.Tag) and cur.name == "h4": break
     text = text.strip()
-    print(text)
+    #print(text)
     c = force_int(_stormarn_c.search(text).group(1))
     cc = force_int(_stormarn_c.search(text).group(1))
     g = force_int(_stormarn_g.search(text).group(1))
