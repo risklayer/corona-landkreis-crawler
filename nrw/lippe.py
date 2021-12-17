@@ -16,5 +16,5 @@ def lippe(sheets):
     update(sheets, 5766, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot")
     return True
 
-schedule.append(Task(9, 50, 11, 30, 300, lippe, 5766))
+schedule.append(Task(9, 25, 11, 30, 300, lippe, 5766))
 if __name__ == '__main__': lippe(googlesheets())
