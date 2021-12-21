@@ -14,5 +14,5 @@ def guetersloh(sheets):
     update(sheets, 5754, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", comment="Bot Dashboard ohne SI", date=date)
     return True
 
-schedule.append(Task(10, 15, 15, 10, 360, guetersloh, 5754))
+schedule.append(Task(9, 15, 15, 10, 360, guetersloh, 5754))
 if __name__ == '__main__': guetersloh(googlesheets())

@@ -3,7 +3,7 @@ from botbase import *
 
 _bayreuth_c = re.compile(r"insgesamt im Landkreis ([0-9.]+) und in der Stadt Bayreuth ([0-9.]+) Personen")
 _bayreuth_cc = re.compile(r"(\S+) aus dem Landkreis und (\S+) aus der Stadt")
-_bayreuth_d = re.compile(r"Landkreis sind bisher ([0-9.]+) und aus der Stadt Bayreuth ([0-9.]+) Personen an den Folgen")
+_bayreuth_d = re.compile(r"Landkreis sind bisher ([0-9.]+) *und aus der Stadt Bayreuth ([0-9.]+) Personen an den Folgen")
 _bayreuth_g = re.compile(r"genesen gelten ([0-9.]+) Personen aus dem Landkreis und ([0-9.]+) aus der Stadt")
 
 def bayreuth(sheets):

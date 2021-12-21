@@ -21,5 +21,5 @@ def heinsberg(sheets):
     update(sheets, 5370, c=c, d=d, g=g, sig="Bot")
     return True
 
-schedule.append(Task(10, 15, 15, 35, 600, heinsberg, 5370))
+schedule.append(Task(9, 15, 15, 35, 600, heinsberg, 5370))
 if __name__ == '__main__': heinsberg(googlesheets())

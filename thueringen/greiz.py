@@ -13,7 +13,7 @@ def greiz(sheets):
     soup = get_soup("https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/corona-startseite/fallzahlen")
 
     content = soup.get_text()
-    print(content)
+    #print(content)
     date = _greiz_date.search(content).group(1)
     check_date(date, "Greiz")
 

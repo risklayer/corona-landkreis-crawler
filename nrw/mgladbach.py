@@ -10,7 +10,7 @@ def mgladbach(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://notfallmg.de/de/")
-    main = soup.find(class_="main").find(class_="panel")
+    main = next(x for x in soup.find(class_="main").findAll(class_="panel") if "Statusbericht" in x.get_text())
     text = main.get_text(" ").strip()
     #print(text)
     if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Mönchengladbach noch alt:" + text.split("\n")[0])

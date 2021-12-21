@@ -8,7 +8,7 @@ import sh, hamburg, nds, bremen, nrw, hessen, rlp, bw, bayern, saarland, berlin,
 
 def scheduler(sheets):
     queue = [(task.next_time("init"), task) for task in botbase.schedule]
-    if "--all" in sys.argv: queue = [(datetime.now(), task) for task in botbase.schedule]
+    if "--all" in sys.argv: queue = [(datetime.now(), task) for task in set(botbase.schedule)]
     heapify(queue)
     while len(queue) > 0:
         #botbase.todaystr = time.strftime("%d.%m.%Y") # update today value

@@ -3,7 +3,7 @@ from botbase import *
 
 _enkreis_c = re.compile(r"([0-9.]+) bestätigte")
 _enkreis_cc = re.compile(r"um ([0-9.]+) gestiegen")
-_enkreis_d = re.compile(r"([0-9.]+) Personen i[nm] Zusammenhang mit \w+ Corona-\w+ verstorben")
+_enkreis_d = re.compile(r"([0-9.]+) (?:Personen|Todesfälle) i[nm] Zusammenhang mit (?:\w+ )?Corona") # -\w+verstorben")
 _enkreis_d2 = re.compile(r"Todesfälle (?:[^0-9.]*)(?:um [0-9]+ )?auf ([0-9.]+)")
 _enkreis_g = re.compile(r"([0-9.]+) (?:Menschen gelten als genesen|Genesene|Gesundete)")
 _enkreis_si = re.compile(r"([0-9.]+) Patienten mit einer Corona-Infektion in stationärer Behandlung, ([0-9.]+) Person(?:en)? werden intensiv", re.U)

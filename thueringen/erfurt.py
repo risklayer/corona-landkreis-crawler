@@ -2,7 +2,7 @@
 from botbase import *
 
 _erfurt_c = re.compile(r"Gesamtzahl der Infizierten: *([0-9.]+)")
-_erfurt_cc = re.compile(r"Neuinfektionen \([^)]*\): *([0-9.]+)")
+_erfurt_cc = re.compile(r"Neuinfektionen \([^)]*\): *([0-9.]+|\w+)")
 _erfurt_d = re.compile(r"Verstorbene: *([0-9.]+)")
 _erfurt_g = re.compile(r"Genesene: *([0-9.]+)")
 _erfurt_st = re.compile(r"Übermittlungsstand:\s*(\d+\.\d+\.20\d\d)", re.U)

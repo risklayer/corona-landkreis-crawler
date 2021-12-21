@@ -11,9 +11,9 @@ _kl_sk = re.compile(r"Streitkräfte \(on base\): ([0-9.]+) Indexfälle, ([0-9.]+
 def kaiserslautern(sheets):
     soup = get_soup("https://www.kaiserslautern-kreis.de/aktuelles/corona-virus.html")
     content = soup.find(id="col3_content")
-    p = content.findAll("p")[0].get_text(" ")
-    if not today().strftime("bis %d. %m.") in p: raise NotYetAvailableException("Kaiserslautern noch alt:" + p[:50])
+    p = content.findAll("p")[1].get_text(" ")
     #print(p)
+    if not today().strftime("- %d.%m :") in p: raise NotYetAvailableException("Kaiserslautern noch alt:" + p[:50])
     cc1, cc2, cc3 = map(lambda x:force_int(x, 0), _kl_cc.search(p).groups())
     #gg1, gg2, gg3 = map(lambda x:force_int(x, 0), _kl_gg.search(p).groups())
     c1, g1, d1 = map(lambda x:force_int(x, 0), _kl_stadt.search(p).groups())

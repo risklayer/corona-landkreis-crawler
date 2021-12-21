@@ -20,8 +20,12 @@ def stade(sheets):
     d, dd = map(force_int, _stade_d.search(text).groups())
     g, gg = map(force_int, _stade_g.search(text).groups())
     q = force_int(_stade_q.search(text).group(1)) + a
-    s, i = map(force_int, _stade_si.search(text).groups())
-    update(sheets, 3359, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, date=date, sig="Bot", ignore_delta=True)
+    s, i = None, None
+    try:
+        s, i = map(force_int, _stade_si.search(text).groups())
+    except: pass
+    comment = "Bot" if s is not None else "Bot ohne SI"
+    update(sheets, 3359, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, i=i, date=date, comment=comment, ignore_delta=True)
     return True
 
 schedule.append(Task(9, 15, 14, 35, 360, stade, 3359))

@@ -30,5 +30,5 @@ def augsburg(sheets):
     update(sheets, 9761, **args, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(10, 2, 13, 35, 600, augsburg, 9761))
+schedule.append(Task(9, 45, 13, 35, 600, augsburg, 9761))
 if __name__ == '__main__': augsburg(googlesheets())
