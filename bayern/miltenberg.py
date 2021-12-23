@@ -8,7 +8,7 @@ _miltenberg_d2 = re.compile(r"Todesfälle (?:\w+ )+([0-9.]+)\.")
 _miltenberg_a = re.compile(r"Aktuell befinden sich ([0-9.]+) mit SARS-CoV-2 infizierte")
 _miltenberg_a2 = re.compile(r"aktuell mit SARS-CoV-2 infizierten Personen liegt bei ([0-9.]+)")
 _miltenberg_q = re.compile(r"([0-9.]+) Menschen als Kontaktperson I in Quarantäne")
-_miltenberg_si = re.compile(r"([0-9.]+|\w+) (?:Persone?n?|Menschen) aus dem Landkreis (?:in )?stationäre?r? [bB]ehand\w+(?:, davon (?:sind )?([0-9.]+|\w+) intensiv)?", re.U)
+_miltenberg_si = re.compile(r"([0-9.]+|\w+) (?:Persone?n?|Menschen) aus dem Landkreis (?:in )?stationäre?r? [bB]ehand\w+(?:, davon (?:sind )?([0-9.]+|\w+) (?:Persone?n?|Mensche?n?)?\s*intensiv)?", re.U)
 
 def miltenberg(sheets):
     from urllib.parse import urljoin
@@ -34,7 +34,8 @@ def miltenberg(sheets):
     g = c - d - a
     q = q + a
     s, i = map(force_int, _miltenberg_si.search(text).groups())
-    update(sheets, 9676, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot")
+    comment = "Bot" if i is not None else "Bot ohne I"
+    update(sheets, 9676, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, comment=comment, ignore_delta=True)
     return True
 
 schedule.append(Task(9, 45, 15, 35, 360, miltenberg, 9676))

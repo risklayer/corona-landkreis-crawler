@@ -7,7 +7,7 @@ _jena_c = re.compile(r"Infizierte insgesamt seit dem [0-9.]+:\s*([0-9.]+)")
 _jena_d = re.compile(r"Verstorbene insgesamt:\s*([0-9.]+)")
 _jena_g = re.compile(r"Genesene insgesamt:\s*([0-9.]+)")
 _jena_s = re.compile(r"[Ss]tationäre Fälle:\s*([0-9.]+)")
-_jena_i = re.compile(r"ITS:\s*([0-9.]+)")
+_jena_i = re.compile(r"Intensivstation:\s*([0-9.]+)")
 
 def jena(sheets):
     soup = get_soup("https://gesundheit.jena.de/de/coronavirus")

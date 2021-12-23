@@ -2,10 +2,11 @@
 from botbase import *
 
 _sha_c = re.compile(r"insgesamt +([0-9.]+) +bestätigte")
-_sha_d = re.compile(r"([0-9.]+) +Corona-Erkrankte[^\d]+Covid-19 verstorben")
+_sha_d = re.compile(r"([0-9.]+)\*? +Corona-Erkrankte[^\d]+Covid-19 verstorben")
 _sha_g = re.compile(r"([0-9.]+) +Corona-Erkrankte[^\d]+wieder gesundet")
 _sha_q = re.compile(r"in Quarantäne: +([0-9.]+)")
 _sha_si = re.compile(r"([0-9.]+|\w+) (?:positiver? )?(?:Covid-19-)?(?:F[aä]lle?|Patiente?n?) auf Station [^.]+ ([0-9.]+|\w+) (?:positiver? )?(?:F[aä]lle?|Patiente?n?) auf der Intensiv")
+_sha_si2 = re.compile(r"([0-9.]+|\w+) (?:positiver? )?(?:Covid-19-)?(?:F[aä]lle?|Patiente?n?) auf Station. Auf der Intensivstation sind ([0-9.]+|\w+) (?:positiver? )?(?:F[aä]lle?|Patiente?n?)")
 
 def sha(sheets):
     soup = get_soup("https://www.lrasha.de/index.php?id=953&publish%5Bid%5D=1212280&publish%5Bstart%5D=")
@@ -23,8 +24,12 @@ def sha(sheets):
         s += force_int(m[0])
         s += force_int(m[1], 0)
         i += force_int(m[1], 0)
+    for m in _sha_si2.findall(text):
+        s += force_int(m[0])
+        s += force_int(m[1], 0)
+        i += force_int(m[1], 0)
     if not s and not i: s, i = None, None
-    comment = "Bot SI prüfen!" if s else "Bot"
+    comment = "Bot SI unzuverlässig!" if s else "Bot"
     update(sheets, 8127, c=c, d=d, g=g, q=q, s=s, i=i, sig="Bot", comment=comment)
     return True
 

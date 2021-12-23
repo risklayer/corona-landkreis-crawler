@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_gg_c = re.compile(r"Gesamtfallzahl\s+([0-9.]+)\s+Differenz zur Vorwoche: \+?(-?[0-9.]+)", re.U)
+_gg_c = re.compile(r"Gesamtfallzahl\s+([0-9.]+)(?:,0)?\s+Differenz zur Vorwoche: \+?(-?[0-9.]+)", re.U)
 _gg_g = re.compile(r"Genesene Fälle\s+([0-9.]+)\s+Differenz zur Vorwoche: \+?(-?[0-9.]+)", re.U)
 _gg_d = re.compile(r"Todesfälle\s+([0-9.]+)\s+Differenz zur Vorwoche: \+?(-?[0-9.]+)", re.U)
 

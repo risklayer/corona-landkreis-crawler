@@ -11,9 +11,7 @@ _wschongau_q = re.compile(r"([0-9.]+|\w+) weitere Kontaktpersonen in Quarantäne
 _wschongau_a = re.compile(r"Aktuell befinden sich ([0-9.]+|\w+)")
 _wschongau_g = re.compile(r"([0-9.]+) Fälle wieder genesen")
 
-
 def wschongau(sheets):
-
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     domain = "https://www.weilheim-schongau.de"
@@ -27,9 +25,10 @@ def wschongau(sheets):
             break
 
     content = get_soup(domain+link).text
+    #print(content)
 
     c = force_int(_wschongau_c.search(content).group(1))
-    cc = force_int(_wschongau_cc.search(content).group(1))
+    cc = force_int(_wschongau_cc.search(content).group(1)) if _wschongau_cc.search(content) else None
 
     d = force_int(_wschongau_d.search(content).group(1))
     dd = force_int(_wschongau_dd.search(content).group(1)) if _wschongau_dd.search(content) else None

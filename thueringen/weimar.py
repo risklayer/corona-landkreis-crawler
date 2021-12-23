@@ -20,7 +20,7 @@ def weimar(sheets):
     g, gg = map(force_int, _weimar_g.search(text).groups())
     s = force_int(_weimar_s.search(text).group(1))
     q, qq = map(force_int, _weimar_q.search(text).groups())
-    update(sheets, 16055, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
+    update(sheets, 16055, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta=True)
     return True
 
 schedule.append(Task(10, 00, 16, 45, 360, weimar, 16055))

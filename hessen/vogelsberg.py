@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_vogelsberg_cc = re.compile(r"([0-9.]+) (?:neue Fälle|[nN]eue? ?[Ii]nfektionen|weitere Corona)")
+_vogelsberg_cc = re.compile(r"([0-9.]+) (?:neue Fälle|[nN]eue? ?[Ii]nfektionen|weitere Corona|neue Corona)")
 _vogelsberg_gg = re.compile(r"([0-9.]+) Menschen (?:\w+ )*als genesen", re.U)
 _vogelsberg_c = re.compile(r"Fälle gesamt: ([0-9.]+)")
 _vogelsberg_g = re.compile(r"Genesene: ([0-9.]+)")

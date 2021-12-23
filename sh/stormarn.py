@@ -4,7 +4,7 @@ from botbase import *
 _stormarn_c = re.compile(r"(?:bestätigten|erfassten) COVID-19-Fälle (?:\w+ )+([0-9.]+)")
 _stormarn_cc = re.compile(r"([0-9.]+) Neuinfektionen")
 _stormarn_g = re.compile(r"([0-9.]+) Personen gelten (?:\w+ )*als genesen")
-_stormarn_d = re.compile(r"([0-9.]+) Personen sind (?:somit )?verstorben")
+_stormarn_d = re.compile(r"([0-9.]+) Personen sind (?:somit |bisher )?verstorben")
 _stormarn_dd = re.compile(r"([0-9.]+) weitere Personen verstorben")
 
 def stormarn(sheets):
