@@ -12,6 +12,7 @@ from .garmisch import garmisch
 from .kitzingen import kitzingen
 from .kulmbach import kulmbach
 from .landsberg import landsberg
+from .mainspessart import mainspessart
 from .miltenberg import miltenberg
 from .muenchen import muenchen
 from .muenchenlk import muenchenlk

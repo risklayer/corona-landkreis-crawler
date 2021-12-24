@@ -7,4 +7,5 @@ from .cochem import cochem
 from .kaiserslautern import kaiserslautern
 from .landau import landau
 from .mainz import mainz
+from .vulkaneifel import vulkaneifel
 from .westerwald import westerwald
