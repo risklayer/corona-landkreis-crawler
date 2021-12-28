@@ -2,15 +2,15 @@
 from botbase import *
 
 _stand = re.compile(r"Stand")
-_verden_c = re.compile(r"([.0-9]+)\s+\(\+?\s*(-?[.0-9]+)\s+zum\s+(?:Vortag|Vor-Freitag|Freitag)\)\s+laborbestätigte\s+Coronavirus-Fälle")
-_verden_g = re.compile(r"([.0-9]+)\s+\(\+?\s*(-?[.0-9]+)\s+zum\s+(?:Vortag|Vor-Freitag|Freitag)\)\s+Covid-19-Patienten[a-z ]+wieder\s+genesen")
+_verden_c = re.compile(r"([.0-9]+)\s+\(\+?\s*(-?[.0-9]+)\s+zu\w?\s+(?:\w+|\d+\.\d+\.)\)\s+laborbestätigte\s+Coronavirus-Fälle")
+_verden_g = re.compile(r"([.0-9]+)\s+\(\+?\s*(-?[.0-9]+)\s+zu\w?\s+(?:\w+|\d+\.\d+\.)\)\s+Covid-19-Patienten[a-z ]+wieder\s+genesen")
 _verden_d = re.compile(r"([.0-9]+)\s+Personen\s+sind\s+verstorben")
 _verden_q = re.compile(r"([.0-9]+)\s+Kontaktpersonen")
 _verden_s1 = re.compile(r"([.0-9]+)\s+Person[A-Za-z ]+?stationär\s+in")
 _verden_s2 = re.compile(r"([.0-9]+)\s+weitere\s+Person[A-Za-z ]+?längerfristig")
 
 def verden(sheets):
-    soup = get_soup("https://www.landkreis-verden.de//portal/seiten/aktuelles-zum-coronavirus-geschehen-im-landkreis-verden-901001573-20600.html?rubrik=901000034&vs=1")
+    soup = get_soup("https://www.landkreis-verden.de/portal/seiten/aktuelles-zum-coronavirus-geschehen-im-landkreis-verden-901001573-20600.html?rubrik=901000034&vs=1")
     content = soup.find(id="info")
     text = content.get_text(" ")
     #print(text)

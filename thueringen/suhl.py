@@ -20,8 +20,8 @@ def suhl(sheets):
     c = force_int(_suhl_c.search(content).group(1))
     cc = force_int(_suhl_cc.search(content).group(1))
     d = force_int(_suhl_d.search(content).group(1))
-    q = force_int(_suhl_q.search(content).group(1))
-    g = c - d - force_int(_suhl_a.search(content).group(1))
+    q = force_int(_suhl_q.search(content).group(1)) if _suhl_q.search(content) else None
+    g = c - d - force_int(_suhl_a.search(content).group(1)) if _suhl_a.search(content) else None
 
     update(sheets, 16054, c=c, cc=cc, d=d, g=g, q=q, sig="Bot")
     return True

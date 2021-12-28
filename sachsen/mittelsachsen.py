@@ -10,9 +10,9 @@ def mittelsachsen(sheets):
     #print(*rows, sep="\n")
     if not today().strftime("%-d. %B") in rows[0][0]: raise NotYetAvailableException("Mittelsachsen noch alt: "+rows[0][0]);
     assert "Bestätigte" in rows[0][0]
-    c = force_int(rows[0][1])
+    c = force_int(rows[0][1].replace("*",""))
     assert "Todesfälle" in rows[1][0]
-    d = force_int(rows[1][1])
+    d = force_int(rows[1][1].replace("*",""))
     assert "stationär" in rows[2][0]
     s = force_int(rows[2][1])
     assert "beatmet" in rows[3][0]

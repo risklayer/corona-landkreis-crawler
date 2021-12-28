@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_weimar_c = re.compile(r"positiv\s*Getesteten:\s*([0-9.]+)\s*\(Veränderung\s+zum\s*(?:Vor|Frei)tag:\s*\+?(-?[0-9.]+)", re.U)
+_weimar_c = re.compile(r"positiv\s*Getesteten:\s*([0-9.]+)\s*\(Veränderung\s+zu[rm]?\s*[^)]*:\s*\+?(-?[0-9.]+)", re.U)
 _weimar_g = re.compile(r"Genesenen:\s*([0-9.]+)\s*\(\+?(-?[0-9.]+)\)", re.U)
 _weimar_d = re.compile(r"Verstorbenen:\s*([0-9.]+)\s*\(\+?(-?[0-9.]+)\)", re.U)
 _weimar_s = re.compile(r"Behandelten:\s*([0-9.]+)\s*\(\+?(-?[0-9.]+)\)", re.U)

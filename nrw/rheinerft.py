@@ -10,7 +10,7 @@ def rheinerft(sheets):
     c, cc = data1["bestätigte_Fälle_insgesamt"], data2["bestätigte_Fälle_insgesamt"]
     d, dd = data1["Todesfälle"], data2["Todesfälle"]
     g, gg = data1["Genesen"], data2["Genesen"]
-    q = data1["Personen_in_Quarantäne"]
+    q = data1["Personen_in_Quarantäne"] + c - d - g
     cc, dd, gg = c - cc, d - dd, g - gg
     update(sheets, 5362, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", comment="Bot Dashboard ohne SI", ignore_delta=True, date=date)
     return True

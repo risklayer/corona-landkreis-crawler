@@ -2,7 +2,7 @@
 from botbase import *
 
 _goettingen_c = re.compile(r"Landkreis Göttingen beträgt\s+([0-9.]+)\s*\.", re.U)
-_goettingen_d = re.compile(r"([0-9.]+) Menschen sind in Verbindung mit Covid-19 gestorben")
+_goettingen_d = re.compile(r"([0-9.]+)\s*Menschen sind in Verbindung mit Covid-19 gestorben")
 _goettingen_g = re.compile(r"gelten ([0-9.]+) Personen als wieder von der Infektion genesen")
 
 def goettingen(sheets):

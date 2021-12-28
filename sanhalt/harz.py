@@ -9,6 +9,7 @@ _harz_a = re.compile(r"Aktuell gibt es ([0-9. ]+|\w+) Fälle an COVID-19-Erkrank
 _harz_q = re.compile(r"([0-9. ]+|\w+) Personen in Quarantäne")
 _harz_s = re.compile(r"([0-9.]+|\w+) COVID-19-Patienten versorgt")
 _harz_i = re.compile(r"([0-9.]+|\w+) intensivmedizinisch")
+_harz_d = re.compile(r"Verstorbenen im Zusammenhang mit COVID-19 steigt damit auf ([0-9.]+|\w+)")
 
 def harz(sheets):
     import locale
@@ -33,7 +34,12 @@ def harz(sheets):
     s = force_int(_harz_s.search(content).group(1)) if _harz_s.search(content) else None
     i = force_int(_harz_i.search(content).group(1)) if _harz_i.search(content) else None
 
-    update(sheets, 15085, c=c, cc=cc, q=q, s=s, i=i, sig=str(a), comment="Bot ohne DG A"+str(a), ignore_delta=True) #"mon")
+    d = force_int(_harz_d.search(content).group(1)) if _harz_d.search(content) else None
+    g = c - d - a if d else None
+
+    comment = "Bot ohne DG" if d is None else "Bot"
+    comment += " A"+str(a)
+    update(sheets, 15085, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig=str(a), comment=comment, ignore_delta=True) #"mon")
     return True
 
 schedule.append(Task(14, 52, 16, 52, 360, harz, 15085))

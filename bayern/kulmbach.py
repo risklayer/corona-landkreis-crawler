@@ -25,7 +25,7 @@ def kulmbach(sheets):
         d, dd = map(force_int, _kulmbach_two.search(rows[9][1]).groups())
     except:
         d, dd = force_int(rows[9][1]), None
-    update(sheets, 9477, c=c, cc=cc, d=d, g=g, gg=gg, s=s, i=i, sig="Bot", ignore_delta="mon")
+    update(sheets, 9477, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 30, 18, 35, 600, kulmbach, 9477))

@@ -39,5 +39,5 @@ def saarbruecken(sheets):
 
     return True
 
-schedule.append(Task(16, 11, 18, 11, 360, saarbruecken, 10041))
+schedule.append(Task(15, 41, 18, 11, 360, saarbruecken, 10041))
 if __name__ == '__main__': saarbruecken(googlesheets())

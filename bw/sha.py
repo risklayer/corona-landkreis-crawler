@@ -13,7 +13,7 @@ def sha(sheets):
     main = soup.find(id="contentbereich").find(class_="publishnews")
     text = main.get_text(" ").strip()
     #print(text)
-    if not today().strftime("%d.%m.%Y") in text: raise NotYetAvailableException("Schwäbischhall noch alt:" + text.split("\n")[0])
+    if not today().strftime("Stand: %d.%m.%Y") in text: raise NotYetAvailableException("Schwäbischhall noch alt:" + text.split("\n")[0])
     c = force_int(_sha_c.search(text).group(1))
     d = force_int(_sha_d.search(text).group(1))
     g = force_int(_sha_g.search(text).group(1))

@@ -14,7 +14,7 @@ def uckermark(sheets):
     date = check_date(date.split(":",1)[-1], "Uckermark")
     row = rows[-3]
     assert "Summe Landkreis Uckermark" in row[0]
-    assert "Vortag" in rows[1][0] or "Freitag" in rows[1][0]
+    assert "Vortag" in rows[1][0] or "Freitag" in rows[1][0] or "Donnerstag" in rows[1][0]
     assert "Gesamt" in rows[1][1]
     assert "verstorben" in rows[1][2]
     assert "Isolation" in rows[1][3]

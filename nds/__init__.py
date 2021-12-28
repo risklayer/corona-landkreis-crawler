@@ -18,6 +18,7 @@ from .leer import leer
 from .luechow import luechow
 from .nienburg import nienburg
 from .northeim import northeim
+from .oldenburglk import oldenburglk
 from .osnabrueck import osnabrueck
 from .osterholz import osterholz
 from .peine import peine

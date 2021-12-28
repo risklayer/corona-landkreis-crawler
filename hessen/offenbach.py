@@ -17,8 +17,9 @@ def offenbach(sheets):
     c = force_int(_offenbach_c.search(text).group(1))
     d = force_int(_offenbach_d.search(text).group(1))
     g = force_int(_offenbach_g.search(text).group(1)) if _offenbach_g.search(text) else None
-    s, i = map(force_int, _offenbach_si.search(text).groups())
-    update(sheets, 6413, c=c, g=g, d=d, s=s, i=i, sig="Bot")
+    s, i = map(force_int, _offenbach_si.search(text).groups()) if _offenbach_si.search(text) else (None, None)
+    comment = "Bot" if s is not None else "Bot ohne SI"
+    update(sheets, 6413, c=c, g=g, d=d, s=s, i=i, sig="Bot", comment=comment)
     return True
 
 schedule.append(Task(10, 0, 14, 35, 360, offenbach, 6413))
