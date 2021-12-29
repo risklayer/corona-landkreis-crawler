@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _wschongau_cc = re.compile(r"([0-9.]+|\w+) neue Fälle gemeldet")
@@ -12,8 +11,6 @@ _wschongau_a = re.compile(r"Aktuell befinden sich ([0-9.]+|\w+)")
 _wschongau_g = re.compile(r"([0-9.]+) Fälle wieder genesen")
 
 def wschongau(sheets):
-    import locale
-    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     domain = "https://www.weilheim-schongau.de"
     soup = get_soup(domain)
 
@@ -40,10 +37,8 @@ def wschongau(sheets):
     g = force_int(_wschongau_g.search(content).group(1))
 
     update(sheets, 9190, c=c, cc=cc, d=d, dd=dd, q=q, g=g, sig="Bot", ignore_delta="mon")
-
     return True
 
-schedule.append(Task(15, 41, 17, 41, 360, wschongau, 9190))
+schedule.append(Task(11, 41, 17, 41, 360, wschongau, 9190))
 if __name__ == '__main__': wschongau(googlesheets())
-
 

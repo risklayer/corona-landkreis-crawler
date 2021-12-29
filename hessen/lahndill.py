@@ -19,24 +19,21 @@ def lahndill(sheets):
     date = main.find(text=_stand)
     #print(date)
     date = check_date(_stand.search(date).group(1), "Lahn-Dill")
-    args=dict()
     a = force_int(_lahndill_a.search(text).group(1))
-    args["cc"] = force_int(_lahndill_cc.search(text).group(1))
-    #args["c"] = force_int(_lahndill_c.search(text).group(1))
-    args["d"] = force_int(_lahndill_d.search(text).group(1))
-    args["g"] = force_int(_lahndill_g.search(text).group(1))
+    cc = force_int(_lahndill_cc.search(text).group(1))
+    #c = force_int(_lahndill_c.search(text).group(1))
+    d = force_int(_lahndill_d.search(text).group(1))
+    g = force_int(_lahndill_g.search(text).group(1))
+    s, i = None, None
     for m in _lahndill_si1.findall(text):
-        args["s"] = args.get("s",0) + force_int(m[0]) + force_int(m[1])
-        args["i"] = args.get("i",0) + force_int(m[1])
+        s = (s or 0) + force_int(m[0]) + force_int(m[1])
+        i = (i or 0) + force_int(m[1])
     for m in _lahndill_s2.findall(text):
-        args["s"] = args.get("s",0) + force_int(m[0])
-    args["q"] = a + force_int(_lahndill_q.search(text).group(1))
-    assert "d" in args and "g" in args
-    args["c"] = a + args["g"] + args["d"]
-    assert "c" in args and "d" in args and "g" in args
-    #print(args)
-    update(sheets, 6532, **args, sig="Bot", ignore_delta="mon")
+        s = (s or 0) + force_int(m[0])
+    q = a + force_int(_lahndill_q.search(text).group(1))
+    c = a + g + d
+    update(sheets, 6532, c=c, cc=cc, d=d, g=g, s=s, i=i, q=q, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(13, 0, 16, 35, 600, lahndill, 6532))
+schedule.append(Task(12, 0, 16, 35, 600, lahndill, 6532))
 if __name__ == '__main__': lahndill(googlesheets())

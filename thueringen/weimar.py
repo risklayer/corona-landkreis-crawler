@@ -17,9 +17,9 @@ def weimar(sheets):
     date = check_date(date.group(1) if date else text[:50], "Weimar")
     c, cc = map(force_int, _weimar_c.search(text).groups())
     d, dd = map(force_int, _weimar_d.search(text).groups())
-    g, gg = map(force_int, _weimar_g.search(text).groups())
-    s = force_int(_weimar_s.search(text).group(1))
-    q, qq = map(force_int, _weimar_q.search(text).groups())
+    g, gg = map(force_int, _weimar_g.search(text).groups()) if _weimar_g.search(text) else (None, None)
+    s = force_int(_weimar_s.search(text).group(1)) if _weimar_s.search(text) else None
+    q, qq = map(force_int, _weimar_q.search(text).groups()) if _weimar_q.search(text) else (None, None)
     update(sheets, 16055, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta=True)
     return True
 

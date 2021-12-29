@@ -5,7 +5,7 @@ _stand = re.compile(r"Stand:")
 _osterholz_c = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen haben sich bisher infi?ziert", re.U)
 _osterholz_g = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen sind wieder genesen", re.U)
 _osterholz_d = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen sind verstorben", re.U)
-_osterholz_q = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Kontaktpersonen in", re.U)
+_osterholz_q = re.compile(r"([0-9.]+) (?:\(±?([+-]?[0-9.]+)\) )?Kontaktpersonen in", re.U)
 _osterholz_s = re.compile(r"([0-9.]+) Personen in stationärer", re.U)
 
 def osterholz(sheets):
