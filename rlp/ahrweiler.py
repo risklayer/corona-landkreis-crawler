@@ -18,5 +18,5 @@ def ahrweiler(sheets):
     update(sheets, 7131, c=c, d=d, g=g, sig="Bot")
     return True
 
-schedule.append(Task(15, 30, 17, 35, 600, ahrweiler, 7131))
+schedule.append(Task(15, 30, 18, 5, 600, ahrweiler, 7131))
 if __name__ == '__main__': ahrweiler(googlesheets())

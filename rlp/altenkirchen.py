@@ -20,11 +20,14 @@ def altenkirchen(sheets):
     #print(content)
 
     content_split = content.splitlines()
+    ok = False
     for j in range(len(content_split)):
         if "Die Corona-Statistik für den Kreis Altenkirchen" in content_split[j]:
             date_text = content_split[j-1]
             if not today().strftime("%d. %b.") in date_text: raise NotYetAvailableException("Altenkirchen noch alt:" + date_text)
+            ok = True
             break
+    if not ok: raise NotYetAvailableException("Altenkirchen noch alt")
 
     c = force_int(_altenkirchen_c.search(content).group(1))
     cc = force_int(_altenkirchen_cc.search(content).group(1))

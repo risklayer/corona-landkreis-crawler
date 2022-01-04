@@ -9,7 +9,7 @@ def friesland(sheets):
     #for k,v in data.items(): print(k,v,sep="\t")
     date = data["Datenaktualitaet"].replace(","," ")
     date = date.split(".")
-    date = date[0] + "." + date[1] + "." + date[2] + ":" + date[3]
+    date = date[0] + "." + date[1] + "." + date[2] + (":" + date[3] if len(date)>3 else "")
     date = check_date(date, "Friesland")
     #if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Friesland noch alt")
     c, cc = int(data["Faelle_gesamt"]), int(data["Faelle_gesamt_Veraenderung"])

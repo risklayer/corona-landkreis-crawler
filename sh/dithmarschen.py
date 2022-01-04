@@ -17,7 +17,7 @@ def dithmarschen(sheets):
     assert "verstorbene" in rows[7][0]
     d, dd = force_int(rows[7][1]), force_int(rows[7][2],0)
     assert "Quarantäne" in rows[8][0]
-    q = force_int(rows[8][1]) + c - d - g
+    q = force_int(rows[8][1]) + c - d - g if force_int(rows[8][1]) else None
     update(sheets, 1051, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta=True)
     return True
 

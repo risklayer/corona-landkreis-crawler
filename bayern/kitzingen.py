@@ -17,6 +17,7 @@ def kitzingen(sheets):
     #print(text)
     stand = _kitzingen_st.search(text).groups()
     stand = stand[0] + " " + stand[1].replace(".",":") + (":00" if len(stand[1]) == 2 else "")
+    if "2021" in stand: stand = stand.replace("2021","2022") # falsch anfang des Jahres
     date = check_date(stand, "Kitzingen", datetime.timedelta(hours=14))
     #if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Kitzingen: "+text[:50])
     c = force_int(_kitzingen_c.search(text).group(1))

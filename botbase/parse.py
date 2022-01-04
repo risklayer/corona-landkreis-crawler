@@ -1,6 +1,6 @@
 class NotYetAvailableException(Exception): pass
 
-_zahlen = {"niemand":0, "keinerlei":0, "kein": 0, "keine": 0, "keinen":0, "ein":1, "eine":1, "einen":1, "zwei":2, "drei":3, "vier":4, "fünf":5, "sechs":6, "sieben":7, "acht":8, "neun":9, "zehn":10, "elf":11, "zwölf": 12}
+_zahlen = {"niemand":0, "keinerlei":0, "kein": 0, "keine": 0, "keinen":0, "ein":1, "eine":1, "einen":1, "einer":1, "zwei":2, "drei":3, "vier":4, "fünf":5, "sechs":6, "sieben":7, "acht":8, "neun":9, "zehn":10, "elf":11, "zwölf": 12}
 
 # Parsing utility, ignores whitespace and dots
 def force_int(x, fallback=None):

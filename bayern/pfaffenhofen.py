@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _pfaffenhofen_cc = re.compile(r"([0-9.]+|\w+) neuer?n? Coronavirus-Fälle bestätigt")
@@ -10,12 +9,9 @@ _pfaffenhofen_q = re.compile(r"([0-9.]+|\w+) Personen gelten derzeit als Kontakt
 _pfaffenhofen_a = re.compile(r"Aktuell sind damit ([0-9.]+|\w+)")
 _pfaffenhofen_g = re.compile(r"([0-9.]+) als genesen")
 _pfaffenhofen_s = re.compile(r"([0-9.]+|\w+) bestätigte Coronavirus-Patienten behandelt")
-_pfaffenhofen_i = re.compile(r"([0-9.]+|\w+) davon(?: müssen| muss) intensivmedizinisch")
+_pfaffenhofen_i = re.compile(r"([0-9.]+|\w+) davon m\w+ intensiv")
 
 def pfaffenhofen(sheets):
-
-    import locale
-    locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     domain = "https://www.landkreis-pfaffenhofen.de"
     soup = get_soup("https://www.landkreis-pfaffenhofen.de/meta/aktuelle-pressemitteilungen-zum-coronavirus/")
 
@@ -36,10 +32,9 @@ def pfaffenhofen(sheets):
     q = temp + a
     g = force_int(_pfaffenhofen_g.search(content).group(1))
     s = force_int(_pfaffenhofen_s.search(content).group(1))
-    i = force_int(_pfaffenhofen_i.search(content).group(1)) if _pfaffenhofen_i.search(content) else None
+    i = force_int(_pfaffenhofen_i.search(content).group(1)) if _pfaffenhofen_i.search(content) is not None else None
 
     update(sheets, 9186, c=c, cc=cc, d=d, q=q, g=g, s=s, i=i, sig="Bot", ignore_delta="mon")
-
     return True
 
 schedule.append(Task(15, 45, 17, 45, 360, pfaffenhofen, 9186))
