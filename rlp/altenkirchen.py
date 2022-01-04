@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _altenkirchen_c = re.compile(r"Zahl der seit Mitte März 2020 kreisweit Infizierten: ([0-9.]+)")
@@ -10,7 +9,6 @@ _altenkirchen_g = re.compile(r"Geheilte: ([0-9.]+)")
 _altenkirchen_s = re.compile(r"in stationärer Behandlung: ([0-9.]+)")
 
 def altenkirchen(sheets):
-
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.kreis-altenkirchen.de/INTERNET/Quicknavigation/Startseite-Kreis-Altenkirchen/-CORONA-PANDEMIE-AKTUELLES-AUS-DEM-KREIS-.php?object=tx,2154.7&ModID=7&FID=2333.4911.1&NavID=2154.2&NavID=2154.12")
@@ -19,6 +17,7 @@ def altenkirchen(sheets):
         if "Corona-Pandemie am" in p.text:
             content = p.get_text(strip=True, separator='\n')
             break
+    #print(content)
 
     content_split = content.splitlines()
     for j in range(len(content_split)):

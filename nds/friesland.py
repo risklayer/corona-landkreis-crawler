@@ -8,7 +8,10 @@ def friesland(sheets):
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
     date = data["Datenaktualitaet"].replace(","," ")
-    if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Friesland noch alt")
+    date = date.split(".")
+    date = date[0] + "." + date[1] + "." + date[2] + ":" + date[3]
+    date = check_date(date, "Friesland")
+    #if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Friesland noch alt")
     c, cc = int(data["Faelle_gesamt"]), int(data["Faelle_gesamt_Veraenderung"])
     d, dd = int(data["verstorben"]), int(data["verstorben_Veraenderung"])
     g, gg = int(data["genesen"]), int(data["genesen_Veraenderung"])

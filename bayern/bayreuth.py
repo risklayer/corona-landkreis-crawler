@@ -19,7 +19,7 @@ def bayreuth(sheets):
     text = soup.find("section").get_text(" ").strip()
     #print(text)
     cl, cs = map(force_int, _bayreuth_c.search(text).groups())
-    ccl, ccs = map(force_int, _bayreuth_cc.search(text).groups())
+    ccl, ccs = map(force_int, _bayreuth_cc.search(text).groups()) if _bayreuth_cc.search(text) else None, None
     dl, ds = map(force_int, _bayreuth_d.search(text).groups())
     gl, gs = map(force_int, _bayreuth_g.search(text).groups())
     gl, gs, dl, ds = gl - 2, gs - 3, dl + 2, ds + 3

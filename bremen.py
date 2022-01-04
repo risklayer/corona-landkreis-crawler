@@ -9,7 +9,7 @@ _matchh1bremerhaven = re.compile(r"^Stadt Bremerhaven")
 def bremen(sheets):
     soup = get_soup("https://www.gesundheit.bremen.de/corona/corona/zahlen/corona_fallzahlen-37649")
     main = soup.find(id="main")
-    stand = main.find("h2").text
+    stand = next(x for x in main.findAll("h2") if "20" in x.text).text
     if not datetime.date.today().strftime("%d.%m.%Y") in stand: raise NotYetAvailableException("Bremen noch alt? " + stand)
     tables = main.findAll("table")
     b, bh = dict(), dict()

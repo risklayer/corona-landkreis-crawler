@@ -13,7 +13,7 @@ def kaiserslautern(sheets):
     content = soup.find(id="col3_content")
     p = content.findAll("p")[1].get_text(" ")
     #print(p)
-    if not today().strftime("- %d.%m :") in p: raise NotYetAvailableException("Kaiserslautern noch alt:" + p[:50])
+    if not today().strftime("- %d.%m. :") in p: raise NotYetAvailableException("Kaiserslautern noch alt:" + p[:50])
     cc1, cc2, cc3 = map(lambda x:force_int(x, 0), _kl_cc.search(p).groups())
     #gg1, gg2, gg3 = map(lambda x:force_int(x, 0), _kl_gg.search(p).groups())
     c1, g1, d1 = map(lambda x:force_int(x, 0), _kl_stadt.search(p).groups())

@@ -5,6 +5,7 @@ _offenbach_c = re.compile(r"Insgesamt wurden bislang ([0-9.]+)\sMenschen in Offe
 _offenbach_d = re.compile(r"Todesfälle in Offenbach gab es bisher insgesamt ([0-9.]+)\.")
 _offenbach_g = re.compile(r"([0-9.]+ )Menschen sind inzwischen wieder genesen")
 _offenbach_si = re.compile(r"Es werden derzeit\s+(\S+)\s+Person(?:en)? aus Offenbach im Krankenhaus behandelt(?:, bei\s+(\S+)\s+Person(?:en)? ist der Zustand kritisch)?")
+_offenbach_st = re.compile(r"Stand:\s*(\d\d?\.?\s*(\w+|\d\d?)\s*20\d\d)")
 
 def offenbach(sheets):
     import locale
@@ -13,7 +14,8 @@ def offenbach(sheets):
     main = soup.find(id="SP-content")
     text = re.sub(r"\s*\n\s*","\n",main.get_text(" ").strip())
     #print(text)
-    if not today().strftime("Stand: %-d. %B %Y") in text: raise NotYetAvailableException("Offenbach noch alt.")
+    date = check_date(_offenbach_st.search(text).group(1), "Offenbach")
+    #if not today().strftime("Stand: %-d. %B %Y") in text and not today().strftime("Stand: %d. %B %Y") in text: raise NotYetAvailableException("Offenbach noch alt.")
     c = force_int(_offenbach_c.search(text).group(1))
     d = force_int(_offenbach_d.search(text).group(1))
     g = force_int(_offenbach_g.search(text).group(1)) if _offenbach_g.search(text) else None

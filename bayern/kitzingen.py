@@ -5,7 +5,7 @@ _kitzingen_c = re.compile(r"([0-9.]+) bestätigte Corona-Fälle")
 _kitzingen_d = re.compile(r"([0-9.]+) Personen davon sind gestorben")
 _kitzingen_g = re.compile(r"([0-9.]+) Personen gesund")
 _kitzingen_q = re.compile(r"([0-9.]+) Personen sind als enge Kontaktpersonen")
-_kitzingen_st = re.compile(r"Stand:? (\d\d?\. \w+ 20\d\d), (\d\d\.\d\d)")
+_kitzingen_st = re.compile(r"Stand:? (\d\d?\. \w+ 20\d\d), (\d\d(?:\.\d\d)?)")
 
 def kitzingen(sheets):
     import locale
@@ -16,7 +16,7 @@ def kitzingen(sheets):
     text = re.sub("\s+", " ", text)
     #print(text)
     stand = _kitzingen_st.search(text).groups()
-    stand = stand[0] + " " + stand[1].replace(".",":")
+    stand = stand[0] + " " + stand[1].replace(".",":") + (":00" if len(stand[1]) == 2 else "")
     date = check_date(stand, "Kitzingen", datetime.timedelta(hours=14))
     #if not today().strftime("%-d. %B %Y") in text: raise NotYetAvailableException("Kitzingen: "+text[:50])
     c = force_int(_kitzingen_c.search(text).group(1))

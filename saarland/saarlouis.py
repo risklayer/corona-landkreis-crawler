@@ -20,7 +20,7 @@ def saarlouis(sheets):
             stop = cur.findNext("hr")
     #for p in ps: print("A",p)
     #date = check_date(p[0], "Merzig-Wadern")
-    if not today().strftime("%d.%m.%Y") in ps[0]: raise NotYetAvailableException("Saarlouis noch alt: "+ps[0])
+    if not (today().strftime("%d.%m.%Y") in ps[0] or today().strftime("%d.%m.%y") in ps[0]): raise NotYetAvailableException("Saarlouis noch alt: "+ps[0])
     args={}
     for p in ps:
         m = _saarlouis_c.search(p)

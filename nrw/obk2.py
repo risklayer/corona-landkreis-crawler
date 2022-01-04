@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from botbase import *
 
-_obk2_c = re.compile(r"Positiv\sgetestete\sPersonen\s\(PCR-Test\)\sseit\sPandemiebeginn\**:\s*([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)", re.U)
-_obk2_d = re.compile(r"verstorben:\s([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)", re.U)
-_obk2_g = re.compile(r"aus\sQuarantäne\sentlassen:\s([0-9.]+)\s*\(=?\+?(-?[0-9.]*)\)", re.U)
-_obk2_s = re.compile(r"in\sKrankenhäusern\**:\s([0-9.]+)\s*\(=?\+?-?[0-9.]*\)", re.U)
-_obk2_ni = re.compile(r"auf\sNormalstation\**:\s([0-9.]+)\s*\(=?\+?-?[0-9.]*\)", re.U)
-_obk2_q = re.compile(r"in\sangeordneter\sQuarantäne\**:\s([0-9.]+)\s*\(=?\+?-?[0-9.]*\)", re.U)
+_obk2_c = re.compile(r"Positiv\sgetestete\sPersonen\s\(PCR-Test\)\sseit\sPandemiebeginn\**:\s*([0-9.]+)\s*(?:\(=?\+?(-?[0-9.]*)\))?", re.U)
+_obk2_d = re.compile(r"verstorben:\s([0-9.]+)\s*(?:\(=?\+?(-?[0-9.]*)\))?", re.U)
+_obk2_g = re.compile(r"aus\sQuarantäne\sentlassen:\s([0-9.]+)\s*(?:\(=?\+?(-?[0-9.]*)\))?", re.U)
+_obk2_s = re.compile(r"in\sKrankenhäusern\**:\s([0-9.]+)\s*(?:\(=?\+?-?[0-9.]*\))?", re.U)
+_obk2_ni = re.compile(r"auf\sNormalstation\**:\s([0-9.]+)\s*(?:\(=?\+?-?[0-9.]*\))?", re.U)
+_obk2_q = re.compile(r"in\sangeordneter\sQuarantäne\**:\s([0-9.]+)\s*(?:\(=?\+?-?[0-9.]*\))?", re.U)
 
 def obk2(sheets):
     soup = get_soup("https://www.obk.de/cms200/aktuelles/pressemitteilungen/")
