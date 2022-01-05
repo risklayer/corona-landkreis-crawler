@@ -1,3 +1,4 @@
+from .aachen import aachen
 from .bochum import bochum
 from .bonn import bonn
 from .borken import borken
@@ -29,6 +30,7 @@ from .obk2 import obk2 # PM
 from .paderborn import paderborn
 from .rbk import rbk # dashboard
 from .rbk2 import rbk2 # PM
+from .remscheid import remscheid
 from .rheinerft import rheinerft
 from .rheinkneuss import rheinkneuss
 from .rheinsieg import rheinsieg

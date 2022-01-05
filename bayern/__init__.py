@@ -9,9 +9,11 @@ from .ffb import ffb
 from .forchheim import forchheim
 from .dingolfing import dingolfing
 from .garmisch import garmisch
+from .ingolstadt import ingolstadt
 from .kitzingen import kitzingen
 from .kulmbach import kulmbach
 from .landsberg import landsberg
+from .lichtenfels import lichtenfels
 from .mainspessart import mainspessart
 from .miltenberg import miltenberg
 from .muenchen import muenchen
