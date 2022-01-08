@@ -20,5 +20,5 @@ def ffb(sheets):
     update(sheets, 9179, c=c, d=d, g=g, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(12, 0, 16, 35, 360, ffb, 9179))
+schedule.append(Task(11, 0, 16, 35, 360, ffb, 9179))
 if __name__ == '__main__': ffb(googlesheets())

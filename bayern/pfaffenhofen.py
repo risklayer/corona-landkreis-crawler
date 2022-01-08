@@ -8,7 +8,7 @@ _pfaffenhofen_d = re.compile(r"([0-9.]+) Personen sind verstorben")
 _pfaffenhofen_q = re.compile(r"([0-9.]+|\w+) Personen gelten derzeit als Kontaktpersonen und befinden sich deshalb in häuslicher Quarantäne")
 _pfaffenhofen_a = re.compile(r"Aktuell sind damit ([0-9.]+|\w+)")
 _pfaffenhofen_g = re.compile(r"([0-9.]+) als genesen")
-_pfaffenhofen_s = re.compile(r"([0-9.]+|\w+) bestätigte Coronavirus-Patienten behandelt")
+_pfaffenhofen_s = re.compile(r"([0-9.]+|\w+) bestätigte\w+ Coronavirus-Patienten behandelt")
 _pfaffenhofen_i = re.compile(r"([0-9.]+|\w+) davon m\w+ intensiv")
 
 def pfaffenhofen(sheets):
@@ -23,6 +23,7 @@ def pfaffenhofen(sheets):
             break
 
     content = get_soup(domain+link).find(id="News").text
+    #print(content)
 
     c = force_int(_pfaffenhofen_c.search(content).group(1))
     cc = force_int(_pfaffenhofen_cc.search(content).group(1))
@@ -31,7 +32,7 @@ def pfaffenhofen(sheets):
     a = force_int(_pfaffenhofen_a.search(content).group(1))
     q = temp + a
     g = force_int(_pfaffenhofen_g.search(content).group(1))
-    s = force_int(_pfaffenhofen_s.search(content).group(1))
+    s = force_int(_pfaffenhofen_s.search(content).group(1)) if _pfaffenhofen_s.search(content) is not None else None
     i = force_int(_pfaffenhofen_i.search(content).group(1)) if _pfaffenhofen_i.search(content) is not None else None
 
     update(sheets, 9186, c=c, cc=cc, d=d, q=q, g=g, s=s, i=i, sig="Bot", ignore_delta="mon")

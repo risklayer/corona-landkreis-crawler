@@ -7,6 +7,7 @@ def friesland(sheets):
     #print(data)
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
+    if not "Datenaktualitaet" in data: raise NotYetAvailableException("Friesland noch alt, kein query result.")
     date = data["Datenaktualitaet"].replace(","," ")
     date = date.split(".")
     date = date[0] + "." + date[1] + "." + date[2] + (":" + date[3] if len(date)>3 else "")

@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 from botbase import *
 
-_dingolfing_c = re.compile(r"([0-9.]+) positiv getestete")
-_dingolfing_d = re.compile(r"([0-9.]+) Todesfälle")
-_dingolfing_g = re.compile(r"([0-9.]+) aus Quarantäne")
+_dingolfing_c = re.compile(r"([0-9.]+)\spositiv\sgetestete")
+_dingolfing_d = re.compile(r"([0-9.]+)\sTodesfälle")
+_dingolfing_g = re.compile(r"([0-9.]+)\saus\sQuarantäne")
 
 def dingolfing(sheets):
     soup = get_soup("https://www.landkreis-dingolfing-landau.de/buergerservice/coronavirus/")
     main = soup.find("main").find("section")
     p = main.find("li").parent
     pt = p.find_previous_sibling("p").get_text()
-    t = p.get_text()
+    t = p.get_text(" ")
     #print(t)
     if not today().strftime("%d.%m.%Y") in pt: raise NotYetAvailableException("Dingolfing noch alt:" + pt)
     c = force_int(_dingolfing_c.search(t).group(1))

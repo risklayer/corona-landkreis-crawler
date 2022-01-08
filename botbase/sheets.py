@@ -59,9 +59,12 @@ def set_one(sheets, cell, value, dry_run=dry_run):
     sheets.values().update(spreadsheetId=spreadsheet_id, range=cell, valueInputOption="RAW", body = {"values":[[value]]}).execute()
 
 def _format(c, v, vv=None):
-    if v is None: return None
-    if vv is None: return "%s%d" % (c,v)
-    return ("%s%d(%+d)" % (c,v,vv)) if vv != 0 else ("%s%d(=)" % (c,v))
+    try:
+        if v is None: return None
+        if vv is None: return "%s%d" % (c,v)
+        return ("%s%d(%+d)" % (c,v,vv)) if vv != 0 else ("%s%d(=)" % (c,v))
+    except Exception as e:
+        raise Exception("Failed to format: "+str(v)+(" "+str(vv) if vv is not None else "")+": "+str(e))
 
 _stripbot=re.compile(r"\(?Bot.*(?: [A-Z][0-9]+[()0-9=]+)+\)?")
 

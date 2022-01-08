@@ -15,12 +15,12 @@ def goerlitz(sheets):
     assert "Aktuell" in rows[0][1] and "Veränderung" in rows[0][2]
     assert "gesamt" in rows[2][0]
     c, cc = force_int(rows[2][1].replace("*","")), force_int(rows[2][2].replace("*",""))
-    assert "Quarant" in rows[3][0]
-    a, aa = force_int(rows[3][1].replace("*","")), force_int(rows[3][2].replace("*",""))
-    assert "station" in rows[4][0]
-    s = force_int(rows[4][1].replace("*",""))
-    assert "Tod" in rows[5][0]
-    d, dd = force_int(rows[5][1].replace("*","")), force_int(rows[5][2].replace("*",""))
+    assert "Quarant" in rows[4][0]
+    a, aa = force_int(rows[4][1].replace("*","")), force_int(rows[3][2].replace("*",""))
+    assert "station" in rows[5][0]
+    s = force_int(rows[5][1].replace("*",""))
+    assert "Tod" in rows[6][0]
+    d, dd = force_int(rows[6][1].replace("*","")), force_int(rows[6][2].replace("*",""))
     #print(main.get_text())
     m = _goerlitz_i.search(main.get_text())
     i = force_int(m.group(1)) if m else None

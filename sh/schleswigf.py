@@ -16,7 +16,7 @@ def schleswigf(sheets):
     cc = force_int(_schleswigf_cc.search(text).group(1))
     g = force_int(_schleswigf_g.search(text).group(1))
     d = force_int(_schleswigf_d.search(text).group(1))
-    q = force_int(_schleswigf_q.search(text).group(1))
+    q = force_int(_schleswigf_q.search(text).group(1)) if _schleswigf_q.search(text) else None
     update(sheets, 1059, c=c, cc=cc, d=d, g=g, q=q, ignore_delta=True)
     return True
 

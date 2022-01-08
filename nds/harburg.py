@@ -6,16 +6,20 @@ def harburg(sheets):
     content = soup.find(id="content")
     rows = content.find("table", border="1").findAll("tr")
     rows = [[x.text.strip() for x in row.findAll("td")] for row in rows[:3]]
-    #for row in rows: print(row)
+    #for row in rows[:3]: print(row)
     if not today().strftime("%d.%m.") in rows[1][0]: raise NotYetAvailableException("Harburg noch alt:" + rows[1][0])
     assert "insgesamt" in rows[0][6]
     c, cc = force_int(rows[1][6]), force_int(rows[2][6],0)
     assert "verstorben" in rows[0][8]
     d, dd = force_int(rows[1][8]), force_int(rows[2][8],0)
-    assert "genesen" in rows[0][7]
-    g, gg = force_int(rows[1][7]), force_int(rows[2][7],0)
-    cc, dd, gg = c - cc, d - dd, g - gg
-    if g == c - d: g, gg = None, None
+    g, gg = None, None
+    try:
+        assert "genesen" in rows[0][7]
+        g, gg = force_int(rows[1][7]), force_int(rows[2][7],0)
+        gg = g - gg
+    except: pass
+    cc, dd = c - cc, d - dd
+    if g is None or g == c - d: g, gg = None, None
     update(sheets, 3353, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", ignore_delta=False)
     return True
 

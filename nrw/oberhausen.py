@@ -12,7 +12,7 @@ def oberhausen(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     import bs4
-    soup = get_soup("https://www.oberhausen.de/de/index/rathaus/verwaltung/umwelt-gesundheit-und-mobilitat/gesundheit/aktuelle_informationen/informationen_zum_coronavirus/aktuelle_meldungen.php")
+    soup = get_soup("https://www.oberhausen.de/de/index/rathaus/verwaltung/soziales-gesundheit-wohnen-und-recht/gesundheit/aktuelle_informationen/informationen_zum_coronavirus/aktuelle_meldungen.php")
     main = soup.find(id="content")
     text = ""
     cur = next(main.find("hr").parent.children)

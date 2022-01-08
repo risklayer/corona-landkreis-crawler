@@ -29,5 +29,5 @@ def cuxhaven(sheets):
     update(sheets, 3352, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, i=i, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(15, 0, 17, 35, 360, cuxhaven, 3352))
+schedule.append(Task(14, 0, 17, 35, 360, cuxhaven, 3352))
 if __name__ == '__main__': cuxhaven(googlesheets())

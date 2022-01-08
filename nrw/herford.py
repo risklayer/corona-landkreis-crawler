@@ -2,7 +2,7 @@
 from botbase import *
 
 _herford_c = re.compile(r"kreisweit bislang ([0-9.]+) infizierte")
-_herford_cc = re.compile(r"([0-9.]+) neue (?:Corona-)?Fälle")
+_herford_cc = re.compile(r"([0-9.]+)\** neue (?:Corona-)?Fälle")
 _herford_d = re.compile(r"im Kreis Herford ([0-9.]+) Todesfälle")
 _herford_g = re.compile(r"gelten ([0-9.]+) Personen als genesen")
 _herford_s = re.compile(r"([0-9.]+) Patient.innen mit einer COVID-19-Infektion stationär")

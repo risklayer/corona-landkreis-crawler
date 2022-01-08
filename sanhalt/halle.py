@@ -4,12 +4,12 @@ from botbase import *
 _twovals = re.compile(r"\s*([0-9.]+)\s*\(\+?\/?(-?[0-9.]+)\)", re.U)
 
 def halle(sheets):
-    import locale
+    import locale, re
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.halle.de/de/Verwaltung/Presseportal/Nachrichten/index.aspx?NewsId=45334")
     article = soup.find(id="content-inner")
     s = next(x for x in article.findAll("strong") if "Corona-Lage" in x.get_text())
-    if not today().strftime("%-d. %B %Y") in s.get_text():
+    if not today().strftime("%-d. %B %Y") in re.sub(r"\s+", " ", s.get_text()):
         raise NotYetAvailableException("Halle (Saale) noch alt: "+s.get_text());
     tables = article.findAll("table")
     args = dict()
