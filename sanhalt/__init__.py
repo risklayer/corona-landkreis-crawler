@@ -5,4 +5,5 @@ from .land import sanhalt
 from .magdeburg import magdeburg
 from .saalekreis import saalekreis
 from .salzlandkreis import salzlandkreis
+from .stendal import stendal
 from .wittenberg import wittenberg

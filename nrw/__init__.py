@@ -30,6 +30,7 @@ from .obk2 import obk2 # PM
 from .paderborn import paderborn
 from .rbk import rbk # dashboard
 from .rbk2 import rbk2 # PM
+from .recklinghausen import recklinghausen
 from .remscheid import remscheid
 from .rheinerft import rheinerft
 from .rheinkneuss import rheinkneuss

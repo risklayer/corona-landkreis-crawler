@@ -19,4 +19,5 @@ from .remsmurr import remsmurr
 from .sha import sha
 from .sbk import sbk
 from .sigmaringen import sigmaringen
+from .stuttgart import stuttgart
 from .zak import zak

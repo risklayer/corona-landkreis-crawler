@@ -7,5 +7,6 @@ from .kaiserslautern import kaiserslautern
 from .landau import landau
 from .mainz import mainz
 from .neuwied import neuwied
+from .rheinlahn import rheinlahn
 from .vulkaneifel import vulkaneifel
 from .westerwald import westerwald

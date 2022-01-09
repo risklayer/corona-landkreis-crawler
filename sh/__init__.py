@@ -2,7 +2,9 @@ from .land import sh
 from .dithmarschen import dithmarschen
 from .flensburg import flensburg
 from .kiel import kiel
+from .lauenburg import lauenburg
 from .neumuenster import neumuenster
+from .ostholstein import ostholstein
 from .rendsburg import rendsburg
 from .schleswigf import schleswigf
 from .segeberg import segeberg
