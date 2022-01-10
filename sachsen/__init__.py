@@ -2,6 +2,7 @@ from .land import sachsen
 from .bautzen import bautzen
 from .dresden import dresden
 from .goerlitz import goerlitz
+from .leipzig import leipzig
 from .leipziglk import leipziglk
 from .meissen import meissen
 from .mittelsachsen import mittelsachsen

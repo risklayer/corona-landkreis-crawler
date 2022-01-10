@@ -15,6 +15,7 @@ from .hagen import hagen
 from .hamm import hamm
 from .heinsberg import heinsberg
 from .herford import herford
+from .herne import herne
 from .hoexter import hoexter
 from .kleve import kleve
 from .lippe import lippe

@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 from botbase import *
 
-_prignitz_c = re.compile(r"Bestätigte Fälle: *([0-9.]+), davon neu: (\d+)")
-_prignitz_g = re.compile(r"Genesungen: *([0-9.]+)(?:, davon neu: (\d+))?")
-_prignitz_d = re.compile(r"Sterbefälle: *([0-9.]+)")
 _prignitz_date = re.compile(r"Stand:\s(\d\d?\.\d\d?\.20\d\d)")
 
 def prignitz(sheets):
