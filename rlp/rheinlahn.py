@@ -22,7 +22,7 @@ def rheinlahn(sheets):
     update(sheets, 7141, c=c, d=d, g=g, sig="Bot")
     return True
 
-schedule.append(Task(13, 35, 15, 35, 360, rheinlahn, 7141))
+schedule.append(Task(13, 35, 17, 35, 600, rheinlahn, 7141))
 if __name__ == '__main__': rheinlahn(googlesheets())
 
 

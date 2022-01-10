@@ -17,6 +17,7 @@ def stuttgart(sheets):
     cc = force_int(_stuttgart_cc.search(content).group(1))
     d = force_int(_stuttgart_d.search(content).group(1))
     dd = force_int(_stuttgart_dd.search(content).group(1))
+    c += 103
     update(sheets, 8111, c=c, cc=cc, d=d, dd=dd, sig="Bot", ignore_delta="mon")
     return True
 

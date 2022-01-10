@@ -29,5 +29,5 @@ def luechow(sheets):
     update(sheets, 3354, c=c, cc=cc, d=d, dd=dd, g=g, q=q, s=s, date=date, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(16, 30, 19, 35, 360, luechow, 3354))
+schedule.append(Task(16, 5, 19, 35, 360, luechow, 3354))
 if __name__ == '__main__': luechow(googlesheets())

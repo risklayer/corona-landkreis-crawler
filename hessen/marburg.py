@@ -48,5 +48,5 @@ def marburg(sheets):
     update(sheets, 6534, c=c, cc=cc, g=g, gg=gg, d=d, s=s, i=i, sig="Bot")
     return True
 
-schedule.append(Task(15, 47, 17, 47, 360, marburg, 6534))
+schedule.append(Task(15, 47, 17, 47, 360, marburg, 6534, ignore_delta=True))
 if __name__ == '__main__': marburg(googlesheets())

@@ -22,8 +22,9 @@ def neumuenster(sheets):
     d = force_int(_neumuenster_d.search(text).group(1))
     g = force_int(_neumuenster_g.search(text).group(1))
     s = force_int(_neumuenster_s.search(text).group(1))
-    q = force_int(_neumuenster_q.search(text).group(1)) + c - d - g
-    update(sheets, 1004, c=c, d=d, g=g, s=s, q=q, sig="Bot")
+    q = force_int(_neumuenster_q.search(text).group(1)) + c - d - g if _neumuenster_q.search(text) else None
+    com = "Bot ohne Q" if q is None else "Bot"
+    update(sheets, 1004, c=c, d=d, g=g, s=s, q=q, sig="Bot", comment=com)
     return True
 
 schedule.append(Task(13, 0, 15, 35, 600, neumuenster, 1004))

@@ -14,5 +14,5 @@ def heidekreis(sheets):
     update(sheets, 3358, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, s=s, i=i, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(12, 15, 14, 30, 180, heidekreis, 3358))
+schedule.append(Task(12, 15, 15, 30, 360, heidekreis, 3358))
 if __name__ == '__main__': heidekreis(googlesheets())

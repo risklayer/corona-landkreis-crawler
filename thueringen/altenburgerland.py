@@ -36,5 +36,5 @@ def altenburgerland(sheets):
     update(sheets, 16077, c=c, cc=cc, d=d, s=s, i=i, sig="Bot", comment="Bot ohne G", ignore_delta="mon")
     return True
 
-schedule.append(Task(15, 10, 16, 40, 360, altenburgerland, 16077))
+schedule.append(Task(15, 2, 16, 40, 360, altenburgerland, 16077))
 if __name__ == '__main__': altenburgerland(googlesheets())

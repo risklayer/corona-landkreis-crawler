@@ -19,5 +19,5 @@ def heidenheim(sheets):
     update(sheets, 8135, c=c, cc=cc, d=d, dd=dd, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(17, 0, 19, 50, 360, heidenheim, 8135))
+schedule.append(Task(16, 0, 19, 50, 360, heidenheim, 8135))
 if __name__ == '__main__': heidenheim(googlesheets())

@@ -38,5 +38,5 @@ def pfaffenhofen(sheets):
     update(sheets, 9186, c=c, cc=cc, d=d, q=q, g=g, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(15, 45, 17, 45, 360, pfaffenhofen, 9186))
+schedule.append(Task(15, 5, 17, 45, 360, pfaffenhofen, 9186))
 if __name__ == '__main__': pfaffenhofen(googlesheets())

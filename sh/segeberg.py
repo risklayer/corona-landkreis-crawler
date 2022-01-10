@@ -29,5 +29,5 @@ def segeberg(sheets):
     update(sheets, 1060, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(16, 1, 19, 35, 360, segeberg, 1060))
+schedule.append(Task(16, 1, 19, 35, 600, segeberg, 1060))
 if __name__ == '__main__': segeberg(googlesheets())

@@ -17,7 +17,6 @@ from .heinsberg import heinsberg
 from .herford import herford
 from .hoexter import hoexter
 from .kleve import kleve
-from .leverkusen import leverkusen
 from .lippe import lippe
 from .mettmann import mettmann
 from .mgladbach import mgladbach

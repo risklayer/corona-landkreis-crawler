@@ -21,5 +21,5 @@ def grossgerau(sheets):
     update(sheets, 6433, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(11, 0, 14, 35, 360, grossgerau, 6433))
+schedule.append(Task(11, 0, 15, 35, 360, grossgerau, 6433))
 if __name__ == '__main__': grossgerau(googlesheets())

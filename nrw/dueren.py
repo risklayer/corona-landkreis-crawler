@@ -4,8 +4,11 @@ from botbase import *
 def dueren(sheets):
     data = get_json("https://services-eu1.arcgis.com/B4AGMbvhuqY0JRyu/arcgis/rest/services/CoronaFallzahlenKreis/FeatureServer/0/query?f=json&where=1%3D1&outFields=*&returnGeometry=false")
     data = data["features"][0]["attributes"]
-    # for k, v in data.items(): print(k, v, sep="\t")
-    date = check_date(data["Datum"], "Düren")
+    #for k, v in data.items(): print(k, v, sep="\t")
+    #date = check_date(data["Datum"], "Düren")
+    #print(date)
+    date = check_date(data["ID"], "Düren")
+    #print(date)
     c, g, d = data["Summe"], data["Genesen"], data["Verstorben"]
     cc = data["Infektionsdelta_Vortag"]
     # TODO: Impfzahlen auch vorhanden!

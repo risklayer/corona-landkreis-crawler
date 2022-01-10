@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _remscheid_date = re.compile(r"Corona-Virus \| Aktuelle Gesundheitslage vom (\d\d?\.\d\d?\.20\d\d)")
@@ -13,7 +12,6 @@ _remscheid_s = re.compile(r"([0-9.]+|\w+) Covid-19-erkrankte Personen als sogena
 _remscheid_i = re.compile(r"([0-9.]+|\w+) dieser Personen sind intensivpflichtig")
 
 def remscheid(sheets):
-
     soup = get_soup("https://www.remscheid.de/neuigkeiten-wissenswertes/corona/index.php")
     entry = next(x for x in soup.find_all("a") if "Corona-Virus | Aktuelle Gesundheitslage" in x.get_text())
     link = entry["href"] if entry else None
@@ -34,5 +32,5 @@ def remscheid(sheets):
     update(sheets, 5120, c=c, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(15, 25, 17, 25, 360, remscheid, 5120))
+schedule.append(Task(11, 25, 17, 25, 600, remscheid, 5120))
 if __name__ == '__main__': remscheid(googlesheets())

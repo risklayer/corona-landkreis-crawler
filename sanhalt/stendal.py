@@ -10,12 +10,10 @@ def stendal(sheets):
     date_text = soup.find("div", {"class":"text-muted article-date mt-2"}).get_text().strip()
     check_date(date_text, "Stendal")
     rows = [[x.text.strip() for x in row.findAll("td")] for row in soup.find("table").findAll("tr")]
-    c = force_int(rows[4][1].replace("(insgesamt seit März 2020)", ""))
-    cc = force_int(rows[5][1])
-    d = force_int(rows[6][1].replace("(insgesamt seit März 2020)", ""))
+    # C,D vom LAND
     s = sum(map(force_int, _stendal_s.findall(rows[1][1])))
     i = sum(map(force_int, _stendal_i.findall(rows[1][1])))
-    update(sheets, 15090, c=c, cc=cc, d=d, s=s, i=i, sig="Bot", ignore_delta="mon")
+    update(sheets, 15090, c=None, s=s, i=i, sig="", comment="LK", without_c=True)
     return True
 
 schedule.append(Task(14, 56, 16, 56, 360, stendal, 15090))

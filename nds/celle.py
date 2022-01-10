@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _celle_date = re.compile(r"Stand (\d\d?\.\d\d?\.20\d\d)")
@@ -12,7 +11,6 @@ _celle_s = re.compile(r"([0-9.]+|\w+) positiv getestete Personen behandelt")
 _celle_i = re.compile(r"Auf der Intensivstation liegen ([0-9.]+|\w+)")
 
 def celle(sheets):
-
     soup = get_soup("https://www.landkreis-celle.de/")
     entry = next(x for x in soup.find_all("a", title=True) if "Situation SARS-CoV-2" in x["title"])
     date_text = _celle_date.search(entry["title"]).group(1)
@@ -29,7 +27,7 @@ def celle(sheets):
     s = force_int(_celle_s.search(content).group(1))
     i = force_int(_celle_i.search(content).group(1))
 
-    update(sheets, 3351, c=c, cc=cc, q=q, s=s, i=i, sig="Bot")
+    update(sheets, 3351, c=c, cc=cc, q=q, s=s, i=i, comment="Bot ohne QD A"+str(a), sig=str(a))
     return True
 
 schedule.append(Task(10, 15, 12, 15, 360, celle, 3351))

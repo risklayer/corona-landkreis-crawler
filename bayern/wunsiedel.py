@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 def wunsiedel(sheets):
-
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.landkreis-wunsiedel.de/buergerservice/aktuelle-informationen-zum-coronavirus-sars-cov-2#")
@@ -22,8 +20,7 @@ def wunsiedel(sheets):
     g = force_int(data["Genesene"])
     i = force_int(data["belegte Covid19- Intensivbetten Klinikum"])
 
-    update(sheets, 9479, c=c, cc=cc, d=d, g=g, i=i, sig="Bot")
-
+    update(sheets, 9479, c=c, cc=cc, d=d, g=g, i=i, comment="Bot ohne S")
     return True
 
 schedule.append(Task(14, 40, 16, 40, 360, wunsiedel, 9479))
