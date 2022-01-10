@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _saalfeld_cc = re.compile(r"([0-9.]+|\w+) neuen? Coronafälle")
@@ -15,6 +14,7 @@ def saalfeld(sheets):
     domain = "https://www.kreis-slf.de"
     soup = get_soup("https://www.kreis-slf.de/landkreis/")
 
+    date_text, link = None, None
     for h4 in soup.find_all("h4"):
         if "neue Coronafälle" in h4.text:
             date_text = h4.findPrevious("time").text.strip()

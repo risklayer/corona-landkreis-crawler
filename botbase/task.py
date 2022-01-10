@@ -15,6 +15,7 @@ class Task:
 
     def run(self, sheets):
         from .sheets import is_signed
+        import sys
         try:
             sig = is_signed(sheets, self.ags)
         except Exception as err:
@@ -22,7 +23,7 @@ class Task:
             import traceback
             traceback.print_tb(err.__traceback__)
             return False # e.g., Google timeout
-        if sig is not None:
+        if sig is not None and not sig == "RKI" and not (sig == "Land" and "--recheck" in sys.argv):
             print("Already filled", self)
             return True # "success"
         try:

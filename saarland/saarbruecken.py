@@ -3,7 +3,7 @@
 from botbase import *
 
 _saarbruecken_cc1 = re.compile(r"Das Gesundheitsamt des Regionalverbandes meldet heute ([0-9.]+|\w+)")
-_saarbruecken_cc2 = re.compile(r"Das Gesundheitsamt des Regionalverbandes meldet am Samstag (?:[0-9.]+|\w+) und am heutigen Sonntag weitere ([0-9.]+|\w+) neue Coronafälle")
+_saarbruecken_cc2 = re.compile(r"Das Gesundheitsamt des Regionalverbandes meldet am Samstag (?:[0-9.]+|\w+) und am (?:heutigen )?Sonntag weitere ([0-9.]+|\w+) neue Coronafälle")
 _saarbruecken_c = re.compile(r"Insgesamt liegen im Regionalverband ([0-9.]+)")
 _saarbruecken_d = re.compile(r"Die Anzahl der Todesfälle, die im Zusammenhang mit dem Coronavirus stehen, (?:liegt bei |steigt (?:damit )?auf )(?:insgesamt) ?([0-9.]+)")
 _saarbruecken_dd = re.compile(r"([0-9.]+|\w+) weiterer?n? Todesf(?:a|ä)lle? gemeldet")
@@ -15,7 +15,7 @@ def saarbruecken(sheets):
     soup = get_soup(domain)
 
     for item in soup.find_all("div", {"class":"col-sm-4"}):
-        if "Tägliche Fallzahl-Statistik aus dem Regionalverband" in item.text:
+        if "Fallzahl-Statistik aus dem Regionalverband" in item.text:
             link_url = item.find("a")["href"]
             break
 

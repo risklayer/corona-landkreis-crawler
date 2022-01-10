@@ -2,9 +2,9 @@
 from botbase import *
 
 _osterz_st = re.compile(r"Stand (\d\d\.\d\d\.20\d\d, \d\d:\d\d) Uhr")
-_osterz_c = re.compile(r"Seit 02.03.2020 positiv getestete Personen:\s*([0-9.]+)\s*\(\+?(-?\s*[0-9.]+)\)")
-_osterz_d = re.compile(r"verstorbene Personen:\s*([0-9.]+)\s*\(\+?(-?\s*[0-9.]+)\)")
-_osterz_g = re.compile(r"Quarantäne entlassene Personen:\s*([0-9.]+)\s*\(\+?(-?\s*[0-9.]+)\)")
+_osterz_c = re.compile(r"Seit 02.03.2020 positiv getestete Personen:\s*([0-9.]+)\s*\(\+?/?(-?\s*[0-9.]+)\)")
+_osterz_d = re.compile(r"verstorbene Personen:\s*([0-9.]+)\s*\(\+?/?(-?\s*[0-9.]+)\)")
+_osterz_g = re.compile(r"Quarantäne entlassene Personen:\s*([0-9.]+)\s*\(\+?/?(-?\s*[0-9.]+)\)")
 _osterz_si = re.compile(r"befinden sich\s*([0-9.]+)\s*positiv auf SARS-CoV-2 getestete Personen im Landkreis in Krankenhäusern. Davon\s*([0-9.]+)\s*intensiv")
 
 def osterz(sheets):
