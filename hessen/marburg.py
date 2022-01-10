@@ -45,8 +45,8 @@ def marburg(sheets):
     s = force_int(_marburg_s.search(content).group(1)) if _marburg_s.search(content) is not None else None
     i = force_int(_marburg_i.search(content).group(1)) if _marburg_i.search(content) is not None else None
 
-    update(sheets, 6534, c=c, cc=cc, g=g, gg=gg, d=d, s=s, i=i, sig="Bot")
+    update(sheets, 6534, c=c, cc=cc, g=g, gg=gg, d=d, s=s, i=i, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(15, 47, 17, 47, 360, marburg, 6534, ignore_delta=True))
+schedule.append(Task(15, 47, 17, 47, 360, marburg, 6534))
 if __name__ == '__main__': marburg(googlesheets())
