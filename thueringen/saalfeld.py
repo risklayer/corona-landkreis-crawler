@@ -4,7 +4,7 @@ from botbase import *
 
 _saalfeld_cc = re.compile(r"([0-9.]+|\w+) neuen? Coronafälle")
 _saalfeld_c = re.compile(r"infizierten Personen seit Beginn der Pandemie beträgt damit ([0-9.]+)")
-_saalfeld_d = re.compile(r"([0-9.]+) (?:weitere Todesfälle|Menschen) (?:im Zusammenhang|in Verbindung) mit einer")
+_saalfeld_d = re.compile(r"([0-9.]+) (?:weitere Todesfälle|Menschen) (?:im Zusammenhang|in Verbindung|gemeldet)")
 _saalfeld_st = re.compile(r"(\d\d?\.\d\d?\.20\d\d)")
 
 def saalfeld(sheets):
@@ -22,6 +22,7 @@ def saalfeld(sheets):
     check_date(date, "Saalfeld")
 
     content = get_soup(domain+link).find("div", {"itemprop": "articleBody"}).text
+    #print(content)
 
     c = force_int(_saalfeld_c.search(content).group(1))
     cc = force_int(_saalfeld_cc.search(content).group(1))

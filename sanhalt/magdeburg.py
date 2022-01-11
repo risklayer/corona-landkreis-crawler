@@ -17,7 +17,7 @@ def magdeburg(sheets):
     c = force_int(_magdeburg_c.search(content).group(1))
     cc = force_int(_magdeburg_cc.search(content).group(1))
     d = force_int(_magdeburg_d.search(content).group(1))
-    update(sheets, 15003, c=c, cc=cc, d=d, sig="Bot", ignore_delta="mon")
+    update(sheets, 15003, c=c, cc=cc, d=d, sig="Vorläufig", comment="LK", ignore_delta="mon")
     return True
 
 schedule.append(Task(14, 56, 16, 56, 360, magdeburg, 15003))

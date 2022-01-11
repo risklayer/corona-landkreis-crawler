@@ -23,7 +23,7 @@ def leipzig(sheets):
     si_text = soup.find(id="6-228168").get_text()
     s = force_int(_leipzig_s.search(si_text).group(1))
     i = force_int(_leipzig_i.search(si_text).group(1))
-    update(sheets, 14713, c=c, cc=cc, d=d, dd=dd, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta="mon")
+    update(sheets, 14713, c=c, cc=cc, d=d, dd=dd, g=g, q=q, s=s, i=i, sig="", comment="C Land noch", ignore_delta=True)
     return True
 
 schedule.append(Task(8, 25, 10, 25, 360, leipzig, 14713))

@@ -9,7 +9,7 @@ _remscheid_d = re.compile(r"([0-9.]+) Menschen sind leider verstorben")
 _remscheid_q = re.compile(r"([0-9.]+|\w+) Personen, die als Verdachtsfälle unter häuslicher Quarantäne stehen")
 _remscheid_a = re.compile(r"([0-9.]+|\w+) Remscheiderinnen und Remscheider, die an Covid-19 erkrankt sind und sich in angeordneter Quarantäne befinden")
 _remscheid_s = re.compile(r"([0-9.]+|\w+) Covid-19-erkrankte Personen als sogenannte Hospitalisierungsfälle")
-_remscheid_i = re.compile(r"([0-9.]+|\w+) dieser Personen sind intensivpflichtig")
+_remscheid_i = re.compile(r"([0-9.]+|\w+) dieser Personen (?:ist|sind) intensivpflichtig")
 
 def remscheid(sheets):
     soup = get_soup("https://www.remscheid.de/neuigkeiten-wissenswertes/corona/index.php")
@@ -21,6 +21,7 @@ def remscheid(sheets):
     page = get_soup(link)
     check_date(page.find("time").get("datetime"), "Remscheid")
     content = page.get_text()
+    #print(content)
     c = force_int(_remscheid_c.search(content).group(1))
     d = force_int(_remscheid_d.search(content).group(1))
     g = force_int(_remscheid_g.search(content).group(1))

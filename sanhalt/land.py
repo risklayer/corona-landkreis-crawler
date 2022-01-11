@@ -17,7 +17,8 @@ def sanhalt(sheets):
     assert "Anzahl Fälle" in d2.columns[1]
     assert "verstorben" in d2.columns[2]
     assert "Genesen" in d2.columns[3]
-    dom = d1.columns.get_loc(today().strftime("%d.%m.%Y")) # day of month
+    #print(d1.columns)
+    dom = d1.columns.get_loc(today().strftime("%d.%m.%y")) # day of month
     todo=[]
     for i, row in d2.iterrows():
         if row[0] == "Sachsen-Anhalt": continue # Land
