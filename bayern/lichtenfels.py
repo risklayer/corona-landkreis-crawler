@@ -23,5 +23,5 @@ def lichtenfels(sheets):
     update(sheets, 9478, c=c, cc=cc, g=g, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(17, 10, 18, 40, 360, lichtenfels, 9478))
+schedule.append(Task(15, 37, 18, 40, 360, lichtenfels, 9478))
 if __name__ == '__main__': lichtenfels(googlesheets())

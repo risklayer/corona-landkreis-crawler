@@ -5,7 +5,7 @@ from botbase import *
 _mainspessart_date = re.compile(r"(?:Pressemitteilung vom|Stand:)\s(\d\d?\.(?:\d\d?\.20\d\d|\s\w+))")
 _mainspessart_c = re.compile(r"Insgesamt gab es damit seit Beginn der Pandemie ([0-9.]+)")
 _mainspessart_g = re.compile(r"Genesen sind davon ([0-9.]+)")
-_mainspessart_a = re.compile(r"([0-9.]+) Personen mit dem\sCorona-?Virus infiziert")
+_mainspessart_a = re.compile(r"([0-9.]+) Personen mit dem\sCorona-? ?Virus infiziert")
 _mainspessart_q = re.compile(r"([0-9.]+|\w+) enge\sKontaktpersonen")
 _mainspessart_s = re.compile(r"(-?[0-9.]+|\w+)\sCovid-Patienten\sbehandelt")
 _mainspessart_i = re.compile(r"(-?[0-9.]+|\w+)\sauf\sder\sIntensivstation")

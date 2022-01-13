@@ -7,7 +7,7 @@ _luechow_g = re.compile(r"([0-9.]+)\s*Genesene")
 _luechow_d = re.compile(r"([0-9.]+)\s*(?:\(\+?(-?[0-9]+)\))? *Verstorbene")
 _luechow_q1 = re.compile(r"([0-9.]+)\s*(?:\(\+?(-?[0-9]+)\))? *Kontaktpersonen")
 _luechow_q2 = re.compile(r"([0-9.]+)\s*(?:\(\+?(-?[0-9]+)\))? *Reiserückkehrer", re.U)
-_luechow_s = re.compile(r"in einem Krankenhaus:\s*([0-9.]+)")
+_luechow_s = re.compile(r"in (?:einem )?Krankenh\w+:\s*([0-9.]+)")
 _luechow_st = re.compile(r"Fallzahlen\s*\(Stand:\s*(\d\d?\.\s*\w+\s+20\d\d), (\d\d?)(?:\.(\d\d))?\s*Uhr", re.M)
 
 def luechow(sheets):

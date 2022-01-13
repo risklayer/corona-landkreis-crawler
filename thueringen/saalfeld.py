@@ -2,9 +2,10 @@
 ## Tommy
 from botbase import *
 
-_saalfeld_cc = re.compile(r"([0-9.]+|\w+) neuen? Coronafälle")
+_saalfeld_cc = re.compile(r"([0-9.]+|\w+) neuen? Coronaf[aä]ll")
 _saalfeld_c = re.compile(r"infizierten Personen seit Beginn der Pandemie beträgt damit ([0-9.]+)")
-_saalfeld_d = re.compile(r"([0-9.]+) (?:weitere Todesfälle|Menschen) (?:im Zusammenhang|in Verbindung|gemeldet)")
+_saalfeld_dd = re.compile(r"([0-9.]+|\w+) weiteren? Todesf[aä]ll")
+_saalfeld_d = re.compile(r"([0-9.]+) Menschen (?:im Landkreis )?(?:im Zusammenhang|in Verbindung|gemeldet)")
 _saalfeld_st = re.compile(r"(\d\d?\.\d\d?\.20\d\d)")
 
 def saalfeld(sheets):
@@ -25,10 +26,11 @@ def saalfeld(sheets):
     #print(content)
 
     c = force_int(_saalfeld_c.search(content).group(1))
-    cc = force_int(_saalfeld_cc.search(content).group(1))
+    cc = force_int(_saalfeld_cc.search(content).group(1)) if _saalfeld_cc.search(content) else None
     d = force_int(_saalfeld_d.search(content).group(1))
+    dd = force_int(_saalfeld_dd.search(content).group(1)) if _saalfeld_dd.search(content) else None
 
-    update(sheets, 16073, c=c, cc=cc, d=d, sig="Bot", ignore_delta="mon")
+    update(sheets, 16073, c=c, cc=cc, d=d, dd=dd, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 45, 17, 45, 360, saalfeld, 16073))

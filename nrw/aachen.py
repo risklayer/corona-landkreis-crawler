@@ -4,6 +4,7 @@ from botbase import *
 
 _aachen_c = re.compile(r"Seit Ende Februar 2020 wurden insgesamt ([0-9.]+)")
 _aachen_d = re.compile(r"Die Zahl der gemeldeten Todesfälle liegt bei ([0-9.]+)")
+_aachen_a = re.compile(r"Aktuell sind ([0-9.]+) Menschen nachgewiesen")
 
 def aachen(sheets):
     import locale
@@ -14,8 +15,9 @@ def aachen(sheets):
     content = soup.get_text()
     c = force_int(_aachen_c.search(content).group(1))
     d = force_int(_aachen_d.search(content).group(1))
-
-    update(sheets, 5334, c=c, d=d, sig="Bot", comment="Bot noch ohne G", ignore_delta=True)
+    g = (c - d - force_int(_aachen_a.search(content).group(1))) if _aachen_a.search(content) else None
+    com = "Bot ohne G" if g is None else "Bot"
+    update(sheets, 5334, c=c, d=d, g=g, sig="Bot", comment=com, ignore_delta=True)
     return True
 
 schedule.append(Task(10, 50, 17, 50, 600, aachen, 5334))

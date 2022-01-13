@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 ## Tommy
 from botbase import *
-_frankfurt_st = re.compile(r"Stand:\s*(\d\d?\. *\w+ 20\d\d, \d\d?) Uhr")
+_frankfurt_st = re.compile(r"Stand:\s*(\d\d?\. *\w+ 20\d\d, \d\d?(?::\d\d)?) Uhr")
 
 def frankfurt(sheets):
     import locale
@@ -11,7 +11,9 @@ def frankfurt(sheets):
     rows = [[x.text.strip() for x in row.findAll("td")] for row in header.findNext("table").findAll("tr")]
     date_text = rows[0][0]
     #print(date_text)
-    date = _frankfurt_st.search(date_text).group(1) + ":00"
+    date = _frankfurt_st.search(date_text)
+    date = date.group(1) + (":00" if not ":" in date.group(1) else "")
+    #print(date)
     #if not today().strftime("%d. %B %Y") in date_text: raise NotYetAvailableException("Frankfurt noch alt: " + date_text[:-93])
     date = check_date(date, "Frankfurt", datetime.timedelta(hours=8))
     assert "Gesamtzahl der COVID-19-Fälle in Frankfurt" in rows[1][0]

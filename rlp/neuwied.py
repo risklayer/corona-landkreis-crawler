@@ -13,7 +13,9 @@ def neuwied(sheets):
     content = get_soup(link).find("div", {"class": "content"})
     date_text = _neuwied_date.search(content.get_text()).group(1)
     check_date(date_text, "Neuwied")
-    rows = [[x.text.strip() for x in row.findAll("td")] for row in content.find("table").findAll("tr")]
+    table = next(x for x in content.findAll("table") if "Positivfälle" in x.get_text())
+    rows = [[x.text.strip() for x in row.findAll("td")] for row in table.findAll("tr")]
+    #print(*rows, sep="\n")
     c,g,d,a,cc = list(map(force_int, rows[-1][1:6]))
     update(sheets, 7138, c=c, cc=cc, g=g, d=d, sig="Bot", ignore_delta="mon")
     return True

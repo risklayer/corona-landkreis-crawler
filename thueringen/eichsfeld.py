@@ -22,5 +22,5 @@ def eichsfeld(sheets):
     update(sheets, 16061, c=c, cc=cc, d=d, s=s, i=i, sig="Bot", date=date, ignore_delta=True)
     return True
 
-schedule.append(Task(9, 20, 12, 35, 360, eichsfeld, 16061))
+schedule.append(Task(9, 20, 13, 35, 600, eichsfeld, 16061))
 if __name__ == '__main__': eichsfeld(googlesheets())

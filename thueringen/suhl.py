@@ -2,7 +2,7 @@
 ## Tommy
 from botbase import *
 
-_suhl_cc = re.compile(r"Neu gemeldete Fälle: ([0-9.]+)")
+_suhl_cc = re.compile(r"Neu gemeldete Fälle: \+?([0-9.]+)")
 _suhl_c = re.compile(r"Fälle aufaddiert: ([0-9.]+)")
 _suhl_d = re.compile(r"Verstorbene: ([0-9.]+)")
 _suhl_q = re.compile(r"aktuell unter Quarantäne: ([0-9.]+)")
@@ -16,6 +16,7 @@ def suhl(sheets):
     check_date(date, "Suhl")
 
     content = date_line.findNext("table").text.strip()
+    #print(content)
 
     c = force_int(_suhl_c.search(content).group(1))
     cc = force_int(_suhl_cc.search(content).group(1))

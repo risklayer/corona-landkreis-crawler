@@ -5,7 +5,6 @@ from botbase import *
 _hassberge_date = re.compile(r"(\d\d?\.\d\d?\.20\d\d)")
 
 def hassberge(sheets):
-
     soup = get_soup("https://www.hassberge.de/topmenu/startseite/corona-virus.html")
     header = next(x for x in soup.find_all("h4") if "Aktuelle Fallzahlen im Landkreis Haßberge" in x.get_text())
     date_text = _hassberge_date.search(header.findNext("h2").get_text()).group(1)
