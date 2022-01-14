@@ -28,7 +28,7 @@ def celle(sheets):
     s = force_int(_celle_s.search(content).group(1))
     i = force_int(_celle_i.search(content).group(1))
 
-    update(sheets, 3351, c=c, cc=cc, q=q, s=s, i=i, comment="Bot ohne QD A"+str(a), sig=str(a))
+    update(sheets, 3351, c=c, cc=cc, q=q, s=s, i=i, comment="Bot ohne D A"+str(a), sig=str(a), ignore_delta=True)
     return True
 
 schedule.append(Task(10, 15, 12, 15, 360, celle, 3351))

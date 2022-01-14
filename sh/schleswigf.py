@@ -14,7 +14,7 @@ def schleswigf(sheets):
     if not today().strftime("Schleswig-Flensburg (%d.%m.%Y)") in text: raise NotYetAvailableException("Schleswig-Flensburg noch alt: " + re.split(r"\s*\n[\s\n]*", text)[1])
     c = force_int(_schleswigf_c.search(text).group(1))
     cc = force_int(_schleswigf_cc.search(text).group(1))
-    g = force_int(_schleswigf_g.search(text).group(1))
+    g = force_int(_schleswigf_g.search(text).group(1)) if _schleswigf_g.search(text) else None
     d = force_int(_schleswigf_d.search(text).group(1))
     q = force_int(_schleswigf_q.search(text).group(1)) if _schleswigf_q.search(text) else None
     update(sheets, 1059, c=c, cc=cc, d=d, g=g, q=q, ignore_delta=True)

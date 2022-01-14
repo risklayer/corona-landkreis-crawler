@@ -18,7 +18,10 @@ def sanhalt(sheets):
     assert "verstorben" in d2.columns[2]
     assert "Genesen" in d2.columns[3]
     #print(d1.columns)
-    dom = d1.columns.get_loc(today().strftime("%d.%m.%y")) # day of month
+    try:
+        dom = d1.columns.get_loc(today().strftime("%d.%m.%Y")) # day of month
+    except KeyError:
+        dom = d1.columns.get_loc(today().strftime("%d.%m.%y")) # day of month
     todo=[]
     for i, row in d2.iterrows():
         if row[0] == "Sachsen-Anhalt": continue # Land
