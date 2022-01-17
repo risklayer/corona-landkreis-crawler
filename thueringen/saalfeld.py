@@ -27,8 +27,9 @@ def saalfeld(sheets):
 
     c = force_int(_saalfeld_c.search(content).group(1))
     cc = force_int(_saalfeld_cc.search(content).group(1)) if _saalfeld_cc.search(content) else None
-    d = force_int(_saalfeld_d.search(content).group(1))
+    d = force_int(_saalfeld_d.search(content).group(1)) if _saalfeld_d.search(content) else None
     dd = force_int(_saalfeld_dd.search(content).group(1)) if _saalfeld_dd.search(content) else None
+    if d is None and dd is 0: dd = None
 
     update(sheets, 16073, c=c, cc=cc, d=d, dd=dd, sig="Bot", ignore_delta="mon")
     return True

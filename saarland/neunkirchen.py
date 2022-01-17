@@ -5,8 +5,7 @@ from botbase import *
 _neunkirchen_cc = re.compile(r"gibt\ses\s+([0-9.]+|\w+)\s+weitere", re.U)
 _neunkirchen_c = re.compile(r"insgesamt\salso\s(?:weiter\w+\s)?\s*([0-9.]+)\s+positive", re.U)
 _neunkirchen_d = re.compile(r"\s+([0-9.]+)\s+Covid-19-Todesfälle", re.U)
-_neunkirchen_g = re.compile(r"können\s+([0-9.]+)\s*Personen\s[^\s]*\s*als\sgeheilt", re.U)
-_neunkirchen_gg = re.compile(r"können\s+[0-9.]+\s*Personen\s+\(([+-]*[0-9]+)\)\s+als\sgeheilt", re.U)
+_neunkirchen_g = re.compile(r"können\s+([0-9.]+)\s*\(([+-]*[0-9]+)\)\s+Personen\s+als\s+geheilt", re.U)
 _neunkirchen_a = re.compile(r"Stand\sheute\ssind\s+([0-9.]+)\s+Personen\s+im\s+Landkreis\sNeunkirchen\smit\sdem\sCoronavirus\sinfiziert")
 
 def neunkirchen(sheets):
@@ -25,10 +24,9 @@ def neunkirchen(sheets):
     c = force_int(_neunkirchen_c.search(text).group(1))
     cc = force_int(_neunkirchen_cc.search(text).group(1))
     d = force_int(_neunkirchen_d.search(text).group(1))
-    g = force_int(_neunkirchen_g.search(text).group(1))
-    gg = force_int(_neunkirchen_gg.search(text).group(1))
+    g, gg = map(force_int, _neunkirchen_g.search(text).groups())
     a = force_int(_neunkirchen_a.search(text).group(1))
-    d = c - g - a # alternative Berechnung D
+    d = max(c - g - a, d) # alternative Berechnung D
     update(sheets, 10043, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot", ignore_delta=False)
     return True
 

@@ -3,9 +3,9 @@
 from botbase import *
 
 _kassel_data = re.compile(r"([0-9.]+)\s\(\+?([0-9.]+)")
+_kassel_si = re.compile(r"(\d+) \([+=-]?\d*\) infizierte Personen befinden sich im Krankenhaus, (\d+) \([+=-]?\d*\) davon werden intensiv")
 
 def kassel(sheets):
-
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.kassel.de/aktuelles/aktuelle-meldungen/coronavirus.php")
@@ -34,9 +34,10 @@ def kassel(sheets):
     ck = force_int(_kassel_data.search(rows[2][5]).group(1))
     cck = force_int(_kassel_data.search(rows[2][5]).group(2))
 
-    update(sheets, 6611, c=cs, cc=ccs, g=gs, gg=ggs, d=ds, dd=dds, sig="Bot", ignore_delta="mon")
-    update(sheets, 6633, c=ck, cc=cck, g=gk, gg=ggk, d=dk, dd=ddk, sig="Bot", ignore_delta="mon")
+    s, i = map(force_int, _kassel_si.search(soup.find("main").get_text()).groups())
 
+    update(sheets, 6611, c=cs, cc=ccs, g=gs, gg=ggs, d=ds, dd=dds, sig="Bot", ignore_delta="mon")
+    update(sheets, 6633, c=ck, cc=cck, g=gk, gg=ggk, d=dk, dd=ddk, s=s, i=i, sig="Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(11, 26, 13, 26, 360, kassel, 6611))

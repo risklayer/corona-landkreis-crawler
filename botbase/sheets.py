@@ -21,12 +21,15 @@ _agsmap=None
 def get_ags(sheets):
     global _agsmap
     if _agsmap: return _agsmap
-    result = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!A6:C406").execute()
-    values = result.get('values', [])
-    _agsmap=dict()
-    for i, row in enumerate(values):
-        _agsmap[int(row[2])] = (i + 6, row[0])
-    return _agsmap
+    try:
+        result = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!A6:C406").execute()
+        values = result.get('values', [])
+        _agsmap=dict()
+        for i, row in enumerate(values):
+            _agsmap[int(row[2])] = (i + 6, row[0])
+        return _agsmap
+    except socket.timeout as e:
+        print("TIMEOUT: get AGS map", file=sys.stderr)
 
 _signcache = None
 _signcacheexpire = None
@@ -56,7 +59,11 @@ def set_one(sheets, cell, value, dry_run=dry_run):
     if dry_run:
         print("Update", cell, value)
         return
-    sheets.values().update(spreadsheetId=spreadsheet_id, range=cell, valueInputOption="RAW", body = {"values":[[value]]}).execute()
+    import socket
+    try:
+        sheets.values().update(spreadsheetId=spreadsheet_id, range=cell, valueInputOption="RAW", body = {"values":[[value]]}).execute()
+    except socket.timeout as e:
+        print("TIMEOUT:", cell, value, file=sys.stderr)
 
 def _format(c, v, vv=None):
     try:
@@ -93,6 +100,7 @@ def update(sheets, ags,
     elif isinstance(date, datetime.date):
         date = date.strftime("%d.%m.%Y")
     if ignore_delta in ["mon", "Mon", "mo", "Mo", "montag", "Montag"]: ignore_delta = datetime.date.today().weekday()==0
+    if ignore_delta in ["son", "Son", "so", "So", "sonntag", "Sonntag"]: ignore_delta = datetime.date.today().weekday()==6
     strs = [_format("C",c,cc), _format("D",d,dd), _format("G",g,gg), _format("Q",q), _format("S",s), _format("I",i)]
     rownr = get_ags(sheets)[ags][0]
     if not rownr: raise Exception("AGS '%s' not found" % ags)
@@ -163,12 +171,16 @@ def update(sheets, ags,
         set_one(sheets, "Haupt!U%d" % rownr, "("+v+")", dry_run=dry_run) # Comment
 
 def do_batch(sheets, reqs, dry_run=dry_run):
+    import socket
     if dry_run:
         print(*reqs, sep="\n")
         return
     if len(reqs) == 0: return
     #print(*reqs, sep="\n")
-    responses = sheets.values().batchUpdate(spreadsheetId=spreadsheet_id, body = {"valueInputOption":"USER_ENTERED", "data":reqs}).execute()
-    if not "responses" in responses: print(responses)
-    for resp in responses["responses"]:
-        if resp.get("updatedCells") != 1: print("Failed?", resp, file=sys.stderr)
+    try:
+        responses = sheets.values().batchUpdate(spreadsheetId=spreadsheet_id, body = {"valueInputOption":"USER_ENTERED", "data":reqs}).execute()
+        if not "responses" in responses: print(responses)
+        for resp in responses["responses"]:
+            if resp.get("updatedCells") != 1: print("Failed?", resp, file=sys.stderr)
+    except socket.timeout as e:
+        print("TIMEOUT:", resp, file=sys.stderr)

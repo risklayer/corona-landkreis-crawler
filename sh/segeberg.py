@@ -13,17 +13,18 @@ _segeberg_st = re.compile(r"Stand (\d+\.\d+\.?\d*)")
 def segeberg(sheets):
     import bs4
     soup = get_soup("https://www.segeberg.de/F%C3%BCr-Segeberger/Coronavirus/Aktuelle-Informationen-und-Mitteilungen/")
-    main = soup.find(class_="inhalt")
+    main = soup.find("main") #class_="inhalt")
     #print(next(x for x in main.findAll(class_="aufklappcontent_container")))
-    main = next(x for x in main.findAll(class_="aufklappcontent_container") if "Gesamtzahl" in x.get_text())
+    main = next(x for x in main.findAll(class_="accordion") if "Neuinfektionen" in x.get_text())
     text = main.get_text(" ").strip()
     #print(text)
     date = check_date(_segeberg_st.search(text).group(1), "Segeberg")
     c = force_int(_segeberg_c.search(text).group(1))
     cc = force_int(_segeberg_cc.search(text).group(1))
-    g = force_int(_segeberg_g.search(text).group(1))
+    g = force_int(_segeberg_g.search(text).group(1)) if _segeberg_g.search(text) else None
     d = force_int(_segeberg_d.search(text).group(1))
-    q = force_int(_segeberg_q.search(text).group(1)) + c - g - d
+    q = force_int(_segeberg_q.search(text).group(1)) if _segeberg_q.search(text) else None
+    q = q + c - g - d if q is not None and g is not None else None
     s = force_int(_segeberg_s.search(text).group(1))
     i = force_int(_segeberg_i.search(text).group(1))
     update(sheets, 1060, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta=True)
