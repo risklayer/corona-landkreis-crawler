@@ -5,7 +5,7 @@ from botbase import *
 _neunkirchen_cc = re.compile(r"gibt\ses\s+([0-9.]+|\w+)\s+weitere", re.U)
 _neunkirchen_c = re.compile(r"insgesamt\salso\s(?:weiter\w+\s)?\s*([0-9.]+)\s+positive", re.U)
 _neunkirchen_d = re.compile(r"\s+([0-9.]+)\s+Covid-19-Todesfälle", re.U)
-_neunkirchen_g = re.compile(r"können\s+([0-9.]+)\s*\(([+-]*[0-9]+)\)\s+Personen\s+als\s+geheilt", re.U)
+_neunkirchen_g = re.compile(r"können\s+([0-9.]+)\s*(?:\(([+-]*[0-9]+)\)\s*)?Personen\s+als\s+geheilt", re.U)
 _neunkirchen_a = re.compile(r"Stand\sheute\ssind\s+([0-9.]+)\s+Personen\s+im\s+Landkreis\sNeunkirchen\smit\sdem\sCoronavirus\sinfiziert")
 
 def neunkirchen(sheets):

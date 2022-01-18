@@ -6,7 +6,7 @@ _ingolstadt_g = re.compile(r"Genesene: ([0-9.]+)")
 _ingolstadt_d = re.compile(r"Gestorbene: ([0-9.]+)")
 _ingolstadt_c = re.compile(r"Fälle insgesamt: ([0-9.]+)")
 _ingolstadt_cc = re.compile(r"Entwicklung:\s([0-9.]+)")
-_ingolstadt_s = re.compile(r"Im Klinikum Ingolstadt werden derzeit ([0-9.]+|\w+)")
+_ingolstadt_s = re.compile(r"Im Klinikum Ingolstadt werden (?:derzeit )?([0-9.]+|\w+)")
 _ingolstadt_i = re.compile(r"([0-9.]+|\w+) Patienten liegen auf der Intensivstation")
 
 def ingolstadt(sheets):

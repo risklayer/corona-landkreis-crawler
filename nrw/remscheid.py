@@ -7,7 +7,7 @@ _remscheid_c = re.compile(r"([0-9.]+) positiv getestete Remscheiderinnen und Rem
 _remscheid_g = re.compile(r"([0-9.]+) Remscheiderinnen und Remscheider gelten als genesen")
 _remscheid_d = re.compile(r"([0-9.]+) Menschen sind leider verstorben")
 _remscheid_q = re.compile(r"([0-9.]+|\w+) Personen, die als Verdachtsfälle unter häuslicher Quarantäne stehen")
-_remscheid_a = re.compile(r"([0-9.]+|\w+) Remscheiderinnen und Remscheider, die an Covid-19 erkrankt sind und sich in angeordneter Quarantäne befinden")
+_remscheid_a = re.compile(r"([0-9.]+|\w+) Remscheiderinnen und Remscheider, die an Covid-19 erkrankt sind und sich in (?:angeordneter )?Quarantäne befinden")
 _remscheid_s = re.compile(r"([0-9.]+|\w+) Covid-19-erkrankte Personen als sogenannte Hospitalisierungsfälle")
 _remscheid_i = re.compile(r"([0-9.]+|\w+) dieser Personen (?:ist|sind) intensivpflichtig")
 

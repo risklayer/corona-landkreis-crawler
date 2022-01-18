@@ -20,11 +20,11 @@ def row(sheets):
     c = force_int(_row_c.search(text).group(1))
     cc = force_int(_row_cc.search(text).group(1))
     d = force_int(_row_d.search(text).group(1))
-    g = force_int(_row_g.search(text).group(1))
-    q = force_int(_row_q.search(text).group(1))
+    g = force_int(_row_g.search(text).group(1)) if _row_g.search(text) else None
+    q = force_int(_row_q.search(text).group(1)) if _row_q.search(text) else None
     m = _row_s.search(text)
     s = force_int(m.group(1)) if m else None
-    q += c - g - d
+    q = q + c - g - d if q is not None and g is not None else None
     update(sheets, 3357, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 

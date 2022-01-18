@@ -22,15 +22,16 @@ def schaumburg(sheets):
     content = soup.find("article")
     text = content.get_text().strip()
     #print(text)
-    if "nicht gestiegen" in text or "weiterhin bei" in text:
-        cc, c = 0, force_int(_schaumburg_c2.search(text).group(1))
-    else:
+    try:
         cc, c = map(force_int, _schaumburg_c.search(text).groups())
+    except:
+        cc, c = None, force_int(_schaumburg_c2.search(text).group(1))
     a = force_int(_schaumburg_a.search(text).group(1))
     g = force_int(_schaumburg_g.search(text).group(1))
     q = force_int(_schaumburg_q.search(text).group(1))
     s = force_int(_schaumburg_s.search(text).group(1)) if _schaumburg_s.search(text) is not None else None
     d = c - a - g
+    q = q + a
     update(sheets, 3257, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
