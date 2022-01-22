@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _wittenberg_c = re.compile(r"insgesamt\s*([0-9.]+)\s*Infizierten")
@@ -23,7 +22,7 @@ def wittenberg(sheets):
     cc = force_int(_wittenberg_cc.search(content).group(1))
     d = force_int(_wittenberg_d.search(content).group(1)) if _wittenberg_d.search(content) else None
 
-    update(sheets, 15091, c=c, cc=cc, d=d, sig="Bot", ignore_delta="mon")
+    update(sheets, 15091, c=c, cc=cc, d=d, comment="G noch Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 5, 16, 35, 360, wittenberg, 15091))

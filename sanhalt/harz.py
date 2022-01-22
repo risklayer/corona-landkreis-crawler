@@ -15,7 +15,7 @@ def harz(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.kreis-hz.de/de/aktuelle-informationen-1584944219.html")
-    entry = next(x for x in soup.find(id="section_1_1343_1167").find_all("h3") if "Coronavirus" in x.get_text() and "Stand" in x.get_text())
+    entry = next(x for x in soup.find(id="section_1_1343_1167").find_all("article") if "Coronavirus" in x.get_text() and "Stand" in x.get_text())
     link = entry.find(href=True)["href"] if entry else None
     #print(entry, link)
     if not today().strftime("%e. %B %Y") in entry.get_text(): raise NotYetAvailableException("Harz noch alt:" + entry.get_text())

@@ -21,6 +21,7 @@ _agsmap=None
 def get_ags(sheets):
     global _agsmap
     if _agsmap: return _agsmap
+    import socket
     try:
         result = sheets.values().get(spreadsheetId=spreadsheet_id, range="Haupt!A6:C406").execute()
         values = result.get('values', [])

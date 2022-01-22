@@ -18,8 +18,11 @@ def ostholstein(sheets):
     c = force_int(_ostholstein_c.search(content).group(1))
     d = force_int(_ostholstein_d.search(content).group(1))
     g = force_int(_ostholstein_g.search(content).group(1))
-    q = force_int(_ostholstein_q.search(content).group(1)) + force_int(_ostholstein_a.search(content).group(1))
-    s = force_int(_ostholstein_s.search(content).group(1))
+    q, s = None, None
+    if _ostholstein_q.search(content):
+        q = force_int(_ostholstein_q.search(content).group(1)) + force_int(_ostholstein_a.search(content).group(1))
+    if _ostholstein_s.search(content):
+        s = force_int(_ostholstein_s.search(content).group(1))
     update(sheets, 1055, c=c,  d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 

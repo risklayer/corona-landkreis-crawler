@@ -10,7 +10,7 @@ def aachen(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.aachen.de/DE/stadt_buerger/notfall_informationen/corona/aktuelles/index.html")
-    header = next(p.get_text() for p in soup.find_all("p") if "Aktuelle Lage Stadt und StädteRegion Aachen zum Corona-Virus" in p.get_text())
+    header = next(p.get_text() for p in soup.find_all(["p","h2"]) if "Aktuelle Lage Stadt und StädteRegion Aachen zum Corona-Virus" in p.get_text())
     if not today().strftime("%e. %B %Y") in header: raise NotYetAvailableException("Aachen noch alt: " + header[24:])
     content = soup.get_text()
     c = force_int(_aachen_c.search(content).group(1))
@@ -20,5 +20,5 @@ def aachen(sheets):
     update(sheets, 5334, c=c, d=d, g=g, sig="Bot", comment=com, ignore_delta=True)
     return True
 
-schedule.append(Task(10, 50, 17, 50, 600, aachen, 5334))
+schedule.append(Task(10, 15, 17, 50, 600, aachen, 5334))
 if __name__ == '__main__': aachen(googlesheets())

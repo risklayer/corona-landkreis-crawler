@@ -17,7 +17,7 @@ def lueneburg(sheets):
 
     c = force_int(_lueneburg_c.search(content).group(1))
     cc = force_int(_lueneburg_c.search(content).group(2))
-    g = force_int(_lueneburg_g.search(content).group(1))
+    g = force_int(_lueneburg_g.search(content).group(1)) if _lueneburg_g.search(content) else None
     d = force_int(_lueneburg_d.search(content).group(1))
     s = force_int(_lueneburg_s.search(soup.get_text()).group(1))
 

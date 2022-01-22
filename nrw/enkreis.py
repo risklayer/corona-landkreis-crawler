@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 from botbase import *
 
-_enkreis_c = re.compile(r"([0-9.]+) bestätigte")
-_enkreis_cc = re.compile(r"um ([0-9.]+) gestiegen")
+_enkreis_c = re.compile(r"bestätigten Corona-Fälle seit Pandemiebeginn ist damit auf ([0-9.]+)")
+_enkreis_cc = re.compile(r"([0-9.]+) Neuinfektionen")
 _enkreis_d = re.compile(r"([0-9.]+) (?:Personen|Todesfälle) i[nm] Zusammenhang mit (?:\w+ )?Corona") # -\w+verstorben")
 _enkreis_d2 = re.compile(r"Todesfälle (?:[^0-9.]*)(?:um [0-9]+ )?auf ([0-9.]+)")
 _enkreis_g = re.compile(r"([0-9.]+) (?:Menschen gelten als genesen|Genesene|Gesundete)")
@@ -13,7 +13,7 @@ def enkreis(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.enkreis.de/")
     articles = soup.findAll(class_="article")
-    article = next(a for a in articles if "bestätigte Corona" in a.find(itemprop="description").get_text())
+    article = next(a for a in articles if "Neuinfekt" in a.find(itemprop="description").get_text())
     date = article.find("time").text if article else None
     date = check_date(date, "EN-Kreis")
     url = urljoin("https://www.enkreis.de/", article.find("a")["href"])
@@ -25,7 +25,7 @@ def enkreis(sheets):
     c = force_int(_enkreis_c.search(text).group(1))
     cc = force_int(_enkreis_cc.search(text).group(1))
     d = force_int((_enkreis_d.search(text) or _enkreis_d2.search(text)).group(1))
-    g = force_int(_enkreis_g.search(text).group(1))
+    g = force_int(_enkreis_g.search(text).group(1)) if _enkreis_g.search(text) else None
     s, i, q = None, None, None
     m = _enkreis_q.search(text)
     if m: q = force_int(m.group(1))

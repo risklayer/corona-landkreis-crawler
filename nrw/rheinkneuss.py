@@ -10,10 +10,11 @@ def rheinkneuss(sheets):
     c, cc = data1["bestatigte_falle"], data2["bestatigte_falle"]
     d, dd = data1["verstorben"], data2["verstorben"]
     g, gg = data1["genesene"], data2["genesene"]
-    q, s = data1["quarantane"], data1["infizierte_im_krankenhaus"]
+    q = data1["quarantane"] if "quarantaene" in data1 else None
+    s = data1["infizierte_im_krankenhaus"] if "infizierte_im_krankenhaus" in data1 else None
     # TODO: Impfungen auch?
     cc, dd, gg = c - cc, d - dd, g - gg
-    q += c - d - g
+    q = q + c - d - g if q is not None else None
     update(sheets, 5162, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, s=s, sig="Bot", date=date, ignore_delta=True)
     return True
 

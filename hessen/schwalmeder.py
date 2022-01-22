@@ -14,7 +14,7 @@ def schwalmeder(sheets):
     date = check_date(date, "Schwalmeder")
     rows = [[x.get_text() for x in y.findAll(["td","th"])] for y in main.findAll("tr")]
     #print(*rows, sep="\n")
-    assert "Fälle insgesamt" in rows[0][0]
+    assert "insgesamt" in rows[0][0]
     c, cc = map(force_int, _match_two.search(rows[1][0]).groups())
     assert "entlassen" in rows[0][1]
     g = force_int(rows[1][1])

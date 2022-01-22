@@ -4,11 +4,11 @@ from botbase import *
 
 _celle_date = re.compile(r"Stand (\d\d?\.\d\d?\.20\d\d)")
 _celle_cc = re.compile(r"([0-9.]+|\w+)\sNeuinfektionen")
-_celle_c = re.compile(r"ie Zahl der seit Beginn der Pandemie im März 2020 (?:im Landkreis Celle )?[eE]rkrankten (?:Personen )?(?:liegt bei|erhöht sich \w*\s*auf) ([0-9.]+)")
+_celle_c = re.compile(r"ie\s+Zahl\s+der\s+seit\s+Beginn\s+der\s+Pandemie\s+im\s+März\s+2020\s+(?:im\s+Landkreis\s+Celle\s+)?[eE]rkrankten\s+(?:Personen\s+)?(?:liegt\s+bei|erhöht\s+sich\s+\w*\s*auf)\s*([0-9.]+)")
 #_celle_a = re.compile(r"Aktuell sind mit dem Coronavirus im Landkreis Celle ([0-9.]+|\w+)")
 #_celle_q = re.compile(r"([0-9.]+|\w+) Menschen in Quarantäne")
-_celle_s = re.compile(r"([0-9.]+|\w+) (?:positiv getestete )?Personen behandelt")
-_celle_i = re.compile(r"Auf der Intensivstation lieg\w* ([0-9.]+|\w+)")
+_celle_s = re.compile(r"([0-9.]+|\w+)\s+(?:positiv\s+getestete\s+)?Personen\s+behandelt")
+_celle_i = re.compile(r"Auf\s+der\s+Intensivstation\s+lieg\w*\s+([0-9.]+|\w+)")
 
 def celle(sheets):
     soup = get_soup("https://www.landkreis-celle.de/")

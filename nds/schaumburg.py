@@ -12,7 +12,7 @@ def schaumburg(sheets):
     from urllib.parse import urljoin
     soup = get_soup("https://www.schaumburg.de/Coronavirus/")
     articles = soup.findAll("article")
-    article = next(a for a in articles if "Corona Fälle Stand" in a.find("h3").get_text())
+    article = next(a for a in articles if "Corona Fälle" in a.find("h3").get_text())
     date = article.find(class_="date").text if article else None
     date = check_date(date, "Schaumburg")
     url = urljoin("https://www.schaumburg.de/", article.find("a")["href"])

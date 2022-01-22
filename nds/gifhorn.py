@@ -1,14 +1,12 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _gifhorn_date = re.compile(r"Aktueller Stand: (\d\d?\.\d\d?\.20\d\d)")
 _gifhorn_c = re.compile(r"Anzahl der positiv getesteten Personen:\s([0-9.]+) \(\+\/?\-? ([0-9]+)")
-_gifhorn_d = re.compile(r"Todesfälle:\s([0-9.]+) \(\+\/?\-?\s([0-9]+)")
+_gifhorn_d = re.compile(r"Todesfälle:\s+([0-9.]+)\s*\(\+?\/?\-?\s([0-9]+)")
 
 def gifhorn(sheets):
-
     soup = get_soup("https://www.gifhorn.de/der-landkreis/oeffentlichkeitsarbeit/corona/presseinformationen/")
     entry = next(x for x in soup.find_all("a") if "Aktueller Stand:" in x.get_text())
     date = _gifhorn_date.search(entry.get_text()).group(1)

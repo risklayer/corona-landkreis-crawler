@@ -15,7 +15,7 @@ def rendsburg(sheets):
     d = int(_rend_tot.search(data).group(1))
     g = int(_rend_gesund.search(data).group(1))
     sig, comment = "Bot", "Bot"
-    if date.hour < 20: sig, comment = "Vorläufig", "Zwischenstand"
+    if date.hour < 20: sig, comment = "", "Zwischenstand"
     update(sheets, 1058, c=c, g=g, d=d, sig=sig, comment=comment, date=date, check=lambda x: x == None or x == "" or x == "Vorläufig")
     return date.hour >= 20
 

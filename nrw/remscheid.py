@@ -25,8 +25,8 @@ def remscheid(sheets):
     c = force_int(_remscheid_c.search(content).group(1))
     d = force_int(_remscheid_d.search(content).group(1))
     g = force_int(_remscheid_g.search(content).group(1))
-    a = force_int(_remscheid_a.search(content).group(1))
-    q = force_int(_remscheid_q.search(content).group(1)) + a
+    #a = force_int(_remscheid_a.search(content).group(1))
+    q = None #q = force_int(_remscheid_q.search(content).group(1)) + a
     s = force_int(_remscheid_s.search(content).group(1))
     i = force_int(_remscheid_i.search(content).group(1))
 

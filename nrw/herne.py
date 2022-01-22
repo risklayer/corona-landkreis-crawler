@@ -22,5 +22,5 @@ def herne(sheets):
     update(sheets, 5916, c=c, d=d, g=g, s=s, sig="Bot")
     return True
 
-schedule.append(Task(15, 45, 17, 45, 360, herne, 5916))
+schedule.append(Task(10, 15, 17, 45, 600, herne, 5916))
 if __name__ == '__main__': herne(googlesheets())
