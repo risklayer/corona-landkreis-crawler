@@ -27,7 +27,7 @@ def saarbruecken(sheets):
     _saarbruecken_cc = _saarbruecken_cc2 if weekday == 6 else _saarbruecken_cc1
 
     content = link_soup.text
-    print(content)
+    #print(content)
     cc = force_int(_saarbruecken_cc.search(content).group(1))
     c = force_int(_saarbruecken_c.search(content).group(1))
     d = force_int(_saarbruecken_d.search(content).group(1)) if _saarbruecken_d.search(content) else None

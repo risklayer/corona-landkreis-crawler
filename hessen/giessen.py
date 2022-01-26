@@ -20,7 +20,7 @@ def giessen(sheets):
     c = force_int(data["Coronafälle insgesamt"])
     d = force_int(data["Verstorbene"])
     g = force_int(data["Genesene"])
-    s = force_int(data["Stationär Behandelte in Kliniken im Landkreis Gießen"])
+    s = force_int(data.get("Stationär Behandelte in Kliniken im Landkreis Gießen", None)) or None
 
     update(sheets, 6531, c=c, cc=cc, d=d, g=g, s=s, sig="Bot")
     return True

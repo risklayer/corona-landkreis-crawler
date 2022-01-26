@@ -5,17 +5,19 @@ from botbase import *
 _wittenberg_c = re.compile(r"insgesamt\s*([0-9.]+)\s*Infizierten")
 _wittenberg_d = re.compile(r"([0-9.]+) Personen sind im Zusammenhang mit einer Covid-19-Infektion gestorben")
 _wittenberg_cc = re.compile(r"([0-9.]+|\w+)\s+Neuinfektionen")
-_wittenberg_st = re.compile(r"Stand (\d\d?\.\d\d?\.20\d\d)")
+_wittenberg_st = re.compile(r"Stand +(\d\d?\.\d\d?\.20\d\d)")
 
 def wittenberg(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.landkreis-wittenberg.de/de/aktuelle-informationen.html")
-    header = soup.find("h3")
-    content = header.findNext("p").text
+    cont = next(x for x in soup.findAll(class_="card-body") if "Aktuelle Informationen" in x.get_text())
+    header = cont.find("h3").get_text()
+    content = cont.get_text() # header.findNext("p").text
+    #print(header)
     #print(content)
 
-    date = _wittenberg_st.search(header.text).group(1)
+    date = _wittenberg_st.search(header).group(1)
     check_date(date, "Wittenberg")
 
     c = force_int(_wittenberg_c.search(content).group(1))

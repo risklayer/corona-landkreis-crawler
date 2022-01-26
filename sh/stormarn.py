@@ -9,7 +9,7 @@ _stormarn_dd = re.compile(r"([0-9.]+) weitere Personen verstorben")
 
 def stormarn(sheets):
     import bs4
-    soup = get_soup("https://www.kreis-stormarn.de/aktuelles/pressemeldungen/2021/zahl-der-bestaetigten-corona-faelle-in-stormarn.html")
+    soup = get_soup("https://www.kreis-stormarn.de/aktuelles/pressemeldungen/2022/zahl-der-bestaetigten-corona-faelle-in-stormarn.html")
     main = soup.find("main")
     date = check_date(main.find(class_="release").get_text(), "Stormarn")
     text = ""
@@ -21,7 +21,7 @@ def stormarn(sheets):
     text = text.strip()
     #print(text)
     c = force_int(_stormarn_c.search(text).group(1))
-    cc = force_int(_stormarn_c.search(text).group(1))
+    cc = force_int(_stormarn_cc.search(text).group(1))
     g = force_int(_stormarn_g.search(text).group(1))
     d = force_int(_stormarn_d.search(text).group(1))
     m, dd = _stormarn_dd.search(text), None

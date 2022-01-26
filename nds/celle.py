@@ -4,6 +4,7 @@ from botbase import *
 
 _celle_date = re.compile(r"Stand (\d\d?\.\d\d?\.20\d\d)")
 _celle_cc = re.compile(r"([0-9.]+|\w+)\sNeuinfektionen")
+_celle_cc2 = re.compile(r"Seit \w+ wurden im Landkreis Celle\s([0-9.]+|\w+)\sPersonen positiv")
 _celle_c = re.compile(r"ie\s+Zahl\s+der\s+seit\s+Beginn\s+der\s+Pandemie\s+im\s+März\s+2020\s+(?:im\s+Landkreis\s+Celle\s+)?[eE]rkrankten\s+(?:Personen\s+)?(?:liegt\s+bei|erhöht\s+sich\s+\w*\s*auf)\s*([0-9.]+)")
 #_celle_a = re.compile(r"Aktuell sind mit dem Coronavirus im Landkreis Celle ([0-9.]+|\w+)")
 #_celle_q = re.compile(r"([0-9.]+|\w+) Menschen in Quarantäne")
@@ -22,7 +23,7 @@ def celle(sheets):
     content = get_soup(link).get_text()
     #print(content)
     c = force_int(_celle_c.search(content).group(1))
-    cc = force_int(_celle_cc.search(content).group(1))
+    cc = force_int((_celle_cc.search(content) or _celle_cc2.search(content)).group(1))
     #a = force_int(_celle_a.search(content).group(1))
     #q = force_int(_celle_q.search(content).group(1)) + a
     s = force_int(_celle_s.search(content).group(1))

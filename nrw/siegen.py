@@ -8,7 +8,7 @@ _siegen_g = re.compile(r"([0-9.]+) sind wieder genesen")
 _siegen_gg = re.compile(r"([0-9.]+|\w+) als genesen aus der")
 _siegen_si = re.compile(r"([0-9.]+|\w+) Personen aus Siegen-Wittgenstein (?:in einem Krankenhaus|stationär) behandelt werden, (?:[^.]* )?([0-9.]+|\w+) (?:davon )?intensiv")
 _siegen_si2 = re.compile(r"kommen ([0-9.]+|\w+) P\w+ von außerhalb des Kreisgebiets, die (?:stationär|auf Normalstation) behandelt werden(?: müssen, ([0-9.]+|\w+) davon intensiv)?")
-_siegen_q = re.compile(r"([0-9.]+) Personen (?:in )?häuslicher? Quarantäne")
+_siegen_q = re.compile(r"([0-9.]+) Personen (?:in |unter )?häuslicher? Quarantäne")
 
 def siegen(sheets):
     from urllib.parse import urljoin

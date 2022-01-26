@@ -2,14 +2,13 @@
 from botbase import *
 
 _duispat = re.compile(r"Stand: *(\d\d?\.\d\d?\.20\d\d,? \d\d?:\d\d)")
-_duisnum = re.compile(r"([0-9.]+)\s*\(\+?(-?[0-9]+)\)")
+_duisnum = re.compile(r"([0-9.]+)\s*\(\+?(-?[0-9.]+)\)")
 
 def duisburg(sheets):
     soup = get_soup("https://co-du.info/")
     main = soup.find(id="infektionsbox")
     h4 = main.find(text=_duispat)
     date = check_date(_duispat.search(h4).group(1) if h4 else main.find("h4").get_text(), "Duisburg", datetime.timedelta(hours=12))
-    args, tmp=dict(), dict()
     assert "Bestätigt" in main.find(id="infektion11").get_text()
     assert "Verstorben" in main.find(id="infektion21").get_text()
     assert "Genesen" in main.find(id="infektion13").get_text()

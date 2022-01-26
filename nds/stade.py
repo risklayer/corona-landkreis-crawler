@@ -19,7 +19,7 @@ def stade(sheets):
     c, cc = map(force_int, _stade_c.search(text).groups())
     d, dd = map(force_int, _stade_d.search(text).groups())
     g, gg = map(force_int, _stade_g.search(text).groups())
-    q = force_int(_stade_q.search(text).group(1)) + a
+    q = (force_int(_stade_q.search(text).group(1)) + a) if _stade_q.search(text) else None
     s, i = None, None
     try:
         s, i = map(force_int, _stade_si.search(text).groups())

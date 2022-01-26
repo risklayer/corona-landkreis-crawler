@@ -19,7 +19,7 @@ def verden(sheets):
     c, cc = map(force_int, _verden_c.search(text).groups())
     g, gg = map(force_int, _verden_g.search(text).groups())
     d = force_int(_verden_d.search(text).group(1))
-    q = force_int(_verden_q.search(text).group(1)) + c - g - d
+    q = force_int(_verden_q.search(text).group(1)) + c - g - d if _verden_q.search(text) else None
     s1, s2 = _verden_s1.search(text), _verden_s2.search(text)
     s = (force_int(s1.group(1),0) if s1 else 0) + (force_int(s2.group(1),0) if s2 else 0) if s1 is not None or s2 is not None else 0
     update(sheets, 3361, c=c, cc=cc, g=g, gg=gg, d=d, q=q, s=s, sig="Bot", ignore_delta="mon")

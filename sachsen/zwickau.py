@@ -4,7 +4,7 @@ from botbase import *
 def zwickau(sheets):
     soup = get_soup("https://www.landkreis-zwickau.de/coronafallzahlen-landkreiszwickau")
     main = soup.find(id="content-inner")
-    panel = next(p for p in main.findAll(class_="panel") if "Wochenübersicht Fallzahlen" in p.get_text())
+    panel = next(p for p in main.findAll(class_="panel") if "wochenübersicht fallzahlen" in p.get_text().lower())
     table = next(t for t in panel.findAll("table") if "kumulativ" in t.get_text())
     rows = [[x.get_text().strip() for x in row.findAll(["th","td"])] for row in table.findAll("tr")]
     #print(*rows, sep="\n")

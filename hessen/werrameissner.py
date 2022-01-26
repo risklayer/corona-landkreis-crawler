@@ -2,6 +2,7 @@
 from botbase import *
 
 _werrameissner_cgd = re.compile(r"([0-9.]+) Gesamtfälle, (?:[0-9.]+) Erkrankte, ([0-9.]+) Genesene, ([0-9.]+) Verstorbene")
+_werrameissner_cccd = re.compile(r"([0-9.]+) neue F\wlle, ([0-9.]+) Gesamtfälle, ([0-9.]+) Verstorbene")
 _werrameissner_cc = re.compile(r"([0-9.]+) neuen? Corona-F\wll")
 _werrameissner_q = re.compile(r"([0-9.]+) Personen in Quarantäne")
 _werrameissner_si = re.compile(r"([0-9.]+|\w+) Patienten auf der Normalstation und ([0-9.]+|\w+) Patienten (?:\([^)]*\) )?auf der Intensiv")
@@ -20,8 +21,9 @@ def werrameissner(sheets):
     #check_date(li.find("time").get_text(), "Werra-Meissner")
     text = main.get_text(" ").strip()
     #print(text)
-    c, g, d = map(force_int, _werrameissner_cgd.search(text).groups())
+    c, g, d = map(force_int, _werrameissner_cgd.search(text).groups()) if _werrameissner_cgd.search(text) else (None, None, None)
     cc = force_int(_werrameissner_cc.search(text).group(1))
+    cc, c, d = map(force_int, _werrameissner_cccd.search(text).groups()) if _werrameissner_cccd.search(text) else (cc, c, d)
     q = force_int(_werrameissner_q.search(text).group(1))
     s, i = map(force_int, _werrameissner_si.search(text).groups())
     s += i
