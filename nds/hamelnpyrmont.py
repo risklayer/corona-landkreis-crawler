@@ -5,7 +5,7 @@ def hamelnpyrmont(sheets):
     data = get_json("https://services2.arcgis.com/50d5wsDbZicDslDY/ArcGIS/rest/services/Gemeinden_F_Covid/FeatureServer/0/query?where=Status%3D%27an%27&outFields=*&returnGeometry=false&orderByFields=Datum+DESC&groupByFieldsForStatistics=Datum&outStatistics=[{%22onStatisticField%22%3A%22i_gesamt%22%2C%22outStatisticFieldName%22%3A%22i_gesamt%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22infiziert%22%2C%22outStatisticFieldName%22%3A%22infiziert%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22genesen%22%2C%22outStatisticFieldName%22%3A%22genesen%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22neu_infizierte_zum_Vortag%22%2C%22outStatisticFieldName%22%3A%22neu_infizierte_zum_Vortag%22%2C%22statisticType%22%3A%22sum%22}%2C{%22onStatisticField%22%3A%22Todesf%C3%A4ll%22%2C%22outStatisticFieldName%22%3A%22Todesf%C3%A4ll%22%2C%22statisticType%22%3A%22sum%22}%2C%0D%0A{%22onStatisticField%22%3A%22quarantaen%22%2C%22outStatisticFieldName%22%3A%22quarantaen%22%2C%22statisticType%22%3A%22sum%22}]&resultRecordCount=1&f=json")
     data = data["features"][0]["attributes"]
     #for k,v in data.items(): print(k,v,sep="\t")
-    date = check_date(data["Datum"], "Coesfeld")
+    date = check_date(data["Datum"], "Hameln-Pyrmont")
     c, cc = data["i_gesamt"], data["neu_infizierte_zum_Vortag"]
     d, a, q = data["Todesfäll"], data["infiziert"], data["quarantaen"]
     c, d = c + 13, d + 3

@@ -13,7 +13,7 @@ from .euskirchen import euskirchen
 from .guetersloh import guetersloh
 from .hagen import hagen
 from .hamm import hamm
-from .heinsberg import heinsberg
+#from .heinsberg import heinsberg
 from .herford import herford
 from .herne import herne
 from .hoexter import hoexter
@@ -24,6 +24,7 @@ from .mgladbach import mgladbach
 from .minden import minden
 from .muelheim import muelheim
 from .muenster import muenster
+from .muenster2 import muenster2
 from .oberhausen import oberhausen
 from .obk import obk # Tabelle
 from .obk2 import obk2 # PM

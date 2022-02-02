@@ -13,7 +13,7 @@ def solingen(sheets):
     main = soup.find("main").find("article")
     content = main.get_text(" ").strip()
     #print(content)
-    if not today().strftime("%d.%m.") in content: raise NotYetAvailableException("Solingen noch alt:" + ps[0])
+    if not today().strftime("%d.%m.") in content: raise NotYetAvailableException("Solingen noch alt:" + content[:40])
     c = force_int(_solingen_c.search(content).group(1))
     d = force_int(_solingen_d.search(content).group(1))
     g = force_int((_solingen_g.search(content) or _solingen_g2.search(content)).group(1))

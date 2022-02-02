@@ -23,7 +23,7 @@ def ostholstein(sheets):
         q = force_int(_ostholstein_q.search(content).group(1)) + force_int(_ostholstein_a.search(content).group(1))
     if _ostholstein_s.search(content):
         s = force_int(_ostholstein_s.search(content).group(1))
-    update(sheets, 1055, c=c,  d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="mon")
+    update(sheets, 1055, c=c, d=d, g=g, q=q, s=s, sig="", comment="Später Land. Bot", ignore_delta="mon")
     return True
 
 schedule.append(Task(15, 27, 17, 27, 360, ostholstein, 1055))

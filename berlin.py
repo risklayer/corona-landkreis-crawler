@@ -19,8 +19,8 @@ def berlin(sheets):
     if ivena:
         for row in ivena.findAll("tr"):
             row = [x.text for x in row.findAll("td")]
-            if "stationärer Behandlung" in row[0]: s = int(row[1])
-            if "ITS" in row[0]: i = int(row[1])
+            if "stationärer Behandlung" in row[0]: s = force_int(row[1])
+            if "ITS" in row[0]: i = force_int(row[1])
     update(sheets, ags, c=c, cc=cc, g=g, gg=gg, s=s, i=i, d=d, dd=dd, sig="Bot")
     return True
 

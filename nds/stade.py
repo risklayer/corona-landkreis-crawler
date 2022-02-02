@@ -6,12 +6,13 @@ _stade_c = re.compile(r"Positiv Getestete insgesamt: *([0-9.]+) *\(\+?(-? *[0-9.
 _stade_g = re.compile(r"Genesene: *([0-9.]+) *\(\+?(-? *[0-9.]+|unverändert)\)")
 _stade_d = re.compile(r"Verstorbene: *([0-9.]+) *(?:\(\+?(-? *[0-9.]+|unverändert)\))?")
 _stade_q = re.compile(r"Quarantäne: *([0-9.]+)")
-_stade_si = re.compile(r"([0-9.]+)\s*\((?:[0-9.+-]+|unverändert)\)\s*stationär,\s*davon\s*([0-9.]+)\s*\((?:[0-9.+-]+|unverändert)\)\s*Patient")
+_stade_si = re.compile(r"([0-9.]+)\s*\((?:[0-9.+-]+|unverändert)\)\s*stationär,\s*davon\s*([0-9.]+)\s*\((?:[0-9.+/-]+|unverändert)\)\s*Patient")
 _stade_st = re.compile(r"Stand (\d\d\.\d\d\.20\d\d) / (\d\d?:\d\d) *Uhr")
 
 def stade(sheets):
-    soup = get_soup("https://www.landkreis-stade.de/corona")
-    main = soup.find(id="nolis_content_site").find(class_="innen")
+    #soup = get_soup("https://www.landkreis-stade.de/corona")
+    soup = get_soup("https://www.landkreis-stade.de/umwelt-gesundheit-verbraucherschutz/gesundheit/corona-virus/corona-aktuelle-lage/?vs=1")
+    main = soup.find(id="nolis_content_site") #.find(class_="innen")
     text = main.get_text(" ").strip()
     #print(text)
     date = check_date(" ".join(_stade_st.search(text).groups()), "Stade", datetime.timedelta(hours=8))

@@ -24,5 +24,5 @@ def lueneburg(sheets):
     update(sheets, 3355, c=c, cc=cc, d=d, g=g, s=s, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(16, 55, 18, 55, 360, lueneburg, 3355))
+schedule.append(Task(16, 35, 18, 55, 360, lueneburg, 3355))
 if __name__ == '__main__': lueneburg(googlesheets())

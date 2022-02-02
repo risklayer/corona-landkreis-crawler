@@ -9,7 +9,8 @@ _celle_c = re.compile(r"ie\s+Zahl\s+der\s+seit\s+Beginn\s+der\s+Pandemie\s+im\s+
 #_celle_a = re.compile(r"Aktuell sind mit dem Coronavirus im Landkreis Celle ([0-9.]+|\w+)")
 #_celle_q = re.compile(r"([0-9.]+|\w+) Menschen in Quarantäne")
 _celle_s = re.compile(r"([0-9.]+|\w+)\s+(?:positiv\s+getestete\s+)?Personen\s+behandelt")
-_celle_i = re.compile(r"Auf\s+der\s+Intensivstation\s+lieg\w*\s+([0-9.]+|\w+)")
+_celle_i = re.compile(r"uf\s+der\s+Intensivstation\s+lieg\w*\s+(?:derzeit )?([0-9.]+|kei\w*|nie\w*)")
+_celle_i2 = re.compile(r"([0-9.]+|\w+)\s+Person\w*\s+auf\s+der\s+Intensivstation")
 
 def celle(sheets):
     soup = get_soup("https://www.landkreis-celle.de/")
@@ -26,8 +27,13 @@ def celle(sheets):
     cc = force_int((_celle_cc.search(content) or _celle_cc2.search(content)).group(1))
     #a = force_int(_celle_a.search(content).group(1))
     #q = force_int(_celle_q.search(content).group(1)) + a
-    s = force_int(_celle_s.search(content).group(1))
-    i = force_int(_celle_i.search(content).group(1))
+    s, i = None, None
+    try:
+        s = force_int(_celle_s.search(content).group(1))
+    except: pass
+    try:
+        i = force_int((_celle_i.search(content) or _celle_i2.search(content)).group(1))
+    except: pass
 
     update(sheets, 3351, c=c, cc=cc, s=s, i=i, ignore_delta=True)
     return True

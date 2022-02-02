@@ -8,6 +8,8 @@ def goslar(sheets):
     date = check_date(data["Datum"], "Goslar", datetime.timedelta(days=1, hours=12))
     c, cc = int(data["Bestaetigt"]), int(data["Infektionsdelta_Vortag"])
     d, g = int(data["Verstorben"]), int(data["Genesen"])
+    if d == 0: d = None
+    if g == 0: g = None
     update(sheets, 3153, c=c, cc=cc, g=g, d=d, sig="Bot")
     return True
 

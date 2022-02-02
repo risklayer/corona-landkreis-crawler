@@ -5,6 +5,7 @@ _forchheim_st = re.compile(r"Stand: (\d\d\.\d\d\.20\d\d); (\d\d:\d\d) Uhr")
 _forchheim_split = re.compile(r"^\n*\+?\s*(-?[0-9]+)? *\n\n\+?\s*(-?[0-9]+) *\n\n\+?\s*(?:(-?[0-9]+))?\n_+\n\+?\s*(-?[0-9]+)[\n\s]*$")
 
 def forchheim(sheets):
+    return True # derzeit nicht mehr
     def _fo_clean(x):
         for br in x.findAll("br"): br.replace_with("\n" + br.text)
         return x.get_text()

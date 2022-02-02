@@ -28,5 +28,5 @@ def goerlitz(sheets):
     update(sheets, 14626, c=c, cc=cc, d=d, dd=dd, g=g, s=s, i=i, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(12, 2, 14, 35, 600, goerlitz, 14626))
+schedule.append(Task(12, 2, 15, 35, 600, goerlitz, 14626))
 if __name__ == '__main__': goerlitz(googlesheets())

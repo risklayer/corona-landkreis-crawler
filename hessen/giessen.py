@@ -1,26 +1,30 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 def giessen(sheets):
-
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
-    soup = get_soup("https://corona.lkgi.de/aktuelles/fallzahlen-im-landkreis/")
-    date_text = soup.find("div", {"class":"fusion-text fusion-text-1"}).get_text().strip()
+    soup = get_soup("https://corona.lkgi.de/")
+    main = next(x for x in soup.findAll(class_="fusion-fullwidth") if "Stand:" in x.get_text())
+    #print(main.get_text())
+    date_text = main.find("p", text=re.compile(r"Stand:")).get_text().strip()
     if not today().strftime("%e. %B %Y") in date_text: raise NotYetAvailableException("Giessen noch alt:" + date_text)
 
-    data_items = soup.find_all("div", {"class": "title-heading-center title-heading-tag fusion-responsive-typography-calculated"})
+    data_items = main.find_all("div", {"class": "title-heading-center title-heading-tag fusion-responsive-typography-calculated"})
     data = {}
     for item in data_items:
-        data[item.findNext("p").get_text()] = item.get_text()
+        k = item.findNext("p").get_text()
+        if "7 Tage" in k: continue
+        k = k.split("\n")[0]
+        data[k] = item.get_text()
+    #print(*data.items(), sep="\n")
 
-    cc = force_int(data["Neuinfektionen seit gestern"])
-    c = force_int(data["Coronafälle insgesamt"])
+    cc = force_int(data["Neuinfektionen"])
+    c = force_int(data["Coronafälle"])
     d = force_int(data["Verstorbene"])
-    g = force_int(data["Genesene"])
-    s = force_int(data.get("Stationär Behandelte in Kliniken im Landkreis Gießen", None)) or None
+    g = None #force_int(data["Genesene"])
+    s = force_int(data.get("Stationär Behandelte", None)) or None
 
     update(sheets, 6531, c=c, cc=cc, d=d, g=g, s=s, sig="Bot")
     return True

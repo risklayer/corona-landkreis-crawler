@@ -9,7 +9,7 @@ _limburg_q = re.compile(r"([0-9.]+) Menschen befinden sich im Landkreis derzeit 
 
 def limburg(sheets):
     soup = get_soup("https://www.landkreis-limburg-weilburg.de/leben-im-landkreis/gesundheit/informationen-zum-corona-virus")
-    li = next(x for x in soup.find(id="maincontent").findAll(itemtype="http://schema.org/Article") if "Limburg-Weilburg zum Corona-Virus" in x.get_text())
+    li = next(x for x in soup.find(id="maincontent").findAll(itemtype="http://schema.org/Article") if "Limburg-Weilburg zum Corona" in x.get_text())
     check_date(li.find("time").get_text(), "Limburg-Weilburg")
     link = li.find("a")["href"] if li else None
     from urllib.parse import urljoin

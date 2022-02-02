@@ -5,7 +5,7 @@ _stand = re.compile(r"Stand:")
 _osterholz_c = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen haben sich bisher infi?ziert", re.U)
 _osterholz_g = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen sind wieder genesen", re.U)
 _osterholz_d = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen sind verstorben", re.U)
-_osterholz_q = re.compile(r"([0-9.]+) (?:\(±?([+-]?[0-9.]+)\) )?Kontaktpersonen in", re.U)
+_osterholz_q = re.compile(r"([0-9.]+) (?:\(±?[+-]?[0-9.]+\) )?Kontaktpersonen in", re.U)
 _osterholz_s = re.compile(r"([0-9.]+) Personen in stationärer", re.U)
 
 def osterholz(sheets):
@@ -18,9 +18,9 @@ def osterholz(sheets):
     c, cc = map(force_int, _osterholz_c.search(text).groups())
     g, gg = map(force_int, _osterholz_g.search(text).groups())
     d, dd = map(force_int, _osterholz_d.search(text).groups())
-    q, _ = map(force_int, _osterholz_q.search(text).groups())
+    q = force_int(_osterholz_q.search(text).group(1)) if _osterholz_q.search(text) else None
+    q = q + c - g - d if q else None
     s = force_int(_osterholz_s.search(text).group(1))
-    q += c - g - d
     update(sheets, 3356, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 

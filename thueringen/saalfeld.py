@@ -3,7 +3,7 @@
 from botbase import *
 
 _saalfeld_cc = re.compile(r"([0-9.]+|\w+) neuen? Coronaf[aä]ll")
-_saalfeld_c = re.compile(r"infizierten Personen seit Beginn der Pandemie beträgt damit ([0-9.]+)")
+_saalfeld_c = re.compile(r"infizierten Personen seit Beginn der Pandemie beträgt (?:\w+ )?([0-9.]+)")
 _saalfeld_dd = re.compile(r"([0-9.]+|\w+) weiteren? Todesf[aä]ll")
 _saalfeld_d = re.compile(r"([0-9.]+) Menschen (?:im Landkreis )?(?:im Zusammenhang|in Verbindung|gemeldet)")
 _saalfeld_st = re.compile(r"(\d\d?\.\d\d?\.20\d\d)")

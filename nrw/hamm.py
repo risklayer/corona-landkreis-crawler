@@ -19,7 +19,7 @@ def hamm(sheets):
     #print(text)
     a = force_int(_hamm_a.search(text).group(1))
     g = force_int(_hamm_g.search(text).group(1))
-    q = force_int(_hamm_q.search(text).group(1))
+    q = force_int(_hamm_q.search(text).group(1)) if _hamm_q.search(text) else None
     s = force_int(_hamm_s.search(text).group(1))
     i = force_int(_hamm_i.search(text).group(1))
     d = force_int(_hamm_d.search(text).group(1))

@@ -16,5 +16,5 @@ def rheinerft(sheets):
     update(sheets, 5362, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, q=q, sig="Bot", comment="Bot Dashboard ohne SI", ignore_delta=True, date=date)
     return True
 
-schedule.append(Task(16, 15, 19, 30, 300, rheinerft, 5362))
+schedule.append(Task(17, 15, 21, 30, 360, rheinerft, 5362))
 if __name__ == '__main__': rheinerft(googlesheets())

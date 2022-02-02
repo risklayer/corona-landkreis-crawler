@@ -23,7 +23,7 @@ def essen2(sheets):
     g = force_int(_essen_g.search(text).group(1))
     s = force_int(_essen_s.search(text).group(1))
     i = force_int(_essen_i.search(text).group(1))
-    q = force_int(_essen_q.search(text).group(1)) + (c-d-g)
+    q = (force_int(_essen_q.search(text).group(1)) + c-d-g) if _essen_q.search(text) else None
     update(sheets, 5113, c=c, g=g, d=d, q=q, s=s, i=i, sig="Bot", date=date)
     return True
 

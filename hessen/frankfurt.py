@@ -25,5 +25,5 @@ def frankfurt(sheets):
     update(sheets, 6412, c=c,  d=d, g=g, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(8, 5, 10, 5, 360, frankfurt, 6412))
+schedule.append(Task(8, 5, 12, 5, 360, frankfurt, 6412))
 if __name__ == '__main__': frankfurt(googlesheets())

@@ -11,7 +11,8 @@ def dueren(sheets):
     #print(date)
     c, g, d = data["Summe"], data["Genesen"], data["Verstorben"]
     cc = data["Infektionsdelta_Vortag"]
-    # TODO: Impfzahlen auch vorhanden!
+    if g == 0: g = None
+    if d == 0: d = None
     update(sheets, 5358, c=c, cc=cc, g=g, d=d, sig="Bot", date=date, ignore_delta=True)
     return True
 

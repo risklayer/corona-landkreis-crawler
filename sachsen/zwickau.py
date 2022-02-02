@@ -10,6 +10,7 @@ def zwickau(sheets):
     #print(*rows, sep="\n")
     col = today().weekday() + 1
     date = rows[0][col] if force_int(rows[1][col]) is not None else ""
+    date = date.replace("Febr", "Feb")
     date = check_date(date, "Zwickau")
     assert "alle Infektionsfälle" in rows[1][0]
     c = force_int(rows[1][col])

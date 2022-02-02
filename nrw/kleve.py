@@ -21,7 +21,7 @@ def kleve(sheets):
     d = force_int(_kleve_d.search(text).group(1))
     g = force_int(_kleve_g.search(text).group(1))
     s = force_int(_kleve_s.search(text).group(1))
-    q = force_int(_kleve_q.search(text).group(1))
+    q = force_int(_kleve_q.search(text).group(1)) if _kleve_q.search(text) else None
     update(sheets, 5154, c=c, cc=cc, d=d, g=g, q=q, s=s, sig="Bot", ignore_delta="son")
     return True
 

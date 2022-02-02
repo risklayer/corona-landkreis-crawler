@@ -6,7 +6,7 @@ from .bamberg import bamberg
 from .bayreuth import bayreuth
 from .ebersberg import ebersberg
 from .ffb import ffb
-from .forchheim import forchheim
+#from .forchheim import forchheim
 from .dingolfing import dingolfing
 from .garmisch import garmisch
 from .hassberge import hassberge

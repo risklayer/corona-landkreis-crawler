@@ -5,7 +5,7 @@ _werrameissner_cgd = re.compile(r"([0-9.]+) Gesamtfälle, (?:[0-9.]+) Erkrankte,
 _werrameissner_cccd = re.compile(r"([0-9.]+) neue F\wlle, ([0-9.]+) Gesamtfälle, ([0-9.]+) Verstorbene")
 _werrameissner_cc = re.compile(r"([0-9.]+) neuen? Corona-F\wll")
 _werrameissner_q = re.compile(r"([0-9.]+) Personen in Quarantäne")
-_werrameissner_si = re.compile(r"([0-9.]+|\w+) Patienten auf der Normalstation und ([0-9.]+|\w+) Patienten (?:\([^)]*\) )?auf der Intensiv")
+_werrameissner_si = re.compile(r"([0-9.]+|\w+) Patient\w+ auf der Normalstation (?:und ([0-9.]+|\w+) Patient\w* (?:\([^)]*\) )?auf der Intensiv)?")
 
 def werrameissner(sheets):
     soup = get_soup("https://www.werra-meissner-kreis.de/fachbereiche-einrichtungen/stab-verwaltungsleitung-und-steuerung/presse-und-oeffentlichkeitsarbeit-buergerreferat-kultur-und-kreisarchiv/presse-und-oeffentlichkeitsarbeit/pressemitteilungen")

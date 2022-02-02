@@ -24,8 +24,7 @@ def cuxhaven(sheets):
     g, gg = None, None
     assert "Todesfälle" in rows[2][0]
     d, dd = map(force_int, _cux_two.search(rows[2][1]).groups())
-    assert "Intensiv" in rows[5][0]
-    i, _ = map(force_int, _cux_two.search(rows[5][1]).groups())
+    i, _ = map(force_int, _cux_two.search(rows[5][1]).groups()) if len(rows) > 5 and "Intensiv" in rows[5][0] else (None, None)
     update(sheets, 3352, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, i=i, sig="Bot", ignore_delta="mon")
     return True
 

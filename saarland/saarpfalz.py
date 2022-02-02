@@ -20,7 +20,7 @@ def saarpfalz(sheets):
     cc = force_int(_saarpfalz_cc.search(text).group(1))
     g = force_int(_saarpfalz_g.search(text).group(1)) if _saarpfalz_g.search(text) else None
     d = c - g - a if a and g else None
-    com = "Bot" if d else "Bot unvollständig"
+    com = "Bot" if d else "Bot ohne D"
     update(sheets, 10045, c=c, cc=cc, d=d, g=g, sig="Bot", comment=com, ignore_delta="mon")
     return True
 

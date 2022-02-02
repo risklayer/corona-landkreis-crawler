@@ -11,6 +11,7 @@ def neuwied(sheets):
     link = urljoin("https://www.kreis-neuwied.de/kv_neuwied/Home/Aktuelles/wichtige%20Hinweise%20und%20Informationen/", link)
     print("Getting", link)
     content = get_soup(link).find("div", {"class": "content"})
+    if content.find("strike") is not None: return True # defekt
     date_text = _neuwied_date.search(content.get_text()).group(1)
     check_date(date_text, "Neuwied")
     table = next(x for x in content.findAll("table") if "Positivfälle" in x.get_text())

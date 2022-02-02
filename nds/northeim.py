@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from botbase import *
 
-_northeim_c = re.compile(r"mittlerweile ([0-9.]+)\s*\(([+-]?[0-9.]+)\) Corona-Infektionen")
-_northeim_g = re.compile(r"([0-9.]+)\s*\(([+-]?[0-9.]+)\) Personen gelten mittlerweile als genesen")
-_northeim_d = re.compile(r"insgesamt ([0-9.]+)\s*\(([+-]?[0-9.]+)\) Personen verstorben")
+_northeim_c = re.compile(r"mittlerweile ([0-9.]+)\s*(?:\(([+-]?[0-9.]+)\) )?Corona-Infektionen")
+_northeim_g = re.compile(r"([0-9.]+)\s*(?:\(([+-]?[0-9.]+)\) )?Personen gelten mittlerweile als genesen")
+_northeim_d = re.compile(r"insgesamt ([0-9.]+)\s*(?:\(([+-]?[0-9.]+)\) )?Personen verstorben")
 
 def northeim(sheets):
     from urllib.parse import urljoin
@@ -21,7 +21,7 @@ def northeim(sheets):
     #print(text)
     c, cc = map(force_int, _northeim_c.search(text).groups())
     d, dd = map(force_int, _northeim_d.search(text).groups())
-    g, gg = map(force_int, _northeim_g.search(text).groups())
+    g, gg = map(force_int, _northeim_g.search(text).groups()) if _northeim_g.search(text) else (None, None)
     update(sheets, 3155, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", ignore_delta="mon")
     return True
 

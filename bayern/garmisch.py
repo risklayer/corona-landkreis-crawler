@@ -10,25 +10,15 @@ _garmisch_i = re.compile(r"Intensiv behandelte Personen: *([0-9.]+)")
 def garmisch(sheets):
     soup = get_soup("https://www.lra-gap.de/de/corona-fallzahlen-und-impf-fortschritt.html")
     main = soup.find(class_="content")
-    ps = [p.get_text(" ") for p in main.findAll("p")]
-    #for p in ps: print(p)
-    h2 = [x for x in ps if "Stand" in x][0]
+    content = main.get_text(" ").strip()
+    #print(content)
+    h2 = next(x for x in content.split("\n") if "Stand" in x)
     if not today().strftime("%d.%m.%Y") in h2: raise NotYetAvailableException("Garmisch noch alt: " + h2)
-    c, d, g, s, i = None, None, None, None, None
-    for p in ps:
-        m = _garmisch_c.search(p)
-        if m: c = force_int(m.group(1))
-        m = _garmisch_d.search(p)
-        if m: d = force_int(m.group(1))
-        m = _garmisch_g.search(p)
-        if m: g = force_int(m.group(1))
-        m = _garmisch_s.search(p)
-        if m: s = force_int(m.group(1))
-        m = _garmisch_i.search(p)
-        if m: i = force_int(m.group(1))
-    assert c
-    assert d
-    assert g
+    c = force_int(_garmisch_c.search(content).group(1))
+    d = force_int(_garmisch_d.search(content).group(1))
+    g = force_int(_garmisch_g.search(content).group(1))
+    s = force_int(_garmisch_s.search(content).group(1))
+    i = force_int(_garmisch_i.search(content).group(1))
     update(sheets, 9180, c=c, g=g, d=d, s=s, i=i, sig="Bot")
     return True
 

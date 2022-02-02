@@ -17,7 +17,7 @@ def muenster(sheets):
     c, cc = map(force_int, _muenster_c.search(p).groups())
     g, gg = map(force_int, _muenster_g.search(p).groups())
     d = force_int(_muenster_d.search(p).group(1))
-    update(sheets, 5515, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot", ignore_delta=today().weekday()==0) # kein Delta am Montag
+    update(sheets, 5515, c=c, cc=cc, d=d, g=g, gg=gg, sig="Bot", comment="Bot ohne SI", ignore_delta=today().weekday()==0) # kein Delta am Montag
     return True
 
 schedule.append(Task(12, 0, 13, 45, 300, muenster, 5515))

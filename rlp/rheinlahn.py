@@ -2,9 +2,9 @@
 ## Tommy
 from botbase import *
 
-_rheinlahn_c = re.compile(r"Gesamtinfizierte:\s*([0-9.]+)")
-_rheinlahn_d = re.compile(r"Verstorbene:\s*([0-9.]+)")
-_rheinlahn_g = re.compile(r"Genesene:\s*([0-9.]+)")
+_rheinlahn_c = re.compile(r"Gesamtinfizierte:\s*([0-9. ]+)")
+_rheinlahn_d = re.compile(r"Verstorbene:\s*([0-9. ]+)")
+_rheinlahn_g = re.compile(r"Genesene:\s*([0-9. ]+)")
 
 def rheinlahn(sheets):
     soup = get_soup("https://www.rhein-lahn-kreis.de/aktuelles/corona/")

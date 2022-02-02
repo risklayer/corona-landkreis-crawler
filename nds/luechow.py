@@ -14,7 +14,7 @@ def luechow(sheets):
     soup = get_soup("https://www.luechow-dannenberg.de/home/familie-soziales-gesundheit/corona-virus.aspx")
     articles = soup.find(class_="DetailView-description")
     text = articles.get_text(" ").strip()
-    #print(text)
+    # print(text)
     m = _luechow_st.search(text)
     date = m.group(1) + " " +m.group(2) + ":" + (m.group(3) if m.group(3) else "00")
     date = check_date(date, "Lüchow-Dannenberg")

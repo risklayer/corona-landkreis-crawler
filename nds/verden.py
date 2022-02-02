@@ -3,7 +3,7 @@ from botbase import *
 
 _stand = re.compile(r"Stand")
 _verden_c = re.compile(r"([.0-9]+)\s+\(\+?\s*(-?[.0-9]+)\s+zu\w?\s+(?:\w+-?\w+|\d+\.\d+\.\d*)\)\s+laborbestätigte\s+Coronavirus-Fälle")
-_verden_g = re.compile(r"([.0-9]+)\s+\(\+?\s*(-?[.0-9]+)\s+zu\w?\s+(?:\w+-?\w+|\d+\.\d+\.\d*)\)\s+Covid-19-Patienten[a-z ]+wieder\s+genesen")
+_verden_g = re.compile(r"([.0-9]+)\**\s+\(\+?\s*(-?[.0-9]+)\s+zu\w?\s+(?:\w+-?\w+|\d+\.\d+\.\d*)\)\s+Covid-19-Patienten[a-z ]+wieder\s+genesen")
 _verden_d = re.compile(r"([.0-9]+)\s+Personen\s+sind\s+verstorben")
 _verden_q = re.compile(r"([.0-9]+)\s+Kontaktpersonen")
 _verden_s1 = re.compile(r"([.0-9]+)\s+Person[A-Za-z ]+?stationär\s+in")
