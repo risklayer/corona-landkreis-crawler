@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 import re, time
-_landpat = re.compile(r"baden-w").search
+_landpat = re.compile(r"(?:baden-w|rastatt|enzkreis)").search
 
 def land(sheets):
     data = get_csv("http://www.gesundheitsatlas-bw.de/data/csv?inline=true&viewId=211&viewName=Coronavirus-Nachweise+-+t%c3%a4glich&geoId=1&subsetId=&instances=", sep=",")

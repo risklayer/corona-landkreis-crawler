@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from botbase import *
 
-_saarlouis_c = re.compile(r"insgesamt: ([0-9.]+)")
-_saarlouis_d = re.compile(r"Verstorben: ([0-9.]+)")
-_saarlouis_g = re.compile(r"Genesen: ([0-9.]+)")
+_saarlouis_c = re.compile(r"insgesamt:\s*([0-9.]+)")
+_saarlouis_d = re.compile(r"Verstorben:\s*([0-9.]+)")
+_saarlouis_g = re.compile(r"Genesen:\s*([0-9.]+)")
 
 def saarlouis(sheets):
     import bs4
@@ -16,7 +16,7 @@ def saarlouis(sheets):
         if isinstance(cur, bs4.Tag): ps.extend([p for p in cur.find_all(text=True) if not p.strip() == ""])
         cur = cur.nextSibling
         if cur == stop:
-            if len(ps) > 4: break
+            if len(ps) >= 4: break
             stop = cur.findNext("hr")
     #for p in ps: print("A",p)
     #date = check_date(p[0], "Merzig-Wadern")

@@ -20,8 +20,9 @@ def vogelsberg(sheets):
     #print(text)
     cc = force_int(_vogelsberg_cc.search(text).group(1))
     c = force_int(_vogelsberg_c.search(text).group(1))
-    gg = force_int(_vogelsberg_gg.search(text).group(1))
+    gg = force_int(_vogelsberg_gg.search(text).group(1)) if _vogelsberg_gg.search(text) else None
     g = force_int(_vogelsberg_g.search(text).group(1))
+    g, gg = None, None
     d = force_int(_vogelsberg_d.search(text).group(1))
     update(sheets, 6535, c=c, cc=cc, d=d, g=g, gg=gg, ignore_delta=True)
     return True

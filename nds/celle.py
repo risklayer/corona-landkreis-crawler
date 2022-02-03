@@ -5,7 +5,7 @@ from botbase import *
 _celle_date = re.compile(r"Stand (\d\d?\.\d\d?\.20\d\d)")
 _celle_cc = re.compile(r"([0-9.]+|\w+)\sNeuinfektionen")
 _celle_cc2 = re.compile(r"Seit \w+ wurden im Landkreis Celle\s([0-9.]+|\w+)\sPersonen positiv")
-_celle_c = re.compile(r"ie\s+Zahl\s+der\s+seit\s+Beginn\s+der\s+Pandemie\s+im\s+März\s+2020\s+(?:im\s+Landkreis\s+Celle\s+)?[eE]rkrankten\s+(?:Personen\s+)?(?:liegt\s+bei|erhöht\s+sich\s+\w*\s*auf)\s*([0-9.]+)")
+_celle_c = re.compile(r"ie\s+Zahl\s+der\s+seit\s+Beginn\s+der\s+Pandemie\s+im\s+März\s+2020\s+(?:im\s+Landkreis\s+Celle\s+)?(?:[eE]rkrankten|[iI]nfizierten)\s+(?:Personen\s+)?(?:liegt\s+bei|erhöht\s+sich\s+\w*\s*auf)\s*([0-9.]+)")
 #_celle_a = re.compile(r"Aktuell sind mit dem Coronavirus im Landkreis Celle ([0-9.]+|\w+)")
 #_celle_q = re.compile(r"([0-9.]+|\w+) Menschen in Quarantäne")
 _celle_s = re.compile(r"([0-9.]+|\w+)\s+(?:positiv\s+getestete\s+)?Personen\s+behandelt")

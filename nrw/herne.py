@@ -12,7 +12,7 @@ def herne(sheets):
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.herne.de/Stadt-und-Leben/Gesundheit/Informationen-zum-Coronavirus/Entwicklung-in-Herne/")
     header = next(x for x in soup.find_all("h3") if "Update" in x.get_text() and "Covid" in x.get_text())
-    if not today().strftime("%d. %B %Y") in header.get_text(): raise NotYetAvailableException("Herne noch alt: " + header.get_text())
+    if not today().strftime("%-d. %B %Y") in header.get_text(): raise NotYetAvailableException("Herne noch alt: " + header.get_text())
     text = header.findNext("p").get_text()
     c = force_int(_herne_c.search(text).group(1))
     d = force_int(_herne_d.search(text).group(1))
