@@ -16,7 +16,6 @@ def vulkaneifel(sheets):
     entry = next(x for x in soup.find_all("article") if "COVID-19 Tagesmeldung" in x.get_text())
     if not today().strftime("%d.%m.%Y") in entry.get_text() and not today().strftime("%e. %B %Y") in entry.get_text(): raise NotYetAvailableException("Vulkaneifel noch alt:" + entry.get_text().strip("\n").split("\n")[0].strip())
     link = entry.find(href=True)["href"] if entry else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.vulkaneifel.de/buergerservice-verwaltung/corona/corona-presse.html", link)
     print("Getting", link)
     content = get_soup(link).get_text()

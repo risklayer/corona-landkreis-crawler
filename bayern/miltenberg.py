@@ -11,7 +11,6 @@ _miltenberg_q = re.compile(r"([0-9.]+) Menschen als Kontaktperson I in Quarantä
 _miltenberg_si = re.compile(r"([0-9.]+|\w+) (?:Persone?n?|Menschen) aus dem Landkreis (?:in )?stationäre?r? [bB]ehand\w+(?:, davon (?:sind )?([0-9.]+|\w+) (?:Persone?n?|Mensche?n?)?\s*intensiv)?", re.U)
 
 def miltenberg(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.landkreis-miltenberg.de/Landkreis/Aktuell.aspx")
     articles = soup.find(id="aktuell").findAll("li")
     todaystr = today().strftime("%d.%m.%Y")

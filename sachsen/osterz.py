@@ -8,7 +8,6 @@ _osterz_g = re.compile(r"Quarantäne entlassene Personen:\s*([0-9.]+)\s*\(\+?/?�
 _osterz_si = re.compile(r"befinden sich\s*([0-9.]+)\s*positiv auf SARS-CoV-2 getestete Personen im Landkreis in Krankenhäusern. Davon\s*([0-9.]+)\s*intensiv")
 
 def osterz(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.landratsamt-pirna.de/aktuelles-presse.html")
     articles = soup.findAll(class_="xm_block")
     article = next(a for a in articles if "Corona-Virus: Aktuelle" in a.get_text())

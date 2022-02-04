@@ -12,7 +12,6 @@ def vogelsberg(sheets):
     li = next(x for x in soup.find("main").findAll("article") if "Corona-Update" in x.get_text())
     check_date(li.find("time").get_text(), "Vogelsbergkreis")
     link = li.find(href=True)["href"] if li else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.vogelsbergkreis.de/kreisverwaltung/presse-und-oeffentlichkeitsarbeit/", link)
     print("Getting", link)
     soup = get_soup(link)

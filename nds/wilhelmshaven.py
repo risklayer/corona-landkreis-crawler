@@ -2,7 +2,7 @@
 from botbase import *
 
 _stand = re.compile(r"Stand: (\d\d.\d\d.20\d\d)")
-_match_two = re.compile(r"([0-9.]+)\s+\(([+-]?[0-9.]*),?\)", re.U)
+_match_two = re.compile(r"([0-9.]+)(?:\s+\(([+-]?[0-9.]*),?\))?", re.U)
 
 def wilhelmshaven(sheets):
     soup = get_soup("https://www.wilhelmshaven.de/")

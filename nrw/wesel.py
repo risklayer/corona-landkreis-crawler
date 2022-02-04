@@ -10,7 +10,6 @@ _wesel_si = re.compile(r"([0-9.]+) Patienten mit einer Corona-Infektion in stati
 _wesel_q = re.compile(r"([0-9.]+) Kreisbewohner in Quarantäne")
 
 def wesel(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.kreis-wesel.de/de/inhalt/aktuelles/")
     articles = soup.find("main").findAll("dt")
     article = next(a for a in articles if "Infektionsfälle" in a.get_text())

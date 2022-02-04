@@ -6,7 +6,6 @@ _goettingen_d = re.compile(r"([0-9.]+)\s*Menschen sind in Verbindung mit Covid-1
 _goettingen_g = re.compile(r"gelten\s([0-9.]+)\sPersonen\sals\swieder\svon\sder\sInfektion\sgenesen")
 
 def goettingen(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.goettingen.de/leben/aktuelles-leben-in-goettingen.html")
     articles = soup.find(id="content").findAll(class_="teaser1")
     article = next(a for a in articles if "aktuelle Infektionen" in a.get_text() or "Neuinfektionen" in a.get_text())

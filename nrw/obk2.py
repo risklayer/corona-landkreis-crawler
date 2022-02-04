@@ -13,7 +13,6 @@ def obk2(sheets):
     li = next(x for x in soup.find(id="col3").findAll("li") if "weitere Fälle" in x.get_text() or "neue Fälle" in x.get_text())
     check_date(li.get_text().split(":")[0], "Oberbergischer Kreis")
     link = li.find("a")["href"] if li else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.obk.de/cms200/aktuelles/pressemitteilungen/", link)
     print("Getting", link)
     soup = get_soup(link)

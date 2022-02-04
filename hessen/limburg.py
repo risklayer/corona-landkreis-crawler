@@ -12,7 +12,6 @@ def limburg(sheets):
     li = next(x for x in soup.find(id="maincontent").findAll(itemtype="http://schema.org/Article") if "Limburg-Weilburg zum Corona" in x.get_text())
     check_date(li.find("time").get_text(), "Limburg-Weilburg")
     link = li.find("a")["href"] if li else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.landkreis-limburg-weilburg.de/leben-im-landkreis/gesundheit/informationen-zum-corona-virus", link)
     print("Getting", link)
     soup = get_soup(link)

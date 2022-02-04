@@ -3,6 +3,7 @@
 import datetime, dateutil.parser, sys
 today = datetime.date.today # today() function shorthand
 from datetime import datetime
+from urllib.parse import urljoin
 
 # Google sheets oauth authorization
 from .oauth import googlesheets

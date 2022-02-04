@@ -12,7 +12,6 @@ def rheinlahn(sheets):
     date = datetime.datetime.fromtimestamp(int(article["data-date"])//1000)
     check_date(date, "Rhein-Lahn")
     link = article.find("a")["href"]
-    from urllib.parse import urljoin
     link = urljoin("https://www.rhein-lahn-kreis.de/aktuelles/corona/", link)
     print("Getting", link)
     content = get_soup(link).get_text()

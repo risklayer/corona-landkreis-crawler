@@ -7,7 +7,6 @@ _leipziglk_a = re.compile(r"([0-9.]+) [Ii]nfizierte", re.U)
 _leipziglk_q = re.compile(r"([0-9.]+) Personen in Quarantäne", re.U)
 
 def leipziglk(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.landkreisleipzig.de/pressemeldungen.html")
     articles = soup.find(itemprop="articleSection").findAll("article")
     article = next(a for a in articles if "bestätigte Fälle" in a.find("h2").get_text())

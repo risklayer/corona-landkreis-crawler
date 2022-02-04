@@ -12,7 +12,6 @@ _lauenburg_cc = re.compile(r"Gesamt:\s*(?:[0-9.]+)\*?\s*\(\+\s*([0-9.]+)\s*zum V
 def lauenburg(sheets):
     soup = get_soup("https://www.kreis-rz.de/index.php")
     link = next(x["href"] for x in soup.find_all("a", {"href": True}) if "Alles zum Thema Corona (SARS-CoV-2" in x.get_text())
-    from urllib.parse import urljoin
     link = urljoin("https://www.kreis-rz.de/index.php", link)
     print("Getting", link)
     content = get_soup(link).get_text()

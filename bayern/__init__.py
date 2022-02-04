@@ -4,6 +4,7 @@ from .augsburg import augsburg
 from .badkissingen import badkissingen
 from .bamberg import bamberg
 from .bayreuth import bayreuth
+from .cham import cham
 from .ebersberg import ebersberg
 from .ffb import ffb
 #from .forchheim import forchheim

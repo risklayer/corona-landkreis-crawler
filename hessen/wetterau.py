@@ -13,7 +13,6 @@ def wetterau(sheets):
     li = next(x for x in soup.find("main").findAll(class_="article") if "nachgewiesenen Fälle" in x.get_text())
     check_date(li.find(class_="news-list-date").get_text(), "Wetteraukreis")
     link = li.find(href=True)["href"] if li else None
-    from urllib.parse import urljoin
     link = urljoin("https://wetteraukreis.de/aktuelles/pressemitteilungen/?no_cache=1", link)
     print("Getting", link)
     soup = get_soup(link)

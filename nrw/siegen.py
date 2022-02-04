@@ -11,7 +11,6 @@ _siegen_si2 = re.compile(r"kommen ([0-9.]+|\w+) P\w+ von außerhalb des Kreisgeb
 _siegen_q = re.compile(r"([0-9.]+) Personen (?:in |unter )?häuslicher? Quarantäne")
 
 def siegen(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.siegen-wittgenstein.de/Kreisverwaltung/Aktuelles/Pressemeldungen/")
     articles = soup.find("main").find("ol").findAll("li")
     article = next(a for a in articles if "Neuinfektionen" in a.get_text())

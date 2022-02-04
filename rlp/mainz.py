@@ -6,7 +6,6 @@ _mainz_g = re.compile(r"Genesene: [0-9.]+ \(±?[+-]? *[0-9.]+\) *davon Mainz-Bin
 _mainz_d = re.compile(r"Todesfälle im Landkreis Mainz-Bingen *([0-9.]+)(?: *\(±?([+-]? *[0-9.]+)\))? *, *Todesfälle Stadt Mainz *([0-9.]+)(?: *\(±?([+-]? *[0-9.]+)\))?", re.U)
 
 def mainz(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.mainz-bingen.de/")
     m = next(x for x in soup.findAll(class_="listEntryInner") if "Corona-Virus:" in x.get_text())
     date = check_date(m.find(class_="listEntryDate").get_text(), "Mainz")

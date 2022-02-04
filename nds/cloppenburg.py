@@ -17,7 +17,7 @@ def cloppenburg(sheets):
     c2, cc2, g2, gg2 = data2["Inf_gesamt"], data2["neuinfekti"], data2["Genesen"], data2["neu_genesen"]
     a2, q = data2["Inf_akut"], data2["Quarantaene"]
     d2 = c2 - g2 - a2
-    q = q + a
+    q = q + a if q is not None and a is not None else None
     #print(c, a,d,g,cc,gg,q)
     update(sheets, 3453, c=c, cc=cc2, g=g, gg=gg2, d=d, q=q, sig="Bot", comment="Bot Dashboard ohne SI", date=date, ignore_delta=True)
     return True

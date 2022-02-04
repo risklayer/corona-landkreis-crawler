@@ -10,7 +10,6 @@ _enkreis_si = re.compile(r"([0-9.]+) Patienten mit einer Corona-Infektion in sta
 _enkreis_q = re.compile(r"([0-9.]+) Kreisbewohner in Quarantäne")
 
 def enkreis(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.enkreis.de/")
     articles = soup.findAll(class_="article")
     article = next(a for a in articles if "Neuinfekt" in a.find(itemprop="description").get_text())

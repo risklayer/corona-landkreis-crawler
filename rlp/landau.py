@@ -7,7 +7,6 @@ _gesamt_d = re.compile(r"Insgesamt sind *([0-9.]+) *Personen verstorben")
 _landau = re.compile(r"Stadt Landau *: *([0-9.]+) Personen *\( *([0-9.]+) *davon gesundet, *([0-9.]+) *verstorben")
 
 def landau(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.landau.de/Verwaltung-Politik/Pressemitteilungen/")
     m = next(x for x in soup.find("section").findAll(class_="mitteilungen") if "Fallzahlen im" in x.get_text())
     date = check_date(m.find(class_="date").get_text(), "Landau")

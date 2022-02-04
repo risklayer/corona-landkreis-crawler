@@ -18,7 +18,6 @@ def marburg(sheets):
     date_text = _marburg_date.search(entry.find("div", {"class": "SP-Teaser__kicker"}).get_text()).group(1) if entry else None
     link = entry.find("a", {"href": True})["href"] if entry else None
     check_date(date_text, "Marburg-Biedenkopf")
-    from urllib.parse import urljoin
     link = urljoin("https://www.marburg-biedenkopf.de/dienste_und_leistungen/inhalte/index.php", link)
     print("Getting", link)
 

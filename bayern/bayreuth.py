@@ -9,7 +9,6 @@ _bayreuth_g = re.compile(r"genesen gelten\s([0-9.]+) Personen aus dem Landkreis 
 def bayreuth(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
-    from urllib.parse import urljoin
     soup = get_soup("https://www.landkreis-bayreuth.de/der-landkreis/pressemitteilungen/")
     art = next(x for x in soup.find("section").findAll("article") if "Corona-Lage" in x.get_text() or "Stadt und Landkreis" in x.get_text())
     date = check_date(art.find("strong").get_text(), "Bayreuth")

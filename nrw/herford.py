@@ -9,7 +9,6 @@ _herford_s = re.compile(r"([0-9.]+) Patient.innen mit einer COVID-19-Infektion s
 _herford_i = re.compile(r"davon werden ([0-9.]+|\w+) Personen intensiv")
 
 def herford(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.kreis-herford.de/index.php?NavID=2807.178")
     articles = soup.find(id="inhalt").findAll(class_="mitteilungen")
     article = next(a for a in articles if "Corona Update" in a.get_text())

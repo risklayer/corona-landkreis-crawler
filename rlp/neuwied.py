@@ -7,7 +7,6 @@ _neuwied_date = re.compile(r"Stand (\d\d?\.\d\d?\.20\d\d)")
 def neuwied(sheets):
     soup = get_soup("https://www.kreis-neuwied.de/kv_neuwied/Home/Aktuelles/wichtige%20Hinweise%20und%20Informationen/")
     link = next(x["href"] for x in soup.find("ul", {"class": "newsteaser small-block-grid-1 one-in-row"}).find_all("a", {"href": True}) if "Aktuelle Corona-Fallzahlen für den Landkreis Neuwied" in x.get_text())
-    from urllib.parse import urljoin
     link = urljoin("https://www.kreis-neuwied.de/kv_neuwied/Home/Aktuelles/wichtige%20Hinweise%20und%20Informationen/", link)
     print("Getting", link)
     content = get_soup(link).find("div", {"class": "content"})

@@ -22,6 +22,7 @@ from .lueneburg import lueneburg
 from .nienburg import nienburg
 from .northeim import northeim
 from .oldenburglk import oldenburglk
+from .oldenburglk2 import oldenburglk2
 from .osnabrueck import osnabrueck
 from .osterholz import osterholz
 from .peine import peine

@@ -6,7 +6,6 @@ _emden = re.compile(r"([0-9.]+)\s(?:Personen|Infektionen)\s*,\svon\sdenen\s*([0-
 _emden_q = re.compile(r"[Ii]n\sQuarantäne\sbefind\w+\s(?:\w+\s)*([0-9.]+)", re.U)
 
 def emden(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.emden.de/nachrichten")
     articles = soup.findAll(itemtype="http://schema.org/Article")
     article = next(a for a in articles if "Neuinfektion" in a.find("h3").get_text())

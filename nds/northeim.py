@@ -6,7 +6,6 @@ _northeim_g = re.compile(r"([0-9.]+)\s*(?:\(([+-]?[0-9.]+)\) )?Personen gelten m
 _northeim_d = re.compile(r"insgesamt ([0-9.]+)\s*(?:\(([+-]?[0-9.]+)\) )?Personen verstorben")
 
 def northeim(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.landkreis-northeim.de/portal/seiten/fallzahlen-im-landkreis-northeim-900000280-23900.html?rubrik=900000070")
     articles = soup.findAll(itemtype="http://schema.org/Article")
     article = next(a for a in articles if "Coronavirus - Entwicklung" in a.find("h4").get_text())

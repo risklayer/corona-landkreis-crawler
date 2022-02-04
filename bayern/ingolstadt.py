@@ -16,7 +16,6 @@ def ingolstadt(sheets):
     check_date(date_text, "Ingolstadt")
 
     link = entry.find("a", {"href": True})["href"] if entry else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.ingolstadt.de/Rathaus/Aktuelles/Aktuelle-Meldungen/Newsticker-Coronavirus/", link)
     print("Getting", link)
 

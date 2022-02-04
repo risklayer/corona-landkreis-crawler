@@ -13,7 +13,6 @@ def werrameissner(sheets):
     isrc = li.find("img")["src"]
     if not today().strftime("%y.%m.%d") in isrc and not today().strftime("%d.%m.%y") in isrc: raise NotYetAvailableException("Werra-Meissner: "+isrc)
     link = li.find(href=True)["href"] if li else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.werra-meissner-kreis.de/fachbereiche-einrichtungen/stab-verwaltungsleitung-und-steuerung/presse-und-oeffentlichkeitsarbeit-buergerreferat-kultur-und-kreisarchiv/presse-und-oeffentlichkeitsarbeit/pressemitteilungen", link)
     print("Getting", link)
     soup = get_soup(link)

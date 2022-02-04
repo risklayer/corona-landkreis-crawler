@@ -15,6 +15,7 @@ from .offenbach import offenbach
 from .rheingau import rheingau
 from .schwalmeder import schwalmeder
 from .vogelsberg import vogelsberg
+from .waldeck import waldeck
 from .werrameissner import werrameissner
 from .wetterau import wetterau
 from .wiesbaden import wiesbaden

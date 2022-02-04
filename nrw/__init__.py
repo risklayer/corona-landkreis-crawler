@@ -28,6 +28,7 @@ from .muenster2 import muenster2
 from .oberhausen import oberhausen
 from .obk import obk # Tabelle
 from .obk2 import obk2 # PM
+from .olpe import olpe
 from .paderborn import paderborn
 from .rbk import rbk # dashboard
 from .rbk2 import rbk2 # PM

@@ -13,7 +13,6 @@ def mannheim(sheets):
     link = next(x.find("a") for x in data.findAll("h5") if "Aktuelle Meldung zu Corona" in x.get_text())
     #print(link)
     if not today().strftime("%d.%m.%Y") in link.get_text(): raise NotYetAvailableException("Mannheim: "+link.get_text())
-    from urllib.parse import urljoin
     link = urljoin("https://www.mannheim.de/de/informationen-zu-corona/aktuelle-situation-in-mannheim", link["href"])
     print("Getting", link)
     data = get_soup(link)

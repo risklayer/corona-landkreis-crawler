@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _harz_cc = re.compile(r"([0-9. ]+|\w+) bestätigten? Neuinfektionen")
@@ -19,7 +18,6 @@ def harz(sheets):
     link = entry.find(href=True)["href"] if entry else None
     #print(entry, link)
     if not today().strftime("%e. %B %Y") in entry.get_text(): raise NotYetAvailableException("Harz noch alt:" + entry.get_text())
-    from urllib.parse import urljoin
     link = urljoin("https://www.kreis-hz.de/de/aktuelle-informationen-1584944219.html", link)
     print("Getting", link)
     content = get_soup(link).find("div", {"class": "gcarticle-detail-content"}).text

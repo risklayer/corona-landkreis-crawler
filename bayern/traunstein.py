@@ -13,7 +13,6 @@ def traunstein(sheets):
     li = next(x for x in soup.findAll("article") if "Covid-Patienten" in x.get_text())
     check_date(li.find(class_="presse_datum").get_text(), "Traunstein")
     link = li.find(href=True)["href"] if li else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.traunstein.com/aktuelles", link)
     print("Getting", link)
     soup = get_soup(link)

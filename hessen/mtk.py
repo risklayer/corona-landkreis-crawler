@@ -10,11 +10,12 @@ def mtk(sheets):
     url = "https://www.mtk.org/statics/ds_doc/downloads/"+today().strftime("%y_%m%d")+"Coronazahlen.pdf"
     content = get_pdf_text(url, laparams=LAParams(boxes_flow=.8, char_margin=100))
     #print(content)
-    a = force_int(_mtk_a.search(content).group(1))
-    d = force_int(_mtk_d.search(content).group(1))
-    g = force_int(_mtk_g.search(content).group(1))
+    a, aa = map(force_int, _mtk_a.search(content).groups())
+    d, dd = map(force_int, _mtk_d.search(content).groups())
+    g, gg = map(force_int, _mtk_g.search(content).groups())
     c = a + d + g
-    update(sheets, 6436, c=c, d=d, g=g, comment="Bot ohne SI")
+    cc = aa + dd + gg
+    update(sheets, 6436, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig=str(a), comment="Bot ohne SI A"+str(a))
     return True
 
 schedule.append(Task(14, 5, 15, 57, 600, mtk, 6436))

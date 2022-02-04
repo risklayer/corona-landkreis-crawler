@@ -7,7 +7,6 @@ _viersen_i = re.compile(r"([0-9.]+|\w+) befinden sich auf der Intensiv", re.U)
 _viersen_q = re.compile(r"([0-9.]+) Kontaktpersonen befinden")
 
 def viersen(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.presse-service.de/meldungen.aspx?ps_id=1381")
     articles = soup.find(class_="ps_meldungsliste").findAll("li")
     #print(*[a.get_text() for a in articles], sep"\n")

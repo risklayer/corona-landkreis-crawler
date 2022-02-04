@@ -13,7 +13,6 @@ def gifhorn(sheets):
     check_date(date, "Gifhorn")
 
     link = entry["href"] if entry else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.gifhorn.de/der-landkreis/oeffentlichkeitsarbeit/corona/presseinformationen/", link)
     print("Getting", link)
 

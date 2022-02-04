@@ -9,7 +9,6 @@ _schaumburg_q = re.compile(r"([0-9.]+) Personen unter Quarantäne", re.U)
 _schaumburg_s = re.compile(r"([0-9.]+) Personen der Erkrankten in stationärer", re.U)
 
 def schaumburg(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.schaumburg.de/Coronavirus/")
     articles = soup.findAll("article")
     article = next(a for a in articles if "Corona Fälle" in a.find("h3").get_text())

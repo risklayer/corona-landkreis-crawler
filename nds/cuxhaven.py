@@ -4,7 +4,6 @@ from botbase import *
 _cux_two = re.compile(r"([0-9.]+) Persone?n? (?:\(\+?(-?[0-9]+) im Vergleich)?")
 
 def cuxhaven(sheets):
-    from urllib.parse import urljoin
     #soup = get_soup("https://www.landkreis-cuxhaven.de/Quicknavigation/Aktuelles/")
     soup = get_soup("https://www.landkreis-cuxhaven.de/Corona/index.php?La=1&object=tx,3189.696.1&kat=&kuo=2&sub=0")
     articles = soup.find(role="main").findAll(class_="mitteilungen")

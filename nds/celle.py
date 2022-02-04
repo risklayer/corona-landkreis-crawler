@@ -18,7 +18,6 @@ def celle(sheets):
     date_text = _celle_date.search(entry["title"]).group(1)
     check_date(date_text, "Celle")
     link = entry["href"] if entry else None
-    from urllib.parse import urljoin
     link = urljoin("https://www.landkreis-celle.de/", link)
     print("Getting", link)
     content = get_soup(link).get_text()

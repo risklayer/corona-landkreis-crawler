@@ -2,7 +2,7 @@
 ## Tommy
 from botbase import *
 
-_wittenberg_c = re.compile(r"insgesamt\s*([0-9.]+)\s*Infizierten")
+_wittenberg_c = re.compile(r"insgesamt\s*([0-9.]+)\*?\s*(?:Infizierten|Fällen)")
 _wittenberg_d = re.compile(r"([0-9.]+) Personen sind im Zusammenhang mit einer Covid-19-Infektion gestorben")
 _wittenberg_cc = re.compile(r"([0-9.]+|\w+)\s+Neuinfektionen")
 _wittenberg_st = re.compile(r"Stand +(\d\d?\.\d\d?\.20\d\d)")

@@ -6,7 +6,6 @@ _mettmann_d = re.compile(r"Verstorbene zählt der Kreis (?:damit |demnach |bisla
 _mettmann_g = re.compile(r"([0-9.]+)\sPersonen\sgelten\sals\sgenesen")
 
 def mettmann(sheets):
-    from urllib.parse import urljoin
     soup = get_soup("https://www.kreis-mettmann-corona.de/Aktuelle-Meldungen/")
     article = soup.find(class_="mitteilungen").findAll("li")
     article = next(x for x in article if "Genesene," in x.get_text())
