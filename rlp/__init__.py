@@ -4,6 +4,7 @@ from .altenkirchen import altenkirchen
 from .alzeyworms import alzeyworms
 from .cochem import cochem
 from .kaiserslautern import kaiserslautern
+from .koblenz import koblenz
 from .landau import landau
 from .mainz import mainz
 from .neuwied import neuwied
