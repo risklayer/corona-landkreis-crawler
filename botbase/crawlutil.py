@@ -41,3 +41,11 @@ def get_csv(url, sep=";"):
         if client.info().get('Content-Encoding') == 'gzip': data = gzip.decompress(data)
         return pandas.read_csv(StringIO(data.decode("utf-8")), sep=sep)
 
+def get_pdf_text(url, **kwargs):
+    from pdfminer.high_level import extract_text
+    from urllib.request import urlopen, Request
+    from io import BytesIO
+    with urlopen(Request(url, headers={'Accept-Encoding': 'gzip', 'User-Agent': 'RiskLayer Spreadsheet Bot'}), context=_ctx, timeout=60) as client:
+        #if client.info().get("Content-Type") != "application/pdf":
+        data = BytesIO(client.read())
+        return extract_text(data, **kwargs)

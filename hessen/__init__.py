@@ -9,8 +9,10 @@ from .lahndill import lahndill
 from .limburg import limburg
 from .mainkinzig import mainkinzig
 from .marburg import marburg
+from .mtk import mtk
 from .odenwaldkreis import odenwaldkreis
 from .offenbach import offenbach
+from .rheingau import rheingau
 from .schwalmeder import schwalmeder
 from .vogelsberg import vogelsberg
 from .werrameissner import werrameissner

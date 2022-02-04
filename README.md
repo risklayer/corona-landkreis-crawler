@@ -3,11 +3,11 @@ Requirements
 Pretty standard python, except for the Google API client libraries.
 
 ```
-pip install google-auth-oauthlib google-api-python-client beautifulsoup4 python-dateutil lxml pandas dateparser
+pip install google-auth-oauthlib google-api-python-client beautifulsoup4 python-dateutil lxml pandas dateparser pdfminer.six
 ```
 
-Register application
-====================
+Register Google Sheets Application
+==================================
 
 Go to <https://console.cloud.google.com/>
 and create credentials following the instructions from
@@ -27,8 +27,8 @@ To run the scheduler, use `python3 scheduler.py`.
 
 To manually run a single crawler, use, e.g., `python3 -m nds.nienburg`.
 
-Update and extend
-=================
+Update and extend - ArcGIS example
+==================================
 
 As website change, updates will be necessary. To crawl the common arcgis
 Dashboard, navigate to the dashboard in your browser and open the console
