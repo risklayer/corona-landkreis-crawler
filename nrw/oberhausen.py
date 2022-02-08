@@ -29,7 +29,7 @@ def oberhausen(sheets):
     c, cc = map(force_int, _oberhausen_c.search(text).groups())
     d, dd = map(force_int, _oberhausen_d.search(text).groups())
     g, gg = map(force_int, _oberhausen_g.search(text).groups())
-    q = force_int(_oberhausen_q.search(text).group(1))
+    q = force_int(_oberhausen_q.search(text).group(1)) if _oberhausen_q.search(text) else None
     s, i = None, None
     try:
         s = force_int(_oberhausen_s.search(text).group(1))

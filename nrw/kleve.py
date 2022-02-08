@@ -2,7 +2,7 @@
 from botbase import *
 
 _kleve_c = re.compile(r"insgesamt ([0-9.]+) bestätigte Corona-Infektionen")
-_kleve_cc = re.compile(r"([0-9.]+) neue Infektionen")
+_kleve_cc = re.compile(r"([0-9.]+) (?:neu\w* |gemeldet\w* )*(?:Infektionen|Indexf)")
 _kleve_d = re.compile(r"([0-9.]+) Personen sind verstorben")
 _kleve_g = re.compile(r"gelten ([0-9.]+) als genesen")
 _kleve_s = re.compile(r"([0-9.]+) Personen im Krankenhaus")

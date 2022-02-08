@@ -23,7 +23,7 @@ class Task:
             import traceback
             traceback.print_tb(err.__traceback__)
             return False # e.g., Google timeout
-        if sig is not None and not sig == "RKI" and not (sig == "Land" and "--recheck" in sys.argv):
+        if sig is not None and not sig == "RKI" and not (sig in ["Land", "Landdelta", "RKIdelta"] and "--recheck" in sys.argv):
             print("Already filled", self)
             return True # "success"
         try:

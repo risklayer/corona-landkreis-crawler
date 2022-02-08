@@ -9,7 +9,7 @@ _neumuenster_q = re.compile(r"([0-9.]+)\s+Personen in Quarantäne")
 
 def neumuenster(sheets):
     soup = get_soup("https://www.neumuenster.de/aktuelle-meldungen/")
-    art = next(x for x in soup.find("main").findAll("article") if "Corona-Neuinfektionen" in x.get_text())
+    art = next(x for x in soup.find("main").findAll("article") if "Corona-Neuinfektionen" in x.get_text() or "Covid-19" in x.get_text())
     url = urljoin("https://www.neumuenster.de/", art.find("a")["href"])
     print("Getting", url)
     soup = get_soup(url)

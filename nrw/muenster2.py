@@ -11,7 +11,7 @@ _muenster_si = re.compile(r"Krankenhäusern:\s*([0-9.]+)\s*davon auf Intensiv\w*
 def muenster2(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
-    soup = get_soup("https://www.muenster.de/corona.html")
+    soup = get_soup("https://www.muenster.de/corona_statistik.html")
     main = soup.find("main")
     p = main.get_text(" ").strip()
     #print(p)

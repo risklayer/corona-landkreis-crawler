@@ -13,5 +13,5 @@ def rheingau(sheets):
     update(sheets, 6439, c=c, d=d, g=g)
     return True
 
-schedule.append(Task(8, 5, 8, 37, 360, rheingau, 6439))
+schedule.append(Task(8, 5, 10, 37, 600, rheingau, 6439))
 if __name__ == '__main__': rheingau(googlesheets())

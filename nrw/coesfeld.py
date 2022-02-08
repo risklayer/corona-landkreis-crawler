@@ -5,7 +5,7 @@ def coesfeld(sheets):
     data = get_json("https://services.arcgis.com/0EDx2Zp3hlT2xyF5/ArcGIS/rest/services/Fallzahlen_Covid19_COE_sicht/FeatureServer/0/query?where=Kommune%3D'Kreis+Coesfeld'&outFields=*&orderByFields=datum+desc&resultRecordCount=1&f=json")
     #print(data)
     data = data["features"][0]["attributes"]
-    for k,v in data.items(): print(k,v,sep="\t")
+    #for k,v in data.items(): print(k,v,sep="\t")
     date = data["Stand"]
     if not today().strftime("%d.%m.%Y") in date: raise NotYetAvailableException("Coesfeld noch alt: "+date)
     c, cc = data["infiziert"], data["infiziert_Änderung"]

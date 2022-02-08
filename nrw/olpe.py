@@ -2,7 +2,7 @@
 from botbase import *
 
 _olpe_c = re.compile(r"insgesamt seit Beginn der Pandemie \(03/2020\)\s+([0-9.]+)")
-_olpe_cc = re.compile(r"Veränderung zum Vortag:?\s+([0-9.]+)")
+_olpe_cc = re.compile(r"Veränderung zu\w* \w*tag:?\s+([0-9.]+)")
 _olpe_d = re.compile(r"Verstorben\s+([0-9.]+)")
 _olpe_g = re.compile(r"Genesene Personen\s+([0-9.]+)")
 _olpe_s = re.compile(r"Stationäre Behandlung\s+([0-9.]+)")

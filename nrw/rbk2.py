@@ -7,6 +7,7 @@ _rbk2_d = re.compile(r"Insgesamt stehen ([0-9.]+) Todesfälle")
 _rbk2_g = re.compile(r"gelten ([0-9.]+) Personen inzwischen als genesen")
 _rbk2_si = re.compile(r"([0-9.]+) Personen, die an Covid-19 erkrankt \w+, befinden sich aktuell in einem Krankenhaus [\w\s]+, davon \(?([0-9.]+|\w+)\) in intensiv", re.U)
 _rbk2_q = re.compile(r"([0-9.]+) Personen befinden sich in Quarantäne")
+_rbk2_a = re.compile(r"([0-9.]+) Personen gelten als aktuell")
 
 def rbk2(sheets):
     soup = get_soup("https://www.rbk-direkt.de/aktuelles.aspx")
@@ -22,12 +23,11 @@ def rbk2(sheets):
     c = force_int(_rbk2_c.search(text).group(1))
     cc = force_int(_rbk2_cc.search(text).group(1))
     d = force_int(_rbk2_d.search(text).group(1))
-    g = force_int(_rbk2_g.search(text).group(1))
-    s, i, q = None, None, None
-    m = _rbk2_q.search(text)
-    if m: q = force_int(m.group(1))
-    m = _rbk2_si.search(text)
-    if m: s, i = force_int(m.group(1)), force_int(m.group(2))
+    g = force_int(_rbk2_g.search(text).group(1)) if _rbk2_g.search(text) else None
+    q = force_int(_rbk2_q.search(text).group(1)) if _rbk2_q.search(text) else None
+    a = force_int(_rbk2_a.search(text).group(1)) if _rbk2_a.search(text) else None
+    s, i = map(force_int, _rbk2_si.search(text).group(1)) if _rbk2_si.search(text) else (None, None)
+    if g is None and a is not None: g = c - d - a
     update(sheets, 5378, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, sig="Bot", ignore_delta=True)
     return True
 
