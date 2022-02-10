@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 def starnberg(sheets):
-
+    #### BROKEN
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
-    soup = get_soup("https://www.lk-starnberg.de/B%C3%BCrgerservice/Gesundheit-und-Krankheit/Coronavirus-Informationen-Fragen-und-Antworten/Infektionszahlen-und-weitere-Daten-zum-Coronavirus")
+    #soup = get_soup("https://www.lk-starnberg.de/B%C3%BCrgerservice/Gesundheit-und-Krankheit/Coronavirus-Informationen-Fragen-und-Antworten/Infektionszahlen-und-weitere-Daten-zum-Coronavirus")
+    soup = get_soup("https://www.lk-starnberg.de/B%C3%BCrgerservice/Gesundheit-und-Krankheit/Coronavirus-Informationen-Fragen-und-Antworten/#c30")
     tables = soup.find_all("table")
 
     header = tables[0].findAll("tr")[0].find_all("th")
@@ -28,7 +28,6 @@ def starnberg(sheets):
     d = ad + md
 
     update(sheets, 9188, c=c, cc=cc, d=d, sig="Bot", ignore_delta="mon")
-
     return True
 
 schedule.append(Task(16, 1, 18, 15, 360, starnberg, 9188))

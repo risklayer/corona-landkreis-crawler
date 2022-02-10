@@ -19,10 +19,10 @@ def mannheim(sheets):
     text = data.find("main").find("article").get_text()
     c = force_int(_mannheim_c.search(text).group(1))
     cc = force_int(_mannheim_cc.search(text).group(1))
-    g = force_int(_mannheim_g.search(text).group(1))
-    a = force_int(_mannheim_a.search(text).group(1))
+    g = force_int(_mannheim_g.search(text).group(1)) if _mannheim_g.search(text) else None
+    a = force_int(_mannheim_a.search(text).group(1)) if _mannheim_a.search(text) else None
     m = _mannheim_d.search(text)
-    d = force_int(m.group(1)) if m else c - g - a
+    d = force_int(m.group(1)) if m else (c - g - a if a else None)
     m = _mannheim_dd.search(text)
     dd = force_int(m.group(1)) if m else None
     #if d is None: d = c - g - a

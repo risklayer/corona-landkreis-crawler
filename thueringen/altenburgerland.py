@@ -2,30 +2,23 @@
 ## Tommy
 from botbase import *
 
-_altenburgerland_c = re.compile(r"Bisher haben sich insgesamt ([0-9.]+)")
-_altenburgerland_d = re.compile(r"Zahl der Verstorbenen: ([0-9.]+)")
-_altenburgerland_s = re.compile(r"Im Klinikum (?:müssen|muss) (?:aktuell )?([0-9.]+|\w+)")
-_altenburgerland_i = re.compile(r"([0-9.]+|\w+) davon auf der Intensivstation")
+_altenburgerland_c = re.compile(r"(?:Bisher haben sich insgesamt|seit Pandemiebeginn:) ([0-9.]+) \(\+?(-?[0-9]+)\)")
+_altenburgerland_d = re.compile(r"Verstorben\w*: ([0-9.]+)")
+_altenburgerland_s = re.compile(r"(?:Im Klinikum (?:müssen|muss)(?: aktuell)?|[Ss]tationär:)\s*([0-9.]+|\w+)", re.U)
+_altenburgerland_i = re.compile(r"([0-9.]+|\w+) (?:ITS|davon auf der Intensivstation)")
 _altenburgerland_cc = re.compile(r"([0-9.]+|\w+) (?:Infizierter? mehr |Neuinfektion)")
-_altenburgerland_st = re.compile(r"Stand: (\d\d?\.\d\d?\.20\d\d)")
+_altenburgerland_st = re.compile(r"Stand:? (\d\d?\.(?:\d\d?\.)20\d\d)")
 
 def altenburgerland(sheets):
-    soup = get_soup("https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691")
-    temp = soup.find_all("div", {"class": "text_bild_kombi"})
-
-    content = False
-    for t in temp:
-        if "Bisher haben sich insgesamt" in t.text:
-            content = t.text.strip()
-            break
-    assert content
+    soup = get_soup("https://www.altenburgerland.de/de/aktuelles/coronavirus")
+    content = soup.find("main").get_text(" ").strip()
+    #print(content)
 
     date = _altenburgerland_st.search(content).group(1)
     check_date(date, "Altenburgerland")
-    #print(content)
 
-    c = force_int(_altenburgerland_c.search(content).group(1))
-    cc = force_int(_altenburgerland_cc.search(content).group(1))
+    c, cc = map(force_int, _altenburgerland_c.search(content).groups())
+    if cc is None: cc = force_int(_altenburgerland_cc.search(content).group(1))
     d = force_int(_altenburgerland_d.search(content).group(1))
     s = force_int(_altenburgerland_s.search(content).group(1))
     i = force_int(_altenburgerland_i.search(content).group(1))

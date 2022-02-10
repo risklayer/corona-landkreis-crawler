@@ -20,7 +20,7 @@ def traunstein(sheets):
     #print(text)
     cc = force_int(_traunstein_cc.search(text).group(1))
     c = force_int(_traunstein_c.search(text).group(1))
-    g, gg = map(force_int, _traunstein_g.search(text).groups())
+    g, gg = map(force_int, _traunstein_g.search(text).groups()) if _traunstein_g.search(text) else (None, None)
     d = force_int(_traunstein_d.search(text).group(1))
     dd = force_int(_traunstein_dd.search(text).group(1)) if _traunstein_dd.search(text) else None
     #s, i = map(force_int, _traunstein_si.search(text).groups())

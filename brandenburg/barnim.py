@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_barnim = re.compile(r"(\d+\.\d\d\d) +(?:\(([+-] *[0-9]+)\))? +(\d+\.\d\d\d) +(?:\(([+-] *[0-9]+)\))? +(\d\d\d) +(?:\(([+-] *[0-9]+)\))? +([0-9]*)\s*Die *gemeldeten *Fallzahlen", re.M)
+_barnim = re.compile(r"(\d+\.\d\d\d) +(?:\(([+-] *[.0-9]+)\))? +(\d+\.\d\d\d) +(?:\(([+-] *[.0-9]+)\))? +(\d\d\d) +(?:\(([+-] *[0-9]+)\))? +([0-9]*)\s*Die *gemeldeten *Fallzahlen", re.M)
 
 def barnim(sheets):
     from pdfminer.layout import LAParams

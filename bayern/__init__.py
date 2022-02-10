@@ -24,7 +24,7 @@ from .nea import nea
 from .neuburg import neuburg
 from .pfaffenhofen import pfaffenhofen
 from .rottal import rottal
-from .starnberg import starnberg
+#from .starnberg import starnberg
 from .tirschenreuth import tirschenreuth
 from .traunstein import traunstein
 from .wschongau import wschongau

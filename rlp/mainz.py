@@ -2,7 +2,7 @@
 from botbase import *
 
 _mainz_c = re.compile(r"([0-9.]+) *\(±?([+-]? *[0-9.]+) *zu (?:gestern|Freitag|\w+)\) positiv getestete Personen aus dem Landkreis Mainz-Bingen, *([0-9.]+) *\(±?([+-]? *[0-9.]+) *zu (?:gestern|Freitag|\w+)\) aus der Stadt", re.U)
-_mainz_g = re.compile(r"Genesene: [0-9.]+ \(±?[+-]? *[0-9.]+\) *davon Mainz-Bingen: ([0-9.]+) *\(±?([+-]? *[0-9.]+)\) *davon Stadt Mainz: *([0-9.]+) *\(±?([+-]? *[0-9.]+)\)", re.U)
+_mainz_g = re.compile(r"[gG]enesene?: [0-9.]+ \(±?[+-]? *[0-9.]+\) *davon Mainz-Bingen: ([0-9.]+) *\(±?([+-]? *[0-9.]+)\) *davon Stadt Mainz: *([0-9.]+) *\(±?([+-]? *[0-9.]+)\)", re.U)
 _mainz_d = re.compile(r"Todesfälle im Landkreis Mainz-Bingen *([0-9.]+)(?: *\(±?([+-]? *[0-9.]+)\))? *, *Todesfälle Stadt Mainz *([0-9.]+)(?: *\(±?([+-]? *[0-9.]+)\))?", re.U)
 
 def mainz(sheets):
@@ -16,7 +16,7 @@ def mainz(sheets):
     #print(text)
     if not today().strftime("%d.%m.%Y") in text: raise NotYetAvailableException("Mainz noch alt:" + ps[0])
     cb, ccb, cm, ccm = map(force_int, _mainz_c.search(text).groups())
-    gb, ggb, gm, ggm = map(force_int, _mainz_g.search(text).groups())
+    gb, ggb, gm, ggm = map(force_int, _mainz_g.search(text).groups()) if _mainz_g.search(text) else (None, None, None, None)
     db, ddb, dm, ddm = map(force_int, _mainz_d.search(text).groups())
     update(sheets, 7315, c=cm, cc=ccm, d=dm, dd=ddm, g=gm, gg=ggm, sig="Bot", ignore_delta=True) # Mainz
     update(sheets, 7339, c=cb, cc=ccb, d=db, dd=ddb, g=gb, gg=ggb, sig="Bot", ignore_delta=True) # Mainz-Bingen

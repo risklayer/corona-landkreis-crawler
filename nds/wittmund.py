@@ -21,5 +21,5 @@ def wittmund(sheets):
     update(sheets, 3462, c=c, cc=cc, d=d, dd=dd, g=g, q=q, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(10, 20, 15, 35, 360, wittmund, 3462))
+schedule.append(Task(10, 20, 16, 35, 600, wittmund, 3462))
 if __name__ == '__main__': wittmund(googlesheets())

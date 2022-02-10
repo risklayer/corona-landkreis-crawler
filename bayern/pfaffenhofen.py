@@ -28,9 +28,9 @@ def pfaffenhofen(sheets):
     c = force_int(_pfaffenhofen_c.search(content).group(1))
     cc = force_int(_pfaffenhofen_cc.search(content).group(1))
     d = force_int(_pfaffenhofen_d.search(content).group(1))
-    temp = force_int(_pfaffenhofen_q.search(content).group(1))
+    temp = force_int(_pfaffenhofen_q.search(content).group(1)) if _pfaffenhofen_q.search(content) else None
     a = force_int(_pfaffenhofen_a.search(content).group(1))
-    q = temp + a
+    q = temp + a if temp else None
     g = force_int(_pfaffenhofen_g.search(content).group(1))
     s = force_int(_pfaffenhofen_s.search(content).group(1)) if _pfaffenhofen_s.search(content) is not None else None
     i = force_int(_pfaffenhofen_i.search(content).group(1)) if _pfaffenhofen_i.search(content) is not None else None

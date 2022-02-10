@@ -21,9 +21,9 @@ def lahndill(sheets):
     date = check_date(_stand.search(date).group(1), "Lahn-Dill")
     a = force_int(_lahndill_a.search(text).group(1))
     cc = force_int(_lahndill_cc.search(text).group(1))
-    #c = force_int(_lahndill_c.search(text).group(1))
+    c = force_int(_lahndill_c.search(text).group(1)) + 6
     d = force_int(_lahndill_d.search(text).group(1))
-    g = force_int(_lahndill_g.search(text).group(1))
+    g = force_int(_lahndill_g.search(text).group(1)) if _lahndill_g.search(text) else None
     s, i = None, None
     for m in _lahndill_si1.findall(text):
         s = (s or 0) + force_int(m[0]) + force_int(m[1])
@@ -31,7 +31,7 @@ def lahndill(sheets):
     for m in _lahndill_s2.findall(text):
         s = (s or 0) + force_int(m[0])
     q = a + force_int(_lahndill_q.search(text).group(1))
-    c = a + g + d
+    c = a + g + d if g else c
     update(sheets, 6532, c=c, cc=cc, d=d, g=g, s=s, i=i, q=q, sig="Bot", ignore_delta=True)
     return True
 

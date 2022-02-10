@@ -6,8 +6,9 @@ _siegen_cc = re.compile(r"([0-9.]+|\w+) neue Coronafälle")
 _siegen_d = re.compile(r", ([0-9.]+)\*? verstorben\.")
 _siegen_g = re.compile(r"([0-9.]+) sind wieder genesen")
 _siegen_gg = re.compile(r"([0-9.]+|\w+) als genesen aus der")
-_siegen_si = re.compile(r"([0-9.]+|\w+) Personen aus Siegen-Wittgenstein (?:in einem Krankenhaus|stationär) behandelt werden, (?:[^.]* )?([0-9.]+|\w+) (?:davon )?intensiv")
+_siegen_si = re.compile(r"([0-9.]+|\w+) Personen (?:aus Siegen-Wittgenstein )?(?:in einem Krankenhaus|in heimischen Krankenhäusern|stationär) behandelt werden, (?:[^.]* )?([0-9.]+|[a-np-z]+) (?:davon |müssen )*intensiv")
 _siegen_si2 = re.compile(r"kommen ([0-9.]+|\w+) P\w+ von außerhalb des Kreisgebiets, die (?:stationär|auf Normalstation) behandelt werden(?: müssen, ([0-9.]+|\w+) davon intensiv)?")
+_siegen_si3 = re.compile(r"[Vv]on außerhalb des Kreisgebiets müssen außerdem ([0-9.]+|\w+) [PM]\w+ (?:stationär|auf Normalstation) behandelt werden(?: müssen)?,(?: ([0-9.]+|\w+) davon (?:muss |müssen )?intensiv)?")
 _siegen_q = re.compile(r"([0-9.]+) Personen (?:in |unter )?häuslicher? Quarantäne")
 
 def siegen(sheets):
@@ -33,12 +34,12 @@ def siegen(sheets):
     if m: q = force_int(m.group(1))
     m = _siegen_si.search(text)
     if m: s, i = force_int(m.group(1)), force_int(m.group(2), 0)
-    m2 = _siegen_si2.search(text)
+    m2 = _siegen_si2.search(text) or _siegen_si3.search(text)
     #print(m, m2)
     if m and m2: s, i = s + force_int(m2.group(1)), i + force_int(m2.group(2), 0)
     if not m2 and "von außerhalb" in text: s, i = None, None
     comment = "Bot, check SI" if s is not None and s > 0 else "Bot ohne SI"
-    update(sheets, 5970, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", comment=comment, ignore_delta="mon")
+    update(sheets, 5970, c=c, cc=cc, d=d, g=g, gg=gg, q=q, s=s, i=i, sig="Bot", comment=comment, ignore_delta=True)
     return True
 
 schedule.append(Task(9, 1, 14, 35, 360, siegen, 5970))
