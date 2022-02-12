@@ -4,7 +4,7 @@ from botbase import *
 _limburg_c = re.compile(r"Insgesamt gab es bislang ([0-9.]+) bestätigte Fälle \(\+?/?\s*(-?\s*[0-9.]+) zu")
 _limburg_g = re.compile(r"([0-9.]+) Personen sind inzwischen genesen \(\+?/?\s*(-?\s*[0-9.]+) zu")
 _limburg_d = re.compile(r"([0-9.]+) Personen sind leider in Verbindung mit dem Corona-Virus verstorben")
-_limburg_si = re.compile(r"(\d+|\w+) mit dem Corona-Virus infizierte Person\w+ im Normalpflegebett und (\d+|\w+) Person\w+ im Intensivbett")
+_limburg_si = re.compile(r"(\d+|\w+) mit dem Corona-Virus infizierte Person\w* im Normalpflegebett und (\d+|\w+) Person\w* im Intensivbett")
 _limburg_q = re.compile(r"([0-9.]+) Menschen befinden sich im Landkreis derzeit in Quarantäne")
 
 def limburg(sheets):

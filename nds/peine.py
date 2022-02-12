@@ -18,7 +18,7 @@ def peine(sheets):
     cc = force_int(_peine_cc.search(text).group(1))
     a = force_int(_peine_a.search(text).group(1))
     d = force_int(_peine_d.search(text).group(1))
-    q = force_int(_peine_q.search(text).group(1)) + a
+    q = force_int(_peine_q.search(text).group(1)) + a if _peine_q.search(text) else None
     g = c - d - a
     update(sheets, 3157, c=c, cc=cc, d=d, g=g, q=q, sig="Bot")
     return True
