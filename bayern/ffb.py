@@ -13,10 +13,10 @@ def ffb(sheets):
     date = " ".join(m[0:2])
     date = check_date(date, "Fürstenfeldbruck")
     c = force_int(m[2])
-    m2 = _ffb_d.search(text).groups()
-    d = force_int(m2[0]) if m2[1] == m2[1] else None
-    m2 = _ffb_g.search(text).groups()
-    g = force_int(m2[0]) if m2[1] == m2[1] else None
+    m2 = _ffb_d.search(text)
+    d = force_int(m2.group(1)) if m2 and m2.group(2) == m[1] else None
+    m2 = _ffb_g.search(text)
+    g = force_int(m2.group(1)) if m2 and m2.group(2) == m[1] else None
     update(sheets, 9179, c=c, d=d, g=g, sig="Bot", ignore_delta="mon")
     return True
 

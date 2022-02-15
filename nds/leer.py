@@ -1,8 +1,7 @@
-
 #!/usr/bin/python3
 from botbase import *
 
-_twovals = re.compile(r"([0-9.]+) \(\+?\s*(-?[0-9.]+)\s*")
+_twovals = re.compile(r"([0-9.]+)\s*\(\+?\s*(-?[0-9.]+)")
 _stand = re.compile(r"Stand:")
 _station = re.compile(r"befinde[nt]\s+sich\s+([.0-9]+|\w+)\s+Person(?:en)?\s+in\s+stationärer\s+Behandlung", re.U)
 

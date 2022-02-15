@@ -24,9 +24,11 @@ def viersen(sheets):
     #print(*rows, sep="\n")
     assert "Gesamt" in rows[-1][1]
     assert "bestätigte Fälle" in rows[0][3]
-    assert "Genesene" in rows[0][7]
-    assert "verstorben" in rows[0][9]
-    c, g, d = map(force_int, [rows[-1][3], rows[-1][7], rows[-1][9]])
+    #assert "Genesene" in rows[0][7]
+    assert "verstorben" in rows[0][7]
+    #c, g, d = map(force_int, [rows[-1][3], rows[-1][7], rows[-1][9]])
+    c, d = map(force_int, [rows[-1][3], rows[-1][7]])
+    g = None
     cc = force_int(_viersen_cc.search(text).group(1))
     s, i, q = None, None, None
     m = _viersen_q.search(text)

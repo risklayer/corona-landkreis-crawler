@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _lueneburg_date = re.compile(r"Stand: (\d\d?\.\d\d?\.20\d\d)")
@@ -14,12 +13,13 @@ def lueneburg(sheets):
     date_text = _lueneburg_date.search(soup.find("div", {"class": "aenderungsdatum"}).get_text()).group(1)
     date = check_date(date_text, "Lueneburg")
     content = soup.find("div", {"class": "aktuelles-weitere-zahlen"}).get_text().strip()
+    #print(content)
 
     c = force_int(_lueneburg_c.search(content).group(1))
     cc = force_int(_lueneburg_c.search(content).group(2))
     g = force_int(_lueneburg_g.search(content).group(1)) if _lueneburg_g.search(content) else None
     d = force_int(_lueneburg_d.search(content).group(1))
-    s = force_int(_lueneburg_s.search(soup.get_text()).group(1))
+    s = force_int(_lueneburg_s.search(soup.get_text()).group(1)) if _lueneburg_s.search(content) else None
 
     update(sheets, 3355, c=c, cc=cc, d=d, g=g, s=s, sig="Bot", ignore_delta=True)
     return True

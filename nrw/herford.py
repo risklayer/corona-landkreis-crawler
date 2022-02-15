@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 from botbase import *
 
-_herford_c = re.compile(r"kreisweit bislang ([0-9.]+) infizierte")
+_herford_c = re.compile(r"kreisweit bislang ([0-9.]+) [iI]nfizierte")
 _herford_cc = re.compile(r"([0-9.]+)\** neue (?:Corona-)?Fälle")
 _herford_d = re.compile(r"im Kreis Herford ([0-9.]+) Todesfälle")
+_herford_dd = re.compile(r"([0-9.]+) weitere Todesfälle")
 _herford_g = re.compile(r"gelten ([0-9.]+) Personen als genesen")
 _herford_s = re.compile(r"([0-9.]+) Patient.innen mit einer COVID-19-Infektion stationär")
 _herford_i = re.compile(r"davon werden ([0-9.]+|\w+) Personen intensiv")
@@ -19,10 +20,11 @@ def herford(sheets):
     assert url
     soup = get_soup(url)
     text = soup.find(id="inhalt").get_text().strip()
-    #print(text)
+    print(text)
     c = force_int(_herford_c.search(text).group(1))
     cc = force_int(_herford_cc.search(text).group(1))
     d = force_int(_herford_d.search(text).group(1))
+    dd = force_int(_herford_dd.search(text).group(1))
     g = force_int(_herford_g.search(text).group(1))
     s, i = None, None
     m = _herford_s.search(text)

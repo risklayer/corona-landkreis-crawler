@@ -1,8 +1,7 @@
-
 #!/usr/bin/python3
 from botbase import *
 
-_wetterau_c = re.compile(r"bei *([0-9.]+) *, ([0-9.]+) *mehr als")
+_wetterau_c = re.compile(r"bei\s*([0-9.]+)\s*,\s*([0-9.]+)\s*mehr als")
 _wetterau_a = re.compile(r"ktuell *([0-9.]+) *aktive")
 _wetterau_gg = re.compile(r"([0-9.]+) Menschen haben sich bei der Behörde als genesen")
 _wetterau_g = re.compile(r"Genesene: ([0-9.]+)")

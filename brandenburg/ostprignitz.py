@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 
-_ostprignitz_c = re.compile(r"Bestätigte Fälle: *([0-9.]+),? davon neu: (\d+)")
+_ostprignitz_c = re.compile(r"Bestätigte Fälle: *([0-9.]+),? davon neu(?: seit \d\d?\.\d\d?\.20\d\d)?: (\d+)")
 _ostprignitz_g = re.compile(r"Genesungen: *([0-9.]+)(?:,? davon neu: (\d+))?")
 _ostprignitz_d = re.compile(r"Sterbefälle: *([0-9.]+)")
 _ostprignitz_st = re.compile(r"Stand: *(\d\d?\.\d\d?\.20\d\d), (\d\d)(?:\.(\d\d))?")

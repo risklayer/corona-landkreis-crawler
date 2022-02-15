@@ -14,7 +14,7 @@ def recklinghausen(sheets):
     check_date(date_text, "Recklinghausen")
     c = force_int(_recklinghausen_c.search(content).group(1))
     d = force_int(_recklinghausen_d.search(content).group(1))
-    g = force_int(_recklinghausen_g.search(content).group(1))
+    g = None #g = force_int(_recklinghausen_g.search(content).group(1))
     update(sheets, 5562, c=c, d=d, g=g, sig="Bot", comment="Bot ohne SI", ignore_delta="mon")
     return True
 

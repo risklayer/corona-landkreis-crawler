@@ -2,7 +2,7 @@
 ## Tommy
 from botbase import *
 
-_altenburgerland_c = re.compile(r"(?:Bisher haben sich insgesamt|seit Pandemiebeginn:) ([0-9.]+) \(\+?(-?[0-9]+)\)")
+_altenburgerland_c = re.compile(r"(?:Bisher haben sich insgesamt|seit Pandemiebeginn:) ([0-9.]+) \(\+?(-?[0-9]+)")
 _altenburgerland_d = re.compile(r"Verstorben\w*: ([0-9.]+)")
 _altenburgerland_s = re.compile(r"(?:Im Klinikum (?:müssen|muss)(?: aktuell)?|[Ss]tationär:)\s*([0-9.]+|\w+)", re.U)
 _altenburgerland_i = re.compile(r"([0-9.]+|\w+) (?:ITS|davon auf der Intensivstation)")
