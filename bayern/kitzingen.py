@@ -10,8 +10,8 @@ _kitzingen_st = re.compile(r"Stand:? (\d\d?\. \w+ 20\d\d), (\d\d(?:\.\d\d)?)")
 def kitzingen(sheets):
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
-    soup = get_soup("https://www.kitzingen.de/buergerservice/aktuelles/aktuelles-2020/uebersichtsseite-corona/")
-    text = soup.find(id="maincontent").find(class_="text").get_text(" ").strip()
+    soup = get_soup("https://www.kitzingen.de/buergerservice/aktuelles/corona-aktuelle-zahlen/")
+    text = soup.find(id="maincontent").find(class_="content").get_text(" ").strip()
     text = re.sub("\s+", " ", text)
     #print(text)
     stand = _kitzingen_st.search(text).groups()

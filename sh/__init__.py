@@ -3,6 +3,7 @@ from .dithmarschen import dithmarschen
 from .flensburg import flensburg
 from .kiel import kiel
 from .lauenburg import lauenburg
+from .luebeck import luebeck
 from .neumuenster import neumuenster
 from .ostholstein import ostholstein
 from .rendsburg import rendsburg

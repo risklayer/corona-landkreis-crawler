@@ -15,6 +15,7 @@ class Task:
 
     def run(self, sheets):
         from .sheets import is_signed
+        from urllib.error import HTTPError
         import sys
         try:
             sig = is_signed(sheets, self.ags)
@@ -29,6 +30,9 @@ class Task:
         try:
             print("Running", self)
             return self.fun(sheets)
+        except HTTPError as err:
+            print(err)
+            return False
         except NotYetAvailableException as err:
             print(err)
             return False

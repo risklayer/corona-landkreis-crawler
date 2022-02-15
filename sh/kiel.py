@@ -3,7 +3,7 @@
 from botbase import *
 
 _kiel_c = re.compile(r"Gesamtzahl\s+aller\s+Fälle:\s*([0-9.]+[0-9])")
-_kiel_cc = re.compile(r"([0-9.]+) neue Positivfälle")
+_kiel_cc = re.compile(r"([0-9.]+) (?:neue Positivfälle|Neuinfektionen)", re.I)
 _kiel_d = re.compile(r"Verstorben sind ([0-9.]+)")
 
 def kiel(sheets):

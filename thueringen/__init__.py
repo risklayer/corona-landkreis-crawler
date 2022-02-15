@@ -4,6 +4,7 @@ from .erfurt import erfurt
 from .greiz import greiz
 from .jena import jena
 from .saalfeld import saalfeld
+from .schmalkanden import schmalkanden
 from .sholzland import sholzland
 from .suhl import suhl
 from .unstrut import unstrut

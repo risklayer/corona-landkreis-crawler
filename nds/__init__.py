@@ -31,6 +31,7 @@ from .salzgitter import salzgitter
 from .schaumburg import schaumburg
 from .stade import stade
 from .uelzen import uelzen
+from .vechta import vechta
 from .verden import verden
 from .wilhelmshaven import wilhelmshaven
 from .wittmund import wittmund

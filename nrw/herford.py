@@ -20,11 +20,11 @@ def herford(sheets):
     assert url
     soup = get_soup(url)
     text = soup.find(id="inhalt").get_text().strip()
-    print(text)
+    #print(text)
     c = force_int(_herford_c.search(text).group(1))
     cc = force_int(_herford_cc.search(text).group(1))
     d = force_int(_herford_d.search(text).group(1))
-    dd = force_int(_herford_dd.search(text).group(1))
+    dd = force_int(_herford_dd.search(text).group(1)) if _herford_dd.search(text) else None
     g = force_int(_herford_g.search(text).group(1))
     s, i = None, None
     m = _herford_s.search(text)

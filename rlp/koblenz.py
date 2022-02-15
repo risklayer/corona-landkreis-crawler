@@ -8,6 +8,7 @@ def koblenz(sheets):
     from pdfminer.layout import LAParams
     url = "https://www.kvmyk.de/kv_myk/Corona/Corona-Statistiken/Februar%202022/Fallzahlen%20"+today().strftime("%d.%m.%Y")+".pdf"
     content = get_pdf_text(url, laparams=LAParams(boxes_flow=.8, char_margin=100))
+    if not "Koblenz" in content: content = get_pdf_text(url, laparams=LAParams(boxes_flow=.8, char_margin=100), rotation=90)
     #print(content)
     c, cc, g, gg, a, aa, d1, dd1, d2, dd2 = map(force_int, _koblenz.search(content).groups())
     d, dd = d1 + d2, dd1 + dd2
