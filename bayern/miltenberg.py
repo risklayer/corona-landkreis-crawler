@@ -37,5 +37,5 @@ def miltenberg(sheets):
     update(sheets, 9676, c=c, cc=cc, d=d, g=g, q=q, s=s, i=i, comment=comment, ignore_delta=True)
     return True
 
-schedule.append(Task(9, 45, 15, 35, 360, miltenberg, 9676))
+schedule.append(Task(9, 34, 15, 35, 600, miltenberg, 9676))
 if __name__ == '__main__': miltenberg(googlesheets())

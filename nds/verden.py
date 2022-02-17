@@ -25,5 +25,5 @@ def verden(sheets):
     update(sheets, 3361, c=c, cc=cc, g=g, gg=gg, d=d, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(9, 30, 12, 35, 360, verden, 3361))
+schedule.append(Task(9, 17, 12, 35, 600, verden, 3361))
 if __name__ == '__main__': verden(googlesheets())

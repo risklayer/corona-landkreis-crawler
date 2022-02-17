@@ -24,5 +24,5 @@ def offenbach(sheets):
     update(sheets, 6413, c=c, g=g, d=d, s=s, i=i, sig="Bot", comment=comment)
     return True
 
-schedule.append(Task(10, 0, 14, 35, 360, offenbach, 6413))
+schedule.append(Task(9, 19, 14, 35, 600, offenbach, 6413))
 if __name__ == '__main__': offenbach(googlesheets())

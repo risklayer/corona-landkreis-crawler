@@ -6,6 +6,7 @@ from .breisgaufreiburg import breisgaufreiburg
 from .emmendingen import emmendingen
 from .esslingen import esslingen
 from .goeppingen import goeppingen
+from .goeppingen2 import goeppingen2
 from .heidelbergrnk import heidelbergrnk
 from .heidenheim import heidenheim
 from .heilbronnlk import heilbronnlk

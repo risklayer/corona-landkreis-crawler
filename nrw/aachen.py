@@ -2,7 +2,7 @@
 ## Tommy
 from botbase import *
 
-_aachen_c = re.compile(r"Seit Ende Februar 2020 wurden insgesamt ([0-9.]+)")
+_aachen_c = re.compile(r"Seit Ende Februar 2020 wurden beim Robert.Koch.Institut \(RKI\) insgesamt ([0-9.]+)")
 _aachen_d = re.compile(r"Die Zahl der gemeldeten Todesfälle liegt bei ([0-9.]+)")
 _aachen_a = re.compile(r"Aktuell sind ([0-9.]+) Menschen nachgewiesen")
 

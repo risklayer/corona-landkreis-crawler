@@ -23,5 +23,5 @@ def emden(sheets):
     update(sheets, 3402, c=c, cc=cc, d=d, dd=dd, g=g, q=q, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(9, 30, 13, 35, 360, emden, 3402))
+schedule.append(Task(9, 18, 13, 35, 600, emden, 3402))
 if __name__ == '__main__': emden(googlesheets())

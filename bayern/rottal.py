@@ -27,5 +27,5 @@ def rottal(sheets):
     update(sheets, 9277, c=c, cc=cc, d=d, dd=dd, g=g, s=s, i=i, sig="Bot", ignore_delta=True)
     return True
 
-schedule.append(Task(14, 48, 16, 48, 360, rottal, 9277))
+schedule.append(Task(9, 27, 16, 48, 900, rottal, 9277))
 if __name__ == '__main__': rottal(googlesheets())
