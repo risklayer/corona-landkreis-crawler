@@ -16,7 +16,7 @@ def mtk(sheets):
     g, gg = map(force_int, _mtk_g.search(content).groups())
     c, cc = map(force_int, _mtk_c.search(content).groups())
     c = max(c, a + d + g)
-    cc = (dd + gg - aa) if c == (a+d+g) else None
+    cc = None #(dd + gg - aa) if c == (a+d+g) else None
     update(sheets, 6436, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig=str(a), comment="Bot ohne SI A"+str(a))
     return True
 

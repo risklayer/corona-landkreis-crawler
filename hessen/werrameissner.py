@@ -10,8 +10,11 @@ _werrameissner_si = re.compile(r"([0-9.]+|\w+) Patient\w+ auf der Normalstation 
 def werrameissner(sheets):
     soup = get_soup("https://www.werra-meissner-kreis.de/fachbereiche-einrichtungen/stab-verwaltungsleitung-und-steuerung/presse-und-oeffentlichkeitsarbeit-buergerreferat-kultur-und-kreisarchiv/presse-und-oeffentlichkeitsarbeit/pressemitteilungen")
     li = next(x for x in soup.find(id="maincontent").findAll(itemtype="http://schema.org/Article") if "Gesamtfälle" in x.get_text())
-    isrc = li.find("img")["src"]
-    if not today().strftime("%y.%m.%d") in isrc and not today().strftime("%d.%m.%y") in isrc: raise NotYetAvailableException("Werra-Meissner: "+isrc)
+    #print(li.get_text(), li.find(href=True)["href"])
+    #print(li.get_text(), today().strftime("%d.%m.%Y"))
+    #isrc = li.find("img")["src"]
+    #if not today().strftime("%y.%m.%d") in isrc and not today().strftime("%d.%m.%y") in isrc: raise NotYetAvailableException("Werra-Meissner: "+isrc)
+    if not today().strftime("%d.%m.%Y") in li.get_text(): raise NotYetAvailableException("Werra-Meissner: "+li.get_text().split("\n")[1])
     link = li.find(href=True)["href"] if li else None
     link = urljoin("https://www.werra-meissner-kreis.de/fachbereiche-einrichtungen/stab-verwaltungsleitung-und-steuerung/presse-und-oeffentlichkeitsarbeit-buergerreferat-kultur-und-kreisarchiv/presse-und-oeffentlichkeitsarbeit/pressemitteilungen", link)
     print("Getting", link)

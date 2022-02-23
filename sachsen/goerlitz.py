@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 from botbase import *
 
-_stand = re.compile(r"(\d\d\.\d\d.20\d\d)")
+_stand = re.compile(r"Stand:?\s*(\d\d\.\d\d.20\d\d)")
 _goerlitz_i = re.compile(r"(\w+)\s+davon benötigen eine intensiv", re.U)
 
 def goerlitz(sheets):
     soup = get_soup("https://www.kreis-goerlitz.de/city_info/webaccessibility/index.cfm?item_id=873097")
     main = soup.find(id="content_frame")
-    #print(main)
-    date = _stand.search(main.find(text=_stand)).group(1)
-    date = check_date(date,"Görlitz")
+    #print(main.get_text())
+    date = _stand.search(main.get_text()).group(1)
+    #print(date)
+    date = check_date(date, "Görlitz")
     rows = [[x.text for x in row.findAll(["th","td"])] for row in main.findAll("tr")]
     #print(*rows, sep="\n")
     assert "Aktuell" in rows[0][1] and "Veränderung" in rows[0][2]

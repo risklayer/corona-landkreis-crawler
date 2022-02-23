@@ -6,7 +6,7 @@ _osterholz_c = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen haben sich 
 _osterholz_g = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen sind wieder genesen", re.U)
 _osterholz_d = re.compile(r"([0-9.]+) \(±?([+-]?[0-9.]+)\) Personen sind verstorben", re.U)
 _osterholz_q = re.compile(r"([0-9.]+) (?:\(±?[+-]?[0-9.]+\) )?Kontaktpersonen in", re.U)
-_osterholz_s = re.compile(r"([0-9.]+) Personen in stationärer", re.U)
+_osterholz_s = re.compile(r"([0-9.]+) Person\w* in stationärer", re.U)
 
 def osterholz(sheets):
     soup = get_soup("https://www.landkreis-osterholz.de/portal/meldungen/aktuelle-informationen-zum-coronavirus-901005017-21000.html?vs=1")
@@ -20,7 +20,7 @@ def osterholz(sheets):
     d, dd = map(force_int, _osterholz_d.search(text).groups())
     q = force_int(_osterholz_q.search(text).group(1)) if _osterholz_q.search(text) else None
     q = q + c - g - d if q else None
-    s = force_int(_osterholz_s.search(text).group(1))
+    s = force_int(_osterholz_s.search(text).group(1)) if _osterholz_s.search(text) else None
     update(sheets, 3356, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, q=q, s=s, sig="Bot", ignore_delta="mon")
     return True
 

@@ -8,7 +8,7 @@ _miltenberg_d2 = re.compile(r"Todesfälle (?:\w+ )+([0-9.]+)\.")
 _miltenberg_a = re.compile(r"Aktuell befinden sich ([0-9.]+) mit SARS-CoV-2 infizierte")
 _miltenberg_a2 = re.compile(r"aktuell mit SARS-CoV-2 infizierten Personen liegt bei ([0-9.]+)")
 _miltenberg_q = re.compile(r"([0-9.]+) Menschen als Kontaktperson I in Quarantäne")
-_miltenberg_si = re.compile(r"([0-9.]+|\w+) (?:Persone?n?|Menschen) aus dem Landkreis (?:in )?stationäre?r? [bB]ehand\w+(?:, davon (?:sind )?([0-9.]+|\w+) (?:Persone?n?|Mensche?n?)?\s*intensiv)?", re.U)
+_miltenberg_si = re.compile(r"([0-9.]+|\w+) (?:Persone?n?|Mensche?n?) (?:wegen oder mit einer Covid-19-Infektion )?aus dem Landkreis (?:in )?stationäre?r? [bB]ehand\w+(?:, davon (?:sind )?([0-9.]+|\w+) (?:Persone?n?|Mensche?n?)?\s*intensiv)?", re.U)
 
 def miltenberg(sheets):
     soup = get_soup("https://www.landkreis-miltenberg.de/Landkreis/Aktuell.aspx")
