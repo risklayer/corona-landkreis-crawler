@@ -3,7 +3,8 @@ Requirements
 Pretty standard python, except for the Google API client libraries.
 
 ```
-pip install google-auth-oauthlib google-api-python-client beautifulsoup4 python-dateutil lxml pandas dateparser pdfminer.six
+pip install google-auth-oauthlib google-api-python-client
+pip install beautifulsoup4 python-dateutil lxml pandas dateparser pdfminer.six
 ```
 
 Register Google Sheets Application
@@ -18,6 +19,7 @@ create a new set of OAuth WEB application credentials.
 As callback URI, configure http://localhost:8080/
 
 Download the credentials, save as `credentials.json`.
+Do not commit credentials to the repository.
 
 
 Run
@@ -25,7 +27,22 @@ Run
 
 To run the scheduler, use `python3 scheduler.py`.
 
+To run everything once (independent of the schedule), use `python3 scheduler.py --all --once`.
+
 To manually run a single crawler, use, e.g., `python3 -m nds.nienburg`.
+
+
+Adding new crawlers
+===================
+
+Each site crawler lives in its own file, e.g., `bayern/muenchen.py`.
+To load them into the scheduler, they must be imported in one of the toplevel files, e.g., `bayern/__init__.py`.
+
+Many crawlers will either use regular expressions, or directly access JSON APIs.
+
+Crawlers tend to *break* quite often when a site layout changes, unfortunately.
+Current code is designed to rather not fill the spreadsheet then, but leave it for humans.
+
 
 Update and extend - ArcGIS example
 ==================================
@@ -76,3 +93,31 @@ To get the deaths, we need another data source,
 <https://services2.arcgis.com/mL26ZKdlhFJH9AoM/ArcGIS/rest/services/LGA_pandemie_daten_formel/FeatureServer/0/query>.
 This one is easier to use, we only need to sort by date and get the last two:
 <https://services2.arcgis.com/mL26ZKdlhFJH9AoM/ArcGIS/rest/services/LGA_pandemie_daten_formel/FeatureServer/0/query?where=1%3D1&outFields=*&orderByFields=Meldedatum+DESC&resultRecordCount=2&f=json>
+
+License
+=======
+
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <https://unlicense.org>
