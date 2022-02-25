@@ -2,7 +2,7 @@
 from botbase import *
 
 _wetterau_c = re.compile(r"bei\s*([0-9.]+)\s*,\s*([0-9.]+)\s*mehr als")
-_wetterau_a = re.compile(r"ktuell *([0-9.]+) *aktive")
+_wetterau_a = re.compile(r"ktuell *(?:im Wetteraukreis *)?([0-9.]+) *(?:aktive|mit Corona infizierte)")
 _wetterau_gg = re.compile(r"([0-9.]+) Menschen haben sich bei der Behörde als genesen")
 _wetterau_g = re.compile(r"Genesene: ([0-9.]+)")
 _wetterau_d = re.compile(r"Verstorbene: ([0-9.]+)")
@@ -18,7 +18,7 @@ def wetterau(sheets):
     text = soup.find("main").find(class_="news").get_text(" ").strip()
     #print(text)
     c, cc = map(force_int, _wetterau_c.search(text).groups())
-    a = force_int(_wetterau_a.search(text).group(1))
+    a = force_int(_wetterau_a.search(text).group(1)) if _wetterau_a.search(text) else None
     update(sheets, 6440, c=c, cc=cc, sig=str(a), comment="Bot ohne DG aktiv: "+str(a), ignore_delta=True)
     return True
 

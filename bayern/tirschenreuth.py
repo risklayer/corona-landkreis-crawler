@@ -5,7 +5,7 @@ def tirschenreuth(sheets):
     data = get_json("https://services3.arcgis.com/fygSJbpgKmtJnuHJ/ArcGIS/rest/services/Corona_Fallmonitor_Dashboard_V02/FeatureServer/0/query?where=AGS%3D9377&outFields=*&orderByFields=Datum+desc&resultRecordCount=2&f=json")
     data2 = data["features"][1]["attributes"]
     data = data["features"][0]["attributes"]
-    # for k,v in data.items(): print(k,v,sep="\t")
+    #for k,v in data.items(): print(k,v,sep="\t")
     date = check_date(data["Datum"], "Tirschenreuth")
     c, cc = data["Infektionen_insg"], data["Infektionen_Tag"]
     d, dd = data["Todesfälle_insg"], data2["Todesfälle_insg"]

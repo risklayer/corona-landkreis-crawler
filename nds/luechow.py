@@ -8,7 +8,7 @@ _luechow_d = re.compile(r"([0-9.]+)\s*(?:\(\+?(-?[0-9]+)\))? *Verstorbene")
 _luechow_q1 = re.compile(r"([0-9.]+)\s*(?:\(\+?(-?[0-9]+)\))? *Kontaktpersonen")
 _luechow_q2 = re.compile(r"([0-9.]+)\s*(?:\(\+?(-?[0-9]+)\))? *Reiserückkehrer", re.U)
 _luechow_s = re.compile(r"in (?:einem )?Krankenh\w+:\s*([0-9.]+)")
-_luechow_st = re.compile(r"Fallzahlen\s*\(Stand:\s*(\d\d?\.\s*\w+\s+20\d\d), (\d\d?)(?:\.(\d\d))?\s*Uhr", re.M)
+_luechow_st = re.compile(r"Fallzahlen(?: im Landkreis)?\s*\(Stand:\s*(\d\d?\.\s*\w+\s+20\d\d), (\d\d?)(?:\.(\d\d))?\s*Uhr", re.M)
 
 def luechow(sheets):
     soup = get_soup("https://www.luechow-dannenberg.de/home/familie-soziales-gesundheit/corona-virus.aspx")

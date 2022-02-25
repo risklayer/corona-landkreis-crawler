@@ -17,7 +17,7 @@ def neuwied(sheets):
     rows = [[x.text.strip() for x in row.findAll("td")] for row in table.findAll("tr")]
     #print(*rows, sep="\n")
     c,g,d,a,cc = list(map(force_int, rows[-1][1:6]))
-    update(sheets, 7138, c=c, cc=cc, g=g, d=d, sig="Bot", ignore_delta="mon")
+    update(sheets, 7138, c=c, cc=cc, g=g, d=d, sig="Bot", ignore_delta=True) #"mon")
     return True
 
 schedule.append(Task(15, 11, 17, 11, 360, neuwied, 7138))

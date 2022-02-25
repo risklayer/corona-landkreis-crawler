@@ -13,26 +13,29 @@ def kassel(sheets):
     date_text = header.findNext("p").get_text()
     if not today().strftime("%e. %B %Y") in date_text: raise NotYetAvailableException("Kassel noch alt: " + date_text)
     rows = [[x.text.strip() for x in row.findAll(["th", "td"])] for row in header.findNext("table").findAll("tr")]
+    #print(*rows, sep="\n")
 
-    assert "Genesene" in rows[0][3]
-    assert "Todesfälle" in rows[0][4]
-    assert "Fälle insgesamt" in rows[0][5]
+    #assert "Genesene" in rows[0][3]
+    assert "Todesfälle" in rows[0][2]
+    assert "Fälle insgesamt" in rows[0][3]
 
     assert "Stadt" in rows[1][0]
-    gs = force_int(_kassel_data.search(rows[1][3]).group(1))
-    ggs = force_int(_kassel_data.search(rows[1][3]).group(2))
-    ds = force_int(_kassel_data.search(rows[1][4]).group(1))
-    dds = force_int(_kassel_data.search(rows[1][4]).group(2))
-    cs = force_int(_kassel_data.search(rows[1][5]).group(1))
-    ccs = force_int(_kassel_data.search(rows[1][5]).group(2))
+    gs, ggs = None, None # force_int(rows[1][3]), None
+    #gs = force_int(_kassel_data.search(rows[1][3]).group(1))
+    #ggs = force_int(_kassel_data.search(rows[1][3]).group(2))
+    ds = force_int(_kassel_data.search(rows[1][2]).group(1))
+    dds = force_int(_kassel_data.search(rows[1][2]).group(2))
+    cs = force_int(_kassel_data.search(rows[1][3]).group(1))
+    ccs = force_int(_kassel_data.search(rows[1][3]).group(2))
 
     assert "Landkreis" in rows[2][0]
-    gk = force_int(_kassel_data.search(rows[2][3]).group(1))
-    ggk = force_int(_kassel_data.search(rows[2][3]).group(2))
-    dk = force_int(_kassel_data.search(rows[2][4]).group(1))
-    ddk = force_int(_kassel_data.search(rows[2][4]).group(2))
-    ck = force_int(_kassel_data.search(rows[2][5]).group(1))
-    cck = force_int(_kassel_data.search(rows[2][5]).group(2))
+    gk, ggk = None, None #force_int(rows[2][3]), None
+    #gk = force_int(_kassel_data.search(rows[2][3]).group(1))
+    #ggk = force_int(_kassel_data.search(rows[2][3]).group(2))
+    dk = force_int(_kassel_data.search(rows[2][2]).group(1))
+    ddk = force_int(_kassel_data.search(rows[2][2]).group(2))
+    ck = force_int(_kassel_data.search(rows[2][3]).group(1))
+    cck = force_int(_kassel_data.search(rows[2][3]).group(2))
 
     s, i = map(force_int, _kassel_si.search(soup.find("main").get_text()).groups())
 
