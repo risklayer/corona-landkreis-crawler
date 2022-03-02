@@ -10,7 +10,8 @@ def tirschenreuth(sheets):
     c, cc = data["Infektionen_insg"], data["Infektionen_Tag"]
     d, dd = data["Todesfälle_insg"], data2["Todesfälle_insg"]
     g, gg = data["Genesene_ins"], data2["Genesene_ins"]
-    dd, gg = d - dd, g - gg
+    dd = d - dd if d is not None and dd is not None else None
+    gg = g - gg if g is not None and gg is not None else None
     update(sheets, 9377, c=c, cc=cc, g=g, gg=gg, d=d, dd=dd, sig="Bot", date=date, ignore_delta=True)
     return True
 
