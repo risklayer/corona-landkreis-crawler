@@ -6,7 +6,7 @@ def essen(sheets):
     data = get_json("https://utility.arcgis.com/usrsvcs/servers/a2bd9c6789d64a1e9f5fce73ebd7a165/rest/services/essen/Covid19_Dashboard/MapServer/8/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&groupByFieldsForStatistics=DATUM&outStatistics=[{%22statisticType%22:%22sum%22,%22onStatisticField%22:%22KUMULIERT_POSITIVE%22,%22outStatisticFieldName%22:%22KUMULIERT_POSITIVE%22},{%22statisticType%22:%22sum%22,%22onStatisticField%22:%22KUMULIERT_VERSTORBENE%22,%22outStatisticFieldName%22:%22KUMULIERT_VERSTORBENE%22},{%22statisticType%22:%22sum%22,%22onStatisticField%22:%22KUMULIERT_ENTISOLIERTE%22,%22outStatisticFieldName%22:%22KUMULIERT_ENTISOLIERTE%22},{%22statisticType%22:%22sum%22,%22onStatisticField%22:%22AKTIVE_QUARANTAENEN%22,%22outStatisticFieldName%22:%22AKTIVE_QUARANTAENEN%22}]&resultOffset=0&resultRecordCount=1&orderByFields=DATUM+DESC")
     #for k,v in data["features"][0]["attributes"].items(): print(k,v,sep="\t")
     dat = data["features"][0]["attributes"]
-    date = check_date(dat["DATUM"], "Essen", datetime.timedelta(hours=12))
+    date = check_date(dat["DATUM"], "Essen", datetime.timedelta(hours=-12))
     c = dat["KUMULIERT_POSITIVE"]
     d = dat["KUMULIERT_VERSTORBENE"]
     g = dat["KUMULIERT_ENTISOLIERTE"]

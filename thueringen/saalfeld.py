@@ -34,5 +34,5 @@ def saalfeld(sheets):
     update(sheets, 16073, c=c, cc=cc, d=d, dd=dd, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(15, 45, 17, 45, 360, saalfeld, 16073))
+schedule.append(Task(11, 45, 17, 45, 600, saalfeld, 16073))
 if __name__ == '__main__': saalfeld(googlesheets())

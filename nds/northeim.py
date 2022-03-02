@@ -24,5 +24,5 @@ def northeim(sheets):
     update(sheets, 3155, c=c, cc=cc, d=d, dd=dd, g=g, gg=gg, sig="Bot", ignore_delta="mon")
     return True
 
-schedule.append(Task(12, 0, 14, 55, 360, northeim, 3155))
+schedule.append(Task(11, 0, 14, 55, 600, northeim, 3155))
 if __name__ == '__main__': northeim(googlesheets())
