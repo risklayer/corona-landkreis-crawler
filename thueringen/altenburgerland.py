@@ -2,12 +2,12 @@
 ## Tommy
 from botbase import *
 
-_altenburgerland_c = re.compile(r"(?:Bisher haben sich insgesamt|seit Pandemiebeginn:) ([0-9.]+) \(\+?(-?[0-9]+)")
+_altenburgerland_c = re.compile(r"(?:Bisher haben sich insgesamt|seit Pandemiebeginn:) ([0-9.]+) \(\+? *(-?[0-9]+)")
 _altenburgerland_d = re.compile(r"Verstorben\w*: ([0-9.]+)")
 _altenburgerland_s = re.compile(r"(?:Im Klinikum (?:müssen|muss)(?: aktuell)?|[Ss]tationär:)\s*([0-9.]+|\w+)", re.U)
 _altenburgerland_i = re.compile(r"([0-9.]+|\w+) (?:ITS|davon auf der Intensivstation)")
 _altenburgerland_cc = re.compile(r"([0-9.]+|\w+) (?:Infizierter? mehr |Neuinfektion)")
-_altenburgerland_st = re.compile(r"Stand:? (\d\d?\.(?:\d\d?\.)20\d\d)")
+_altenburgerland_st = re.compile(r"Stand:? (\d\d?\.(?:\d\d?\.| \w+ )20\d\d)")
 
 def altenburgerland(sheets):
     soup = get_soup("https://www.altenburgerland.de/de/aktuelles/coronavirus")

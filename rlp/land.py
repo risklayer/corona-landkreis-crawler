@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from botbase import *
 import re, time
-_rlpat = re.compile(r"lua.rlp.de|speyer.de|rhein-pfalz-kreis.de|rhein-lahn-kreis|landkreis-kusel|badkreuznach|kreis-sim.de|bitburg-pruem").search
+_rlpat = re.compile(r"lua.rlp.de|speyer.de|rhein-pfalz-kreis.de|rhein-lahn-kreis|landkreis-kusel|badkreuznach|kreis-sim.de|bitburg-pruem|kaiserslautern").search
 _rlpstand = re.compile(r"Datenstand: (\d\d?\.\d\d?.20\d\d(?:, \d\d?:\d\d)?)")
 
 def rlp(sheets):

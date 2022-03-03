@@ -20,7 +20,6 @@ def oberhausen(sheets):
         if isinstance(cur, bs4.Tag): text = text + "\n" + cur.get_text(" ")
         cur = cur.next_sibling
         if isinstance(cur, bs4.Tag) and cur.name == "hr":
-            print(text)
             if "Aktuelle Informationen" in text: break
             text = ""
     text = re.sub(r"\s+", " ", text.strip()) # geschützte leerzeichen...

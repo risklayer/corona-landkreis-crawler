@@ -10,7 +10,7 @@ from .ffb import ffb
 #from .forchheim import forchheim
 from .dingolfing import dingolfing
 from .garmisch import garmisch
-from .hassberge import hassberge
+#from .hassberge import hassberge
 from .ingolstadt import ingolstadt
 from .kitzingen import kitzingen
 from .kulmbach import kulmbach

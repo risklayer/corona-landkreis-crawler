@@ -23,5 +23,5 @@ def aurich(sheets):
     update(sheets, 3452, **args, sig="Bot", ignore_delta=False)
     return True
 
-schedule.append(Task(11, 2, 14, 35, 360, aurich, 3452))
+schedule.append(Task(10, 2, 14, 35, 600, aurich, 3452))
 if __name__ == '__main__': aurich(googlesheets())
