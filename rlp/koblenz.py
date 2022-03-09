@@ -9,7 +9,7 @@ def koblenz(sheets):
     import locale, urllib.parse
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     url = "https://www.kvmyk.de/kv_myk/Corona/Corona-Statistiken/"+urllib.parse.quote(today().strftime("%B %Y"))+"/Fallzahlen%20"+today().strftime("%d.%m.%Y")+".pdf"
-    #print(url)
+    print(url)
     content = get_pdf_text(url, laparams=LAParams(boxes_flow=.8, char_margin=100))
     if not "Koblenz" in content: content = get_pdf_text(url, laparams=LAParams(boxes_flow=.8, char_margin=100), rotation=90)
     #print(content)

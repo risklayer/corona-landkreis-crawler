@@ -2,7 +2,7 @@
 ## Tommy
 from botbase import *
 
-_kassel_data = re.compile(r"([0-9.]+)\s\(\+?([0-9.]+)")
+_kassel_data = re.compile(r"([0-9.]+)\s*\(\+?([0-9.]+)")
 _kassel_si = re.compile(r"(\d+) \([+=-]?\d*\) infizierte Personen befinden sich im Krankenhaus, (\d+) \([+=-]?\d*\) davon werden intensiv")
 
 def kassel(sheets):

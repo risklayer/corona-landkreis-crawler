@@ -19,5 +19,5 @@ def prignitz(sheets):
     update(sheets, 12070, c=c, cc=cc, d=d, ignore_delta="mon")
     return True
 
-schedule.append(Task(14, 5, 16, 5, 360, prignitz, 12070))
+schedule.append(Task(14, 5, 17, 5, 360, prignitz, 12070))
 if __name__ == '__main__': prignitz(googlesheets())

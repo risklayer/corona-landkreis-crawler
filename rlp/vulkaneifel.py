@@ -29,5 +29,5 @@ def vulkaneifel(sheets):
     update(sheets, 7233, c=c, cc=cc, d=d, g=g, gg=gg, s=s, sig="Bot")
     return True
 
-schedule.append(Task(10, 50, 12, 50, 360, vulkaneifel, 7233))
+schedule.append(Task(10, 50, 16, 50, 600, vulkaneifel, 7233))
 if __name__ == '__main__': vulkaneifel(googlesheets())

@@ -25,5 +25,5 @@ def greiz(sheets):
     update(sheets, 16076, c=c, d=d, g=g, sig="Bot")
     return True
 
-schedule.append(Task(8, 54, 13, 54, 360, greiz, 16076))
+schedule.append(Task(8, 54, 16, 54, 600, greiz, 16076))
 if __name__ == '__main__': greiz(googlesheets())

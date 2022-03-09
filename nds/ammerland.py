@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 ## Tommy
-
 from botbase import *
 
 _ammerland_d = re.compile(r"([0-9.]+) Personen sind verstorben")
 
 def ammerland(sheets):
-
     import locale
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     soup = get_soup("https://www.ammerland.de/Aktuelles/Topthemen/Corona-Testung-/Coronavirus-INFOPORTAL/")
@@ -23,7 +21,6 @@ def ammerland(sheets):
             if not today().strftime("%e. %B %Y") in h2: raise NotYetAvailableException("Ammerland noch alt:" + h2)
             quar_table = infection_table.findNext("table")
             break
-
     assert infection_table, quar_table
 
     infection_data = infection_table.tbody.find_all("tr")[9]  # erste Tabelle
@@ -36,7 +33,6 @@ def ammerland(sheets):
     temp = quar_data.find_all("td")[-1]
     q = force_int(temp.text.strip()) + a
     d = force_int(_ammerland_d.search(temp.findNext("p").findNext("p").text).group(1))
-
     c = a + g + d
 
     #print(args)
@@ -45,7 +41,3 @@ def ammerland(sheets):
 
 schedule.append(Task(15, 40, 17, 25, 360, ammerland, 3451))
 if __name__ == '__main__': ammerland(googlesheets())
-
-
-
-
