@@ -24,15 +24,17 @@ def ammerland(sheets):
     assert infection_table, quar_table
 
     infection_data = infection_table.tbody.find_all("tr")[9]  # erste Tabelle
-    quar_data = quar_table.tbody.find_all("tr")[3]  # zweite Tabelle
+    #quar_data = quar_table.tbody.find_all("tr")[3]  # zweite Tabelle
 
     g = force_int(infection_data.find_all("td")[1].text.strip())
     cc = force_int(infection_data.find_all("td")[3].text.strip())
     a = force_int(infection_data.find_all("td")[4].text.strip())
 
-    temp = quar_data.find_all("td")[-1]
-    q = force_int(temp.text.strip()) + a
-    d = force_int(_ammerland_d.search(temp.findNext("p").findNext("p").text).group(1))
+    #temp = quar_data.find_all("td")[-1]
+    #q = force_int(temp.text.strip()) + a
+    q = None
+    temp = infection_table.parent.get_text(" ")
+    d = force_int(_ammerland_d.search(temp).group(1))
     c = a + g + d
 
     #print(args)

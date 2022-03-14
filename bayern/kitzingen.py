@@ -2,7 +2,7 @@
 from botbase import *
 
 _kitzingen_c = re.compile(r"([0-9.]+) bestätigte Corona-Fälle")
-_kitzingen_d = re.compile(r"([0-9.]+) Personen davon sind gestorben")
+_kitzingen_d = re.compile(r"([0-9.]+) Personen (?:davon )?sind (?:ge|ver)storben")
 _kitzingen_g = re.compile(r"([0-9.]+) Personen (?:gesund|sind genesen)")
 _kitzingen_q = re.compile(r"([0-9.]+) Personen sind als enge Kontaktpersonen")
 _kitzingen_st = re.compile(r"Stand:? (\d\d?\. \w+ 20\d\d), (\d\d(?:\.\d\d)?)")

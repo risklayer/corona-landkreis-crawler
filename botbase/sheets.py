@@ -126,9 +126,9 @@ def update(sheets, ags,
     if not ignore_delta and dd is not None and prev[2] != d - dd:
         print("Previous D value does not match: %d vs. %d" % (prev[2], d - dd))
         do_apply = False
-    if not ignore_delta and gg is not None and prev[1] != g - gg:
-        print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
-        do_apply = False
+    #if not ignore_delta and gg is not None and prev[1] != g - gg:
+    #    print("Previous G value does not match: %d vs. %d" % (prev[1], g - gg))
+    #    do_apply = False
     #if not without_c and do_apply and cc is None and c < int(row[0]): do_apply = False
     if sig != "" and sig+" C" in row[17]: return # schon von Bot kommentiert
     if do_apply:

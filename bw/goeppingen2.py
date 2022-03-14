@@ -2,7 +2,7 @@
 from botbase import *
 
 _goeppingen_st = re.compile(r"Stand: (\d\d?\.\d\d?\.\d\d, \d\d:\d\d)", re.U)
-_goeppingen_c = re.compile(r"Fälle insgesamt: *([0-9.]+) \(\+?([-0-9.]+) zu", re.U)
+_goeppingen_c = re.compile(r"Fälle insgesamt: *([0-9.]+) \(\+? *([-0-9.]+) zu", re.U)
 _goeppingen_d = re.compile(r"Todesfälle insgesamt: *([0-9.]+)", re.U)
 _goeppingen_a = re.compile(r"Quarantäne: *([0-9.]+)", re.U)
 

@@ -2,7 +2,7 @@
 from botbase import *
 
 _ffb_c = re.compile(r"Stand\s\w+,\s(\d\d?\.\d\d?.20\d\d)\s\((\d\d?:\d\d)\sUhr\),\sgibt\ses\sinsgesamt\s+([0-9.]+)\s*(?:Infektionen|Corona-Infizierte)", re.U)
-_ffb_d = re.compile(r"Todesfälle insgesamt mit Covid-19-Befund und Wohnsitz im Landkreis Fürstenfeldbruck: ([0-9.]+) \(Stand (\d\d\.\d\d.20\d\d)\)")
+_ffb_d = re.compile(r"Todesfälle insgesamt mit Covid-19-Befund und Wohnsitz im Landkreis Fürstenfeldbruck: *([0-9.]+) *\(Stand (\d\d\.\d\d\.20\d\d)\)", re.U)
 _ffb_g = re.compile(r"Genesene: ([0-9.]+) Personen \(Stand (\d\d\.\d\d.20\d\d)\)")
 
 def ffb(sheets):
@@ -14,9 +14,9 @@ def ffb(sheets):
     date = check_date(date, "Fürstenfeldbruck")
     c = force_int(m[2])
     m2 = _ffb_d.search(text)
-    d = force_int(m2.group(1)) if m2 and m2.group(2) == m[1] else None
+    d = force_int(m2.group(1)) if m2 and m2.group(2) == m[0] else None
     m2 = _ffb_g.search(text)
-    g = force_int(m2.group(1)) if m2 and m2.group(2) == m[1] else None
+    g = force_int(m2.group(1)) if m2 and m2.group(2) == m[0] else None
     update(sheets, 9179, c=c, d=d, g=g, sig="Bot", ignore_delta="mon")
     return True
 

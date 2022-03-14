@@ -2,7 +2,7 @@
 from botbase import *
 
 _wetterau_c = re.compile(r"bei\s*([0-9.]+)\s*,\s*([0-9.]+)\s*mehr als")
-_wetterau_a = re.compile(r"ktuell *(?:im Wetteraukreis *)?([0-9.]+) *(?:aktive|mit Corona infizierte)")
+_wetterau_a = re.compile(r"ktuell *(?:im Wetteraukreis *)?([0-9.]+) *(?:aktive|mit Corona infizierte|Menschen +mit +Corona)")
 _wetterau_gg = re.compile(r"([0-9.]+) Menschen haben sich bei der Behörde als genesen")
 _wetterau_g = re.compile(r"Genesene: ([0-9.]+)")
 _wetterau_d = re.compile(r"Verstorbene: ([0-9.]+)")
